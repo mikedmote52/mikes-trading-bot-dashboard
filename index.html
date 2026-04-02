@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike's Trading Bot v1 — Dashboard</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- React and ReactDOM from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- Recharts from CDN -->
+    <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+
+    <!-- Babel Standalone for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Favicon with SVG data URL -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>📊</text></svg>">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ComposedChart } = window.Recharts;
+
+        // Mock data generators
+        const generateMockEquityCurve = () => {
+            let equity = 10000;
+            const data = [];
+            for (let i = 0; i < 34; i++) {
+                data.push({
+                    day: i + 1,
+                    equity: equity,
+                    benchmark: 10000 * Math.pow(1 + 0.638 / 34, i + 1)
+                });
+                equity *= (1 + (Math.random() * 0.08 - 0.02));
+            }
+            return data;
+        };
+
+        const MOCK_DATA = {
+            portfolio: {
+                totalEquity: 16380,
+                cash: 2840,
+                dayPnL: 385.50,
+                dayPnLPercent: 2.41,
+                openPositions: 3,
+                dailyBudgetRemaining: 100,
+                benchmark: 16380
+            },
+            positions: [
+                {
+                    id: 1,
+                    symbol: 'NVDA',
+                    entryPrice: 134.20,
+                    currentPrice: 142.80,
+                    pnlPercent: 6.41,
+                    daysHeld: 8,
+                    thesis: 'High-squeeze setup, earnings momentum',
+                    exitRule: 'ATR above 3x',
+                    shares: 10
+                },
+                {
+                    id: 2,
+                    symbol: 'TSLA',
+                    entryPrice: 198.50,
+                    currentPrice: 205.30,
+                    pnlPercent: 3.42,
+                    daysHeld: 5,
+                    thesis: 'Bollinger band compression, vol exp',
+                    exitRule: 'Target 2R hit',
+                    shares: 5
+                },
+                {
+                    id: 3,
+                    symbol: 'MSTR',
+                    entryPrice: 425.00,
+                    currentPrice: 431.20,
+                    pnlPercent: 1.46,
+                    daysHeld: 2,
+                    thesis: 'Morning breakout, vol confirmation',
+                    exitRule: 'Stop loss hit',
+                    shares: 3
+                }
+            ],
+            candidates: [
+                {
+                    id: 1,
+                    symbol: 'AVGO',
+                    score: 9.2,
+                    tier: 'S',
+                    catalyst: 'Earnings beat expected',
+                    conviction: 'High',
+                    volume: '2.3M'
+                },
+                {
+                    id: 2,
+                    symbol: 'RIOT',
+                    score: 8.7,
+                    tier: 'A',
+                    catalyst: 'BTC breakout forming',
+                    conviction: 'High',
+                    volume: '15.2M'
+                },
+                {
+                    id: 3,
+                    symbol: 'ASML',
+                    score: 8.1,
+                    tier: 'A',
+                    catalyst: 'Tech sector momentum',
+                    conviction: 'Medium',
+                    volume: '1.8M'
+                },
+                {
+                    id: 4,
+                    symbol: 'SOXL',
+                    score: 7.6,
+                    tier: 'B',
+                    catalyst: 'Chip cycle recovery',
+                    conviction: 'Medium',
+                    volume: '3.4M'
+                }
+            ],
+            learning: {
+                winRate: 62.5,
+                calibrationScore: 8.4,
+                lastWeightChange: '14:32 UTC',
+                topMissPattern: 'Gap-fills on low volume',
+                tradesThisMonth: 24,
+                avgWinPercent: 3.2,
+                avgLossPercent: -1.8
+            },
+            activity: [
+                { time: '14:45', event: 'EXIT', detail: 'AAPL sold at $185.20 (+2.3%)', status: 'completed' },
+                { time: '14:23', event: 'ENTRY', detail: 'NVDA bought at $134.20', status: 'completed' },
+                { time: '13:50', event: 'SCAN', detail: '24 candidates identified, 3 qualify', status: 'completed' },
+                { time: '13:30', event: 'LEARN', detail: 'Weight updated: momentum +0.12', status: 'completed' },
+                { time: '13:15', event: 'ALERT', detail: 'TSLA approaching tier change', status: 'warning' },
+                { time: '13:05', event: 'SCAN', detail: 'Morning pre-market scan complete', status: 'completed' },
+                { time: '12:45', event: 'EXIT', detail: 'SOFI stopped out at $5.80 (-1.2%)', status: 'loss' },
+                { time: '12:20', event: 'ENTRY', detail: 'MSTR bought at $425.00', status: 'completed' },
+                { time: '11:55', event: 'SCAN', detail: '31 candidates identified, 5 qualify', status: 'completed' },
+                { time: '11:30', event: 'LEARN', detail: 'Calibration score improved to 8.4', status: 'completed' }
+            ],
+            equityCurve: generateMockEquityCurve()
+        };
+
+        // Gauge component for benchmark tracker
+        const BenchmarkGauge = ({ current, target }) => {
+            const percentage = (current / target) * 100;
+            return (
+                <div className="flex flex-col items-center gap-4">
+                    <div className="relative w-40 h-20">
+                        <svg className="w-full h-full" viewBox="0 0 200 100">
+                            {/* Background arc */}
+                            <path
+                                d="M 20,80 A 60,60 0 0,1 180,80"
+                                fill="none"
+                                stroke="#374151"
+                                strokeWidth="8"
+                            />
+                            {/* Progress arc */}
+                            <path
+                                d="M 20,80 A 60,60 0 0,1 180,80"
+                                fill="none"
+                                stroke="#10b981"
+                                strokeWidth="8"
+                                strokeDasharray={`${(percentage / 100) * 251.2} 251.2`}
+                            />
+                            {/* Center text */}
+                            <text x="100" y="50" textAnchor="middle" className="text-xl font-bold fill-white" fontSize="20">
+                                {percentage.toFixed(1)}%
+                            </text>
+                        </svg>
+                    </div>
+                    <div className="text-center">
+                        <p className="text-xs text-gray-400">RETURNS vs TARGET</p>
+                        <p className="text-lg font-semibold text-emerald-400">
+                            {current.toFixed(1)}% / {target.toFixed(1)}%
+                        </p>
+                    </div>
+                </div>
+            );
+        };
+
+        // Status badge
+        const StatusBadge = ({ status }) => {
+            const colors = {
+                running: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
+                stopped: 'bg-red-500/20 text-red-400 border-red-500/30'
+            };
+            return (
+                <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${colors[status]}`}>
+                    {status === 'running' ? '● LIVE' : '○ OFFLINE'}
+                </span>
+            );
+        };
+
+        // Tier badge
+        const TierBadge = ({ tier }) => {
+            const colors = {
+                'S': 'bg-purple-500/20 text-purple-400',
+                'A': 'bg-blue-500/20 text-blue-400',
+                'B': 'bg-cyan-500/20 text-cyan-400',
+                'C': 'bg-gray-500/20 text-gray-400'
+            };
+            return (
+                <span className={`px-2 py-1 rounded text-xs font-bold ${colors[tier]}`}>
+                    {tier}
+                </span>
+            );
+        };
+
+        // Activity event renderer
+        const ActivityEvent = ({ event }) => {
+            const eventColors = {
+                completed: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+                warning: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20',
+                loss: 'bg-red-500/10 text-red-400 border-red-500/20'
+            };
+
+            const eventIcons = {
+                ENTRY: '↗',
+                EXIT: '↙',
+                SCAN: '📊',
+                LEARN: '⚡',
+                ALERT: '⚠'
+            };
+
+            return (
+                <div className={`p-3 rounded border-l-2 flex items-start gap-3 ${eventColors[event.status]}`}>
+                    <div className="flex-shrink-0 mt-0.5 text-lg">{eventIcons[event.event]}</div>
+                    <div className="flex-grow min-w-0">
+                        <div className="flex items-center gap-2">
+                            <span className="text-xs font-bold">{event.event}</span>
+                            <span className="text-xs text-gray-500">{event.time}</span>
+                        </div>
+                        <p className="text-xs text-gray-300 mt-1 truncate">{event.detail}</p>
+                    </div>
+                </div>
+            );
+        };
+
+        // Main Dashboard Component
+        function TradingDashboard() {
+            const [data, setData] = useState(MOCK_DATA);
+            const [isLoading, setIsLoading] = useState(false);
+            const [lastUpdate, setLastUpdate] = useState(new Date());
+            const [botStatus] = useState('running');
+
+            // Simulate polling for real API
+            useEffect(() => {
+                const pollData = async () => {
+                    setIsLoading(true);
+                    try {
+                        // For now, add slight randomization to mock data to show live updates
+                        setData(prev => ({
+                            ...prev,
+                            portfolio: {
+                                ...prev.portfolio,
+                                totalEquity: prev.portfolio.totalEquity + (Math.random() * 100 - 50),
+                                dayPnL: prev.portfolio.dayPnL + (Math.random() * 20 - 10)
+                            }
+                        }));
+                        setLastUpdate(new Date());
+                    } catch (error) {
+                        console.error('Failed to fetch data:', error);
+                    } finally {
+                        setIsLoading(false);
+                    }
+                };
+
+                const interval = setInterval(pollData, 30000); // Poll every 30 seconds
+                return () => clearInterval(interval);
+            }, []);
+
+            const benchmarkPercent = ((data.portfolio.totalEquity - 10000) / 10000) * 100;
+            const dayPnLColor = data.portfolio.dayPnL >= 0 ? 'text-emerald-400' : 'text-red-400';
+            const dayPnLBg = data.portfolio.dayPnL >= 0 ? 'bg-emerald-500/10' : 'bg-red-500/10';
+
+            return (
+                <div className="min-h-screen bg-slate-950 text-slate-100 font-mono">
+                    {/* Header */}
+                    <header className="border-b border-slate-800 bg-slate-900/50 sticky top-0 z-50">
+                        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                            <div className="flex items-center justify-between gap-4 flex-wrap">
+                                <div className="flex items-center gap-4 flex-wrap">
+                                    <h1 className="text-2xl font-bold text-emerald-400">
+                                        ▀▄▀▄▀ MIKE'S TRADING BOT v1
+                                    </h1>
+                                    <StatusBadge status={botStatus} />
+                                    <span className="px-2 py-1 text-xs font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30 rounded-full">
+                                        PAPER TRADING
+                                    </span>
+                                </div>
+                                <div className="text-right text-xs text-gray-400">
+                                    Last update: {lastUpdate.toLocaleTimeString()}
+                                    {isLoading && <span className="ml-2">⟳ syncing...</span>}
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Main content */}
+                    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+                        {/* Portfolio Summary Grid */}
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                            {/* Total Equity */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 hover:border-slate-700 transition">
+                                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Total Equity</p>
+                                <p className="text-3xl font-bold text-white mb-2">
+                                    ${data.portfolio.totalEquity.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                                </p>
+                                <p className="text-xs text-emerald-400">↑ Started at $10,000</p>
+                            </div>
+
+                            {/* Cash Available */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 hover:border-slate-700 transition">
+                                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Cash</p>
+                                <p className="text-3xl font-bold text-white mb-2">
+                                    ${data.portfolio.cash.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                                </p>
+                                <p className="text-xs text-gray-400">Buying power: ${data.portfolio.dailyBudgetRemaining}</p>
+                            </div>
+
+                            {/* Day P&L */}
+                            <div className={`border border-slate-800 rounded-lg p-4 hover:border-slate-700 transition ${dayPnLBg}`}>
+                                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Today's P&L</p>
+                                <p className={`text-3xl font-bold mb-2 ${dayPnLColor}`}>
+                                    {data.portfolio.dayPnL >= 0 ? '+' : ''}${data.portfolio.dayPnL.toFixed(2)}
+                                </p>
+                                <p className={`text-xs ${dayPnLColor}`}>
+                                    {data.portfolio.dayPnL >= 0 ? '↑' : '↓'} {Math.abs(data.portfolio.dayPnLPercent).toFixed(2)}%
+                                </p>
+                            </div>
+
+                            {/* Open Positions */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 hover:border-slate-700 transition">
+                                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Open</p>
+                                <p className="text-3xl font-bold text-cyan-400 mb-2">
+                                    {data.portfolio.openPositions}
+                                </p>
+                                <p className="text-xs text-gray-400">Active positions</p>
+                            </div>
+
+                            {/* Budget Remaining */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 hover:border-slate-700 transition">
+                                <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Daily Budget</p>
+                                <p className="text-3xl font-bold text-blue-400 mb-2">
+                                    ${data.portfolio.dailyBudgetRemaining}
+                                </p>
+                                <p className="text-xs text-gray-400">Remaining today</p>
+                            </div>
+                        </div>
+
+                        {/* Benchmark & Learning Metrics Row */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            {/* Benchmark Tracker */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6">
+                                <div className="flex items-center justify-between mb-4">
+                                    <p className="text-xs text-gray-400 uppercase tracking-wider font-bold">
+                                        🎯 Target: 63.8% Returns
+                                    </p>
+                                </div>
+                                <BenchmarkGauge current={benchmarkPercent} target={63.8} />
+                            </div>
+
+                            {/* Learning Metrics */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 space-y-3">
+                                <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-4">Learning Stats</p>
+
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-baseline">
+                                        <span className="text-xs text-gray-400">Win Rate (30d)</span>
+                                        <span className="text-sm font-bold text-emerald-400">{data.learning.winRate}%</span>
+                                    </div>
+                                    <div className="w-full bg-slate-800 rounded-full h-1">
+                                        <div
+                                            className="bg-emerald-500 h-1 rounded-full"
+                                            style={{ width: `${data.learning.winRate}%` }}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <div className="flex justify-between items-baseline">
+                                        <span className="text-xs text-gray-400">Calibration</span>
+                                        <span className="text-sm font-bold text-blue-400">{data.learning.calibrationScore}/10</span>
+                                    </div>
+                                    <div className="w-full bg-slate-800 rounded-full h-1">
+                                        <div
+                                            className="bg-blue-500 h-1 rounded-full"
+                                            style={{ width: `${(data.learning.calibrationScore / 10) * 100}%` }}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="pt-2 border-t border-slate-800 text-xs text-gray-500">
+                                    <p className="mb-1">Last adjustment: <span className="text-cyan-400">{data.learning.lastWeightChange}</span></p>
+                                    <p>Top miss: <span className="text-yellow-400">{data.learning.topMissPattern}</span></p>
+                                </div>
+                            </div>
+
+                            {/* Monthly Stats */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4 space-y-3">
+                                <p className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-4">This Month</p>
+
+                                <div className="space-y-3">
+                                    <div className="flex justify-between items-baseline">
+                                        <span className="text-xs text-gray-400">Total Trades</span>
+                                        <span className="text-2xl font-bold text-white">{data.learning.tradesThisMonth}</span>
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-3">
+                                        <div className="bg-slate-800/50 rounded p-3">
+                                            <p className="text-xs text-gray-400 mb-1">Avg Win</p>
+                                            <p className="text-lg font-bold text-emerald-400">+{data.learning.avgWinPercent}%</p>
+                                        </div>
+                                        <div className="bg-slate-800/50 rounded p-3">
+                                            <p className="text-xs text-gray-400 mb-1">Avg Loss</p>
+                                            <p className="text-lg font-bold text-red-400">{data.learning.avgLossPercent}%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Charts Row */}
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            {/* Equity Curve */}
+                            <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-lg p-4">
+                                <h3 className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-4">
+                                    📈 Equity Curve vs Benchmark
+                                </h3>
+                                <ResponsiveContainer width="100%" height={250}>
+                                    <ComposedChart data={data.equityCurve}>
+                                        <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
+                                        <XAxis dataKey="day" stroke="#94a3b8" style={{ fontSize: '12px' }} />
+                                        <YAxis stroke="#94a3b8" style={{ fontSize: '12px' }} />
+                                        <Tooltip
+                                            contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569', borderRadius: '6px' }}
+                                            labelStyle={{ color: '#e2e8f0' }}
+                                        />
+                                        <Legend />
+                                        <Area
+                                            type="monotone"
+                                            dataKey="equity"
+                                            stroke="#10b981"
+                                            fill="#10b98115"
+                                            name="Bot Equity"
+                                        />
+                                        <Line
+                                            type="monotone"
+                                            dataKey="benchmark"
+                                            stroke="#f59e0b"
+                                            strokeDasharray="5 5"
+                                            name="63.8% Target"
+                                        />
+                                    </ComposedChart>
+                                </ResponsiveContainer>
+                            </div>
+
+                            {/* Recent Performance Distribution */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg p-4">
+                                <h3 className="text-xs text-gray-400 uppercase tracking-wider font-bold mb-4">
+                                    📊 Win/Loss Mix
+                                </h3>
+                                <ResponsiveContainer width="100%" height={250}>
+                                    <PieChart>
+                                        <Pie
+                                            data={[
+                                                { name: 'Wins', value: 62.5 },
+                                                { name: 'Losses', value: 37.5 }
+                                            ]}
+                                            cx="50%"
+                                            cy="50%"
+                                            innerRadius={45}
+                                            outerRadius={75}
+                                            dataKey="value"
+                                        >
+                                            <Cell fill="#10b981" />
+                                            <Cell fill="#ef4444" />
+                                        </Pie>
+                                        <Tooltip
+                                            contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
+                                            labelStyle={{ color: '#e2e8f0' }}
+                                        />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                                <div className="mt-4 space-y-2 text-xs">
+                                    <div className="flex justify-between">
+                                        <span className="text-gray-400">Wins</span>
+                                        <span className="text-emerald-400 font-bold">62.5%</span>
+                                    </div>
+                                    <div className="flex justify-between">
+                                        <span className="text-gray-400">Losses</span>
+                                        <span className="text-red-400 font-bold">37.5%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Positions & Candidates Row */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                            {/* Open Positions Table */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden">
+                                <div className="p-4 border-b border-slate-800">
+                                    <h3 className="text-xs text-gray-400 uppercase tracking-wider font-bold">
+                                        ↗ Active Positions
+                                    </h3>
+                                </div>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-xs">
+                                        <thead className="bg-slate-800/50 border-b border-slate-700">
+                                            <tr>
+                                                <th className="px-4 py-3 text-left font-semibold">Symbol</th>
+                                                <th className="px-4 py-3 text-right font-semibold">Entry</th>
+                                                <th className="px-4 py-3 text-right font-semibold">Current</th>
+                                                <th className="px-4 py-3 text-right font-semibold">P&L%</th>
+                                                <th className="px-4 py-3 text-right font-semibold">Days</th>
+                                                <th className="px-4 py-3 text-center font-semibold">Exit Rule</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-slate-800">
+                                            {data.positions.map((pos) => (
+                                                <tr key={pos.id} className="hover:bg-slate-800/30 transition">
+                                                    <td className="px-4 py-3">
+                                                        <span className="font-bold text-white">{pos.symbol}</span>
+                                                        <div className="text-gray-500 text-xs mt-1">{pos.shares}sh @ ${pos.entryPrice}</div>
+                                                    </td>
+                                                    <td className="px-4 py-3 text-right text-gray-400">${pos.entryPrice.toFixed(2)}</td>
+                                                    <td className="px-4 py-3 text-right text-white font-semibold">${pos.currentPrice.toFixed(2)}</td>
+                                                    <td className={`px-4 py-3 text-right font-bold ${pos.pnlPercent >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
+                                                        {pos.pnlPercent >= 0 ? '+' : ''}{pos.pnlPercent.toFixed(2)}%
+                                                    </td>
+                                                    <td className="px-4 py-3 text-right text-gray-400">{pos.daysHeld}</td>
+                                                    <td className="px-4 py-3 text-center">
+                                                        <span className="px-2 py-1 bg-slate-800 rounded text-gray-300 text-xs">
+                                                            {pos.exitRule}
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="p-4 bg-slate-800/20 text-xs text-gray-400 border-t border-slate-800">
+                                    <p>Thesis: Momentum plays with vol confirmation. Stop-loss discipline strictly enforced.</p>
+                                </div>
+                            </div>
+
+                            {/* Scanner Picks */}
+                            <div className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden">
+                                <div className="p-4 border-b border-slate-800">
+                                    <h3 className="text-xs text-gray-400 uppercase tracking-wider font-bold">
+                                        ⚡ Today's Top Candidates
+                                    </h3>
+                                </div>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-xs">
+                                        <thead className="bg-slate-800/50 border-b border-slate-700">
+                                            <tr>
+                                                <th className="px-4 py-3 text-left font-semibold">Symbol</th>
+                                                <th className="px-4 py-3 text-right font-semibold">Score</th>
+                                                <th className="px-4 py-3 text-center font-semibold">Tier</th>
+                                                <th className="px-4 py-3 text-left font-semibold">Catalyst</th>
+                                                <th className="px-4 py-3 text-center font-semibold">Vol (M)</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-slate-800">
+                                            {data.candidates.map((cand) => (
+                                                <tr key={cand.id} className="hover:bg-slate-800/30 transition">
+                                                    <td className="px-4 py-3">
+                                                        <span className="font-bold text-white">{cand.symbol}</span>
+                                                    </td>
+                                                    <td className="px-4 py-3 text-right">
+                                                        <span className="font-bold text-emerald-400">{cand.score.toFixed(1)}</span>
+                                                    </td>
+                                                    <td className="px-4 py-3 text-center">
+                                                        <TierBadge tier={cand.tier} />
+                                                    </td>
+                                                    <td className="px-4 py-3 text-left text-gray-300">
+                                                        <span className="truncate block max-w-xs">{cand.catalyst}</span>
+                                                    </td>
+                                                    <td className="px-4 py-3 text-center text-gray-400">{cand.volume}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="p-4 bg-slate-800/20 text-xs text-gray-400 border-t border-slate-800">
+                                    <p>Scoring: squeeze setup + volume + catalyst strength. Conviction levels indicate confidence level.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Activity Feed */}
+                        <div className="bg-slate-900 border border-slate-800 rounded-lg overflow-hidden">
+                            <div className="p-4 border-b border-slate-800">
+                                <h3 className="text-xs text-gray-400 uppercase tracking-wider font-bold">
+                                    🕐 Recent Activity
+                                </h3>
+                            </div>
+                            <div className="p-4 space-y-2 max-h-64 overflow-y-auto">
+                                {data.activity.map((item, idx) => (
+                                    <ActivityEvent key={idx} event={item} />
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Footer */}
+                        <div className="text-xs text-gray-500 text-center py-4 border-t border-slate-800">
+                            <p>Bot running on Alpaca API v2 | Paper trading $100/symbol, $300/day max | Last sync: {lastUpdate.toLocaleTimeString()}</p>
+                        </div>
+                    </main>
+                </div>
+            );
+        }
+
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TradingDashboard />);
+    </script>
+</body>
+</html>
