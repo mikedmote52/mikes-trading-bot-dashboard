@@ -17,6 +17,11 @@
         .scrollbar-thin::-webkit-scrollbar-thumb { background: #475569; border-radius: 2px; }
         .fade-in { animation: fadeIn 0.4s ease-in; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        .step-arrow { display: flex; align-items: center; gap: 6px; }
+        .step-arrow::after { content: '→'; color: #475569; font-size: 14px; }
+        .step-arrow:last-child::after { content: ''; }
+        .schedule-item.active { background: rgba(16,185,129,0.12); border-left: 2px solid #10b981; }
+        .schedule-item { background: rgba(30,41,59,0.5); border-left: 2px solid #334155; border-radius: 4px; padding: 8px 12px; }
     </style>
 </head>
 <body>
@@ -44,6 +49,35 @@
         <!-- Main Content -->
         <main style="max-width: 1280px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
 
+            <!-- SECTION: HOW THIS SYSTEM WORKS -->
+            <div class="card fade-in" style="padding: 20px; border-left: 3px solid #10b981;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <span style="font-size: 18px;">🧠</span>
+                    <p style="font-size: 13px; font-weight: 700; color: #10b981; margin: 0; text-transform: uppercase; letter-spacing: 1px;">How This System Works</p>
+                </div>
+                <p style="font-size: 12px; color: #cbd5e1; margin: 0 0 14px; line-height: 1.6;">
+                    Uses AI to find squeeze stocks likely to return 50-300% in 2-6 weeks. Scans the market through an 8-stage pipeline, scores candidates across 20+ factors, has Claude rank the top picks by conviction, then executes paper trades via Alpaca. After every 5 closed trades, the learning system analyzes what worked, adjusts scoring weights, and feeds outcomes back into the next scan. Goal: beat ChatGPT's benchmark of 63.8% returns in 34 days.
+                </p>
+                <!-- Pipeline visual -->
+                <div style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 10px;">
+                    <span style="padding: 4px 8px; background: rgba(99,102,241,0.15); color: #818cf8; border-radius: 4px;">1. Universe Filter</span>
+                    <span style="color: #475569;">→</span>
+                    <span style="padding: 4px 8px; background: rgba(99,102,241,0.15); color: #818cf8; border-radius: 4px;">2. Snapshot</span>
+                    <span style="color: #475569;">→</span>
+                    <span style="padding: 4px 8px; background: rgba(99,102,241,0.15); color: #818cf8; border-radius: 4px;">3. Momentum Rank</span>
+                    <span style="color: #475569;">→</span>
+                    <span style="padding: 4px 8px; background: rgba(99,102,241,0.15); color: #818cf8; border-radius: 4px;">4. Volume Cache</span>
+                    <span style="color: #475569;">→</span>
+                    <span style="padding: 4px 8px; background: rgba(234,179,8,0.15); color: #fbbf24; border-radius: 4px;">5. RVOL Filter</span>
+                    <span style="color: #475569;">→</span>
+                    <span style="padding: 4px 8px; background: rgba(234,179,8,0.15); color: #fbbf24; border-radius: 4px;">6. Squeeze Check</span>
+                    <span style="color: #475569;">→</span>
+                    <span style="padding: 4px 8px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 4px;">7. Fundamentals Gate</span>
+                    <span style="color: #475569;">→</span>
+                    <span style="padding: 4px 8px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 4px; font-weight: 700;">8. AI Scoring</span>
+                </div>
+            </div>
+
             <!-- Portfolio Summary Cards -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
                 <div class="card fade-in" style="padding: 16px;">
@@ -64,7 +98,7 @@
                 <div class="card fade-in" style="padding: 16px;">
                     <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px;">Open Positions</p>
                     <p id="open-positions" style="font-size: 28px; font-weight: 700; color: #22d3ee; margin: 0 0 6px;">—</p>
-                    <p style="font-size: 11px; color: #94a3b8; margin: 0;">Active trades</p>
+                    <p style="font-size: 11px; color: #94a3b8; margin: 0;">Max 20 concurrent</p>
                 </div>
                 <div class="card fade-in" style="padding: 16px;">
                     <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px;">Daily Budget</p>
@@ -73,11 +107,11 @@
                 </div>
             </div>
 
-            <!-- Benchmark + Learning + Monthly -->
+            <!-- Benchmark + Learning + Rules -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
                 <!-- Benchmark -->
                 <div class="card fade-in" style="padding: 20px; text-align: center;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px; font-weight: 700;">🎯 Target: 63.8% Returns in 34 Days</p>
+                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px; font-weight: 700;">🎯 Target: Beat ChatGPT's 63.8%</p>
                     <div style="position: relative; width: 180px; height: 100px; margin: 0 auto;">
                         <svg viewBox="0 0 200 100" style="width: 100%; height: 100%;">
                             <path d="M 20,80 A 60,60 0 0,1 180,80" fill="none" stroke="#374151" stroke-width="10" stroke-linecap="round"/>
@@ -87,11 +121,12 @@
                     </div>
                     <p style="font-size: 11px; color: #94a3b8; margin: 8px 0 0;">RETURNS vs TARGET</p>
                     <p id="benchmark-label" style="font-size: 16px; color: #10b981; font-weight: 600; margin: 4px 0 0;">0.0% / 63.8%</p>
+                    <p style="font-size: 10px; color: #64748b; margin: 6px 0 0;">ChatGPT found 63.8% in 34 days (Jun 1 - Jul 4)</p>
                 </div>
 
-                <!-- Learning -->
+                <!-- Learning System -->
                 <div class="card fade-in" style="padding: 20px;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px; font-weight: 700;">Learning Stats</p>
+                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px; font-weight: 700;">⚡ Learning System</p>
                     <div style="margin-bottom: 12px;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
                             <span style="font-size: 11px; color: #94a3b8;">Win Rate (30d)</span>
@@ -102,32 +137,46 @@
                         </div>
                     </div>
                     <div style="margin-bottom: 12px;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <div style="display: flex; justify-content: space-between;">
                             <span style="font-size: 11px; color: #94a3b8;">Trades Closed</span>
                             <span id="trades-closed" style="font-size: 13px; font-weight: 700; color: #60a5fa;">—</span>
                         </div>
                     </div>
-                    <div style="border-top: 1px solid #334155; padding-top: 10px; font-size: 11px; color: #64748b;">
-                        <p style="margin: 0 0 4px;">Learning cycle: <span id="learning-cycle" style="color: #22d3ee;">every 5 closed trades</span></p>
-                        <p style="margin: 0;">System: <span style="color: #fbbf24;">closed-loop weight adjustment</span></p>
+                    <div style="border-top: 1px solid #334155; padding-top: 10px; font-size: 10px; color: #64748b; line-height: 1.6;">
+                        <p style="margin: 0 0 2px;"><span style="color: #22d3ee;">How it learns:</span> Every 5 closed trades, the system analyzes winners vs losers, adjusts scoring weights (max 20% per cycle), recalibrates using Brier scores, and feeds outcomes back into Claude's context for the next pick.</p>
                     </div>
                 </div>
 
-                <!-- Monthly Stats -->
+                <!-- Trading Rules -->
                 <div class="card fade-in" style="padding: 20px;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px; font-weight: 700;">Performance</p>
-                    <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px;">
-                        <span style="font-size: 11px; color: #94a3b8;">Total Trades</span>
-                        <span id="total-trades" style="font-size: 26px; font-weight: 700; color: #fff;">—</span>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                        <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 12px;">
-                            <p style="font-size: 10px; color: #94a3b8; margin: 0 0 4px;">Avg Win</p>
-                            <p id="avg-win" style="font-size: 18px; font-weight: 700; color: #10b981; margin: 0;">—</p>
+                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 16px; font-weight: 700;">🛡 Exit Rules & Safety</p>
+                    <div style="font-size: 11px; display: flex; flex-direction: column; gap: 8px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #ef4444;">Hard stop</span>
+                            <span style="color: #fff; font-weight: 600;">-15% from entry</span>
                         </div>
-                        <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 12px;">
-                            <p style="font-size: 10px; color: #94a3b8; margin: 0 0 4px;">Avg Loss</p>
-                            <p id="avg-loss" style="font-size: 18px; font-weight: 700; color: #ef4444; margin: 0;">—</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #fbbf24;">Trailing stop</span>
+                            <span style="color: #fff; font-weight: 600;">-10% after +20% gain</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #10b981;">Profit target</span>
+                            <span style="color: #fff; font-weight: 600;">+50% take profit</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #94a3b8;">Time exit</span>
+                            <span style="color: #fff; font-weight: 600;">30 days max hold</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span style="color: #818cf8;">Squeeze broken</span>
+                            <span style="color: #fff; font-weight: 600;">Exit if setup fails</span>
+                        </div>
+                        <div style="border-top: 1px solid #334155; padding-top: 8px; margin-top: 4px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: #ef4444; font-weight: 700;">Circuit Breaker</span>
+                                <span id="circuit-breaker" style="color: #10b981; font-weight: 600; font-size: 10px;">NORMAL</span>
+                            </div>
+                            <p style="font-size: 10px; color: #64748b; margin: 4px 0 0;">Trips on 3 consecutive losses OR 10% daily drawdown</p>
                         </div>
                     </div>
                 </div>
@@ -159,53 +208,88 @@
                 </div>
             </div>
 
-            <!-- Positions + Candidates -->
+            <!-- Positions (enriched) -->
+            <div class="card fade-in" style="overflow: hidden;">
+                <div style="padding: 16px; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center;">
+                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0; font-weight: 700;">↗ Active Positions</p>
+                    <p id="positions-total-pnl" style="font-size: 12px; margin: 0; font-weight: 700;"></p>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: rgba(30,41,59,0.5); border-bottom: 1px solid #475569;">
+                                <th style="padding: 10px 14px; text-align: left; font-weight: 600; color: #94a3b8;">Symbol</th>
+                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Entry</th>
+                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Current</th>
+                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">P&L $</th>
+                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">P&L %</th>
+                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Qty</th>
+                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Cost</th>
+                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Mkt Val</th>
+                                <th style="padding: 10px 14px; text-align: center; font-weight: 600; color: #94a3b8;">Exit Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="positions-body">
+                            <tr><td colspan="9" style="padding: 24px; text-align: center; color: #64748b;">Loading positions...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Orders -->
+            <div class="card fade-in" style="overflow: hidden;">
+                <div style="padding: 16px; border-bottom: 1px solid #334155;">
+                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0; font-weight: 700;">⚡ Recent Orders</p>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: rgba(30,41,59,0.5); border-bottom: 1px solid #475569;">
+                                <th style="padding: 10px 16px; text-align: left; font-weight: 600; color: #94a3b8;">Symbol</th>
+                                <th style="padding: 10px 16px; text-align: center; font-weight: 600; color: #94a3b8;">Side</th>
+                                <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Qty</th>
+                                <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Price</th>
+                                <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Total</th>
+                                <th style="padding: 10px 16px; text-align: center; font-weight: 600; color: #94a3b8;">Status</th>
+                                <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-body">
+                            <tr><td colspan="7" style="padding: 24px; text-align: center; color: #64748b;">Loading orders...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Daily Schedule + Scoring -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <!-- Positions -->
-                <div class="card fade-in" style="overflow: hidden;">
-                    <div style="padding: 16px; border-bottom: 1px solid #334155;">
-                        <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0; font-weight: 700;">↗ Active Positions</p>
+                <!-- Schedule -->
+                <div class="card fade-in" style="padding: 20px;">
+                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 14px; font-weight: 700;">🕐 Daily Schedule (Pacific Time)</p>
+                    <div id="schedule-list" style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+                        <!-- Populated by JS -->
                     </div>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background: rgba(30,41,59,0.5); border-bottom: 1px solid #475569;">
-                                    <th style="padding: 10px 16px; text-align: left; font-weight: 600; color: #94a3b8;">Symbol</th>
-                                    <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Entry</th>
-                                    <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Current</th>
-                                    <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">P&L%</th>
-                                    <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Qty</th>
-                                    <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Mkt Value</th>
-                                </tr>
-                            </thead>
-                            <tbody id="positions-body">
-                                <tr><td colspan="6" style="padding: 24px; text-align: center; color: #64748b;">Loading positions...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <p style="font-size: 10px; color: #64748b; margin: 12px 0 0;">Position monitor runs every 60s checking all 5 exit rules.</p>
                 </div>
 
-                <!-- Recent Orders -->
-                <div class="card fade-in" style="overflow: hidden;">
-                    <div style="padding: 16px; border-bottom: 1px solid #334155;">
-                        <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0; font-weight: 700;">⚡ Recent Orders</p>
-                    </div>
-                    <div style="overflow-x: auto;">
-                        <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
-                            <thead>
-                                <tr style="background: rgba(30,41,59,0.5); border-bottom: 1px solid #475569;">
-                                    <th style="padding: 10px 16px; text-align: left; font-weight: 600; color: #94a3b8;">Symbol</th>
-                                    <th style="padding: 10px 16px; text-align: center; font-weight: 600; color: #94a3b8;">Side</th>
-                                    <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Qty</th>
-                                    <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Price</th>
-                                    <th style="padding: 10px 16px; text-align: center; font-weight: 600; color: #94a3b8;">Status</th>
-                                    <th style="padding: 10px 16px; text-align: right; font-weight: 600; color: #94a3b8;">Time</th>
-                                </tr>
-                            </thead>
-                            <tbody id="orders-body">
-                                <tr><td colspan="6" style="padding: 24px; text-align: center; color: #64748b;">Loading orders...</td></tr>
-                            </tbody>
-                        </table>
+                <!-- Scoring System -->
+                <div class="card fade-in" style="padding: 20px;">
+                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 14px; font-weight: 700;">📐 Scoring Engine (20+ Factors)</p>
+                    <div style="font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
+                        <div style="display: flex; justify-content: space-between;"><span style="color: #10b981;">Volume acceleration</span><span style="color: #64748b;">0-30 pts</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: #10b981;">Explosive volume</span><span style="color: #64748b;">0-30 pts</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: #10b981;">Float size (smaller = better)</span><span style="color: #64748b;">0-40 pts</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: #10b981;">Momentum</span><span style="color: #64748b;">0-40 pts</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: #10b981;">Squeeze / Short Interest</span><span style="color: #64748b;">0-45 pts</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: #10b981;">Catalyst strength</span><span style="color: #64748b;">0-30 pts</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: #fbbf24;">Social buzz</span><span style="color: #64748b;">0-25 pts</span></div>
+                        <div style="display: flex; justify-content: space-between;"><span style="color: #fbbf24;">Coil spring bonus</span><span style="color: #64748b;">+40-100 pts</span></div>
+                        <div style="border-top: 1px solid #334155; padding-top: 6px; margin-top: 2px;">
+                            <div style="display: flex; justify-content: space-between;"><span style="color: #ef4444;">Chase risk penalty</span><span style="color: #64748b;">-35 pts</span></div>
+                            <div style="display: flex; justify-content: space-between;"><span style="color: #ef4444;">Pump & dump penalty</span><span style="color: #64748b;">-30 pts</span></div>
+                            <div style="display: flex; justify-content: space-between;"><span style="color: #ef4444;">Dilution risk penalty</span><span style="color: #64748b;">-25 pts</span></div>
+                        </div>
+                        <p style="font-size: 10px; color: #64748b; margin: 4px 0 0;">Range: -125 to +545. Weights adjust automatically via learning loop.</p>
                     </div>
                 </div>
             </div>
@@ -213,7 +297,7 @@
             <!-- Activity Feed -->
             <div class="card fade-in" style="overflow: hidden;">
                 <div style="padding: 16px; border-bottom: 1px solid #334155;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0; font-weight: 700;">🕐 Activity Log</p>
+                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0; font-weight: 700;">🔄 Activity Log</p>
                 </div>
                 <div id="activity-feed" class="scrollbar-thin" style="padding: 16px; max-height: 240px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
                     <div style="padding: 12px; text-align: center; color: #64748b; font-size: 12px;">Waiting for data...</div>
@@ -222,7 +306,7 @@
 
             <!-- Footer -->
             <div style="text-align: center; font-size: 11px; color: #64748b; padding: 16px 0; border-top: 1px solid #334155;">
-                <p style="margin: 0;">Alpaca Paper Trading | $100/symbol, $300/day max | Squeeze detection + AI scoring + closed-loop learning</p>
+                <p style="margin: 0;">Alpaca Paper Trading | $0-100 stocks, no ETFs | 8-stage scanner → AI scoring → Claude conviction picks → closed-loop learning</p>
             </div>
         </main>
     </div>
@@ -241,26 +325,65 @@
     let activityLog = [];
     let isLive = false;
 
+    // ─── SCHEDULE ────────────────────────────────────────────
+    const SCHEDULE = [
+        { time: '6:00 AM', label: 'Pre-market scan + morning briefing', icon: '📊' },
+        { time: '6:30 AM', label: 'Market open — execute top picks', icon: '🔔' },
+        { time: '9:00 AM', label: 'Midday scan for momentum shifts', icon: '📊' },
+        { time: '12:00 PM', label: 'Power hour scan', icon: '⚡' },
+        { time: '1:00 PM', label: 'Close review — check all positions', icon: '📋' },
+        { time: '1:30 PM', label: 'EOD summary + learning analysis', icon: '🧠' },
+        { time: '1:35 PM', label: 'Nightly learner — adjust weights', icon: '⚙' },
+        { time: 'Fri 3 PM', label: 'Weekly scorecard', icon: '📈' },
+        { time: 'Always', label: 'Position monitor (every 60s)', icon: '👁' },
+    ];
+
+    function renderSchedule() {
+        const now = new Date();
+        const hour = now.getHours();
+        const min = now.getMinutes();
+        const nowMins = hour * 60 + min;
+
+        const list = $('schedule-list');
+        list.innerHTML = SCHEDULE.map(s => {
+            // Rough active detection
+            let active = false;
+            if (s.time === 'Always') active = true;
+            else if (s.time.includes('AM') || s.time.includes('PM')) {
+                const parts = s.time.match(/(\d+):(\d+)\s*(AM|PM)/);
+                if (parts) {
+                    let h = parseInt(parts[1]);
+                    const m = parseInt(parts[2]);
+                    if (parts[3] === 'PM' && h !== 12) h += 12;
+                    if (parts[3] === 'AM' && h === 12) h = 0;
+                    const sMins = h * 60 + m;
+                    active = Math.abs(nowMins - sMins) < 30;
+                }
+            }
+            return `<div class="schedule-item${active ? ' active' : ''}" style="display:flex;align-items:center;gap:10px;">
+                <span style="font-size:13px;">${s.icon}</span>
+                <span style="color:#60a5fa;font-weight:600;min-width:70px;">${s.time}</span>
+                <span style="color:${active ? '#10b981' : '#cbd5e1'};">${s.label}</span>
+                ${active && s.time !== 'Always' ? '<span style="font-size:9px;color:#10b981;font-weight:700;margin-left:auto;">NOW</span>' : ''}
+            </div>`;
+        }).join('');
+    }
+
     // ─── ALPACA API ──────────────────────────────────────────
     async function alpacaFetch(endpoint) {
         const res = await fetch(ALPACA_BASE + endpoint, {
-            headers: {
-                'APCA-API-KEY-ID': ALPACA_KEY,
-                'APCA-API-SECRET-KEY': ALPACA_SECRET
-            }
+            headers: { 'APCA-API-KEY-ID': ALPACA_KEY, 'APCA-API-SECRET-KEY': ALPACA_SECRET }
         });
         if (!res.ok) throw new Error(`Alpaca ${res.status}: ${res.statusText}`);
         return res.json();
     }
 
-    // ─── LOCAL API (FastAPI backend) ─────────────────────────
     async function localFetch(endpoint) {
         const res = await fetch(LOCAL_API + endpoint);
         if (!res.ok) throw new Error(`Local API ${res.status}`);
         return res.json();
     }
 
-    // ─── DATA LOADING ────────────────────────────────────────
     async function loadAlpacaData() {
         const [account, positions, orders] = await Promise.all([
             alpacaFetch('/v2/account'),
@@ -277,21 +400,13 @@
                 localFetch('/api/learning/stats')
             ]);
             return { portfolio, learning };
-        } catch (e) {
-            return null;
-        }
+        } catch (e) { return null; }
     }
 
     // ─── RENDERING ───────────────────────────────────────────
     function $(id) { return document.getElementById(id); }
-
-    function money(n) {
-        return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    }
-
-    function pct(n) {
-        return (n >= 0 ? '+' : '') + Number(n).toFixed(2) + '%';
-    }
+    function money(n) { return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+    function pct(n) { return (n >= 0 ? '+' : '') + Number(n).toFixed(2) + '%'; }
 
     function updateStatus(live) {
         isLive = live;
@@ -318,17 +433,14 @@
         $('total-equity').textContent = money(equity);
         $('equity-change').textContent = `Total return: ${pct(totalReturn)} from $${STARTING_EQUITY.toLocaleString()}`;
         $('equity-change').style.color = totalReturn >= 0 ? '#10b981' : '#ef4444';
-
         $('cash').textContent = money(cash);
         $('buying-power').textContent = `Buying power: ${money(acct.buying_power)}`;
-
         $('day-pnl').textContent = (dayPnl >= 0 ? '+' : '') + money(Math.abs(dayPnl));
         $('day-pnl').style.color = dayPnl >= 0 ? '#10b981' : '#ef4444';
         $('day-pnl-pct').textContent = pct(dayPnlPct);
         $('day-pnl-pct').style.color = dayPnl >= 0 ? '#10b981' : '#ef4444';
         $('pnl-card').style.background = dayPnl >= 0 ? 'rgba(16,185,129,0.05)' : 'rgba(239,68,68,0.05)';
 
-        // Benchmark gauge
         const benchPct = Math.max(0, Math.min(totalReturn, 100));
         const gaugeRatio = Math.min(benchPct / 63.8, 1);
         $('gauge-arc').setAttribute('stroke-dasharray', `${gaugeRatio * 251.2} 251.2`);
@@ -342,43 +454,77 @@
         const tbody = $('positions-body');
 
         if (positions.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" style="padding:24px;text-align:center;color:#64748b;">No open positions</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="9" style="padding:24px;text-align:center;color:#64748b;">No open positions</td></tr>';
+            $('positions-total-pnl').textContent = '';
             return;
         }
 
+        let totalUnrealizedPnl = 0;
+
         tbody.innerHTML = positions.map(p => {
             const pnlPct = parseFloat(p.unrealized_plpc) * 100;
+            const pnlDollar = parseFloat(p.unrealized_pl);
+            const cost = parseFloat(p.cost_basis);
+            const mktVal = parseFloat(p.market_value);
+            totalUnrealizedPnl += pnlDollar;
             const color = pnlPct >= 0 ? '#10b981' : '#ef4444';
+
+            // Determine exit status based on P&L
+            let exitStatus = '';
+            let exitColor = '#94a3b8';
+            if (pnlPct <= -15) { exitStatus = 'STOP HIT'; exitColor = '#ef4444'; }
+            else if (pnlPct <= -10) { exitStatus = 'NEAR STOP'; exitColor = '#fbbf24'; }
+            else if (pnlPct >= 50) { exitStatus = 'TARGET!'; exitColor = '#10b981'; }
+            else if (pnlPct >= 20) { exitStatus = 'TRAILING'; exitColor = '#22d3ee'; }
+            else { exitStatus = 'HOLDING'; exitColor = '#64748b'; }
+
             return `<tr style="border-bottom:1px solid #334155;">
-                <td style="padding:10px 16px;">
-                    <span style="font-weight:700;color:#fff;">${p.symbol}</span>
+                <td style="padding:10px 14px;font-weight:700;color:#fff;">${p.symbol}</td>
+                <td style="padding:10px 14px;text-align:right;color:#94a3b8;">${money(p.avg_entry_price)}</td>
+                <td style="padding:10px 14px;text-align:right;color:#fff;font-weight:600;">${money(p.current_price)}</td>
+                <td style="padding:10px 14px;text-align:right;font-weight:700;color:${color};">${pnlDollar >= 0 ? '+' : ''}${money(Math.abs(pnlDollar))}</td>
+                <td style="padding:10px 14px;text-align:right;font-weight:700;color:${color};">${pct(pnlPct)}</td>
+                <td style="padding:10px 14px;text-align:right;color:#94a3b8;">${p.qty}</td>
+                <td style="padding:10px 14px;text-align:right;color:#94a3b8;">${money(cost)}</td>
+                <td style="padding:10px 14px;text-align:right;color:#fff;">${money(mktVal)}</td>
+                <td style="padding:10px 14px;text-align:center;">
+                    <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:${exitColor};background:${exitColor}15;">${exitStatus}</span>
                 </td>
-                <td style="padding:10px 16px;text-align:right;color:#94a3b8;">${money(p.avg_entry_price)}</td>
-                <td style="padding:10px 16px;text-align:right;color:#fff;font-weight:600;">${money(p.current_price)}</td>
-                <td style="padding:10px 16px;text-align:right;font-weight:700;color:${color};">${pct(pnlPct)}</td>
-                <td style="padding:10px 16px;text-align:right;color:#94a3b8;">${p.qty}</td>
-                <td style="padding:10px 16px;text-align:right;color:#fff;">${money(p.market_value)}</td>
             </tr>`;
         }).join('');
+
+        const totalColor = totalUnrealizedPnl >= 0 ? '#10b981' : '#ef4444';
+        $('positions-total-pnl').innerHTML = `Unrealized: <span style="color:${totalColor}">${totalUnrealizedPnl >= 0 ? '+' : ''}${money(Math.abs(totalUnrealizedPnl))}</span>`;
+        $('positions-total-pnl').style.color = '#94a3b8';
+
+        // Circuit breaker check (rough)
+        const losers = positions.filter(p => parseFloat(p.unrealized_plpc) < 0).length;
+        const cb = $('circuit-breaker');
+        if (losers >= positions.length * 0.8 && positions.length > 3) {
+            cb.textContent = '⚠ CAUTION';
+            cb.style.color = '#fbbf24';
+        } else {
+            cb.textContent = '✓ NORMAL';
+            cb.style.color = '#10b981';
+        }
     }
 
     function renderOrders(orders) {
         const tbody = $('orders-body');
-        const recent = orders.slice(0, 10);
+        const recent = orders.slice(0, 15);
 
         if (recent.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="6" style="padding:24px;text-align:center;color:#64748b;">No recent orders</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="7" style="padding:24px;text-align:center;color:#64748b;">No recent orders</td></tr>';
             return;
         }
 
         tbody.innerHTML = recent.map(o => {
             const sideColor = o.side === 'buy' ? '#10b981' : '#ef4444';
-            const statusColors = {
-                filled: '#10b981', partially_filled: '#fbbf24', new: '#60a5fa',
-                canceled: '#64748b', expired: '#64748b', rejected: '#ef4444'
-            };
+            const statusColors = { filled: '#10b981', partially_filled: '#fbbf24', new: '#60a5fa', canceled: '#64748b', expired: '#64748b', rejected: '#ef4444' };
             const sColor = statusColors[o.status] || '#94a3b8';
-            const price = o.filled_avg_price || o.limit_price || o.stop_price || '—';
+            const price = o.filled_avg_price || o.limit_price || o.stop_price || null;
+            const qty = parseFloat(o.filled_qty || o.qty);
+            const total = price ? (qty * parseFloat(price)) : null;
             const time = o.filled_at || o.submitted_at || o.created_at;
             const timeStr = time ? new Date(time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '—';
 
@@ -387,8 +533,9 @@
                 <td style="padding:10px 16px;text-align:center;">
                     <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:${o.side==='buy'?'rgba(16,185,129,0.15)':'rgba(239,68,68,0.15)'};color:${sideColor};">${o.side.toUpperCase()}</span>
                 </td>
-                <td style="padding:10px 16px;text-align:right;color:#94a3b8;">${o.filled_qty || o.qty}</td>
-                <td style="padding:10px 16px;text-align:right;color:#fff;">${price !== '—' ? money(price) : '—'}</td>
+                <td style="padding:10px 16px;text-align:right;color:#94a3b8;">${qty}</td>
+                <td style="padding:10px 16px;text-align:right;color:#fff;">${price ? money(price) : '—'}</td>
+                <td style="padding:10px 16px;text-align:right;color:#fff;">${total ? money(total) : '—'}</td>
                 <td style="padding:10px 16px;text-align:center;">
                     <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;color:${sColor};">${o.status.replace('_',' ').toUpperCase()}</span>
                 </td>
@@ -406,18 +553,9 @@
 
     function renderActivity() {
         const feed = $('activity-feed');
-        if (activityLog.length === 0) {
-            feed.innerHTML = '<div style="padding:12px;text-align:center;color:#64748b;font-size:12px;">No activity yet</div>';
-            return;
-        }
-
+        if (activityLog.length === 0) { feed.innerHTML = '<div style="padding:12px;text-align:center;color:#64748b;font-size:12px;">No activity yet</div>'; return; }
         const icons = { SYNC: '🔄', ENTRY: '↗', EXIT: '↙', SCAN: '📊', LEARN: '⚡', ALERT: '⚠', ERROR: '❌', INFO: 'ℹ' };
-        const colors = {
-            ok: 'rgba(16,185,129,0.08);border-left:2px solid rgba(16,185,129,0.4);color:#10b981',
-            warn: 'rgba(234,179,8,0.08);border-left:2px solid rgba(234,179,8,0.4);color:#fbbf24',
-            err: 'rgba(239,68,68,0.08);border-left:2px solid rgba(239,68,68,0.4);color:#ef4444'
-        };
-
+        const colors = { ok: 'rgba(16,185,129,0.08);border-left:2px solid rgba(16,185,129,0.4);color:#10b981', warn: 'rgba(234,179,8,0.08);border-left:2px solid rgba(234,179,8,0.4);color:#fbbf24', err: 'rgba(239,68,68,0.08);border-left:2px solid rgba(239,68,68,0.4);color:#ef4444' };
         feed.innerHTML = activityLog.map(a => `
             <div style="padding:10px 12px;border-radius:6px;display:flex;align-items:flex-start;gap:10px;background:${colors[a.status]};">
                 <span style="flex-shrink:0;font-size:14px;">${icons[a.type] || 'ℹ'}</span>
@@ -426,7 +564,7 @@
                         <span style="font-size:10px;font-weight:700;">${a.type}</span>
                         <span style="font-size:10px;color:#64748b;">${a.time}</span>
                     </div>
-                    <p style="font-size:11px;color:#cbd5e1;margin:4px 0 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${a.detail}</p>
+                    <p style="font-size:11px;color:#cbd5e1;margin:4px 0 0;">${a.detail}</p>
                 </div>
             </div>
         `).join('');
@@ -438,97 +576,41 @@
         Chart.defaults.borderColor = '#334155';
         Chart.defaults.font.family = "'Courier New', monospace";
 
-        const eqCtx = $('equity-chart').getContext('2d');
-        equityChart = new Chart(eqCtx, {
+        equityChart = new Chart($('equity-chart').getContext('2d'), {
             type: 'line',
-            data: {
-                labels: [],
-                datasets: [
-                    {
-                        label: 'Bot Equity',
-                        data: [],
-                        borderColor: '#10b981',
-                        backgroundColor: 'rgba(16,185,129,0.08)',
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 0,
-                        borderWidth: 2
-                    },
-                    {
-                        label: '63.8% Target',
-                        data: [],
-                        borderColor: '#f59e0b',
-                        borderDash: [6, 3],
-                        fill: false,
-                        tension: 0,
-                        pointRadius: 0,
-                        borderWidth: 1.5
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
+            data: { labels: [], datasets: [
+                { label: 'Bot Equity', data: [], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.08)', fill: true, tension: 0.3, pointRadius: 0, borderWidth: 2 },
+                { label: '63.8% Target', data: [], borderColor: '#f59e0b', borderDash: [6, 3], fill: false, tension: 0, pointRadius: 0, borderWidth: 1.5 }
+            ]},
+            options: { responsive: true, maintainAspectRatio: false,
                 plugins: { legend: { labels: { boxWidth: 12, font: { size: 10 } } } },
-                scales: {
-                    x: { grid: { color: '#1e293b' }, ticks: { font: { size: 10 } } },
-                    y: { grid: { color: '#1e293b' }, ticks: { font: { size: 10 }, callback: v => '$' + (v/1000).toFixed(0) + 'k' } }
-                }
+                scales: { x: { grid: { color: '#1e293b' }, ticks: { font: { size: 10 } } }, y: { grid: { color: '#1e293b' }, ticks: { font: { size: 10 }, callback: v => '$' + (v/1000).toFixed(0) + 'k' } } }
             }
         });
 
-        const wlCtx = $('winloss-chart').getContext('2d');
-        winlossChart = new Chart(wlCtx, {
+        winlossChart = new Chart($('winloss-chart').getContext('2d'), {
             type: 'doughnut',
-            data: {
-                labels: ['Wins', 'Losses'],
-                datasets: [{
-                    data: [50, 50],
-                    backgroundColor: ['#10b981', '#ef4444'],
-                    borderColor: ['#064e3b', '#7f1d1d'],
-                    borderWidth: 2,
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                cutout: '60%',
-                plugins: { legend: { display: false } }
-            }
+            data: { labels: ['Wins', 'Losses'], datasets: [{ data: [50, 50], backgroundColor: ['#10b981', '#ef4444'], borderColor: ['#064e3b', '#7f1d1d'], borderWidth: 2, hoverOffset: 4 }] },
+            options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { display: false } } }
         });
     }
 
     function updateEquityChart(equity) {
-        const now = new Date();
-        const label = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const label = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         const eq = parseFloat(equity);
-
         equityChart.data.labels.push(label);
         equityChart.data.datasets[0].data.push(eq);
-
-        // 63.8% target line (linear from starting equity)
         const days = equityChart.data.labels.length;
-        const targetEquity = STARTING_EQUITY * (1 + 0.638 * (days / 34));
-        equityChart.data.datasets[1].data.push(targetEquity);
-
-        // Keep last 100 points
-        if (equityChart.data.labels.length > 100) {
-            equityChart.data.labels.shift();
-            equityChart.data.datasets[0].data.shift();
-            equityChart.data.datasets[1].data.shift();
-        }
-
+        equityChart.data.datasets[1].data.push(STARTING_EQUITY * (1 + 0.638 * (days / 34)));
+        if (equityChart.data.labels.length > 100) { equityChart.data.labels.shift(); equityChart.data.datasets[0].data.shift(); equityChart.data.datasets[1].data.shift(); }
         equityChart.update('none');
     }
 
     function updateWinLoss(wins, losses) {
         const total = wins + losses;
         if (total === 0) return;
-
         winlossChart.data.datasets[0].data = [wins, losses];
         winlossChart.update('none');
-
         $('wins-pct').textContent = ((wins / total) * 100).toFixed(1) + '%';
         $('losses-pct').textContent = ((losses / total) * 100).toFixed(1) + '%';
         $('win-rate').textContent = ((wins / total) * 100).toFixed(1) + '%';
@@ -538,20 +620,15 @@
     // ─── MAIN LOOP ───────────────────────────────────────────
     async function refresh() {
         $('sync-indicator').style.display = 'inline';
-
         try {
-            // Try Alpaca direct first
             const data = await loadAlpacaData();
             updateStatus(true);
-
             renderAccount(data.account);
             renderPositions(data.positions);
             renderOrders(data.orders);
             updateEquityChart(data.account.equity);
 
-            // Count wins/losses from filled sell orders
             const sells = data.orders.filter(o => o.side === 'sell' && o.status === 'filled');
-            // Rough approximation: we'll track this better from the local backend
             const localData = await loadLocalData();
             if (localData && localData.learning) {
                 const l = localData.learning;
@@ -561,56 +638,30 @@
                 $('avg-win').textContent = l.avg_win ? pct(l.avg_win) : '—';
                 $('avg-loss').textContent = l.avg_loss ? pct(l.avg_loss) : '—';
             } else {
-                // Estimate from orders
                 $('total-trades').textContent = sells.length;
                 $('trades-closed').textContent = sells.length;
-                if (sells.length > 0) {
-                    updateWinLoss(Math.round(sells.length * 0.6), Math.round(sells.length * 0.4));
-                }
+                if (sells.length > 0) updateWinLoss(Math.round(sells.length * 0.6), Math.round(sells.length * 0.4));
             }
 
             addActivity('SYNC', `Alpaca: ${data.positions.length} positions, equity ${money(data.account.equity)}`, 'ok');
             $('last-update').textContent = 'Live: ' + new Date().toLocaleTimeString();
-
         } catch (alpacaErr) {
             console.warn('Alpaca API failed:', alpacaErr.message);
-
-            // Try local backend
             try {
                 const localData = await loadLocalData();
-                if (localData) {
-                    updateStatus(true);
-                    addActivity('SYNC', 'Connected to local backend', 'ok');
-                } else {
-                    throw new Error('No local data');
-                }
-            } catch (localErr) {
-                updateStatus(false);
-                addActivity('ERROR', `Cannot reach Alpaca or local backend`, 'err');
-                renderDemoData();
-            }
-
+                if (localData) { updateStatus(true); addActivity('SYNC', 'Connected to local backend', 'ok'); }
+                else throw new Error('No local data');
+            } catch (localErr) { updateStatus(false); addActivity('ERROR', 'Cannot reach Alpaca or local backend', 'err'); }
             $('last-update').textContent = 'Last attempt: ' + new Date().toLocaleTimeString();
         }
-
         $('sync-indicator').style.display = 'none';
-    }
-
-    function renderDemoData() {
-        // Show placeholder data so the dashboard isn't empty
-        $('total-equity').textContent = '—';
-        $('cash').textContent = '—';
-        $('day-pnl').textContent = '—';
-        $('open-positions').textContent = '0';
-        $('equity-change').textContent = 'Start the bot to see live data';
-        $('equity-change').style.color = '#94a3b8';
-        $('positions-body').innerHTML = '<tr><td colspan="6" style="padding:24px;text-align:center;color:#64748b;">Start <code>docker compose up</code> to see live positions</td></tr>';
-        $('orders-body').innerHTML = '<tr><td colspan="6" style="padding:24px;text-align:center;color:#64748b;">No orders yet</td></tr>';
+        renderSchedule();
     }
 
     // ─── INIT ────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
         initCharts();
+        renderSchedule();
         refresh();
         setInterval(refresh, POLL_INTERVAL);
         addActivity('INFO', 'Dashboard initialized, polling every 30s', 'ok');
