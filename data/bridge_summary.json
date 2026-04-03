@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-04-03T00:00:00",
+  "systems": {
+    "kalshi": {"status": "no_data"},
+    "sentinel": {"status": "no_data"},
+    "squeeze_bot": {"status": "live", "positions": 0, "equity": 100000}
+  },
+  "sector_consensus": {},
+  "active_cascades": [],
+  "bridge_health": "partial",
+  "note": "Seed file. Bridge daemon will overwrite with live data."
+}

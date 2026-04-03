@@ -181,6 +181,67 @@
                 </div>
             </div>
 
+            <!-- INTELLIGENCE BRIDGE -->
+            <div class="card fade-in" style="padding: 20px; border-left: 3px solid #c084fc;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="font-size: 18px;">🌐</span>
+                    <p style="font-size: 13px; font-weight: 700; color: #c084fc; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Intelligence Bridge</p>
+                    <span id="bridge-status" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8; margin-left: auto;">CHECKING...</span>
+                </div>
+                <p style="font-size: 11px; color: #64748b; margin: 0 0 14px; line-height: 1.5;">Three independent systems share intelligence through a read-only bridge. Each system runs in its own directory, its own database, its own process. If any system goes offline, the others continue normally. The bridge is additive, never load-bearing.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;">
+                    <!-- Kalshi Intelligence -->
+                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 14px; border-left: 2px solid #60a5fa;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                            <span style="font-size: 14px;">📊</span>
+                            <span style="font-size: 11px; font-weight: 700; color: #60a5fa;">Kalshi Intelligence</span>
+                            <span id="kalshi-status" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8; margin-left: auto; font-size: 9px;">OFFLINE</span>
+                        </div>
+                        <div style="font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; gap: 4px;">
+                            <span>7 domain analyzers (geo, energy, macro, tech, ag, defense, regulatory)</span>
+                            <span id="kalshi-signals" style="color: #cbd5e1;">No signals</span>
+                            <span id="kalshi-opportunities" style="color: #cbd5e1;">No opportunities</span>
+                            <span id="kalshi-cascades" style="color: #fbbf24;">0 active cascades</span>
+                        </div>
+                    </div>
+                    <!-- Sentinel Compass -->
+                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 14px; border-left: 2px solid #10b981;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                            <span style="font-size: 14px;">🧭</span>
+                            <span style="font-size: 11px; font-weight: 700; color: #10b981;">Sentinel Compass</span>
+                            <span id="sentinel-status" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8; margin-left: auto; font-size: 9px;">OFFLINE</span>
+                        </div>
+                        <div style="font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; gap: 4px;">
+                            <span>Narrative analysis, fact-checking, pattern detection</span>
+                            <span id="sentinel-narratives" style="color: #cbd5e1;">No narratives</span>
+                            <span id="sentinel-patterns" style="color: #cbd5e1;">No pattern alerts</span>
+                            <span id="sentinel-markets" style="color: #cbd5e1;">No market signals</span>
+                        </div>
+                    </div>
+                    <!-- Squeeze Bot -->
+                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 14px; border-left: 2px solid #fbbf24;">
+                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
+                            <span style="font-size: 14px;">🤖</span>
+                            <span style="font-size: 11px; font-weight: 700; color: #fbbf24;">Squeeze Bot</span>
+                            <span id="bot-bridge-status" class="tag" style="background: rgba(16,185,129,0.15); color: #10b981; margin-left: auto; font-size: 9px;">LIVE</span>
+                        </div>
+                        <div style="font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; gap: 4px;">
+                            <span>8-stage scanner, HWM trailing stops, after-hours research</span>
+                            <span id="bot-positions-bridge" style="color: #cbd5e1;">0 positions</span>
+                            <span id="bot-equity-bridge" style="color: #cbd5e1;">$0</span>
+                            <span id="bot-bridge-modifiers" style="color: #c084fc;">No bridge modifiers active</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sector Consensus -->
+                <div style="margin-top: 14px; border-top: 1px solid #334155; padding-top: 12px;">
+                    <p style="font-size: 10px; color: #c084fc; font-weight: 700; margin: 0 0 8px;">SECTOR CONSENSUS (Cross-System)</p>
+                    <div id="sector-consensus" style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px;">
+                        <span style="color: #64748b;">Bridge not yet populated. Signals appear when Kalshi Intelligence and/or Sentinel Compass publish sector analyses.</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- Positions Table (with HWM/trailing data) -->
             <div class="card fade-in" style="overflow: hidden;">
                 <div style="padding: 16px; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center;">
@@ -632,6 +693,123 @@
         $('win-rate').textContent = ((w / (w+l)) * 100).toFixed(0) + '%';
     }
 
+    // ─── INTELLIGENCE BRIDGE ────────────────────────────────
+    // Bridge data URL: if the bridge daemon pushes bridge_summary.json to the repo, we read it.
+    // Otherwise we populate the Squeeze Bot card from live Alpaca data and show others as needing local bridge.
+    const BRIDGE_DATA_URL = 'data/bridge_summary.json';
+    let lastBridgeData = null;
+
+    async function fetchBridgeData() {
+        try {
+            const res = await fetch(BRIDGE_DATA_URL + '?t=' + Date.now());
+            if (!res.ok) return null;
+            const data = await res.json();
+            // Only trust data less than 2 hours old
+            if (data.generated_at) {
+                const age = Date.now() - new Date(data.generated_at).getTime();
+                if (age > 7200000) return null;
+            }
+            return data;
+        } catch { return null; }
+    }
+
+    function updateBridge(bridgeData, positions, account) {
+        // --- Squeeze Bot card (always live from Alpaca) ---
+        if (positions && account) {
+            const equity = parseFloat(account.equity);
+            $('bot-bridge-status').textContent = 'LIVE';
+            $('bot-bridge-status').style.cssText = 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;';
+            $('bot-positions-bridge').textContent = positions.length + ' positions';
+            $('bot-positions-bridge').style.color = positions.length > 0 ? '#22d3ee' : '#cbd5e1';
+            $('bot-equity-bridge').textContent = money(equity);
+            $('bot-equity-bridge').style.color = equity >= STARTING_EQUITY ? '#10b981' : '#ef4444';
+            // Check if any positions have bridge modifiers in scan results
+            const modCount = positions.filter(p => parseFloat(p.unrealized_plpc) * 100 > 5).length;
+            $('bot-bridge-modifiers').textContent = bridgeData ? 'Bridge modifiers active' : 'No bridge data (local only)';
+            $('bot-bridge-modifiers').style.color = bridgeData ? '#c084fc' : '#64748b';
+        }
+
+        // --- If we have bridge data from the daemon ---
+        if (bridgeData) {
+            lastBridgeData = bridgeData;
+
+            // Bridge overall status
+            const health = bridgeData.bridge_health || 'unknown';
+            const statusEl = $('bridge-status');
+            if (health === 'healthy') {
+                statusEl.textContent = 'ALL SYSTEMS GO';
+                statusEl.style.cssText = 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(16,185,129,0.3);';
+            } else if (health === 'partial') {
+                statusEl.textContent = 'PARTIAL';
+                statusEl.style.cssText = 'background:rgba(234,179,8,0.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(234,179,8,0.3);';
+            } else {
+                statusEl.textContent = 'OFFLINE';
+                statusEl.style.cssText = 'background:rgba(239,68,68,0.15);color:#ef4444;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(239,68,68,0.3);';
+            }
+
+            // Kalshi Intelligence card
+            const kalshi = bridgeData.systems?.kalshi || {};
+            if (kalshi.status === 'live' || kalshi.status === 'ok') {
+                $('kalshi-status').textContent = 'LIVE';
+                $('kalshi-status').style.cssText = 'background:rgba(96,165,250,0.15);color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(96,165,250,0.3);';
+                $('kalshi-signals').textContent = (kalshi.sector_signals || 0) + ' sector signals';
+                $('kalshi-signals').style.color = kalshi.sector_signals > 0 ? '#60a5fa' : '#94a3b8';
+                $('kalshi-opportunities').textContent = (kalshi.opportunities || 0) + ' opportunities';
+                $('kalshi-opportunities').style.color = kalshi.opportunities > 0 ? '#10b981' : '#94a3b8';
+                $('kalshi-cascades').textContent = (bridgeData.active_cascades?.length || 0) + ' active cascades';
+                $('kalshi-cascades').style.color = (bridgeData.active_cascades?.length || 0) > 0 ? '#fbbf24' : '#94a3b8';
+            } else {
+                $('kalshi-status').textContent = kalshi.status === 'no_data' ? 'NO DATA' : 'OFFLINE';
+                $('kalshi-status').style.cssText = 'background:rgba(148,163,184,0.15);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;';
+            }
+
+            // Sentinel Compass card
+            const sentinel = bridgeData.systems?.sentinel || {};
+            if (sentinel.status === 'live' || sentinel.status === 'ok') {
+                $('sentinel-status').textContent = 'LIVE';
+                $('sentinel-status').style.cssText = 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(16,185,129,0.3);';
+                $('sentinel-narratives').textContent = (sentinel.narrative_signals || 0) + ' narrative signals';
+                $('sentinel-narratives').style.color = sentinel.narrative_signals > 0 ? '#10b981' : '#94a3b8';
+                $('sentinel-patterns').textContent = (sentinel.pattern_alerts || 0) + ' pattern alerts';
+                $('sentinel-patterns').style.color = sentinel.pattern_alerts > 0 ? '#fbbf24' : '#94a3b8';
+                $('sentinel-markets').textContent = (sentinel.market_signals || 0) + ' market signals';
+                $('sentinel-markets').style.color = sentinel.market_signals > 0 ? '#60a5fa' : '#94a3b8';
+            } else {
+                $('sentinel-status').textContent = sentinel.status === 'no_data' ? 'NO DATA' : 'OFFLINE';
+                $('sentinel-status').style.cssText = 'background:rgba(148,163,184,0.15);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;';
+            }
+
+            // Sector Consensus
+            const consensus = bridgeData.sector_consensus || {};
+            const sectors = Object.entries(consensus);
+            if (sectors.length > 0) {
+                $('sector-consensus').innerHTML = sectors.map(([sector, data]) => {
+                    const dir = data.direction || 'neutral';
+                    const sources = (data.sources || []).join('+');
+                    const conf = data.confidence || 0;
+                    let color = '#94a3b8', bg = 'rgba(148,163,184,0.1)', border = 'rgba(148,163,184,0.2)';
+                    if (dir === 'bearish') { color = '#ef4444'; bg = 'rgba(239,68,68,0.1)'; border = 'rgba(239,68,68,0.2)'; }
+                    else if (dir === 'bullish' || dir === 'active') { color = '#10b981'; bg = 'rgba(16,185,129,0.1)'; border = 'rgba(16,185,129,0.2)'; }
+                    else if (dir !== 'neutral') { color = '#fbbf24'; bg = 'rgba(234,179,8,0.1)'; border = 'rgba(234,179,8,0.2)'; }
+                    const arrow = dir === 'bearish' ? '▼' : dir === 'bullish' || dir === 'active' ? '▲' : '—';
+                    return `<span style="padding:4px 10px;border-radius:4px;background:${bg};color:${color};border:1px solid ${border};display:inline-flex;align-items:center;gap:4px;">
+                        <span style="font-weight:700;">${arrow}</span>
+                        <span style="text-transform:uppercase;">${sector.replace('_',' ')}</span>
+                        <span style="font-size:8px;opacity:0.7;">(${sources}${conf > 0 ? ' ' + Math.round(conf*100) + '%' : ''})</span>
+                    </span>`;
+                }).join('');
+            }
+
+            addActivity('SYNC', `Bridge: ${sectors.length} sectors, ${bridgeData.active_cascades?.length || 0} cascades`, 'ok');
+        } else {
+            // No bridge data available — show waiting state
+            $('bridge-status').textContent = 'WAITING';
+            $('bridge-status').style.cssText = 'background:rgba(148,163,184,0.15);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;';
+            $('kalshi-status').textContent = 'WAITING';
+            $('sentinel-status').textContent = 'WAITING';
+        }
+    }
+
     // ─── MAIN REFRESH ────────────────────────────────────────
     async function refresh() {
         try {
@@ -654,6 +832,10 @@
             $('h-scan').className = 'stat-value';
             $('h-research').textContent = now.getHours() >= 14 ? 'AH cycle done' : 'Next: 2:00 PM';
             $('h-research').className = 'stat-value';
+
+            // Intelligence Bridge
+            const bridgeData = await fetchBridgeData();
+            updateBridge(bridgeData, positions, account);
 
             addActivity('SYNC', `${positions.length} positions, equity ${money(account.equity)}`, 'ok');
             $('last-update').textContent = 'Live: ' + now.toLocaleTimeString();
