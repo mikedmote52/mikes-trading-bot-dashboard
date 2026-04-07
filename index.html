@@ -34,9 +34,48 @@
         .tier-A { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
         .tier-B { background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
         .tier-C { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
+        /* Config Modal */
+        .config-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .config-modal.hidden { display: none; }
+        .config-card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 32px; max-width: 400px; width: 90%; }
+        .config-card h2 { color: #10b981; margin: 0 0 8px; font-size: 18px; }
+        .config-card p { color: #94a3b8; margin: 0 0 16px; font-size: 12px; line-height: 1.5; }
+        .config-input { width: 100%; background: #0f172a; border: 1px solid #334155; color: #e2e8f0; padding: 10px 12px; border-radius: 4px; margin: 0 0 16px; font-family: 'Courier New', monospace; }
+        .config-input:focus { outline: none; border-color: #10b981; }
+        .config-button { width: 100%; background: #10b981; color: #000; border: none; padding: 10px; border-radius: 4px; font-weight: 700; cursor: pointer; }
+        .config-button:hover { background: #059669; }
+        .config-note { font-size: 10px; color: #64748b; margin: 12px 0 0; }
+        /* Connection Lost Banner */
+        .connection-lost { background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #ef4444; padding: 12px 16px; border-radius: 4px; margin: 0 0 16px; font-size: 12px; font-weight: 700; text-align: center; }
+        /* Stale Data Badge */
+        .stale-badge { padding: 2px 6px; border-radius: 3px; font-size: 9px; font-weight: 700; display: inline-block; margin-left: 8px; }
+        .stale-badge.warn { background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
+        .stale-badge.err { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            [style*="grid-template-columns: 1fr 1fr 1fr"] { display: grid !important; grid-template-columns: 1fr !important; }
+            [style*="grid-template-columns: 2fr 1fr"] { display: grid !important; grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
 <body>
+    <!-- Config Modal -->
+    <div id="config-modal" class="config-modal hidden">
+        <div class="config-card">
+            <h2>Alpaca API Configuration</h2>
+            <p>Enter your Alpaca API credentials to connect to paper trading.</p>
+            <input id="config-key" class="config-input" type="password" placeholder="API Key" />
+            <input id="config-secret" class="config-input" type="password" placeholder="API Secret" />
+            <button id="config-save" class="config-button">Save & Connect</button>
+            <p class="config-note">📋 Paper trading keys only. Stored locally in your browser.</p>
+        </div>
+    </div>
+
+    <!-- Connection Lost Banner -->
+    <div id="connection-lost-banner" class="connection-lost" style="display:none; position:fixed; top:70px; left:24px; right:24px; z-index:100;">
+        ⚠ CONNECTION LOST - Unable to reach Alpaca API after 3 retries. Retrying...
+    </div>
+
     <div id="app">
         <!-- Header -->
         <header style="background: #0f172ae0; border-bottom: 1px solid #334155; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);">
@@ -48,8 +87,11 @@
                     <span id="daemon-badge" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8;">DAEMON: ?</span>
                     <span id="health-badge" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8;">HEALTH: ?</span>
                 </div>
-                <div style="text-align: right; font-size: 11px; color: #94a3b8;">
-                    <span id="last-update"></span>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <button id="config-btn" style="background: none; border: none; color: #94a3b8; font-size: 18px; cursor: pointer; padding: 4px 8px;">⚙</button>
+                    <div style="text-align: right; font-size: 11px; color: #94a3b8;">
+                        <span id="last-update"></span>
+                    </div>
                 </div>
             </div>
         </header>
@@ -183,8 +225,6 @@
                 </div>
             </div>
 
-            <!-- Intelligence Bridge removed — archived project -->
-
             <!-- V2 RESEARCH ENGINE -->
             <div class="card fade-in" style="padding: 20px; border-left: 3px solid #c084fc;">
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
@@ -257,8 +297,6 @@
                     </table>
                 </div>
             </div>
-
-            <!-- removed: Overnight Watchlist + Social Sentiment (now in V2 Research panel above) -->
 
             <!-- Recent Orders -->
             <div class="card fade-in" style="overflow: hidden;">
@@ -350,15 +388,84 @@
     </div>
 
     <script>
-    const ALPACA_KEY    = 'PKSXWVBYZ43C7U3BUHJN7KFNG3';
-    const ALPACA_SECRET = 'G4ri1PjAxnAfnL9DzE72Q1Gg7ogoAEcwnDhGPAQ8K223';
-    const ALPACA_BASE   = 'https://paper-api.alpaca.markets';
+    // ─── CONFIGURATION MANAGEMENT ────────────────────────────
+    const ALPACA_BASE = 'https://paper-api.alpaca.markets';
     const POLL_INTERVAL = 30000;
     const STARTING_EQUITY = 100000;
-    // GitHub raw URLs for bot data files (served from same repo)
-    const DATA_BASE = '';  // relative path when served from same origin, or set to raw github URL
+    const V2_DATA_URL = 'data/v2_dashboard.json';
+    const MAX_EQUITY_POINTS = 500;
+    const MAX_CONSECUTIVE_FAILURES = 3;
 
-    let equityChart = null, winlossChart = null, activityLog = [], isLive = false;
+    let ALPACA_KEY = '';
+    let ALPACA_SECRET = '';
+    let equityChart = null, winlossChart = null, activityLog = [];
+    let consecutiveFailures = 0;
+    let equityTimestamps = [];
+
+    // Initialize configuration on page load
+    function initConfig() {
+        const key = localStorage.getItem('alpaca_key');
+        const secret = localStorage.getItem('alpaca_secret');
+        if (key && secret) {
+            ALPACA_KEY = key;
+            ALPACA_SECRET = secret;
+        } else {
+            showConfigModal();
+        }
+    }
+
+    function showConfigModal() {
+        document.getElementById('config-modal').classList.remove('hidden');
+    }
+
+    function hideConfigModal() {
+        document.getElementById('config-modal').classList.add('hidden');
+    }
+
+    document.getElementById('config-btn').addEventListener('click', showConfigModal);
+    document.getElementById('config-save').addEventListener('click', () => {
+        const key = document.getElementById('config-key').value.trim();
+        const secret = document.getElementById('config-secret').value.trim();
+        if (key && secret) {
+            ALPACA_KEY = key;
+            ALPACA_SECRET = secret;
+            localStorage.setItem('alpaca_key', key);
+            localStorage.setItem('alpaca_secret', secret);
+            hideConfigModal();
+            addActivity('INFO', 'API credentials configured successfully', 'ok');
+            refresh();
+        }
+    });
+
+    // Pre-fill config form if values exist
+    document.addEventListener('DOMContentLoaded', () => {
+        const key = localStorage.getItem('alpaca_key');
+        const secret = localStorage.getItem('alpaca_secret');
+        if (key) document.getElementById('config-key').value = key;
+        if (secret) document.getElementById('config-secret').value = secret;
+    });
+
+    // ─── RETRY LOGIC WITH EXPONENTIAL BACKOFF ────────────────
+    async function alpacaFetchWithRetry(endpoint, retries = 3) {
+        const delays = [1000, 2000, 4000];
+        for (let i = 0; i < retries; i++) {
+            try {
+                const res = await fetch(ALPACA_BASE + endpoint, {
+                    headers: { 'APCA-API-KEY-ID': ALPACA_KEY, 'APCA-API-SECRET-KEY': ALPACA_SECRET }
+                });
+                if (!res.ok) throw new Error(`Alpaca ${res.status}`);
+                consecutiveFailures = 0;
+                document.getElementById('connection-lost-banner').style.display = 'none';
+                return res.json();
+            } catch (err) {
+                if (i < retries - 1) {
+                    await new Promise(r => setTimeout(r, delays[i]));
+                } else {
+                    throw err;
+                }
+            }
+        }
+    }
 
     // ─── SCHEDULE (full day) ─────────────────────────────────
     const SCHEDULE = [
@@ -396,18 +503,8 @@
                 <span style="font-size:12px;">${s.icon}</span>
                 <span style="color:#60a5fa;font-weight:600;min-width:65px;font-size:10px;">${s.time}</span>
                 <span style="color:${active ? '#10b981' : '#cbd5e1'};font-size:10px;">${s.label}</span>
-                ${active && s.time !== 'Always' ? '<span style="font-size:9px;color:#10b981;font-weight:700;margin-left:auto;">NOW</span>' : ''}
-            </div>`;
+                ${active && s.time !== 'Always' ? '<span style="font-size:9px;color:#10b981;font-weight:700;margin-left:auto;">NOW</span>' : ''}</div>`;
         }).join('');
-    }
-
-    // ─── ALPACA API ──────────────────────────────────────────
-    async function alpacaFetch(endpoint) {
-        const res = await fetch(ALPACA_BASE + endpoint, {
-            headers: { 'APCA-API-KEY-ID': ALPACA_KEY, 'APCA-API-SECRET-KEY': ALPACA_SECRET }
-        });
-        if (!res.ok) throw new Error(`Alpaca ${res.status}`);
-        return res.json();
     }
 
     // ─── RENDERING ───────────────────────────────────────────
@@ -416,7 +513,6 @@
     function pct(n) { return (n >= 0 ? '+' : '') + Number(n).toFixed(2) + '%'; }
 
     function updateStatus(live) {
-        isLive = live;
         const badge = $('status-badge');
         if (live) {
             badge.textContent = '● LIVE';
@@ -571,11 +667,39 @@
             </tr>`;
         }).join('');
 
-        // Update win/loss from closed sells
+        // Real win/loss calculation from closed trades
         const sells = orders.filter(o => o.side === 'sell' && o.status === 'filled');
         $('trades-closed').textContent = `${sells.length} closed`;
         if (sells.length > 0) {
-            updateWinLoss(Math.ceil(sells.length * 0.6), Math.floor(sells.length * 0.4));
+            const buys = orders.filter(o => o.side === 'buy' && o.status === 'filled');
+            if (buys.length > 0 && sells.length > 0) {
+                // Calculate actual wins/losses from completed trades
+                let wins = 0, losses = 0;
+                sells.forEach(sell => {
+                    const sellPrice = parseFloat(sell.filled_avg_price || 0);
+                    const correspondingBuy = buys.find(b => b.symbol === sell.symbol);
+                    if (correspondingBuy) {
+                        const buyPrice = parseFloat(correspondingBuy.filled_avg_price || 0);
+                        if (sellPrice > buyPrice) wins++;
+                        else losses++;
+                    }
+                });
+                if (wins + losses > 0) {
+                    updateWinLoss(wins, losses);
+                } else {
+                    $('win-rate').textContent = 'Calculating...';
+                    $('wins-pct').textContent = '—';
+                    $('losses-pct').textContent = '—';
+                }
+            } else {
+                $('win-rate').textContent = 'Calculating...';
+                $('wins-pct').textContent = '—';
+                $('losses-pct').textContent = '—';
+            }
+        } else {
+            $('win-rate').textContent = '—';
+            $('wins-pct').textContent = '—';
+            $('losses-pct').textContent = '—';
         }
     }
 
@@ -623,7 +747,13 @@
         equityChart.data.datasets[0].data.push(parseFloat(equity));
         const days = equityChart.data.labels.length;
         equityChart.data.datasets[1].data.push(STARTING_EQUITY * (1 + 0.638 * (days / 34)));
-        if (equityChart.data.labels.length > 100) { equityChart.data.labels.shift(); equityChart.data.datasets[0].data.shift(); equityChart.data.datasets[1].data.shift(); }
+
+        // Keep last 500 points
+        if (equityChart.data.labels.length > MAX_EQUITY_POINTS) {
+            equityChart.data.labels.shift();
+            equityChart.data.datasets[0].data.shift();
+            equityChart.data.datasets[1].data.shift();
+        }
         equityChart.update('none');
     }
 
@@ -636,112 +766,7 @@
         $('win-rate').textContent = ((w / (w+l)) * 100).toFixed(0) + '%';
     }
 
-    // ─── INTELLIGENCE BRIDGE (removed — archived project) ──
-    const BRIDGE_DATA_URL = null;
-    let lastBridgeData = null;
-    async function fetchBridgeData() { return null; }
-
-    function updateBridge(bridgeData, positions, account) {
-        return; // Bridge UI removed
-        // --- Squeeze Bot card (always live from Alpaca) ---
-        if (positions && account) {
-            const equity = parseFloat(account.equity);
-            $('bot-bridge-status').textContent = 'LIVE';
-            $('bot-bridge-status').style.cssText = 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;';
-            $('bot-positions-bridge').textContent = positions.length + ' positions';
-            $('bot-positions-bridge').style.color = positions.length > 0 ? '#22d3ee' : '#cbd5e1';
-            $('bot-equity-bridge').textContent = money(equity);
-            $('bot-equity-bridge').style.color = equity >= STARTING_EQUITY ? '#10b981' : '#ef4444';
-            // Check if any positions have bridge modifiers in scan results
-            const modCount = positions.filter(p => parseFloat(p.unrealized_plpc) * 100 > 5).length;
-            $('bot-bridge-modifiers').textContent = bridgeData ? 'Bridge modifiers active' : 'No bridge data (local only)';
-            $('bot-bridge-modifiers').style.color = bridgeData ? '#c084fc' : '#64748b';
-        }
-
-        // --- If we have bridge data from the daemon ---
-        if (bridgeData) {
-            lastBridgeData = bridgeData;
-
-            // Bridge overall status
-            const health = bridgeData.bridge_health || 'unknown';
-            const statusEl = $('bridge-status');
-            if (health === 'healthy') {
-                statusEl.textContent = 'ALL SYSTEMS GO';
-                statusEl.style.cssText = 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(16,185,129,0.3);';
-            } else if (health === 'partial') {
-                statusEl.textContent = 'PARTIAL';
-                statusEl.style.cssText = 'background:rgba(234,179,8,0.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(234,179,8,0.3);';
-            } else {
-                statusEl.textContent = 'OFFLINE';
-                statusEl.style.cssText = 'background:rgba(239,68,68,0.15);color:#ef4444;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(239,68,68,0.3);';
-            }
-
-            // Kalshi Intelligence card
-            const kalshi = bridgeData.systems?.kalshi || {};
-            if (kalshi.status === 'live' || kalshi.status === 'ok') {
-                $('kalshi-status').textContent = 'LIVE';
-                $('kalshi-status').style.cssText = 'background:rgba(96,165,250,0.15);color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(96,165,250,0.3);';
-                $('kalshi-signals').textContent = (kalshi.sector_signals || 0) + ' sector signals';
-                $('kalshi-signals').style.color = kalshi.sector_signals > 0 ? '#60a5fa' : '#94a3b8';
-                $('kalshi-opportunities').textContent = (kalshi.opportunities || 0) + ' opportunities';
-                $('kalshi-opportunities').style.color = kalshi.opportunities > 0 ? '#10b981' : '#94a3b8';
-                $('kalshi-cascades').textContent = (bridgeData.active_cascades?.length || 0) + ' active cascades';
-                $('kalshi-cascades').style.color = (bridgeData.active_cascades?.length || 0) > 0 ? '#fbbf24' : '#94a3b8';
-            } else {
-                $('kalshi-status').textContent = kalshi.status === 'no_data' ? 'NO DATA' : 'OFFLINE';
-                $('kalshi-status').style.cssText = 'background:rgba(148,163,184,0.15);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;';
-            }
-
-            // Sentinel Compass card
-            const sentinel = bridgeData.systems?.sentinel || {};
-            if (sentinel.status === 'live' || sentinel.status === 'ok') {
-                $('sentinel-status').textContent = 'LIVE';
-                $('sentinel-status').style.cssText = 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(16,185,129,0.3);';
-                $('sentinel-narratives').textContent = (sentinel.narrative_signals || 0) + ' narrative signals';
-                $('sentinel-narratives').style.color = sentinel.narrative_signals > 0 ? '#10b981' : '#94a3b8';
-                $('sentinel-patterns').textContent = (sentinel.pattern_alerts || 0) + ' pattern alerts';
-                $('sentinel-patterns').style.color = sentinel.pattern_alerts > 0 ? '#fbbf24' : '#94a3b8';
-                $('sentinel-markets').textContent = (sentinel.market_signals || 0) + ' market signals';
-                $('sentinel-markets').style.color = sentinel.market_signals > 0 ? '#60a5fa' : '#94a3b8';
-            } else {
-                $('sentinel-status').textContent = sentinel.status === 'no_data' ? 'NO DATA' : 'OFFLINE';
-                $('sentinel-status').style.cssText = 'background:rgba(148,163,184,0.15);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:9px;font-weight:700;display:inline-block;margin-left:auto;';
-            }
-
-            // Sector Consensus
-            const consensus = bridgeData.sector_consensus || {};
-            const sectors = Object.entries(consensus);
-            if (sectors.length > 0) {
-                $('sector-consensus').innerHTML = sectors.map(([sector, data]) => {
-                    const dir = data.direction || 'neutral';
-                    const sources = (data.sources || []).join('+');
-                    const conf = data.confidence || 0;
-                    let color = '#94a3b8', bg = 'rgba(148,163,184,0.1)', border = 'rgba(148,163,184,0.2)';
-                    if (dir === 'bearish') { color = '#ef4444'; bg = 'rgba(239,68,68,0.1)'; border = 'rgba(239,68,68,0.2)'; }
-                    else if (dir === 'bullish' || dir === 'active') { color = '#10b981'; bg = 'rgba(16,185,129,0.1)'; border = 'rgba(16,185,129,0.2)'; }
-                    else if (dir !== 'neutral') { color = '#fbbf24'; bg = 'rgba(234,179,8,0.1)'; border = 'rgba(234,179,8,0.2)'; }
-                    const arrow = dir === 'bearish' ? '▼' : dir === 'bullish' || dir === 'active' ? '▲' : '—';
-                    return `<span style="padding:4px 10px;border-radius:4px;background:${bg};color:${color};border:1px solid ${border};display:inline-flex;align-items:center;gap:4px;">
-                        <span style="font-weight:700;">${arrow}</span>
-                        <span style="text-transform:uppercase;">${sector.replace('_',' ')}</span>
-                        <span style="font-size:8px;opacity:0.7;">(${sources}${conf > 0 ? ' ' + Math.round(conf*100) + '%' : ''})</span>
-                    </span>`;
-                }).join('');
-            }
-
-            addActivity('SYNC', `Bridge: ${sectors.length} sectors, ${bridgeData.active_cascades?.length || 0} cascades`, 'ok');
-        } else {
-            // No bridge data available — show waiting state
-            $('bridge-status').textContent = 'WAITING';
-            $('bridge-status').style.cssText = 'background:rgba(148,163,184,0.15);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;';
-            $('kalshi-status').textContent = 'WAITING';
-            $('sentinel-status').textContent = 'WAITING';
-        }
-    }
-
     // ─── V2 RESEARCH ENGINE ────────────────────────────────
-    const V2_DATA_URL = 'data/v2_dashboard.json';
-
     async function fetchV2Data() {
         try {
             const res = await fetch(V2_DATA_URL + '?t=' + Date.now());
@@ -762,12 +787,28 @@
             return;
         }
 
-        // Status badge
+        // Status badge with stale data warnings
         const ready = data.ready_to_trade || 0;
-        $('v2-status').textContent = ready > 0 ? ready + ' READY' : 'SCANNING';
-        $('v2-status').style.cssText = ready > 0
+        let statusText = ready > 0 ? ready + ' READY' : 'SCANNING';
+        let statusStyle = ready > 0
             ? 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(16,185,129,0.3);'
             : 'background:rgba(234,179,8,0.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(234,179,8,0.3);';
+
+        // Check for stale data
+        if (data.timestamp) {
+            const age = Date.now() - new Date(data.timestamp).getTime();
+            const twoHours = 2 * 60 * 60 * 1000;
+            const twentyFourHours = 24 * 60 * 60 * 1000;
+            if (age > twentyFourHours) {
+                statusText += ' EXPIRED';
+                statusStyle = 'background:rgba(239,68,68,0.15);color:#ef4444;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(239,68,68,0.3);';
+            } else if (age > twoHours) {
+                statusText += ' STALE';
+            }
+        }
+
+        $('v2-status').textContent = statusText;
+        $('v2-status').style.cssText = statusStyle;
 
         // Timestamp
         if (data.timestamp) {
@@ -796,7 +837,6 @@
                 const tc = tierColors[tier] || tierColors.C;
                 const catalyst = p.has_catalyst ? '<span style="color:#10b981;font-size:9px;font-weight:700;">CATALYST</span>' : '';
                 const thesis = (p.thesis || '').length > 100 ? p.thesis.substring(0, 100) + '...' : (p.thesis || 'No thesis');
-
                 return `<div style="background:${tc.bg};border-left:2px solid ${tc.border};border-radius:4px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px;">
                     <div style="min-width:26px;text-align:center;">
                         <span class="tag tier-${tier}" style="font-size:11px;padding:2px 6px;">${tier}</span>
@@ -831,9 +871,9 @@
     async function refresh() {
         try {
             const [account, positions, orders] = await Promise.all([
-                alpacaFetch('/v2/account'),
-                alpacaFetch('/v2/positions'),
-                alpacaFetch('/v2/orders?status=all&limit=20&direction=desc')
+                alpacaFetchWithRetry('/v2/account'),
+                alpacaFetchWithRetry('/v2/positions'),
+                alpacaFetchWithRetry('/v2/orders?status=all&limit=20&direction=desc')
             ]);
             updateStatus(true);
             renderAccount(account);
@@ -850,10 +890,6 @@
             $('h-research').textContent = now.getHours() >= 14 ? 'AH cycle done' : 'Next: 2:00 PM';
             $('h-research').className = 'stat-value';
 
-            // Intelligence Bridge
-            const bridgeData = await fetchBridgeData();
-            updateBridge(bridgeData, positions, account);
-
             // V2 Research Engine
             const v2Data = await fetchV2Data();
             updateV2Panel(v2Data);
@@ -861,7 +897,11 @@
             addActivity('SYNC', `${positions.length} positions, equity ${money(account.equity)}`, 'ok');
             $('last-update').textContent = 'Live: ' + now.toLocaleTimeString();
         } catch (err) {
+            consecutiveFailures++;
             updateStatus(false);
+            if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+                document.getElementById('connection-lost-banner').style.display = 'block';
+            }
             addActivity('ERROR', 'Cannot reach Alpaca API: ' + err.message, 'err');
             $('last-update').textContent = 'Failed: ' + new Date().toLocaleTimeString();
         }
@@ -870,10 +910,13 @@
 
     // ─── INIT ────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
+        initConfig();
         initCharts();
         renderSchedule();
-        refresh();
-        setInterval(refresh, POLL_INTERVAL);
+        if (ALPACA_KEY && ALPACA_SECRET) {
+            refresh();
+            setInterval(refresh, POLL_INTERVAL);
+        }
         addActivity('INFO', 'Dashboard v2 initialized — full system visibility', 'ok');
     });
     </script>
