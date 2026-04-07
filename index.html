@@ -63,7 +63,7 @@
                     <p style="font-size: 13px; font-weight: 700; color: #10b981; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Autonomous AI Trading System</p>
                 </div>
                 <p style="font-size: 12px; color: #cbd5e1; margin: 0 0 14px; line-height: 1.6;">
-                    Dual-engine system running 4:30 AM - 6:00 PM PT fully autonomous. <strong style="color:#c084fc;">V2 Research Engine</strong> mirrors the ChatGPT methodology that found PSTV (+1558%), GV (+95%), RGC (+32%): research-driven discovery across Finviz, yfinance, Reddit, and Alpaca movers, with AI evaluation scoring catalysts, float, short interest, volume acceleration, and social momentum. Persistent SQLite watchlist tracks candidates across days. V1 8-stage scanner runs in parallel. Paper trades via Alpaca ($300/day, $100/ticker) with HWM trailing stops. Goal: beat ChatGPT's 63.8% in 34 days.
+                    Research-driven AI system running 4:30 AM - 6:00 PM PT fully autonomous. Mirrors the ChatGPT methodology that found PSTV (+1558%), GV (+95%), RGC (+32%). Four Finviz screeners (short squeeze, unusual volume, biotech catalyst, pre-catalyst setup) plus Alpaca movers and Reddit social scanning. AI evaluation scores each candidate on catalysts, float, short interest, volume acceleration, and social momentum. Persistent SQLite watchlist tracks candidates across days — building conviction before stocks move. Paper trades via Alpaca ($300/day, $100/ticker) with HWM trailing stops. Goal: beat ChatGPT's 63.8% in 34 days.
                 </p>
                 <div style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 10px;">
                     <span style="padding: 4px 8px; background: rgba(168,85,247,0.15); color: #c084fc; border-radius: 4px; font-weight: 700;">V2 AI Research</span>
@@ -228,7 +228,7 @@
                             <span id="bot-bridge-status" class="tag" style="background: rgba(16,185,129,0.15); color: #10b981; margin-left: auto; font-size: 9px;">LIVE</span>
                         </div>
                         <div style="font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; gap: 4px;">
-                            <span>8-stage scanner, HWM trailing stops, after-hours research</span>
+                            <span>AI research engine, HWM trailing stops, persistent watchlist</span>
                             <span id="bot-positions-bridge" style="color: #cbd5e1;">0 positions</span>
                             <span id="bot-equity-bridge" style="color: #cbd5e1;">$0</span>
                             <span id="bot-bridge-modifiers" style="color: #c084fc;">No bridge modifiers active</span>
@@ -317,42 +317,7 @@
                 </div>
             </div>
 
-            <!-- Overnight Watchlist + After-Hours Research -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-                <!-- Overnight Watchlist -->
-                <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">🌙 Overnight Watchlist</p>
-                    <p style="font-size: 10px; color: #64748b; margin: 0 0 12px;">Cross-referenced from Reddit, StockTwits, and after-hours movers</p>
-                    <div id="watchlist-body" style="display: flex; flex-direction: column; gap: 6px; max-height: 300px; overflow-y: auto;" class="scrollbar-thin">
-                        <div style="text-align: center; color: #64748b; font-size: 11px; padding: 12px;">No watchlist data yet. Runs at 2:00 PM and 5:00 PM PT.</div>
-                    </div>
-                </div>
-
-                <!-- Social Sentiment -->
-                <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">📡 Social Sentiment Research</p>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
-                        <div>
-                            <p style="font-size: 10px; color: #c084fc; font-weight: 700; margin: 0 0 8px;">Reddit Trending</p>
-                            <div id="reddit-tickers" style="font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
-                                <span style="color: #64748b;">Waiting for scan...</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p style="font-size: 10px; color: #60a5fa; font-weight: 700; margin: 0 0 8px;">StockTwits Trending</p>
-                            <div id="stocktwits-tickers" style="font-size: 11px; display: flex; flex-direction: column; gap: 4px;">
-                                <span style="color: #64748b;">Waiting for scan...</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div style="margin-top: 12px; border-top: 1px solid #334155; padding-top: 10px;">
-                        <p style="font-size: 10px; color: #fbbf24; font-weight: 700; margin: 0 0 8px;">After-Hours Movers</p>
-                        <div id="ah-movers" style="font-size: 11px; display: flex; flex-wrap: wrap; gap: 6px;">
-                            <span style="color: #64748b;">Waiting for scan...</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- removed: Overnight Watchlist + Social Sentiment (now in V2 Research panel above) -->
 
             <!-- Recent Orders -->
             <div class="card fade-in" style="overflow: hidden;">
@@ -387,49 +352,41 @@
                     <div id="schedule-list" style="display: flex; flex-direction: column; gap: 5px; font-size: 11px;"></div>
                 </div>
 
-                <!-- Scoring Engine -->
+                <!-- V2 AI Evaluation -->
                 <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">📐 Scoring Engine (20+ Factors)</p>
+                    <p class="section-title">🧪 AI Evaluation (6 Factors)</p>
                     <div style="font-size: 11px; display: flex; flex-direction: column; gap: 5px;">
-                        <div class="stat-row"><span style="color: #10b981;">Volume explosive</span><span style="color: #64748b;">0-30 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">RVOL bonus</span><span style="color: #64748b;">0-15 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Momentum</span><span style="color: #64748b;">0-40 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Gap score</span><span style="color: #64748b;">0-20 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Squeeze pressure</span><span style="color: #64748b;">0-45 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Price range</span><span style="color: #64748b;">0-15 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Dollar volume</span><span style="color: #64748b;">0-15 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Intraday range</span><span style="color: #64748b;">0-15 pts</span></div>
-                        <div class="stat-row"><span style="color: #fbbf24;">Coil spring</span><span style="color: #64748b;">+40 bonus</span></div>
-                        <div class="stat-row"><span style="color: #fbbf24;">Stealth accum</span><span style="color: #64748b;">+15 bonus</span></div>
+                        <div class="stat-row"><span style="color: #c084fc;">Catalyst (news/FDA/biotech)</span><span style="color: #64748b;">0-35 pts</span></div>
+                        <div class="stat-row"><span style="color: #10b981;">Float size</span><span style="color: #64748b;">0-30 pts</span></div>
+                        <div class="stat-row"><span style="color: #10b981;">Short interest</span><span style="color: #64748b;">0-30 pts</span></div>
+                        <div class="stat-row"><span style="color: #fbbf24;">Volume acceleration</span><span style="color: #64748b;">0-25 pts</span></div>
+                        <div class="stat-row"><span style="color: #60a5fa;">Social momentum</span><span style="color: #64748b;">0-20 pts</span></div>
+                        <div class="stat-row"><span style="color: #22d3ee;">Real-time move</span><span style="color: #64748b;">0-20 pts</span></div>
                         <div style="border-top: 1px solid #334155; padding-top: 5px; margin-top: 2px;">
-                            <div class="stat-row"><span style="color: #ef4444;">Chase risk</span><span style="color: #64748b;">-10 to -35</span></div>
-                            <div class="stat-row"><span style="color: #ef4444;">Pump pattern</span><span style="color: #64748b;">-30</span></div>
-                            <div class="stat-row"><span style="color: #ef4444;">Over-extended</span><span style="color: #64748b;">-20</span></div>
+                            <div class="stat-row"><span style="color: #ef4444;">No catalyst</span><span style="color: #64748b;">-10</span></div>
+                            <div class="stat-row"><span style="color: #ef4444;">Near 52w high</span><span style="color: #64748b;">risk flag</span></div>
+                            <div class="stat-row"><span style="color: #ef4444;">Large float</span><span style="color: #64748b;">risk flag</span></div>
                         </div>
-                        <p style="font-size: 10px; color: #64748b; margin: 4px 0 0;">Range: -125 to +545. Tiers: S(55%+) A(40%+) B(25%+) C(&lt;25%)</p>
+                        <p style="font-size: 10px; color: #64748b; margin: 4px 0 0;">S-tier: 80+ | A-tier: 60+ | B-tier: 40+ | C: 25+ | PASS: &lt;25</p>
                     </div>
                 </div>
 
-                <!-- Learning + Self-Improvement -->
+                <!-- How It Learns -->
                 <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">🔬 Learning & Self-Improvement</p>
+                    <p class="section-title">🔬 How It Learns</p>
                     <div style="font-size: 11px; display: flex; flex-direction: column; gap: 8px;">
                         <div>
-                            <p style="color: #22d3ee; font-weight: 600; margin: 0 0 4px; font-size: 10px;">CLOSED-LOOP LEARNING</p>
-                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">Every 5 closed trades: analyze win/loss patterns, adjust penalty sensitivity, recalibrate chase/pump thresholds (max 20% change per cycle).</p>
+                            <p style="color: #c084fc; font-weight: 600; margin: 0 0 4px; font-size: 10px;">PERSISTENT WATCHLIST</p>
+                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">SQLite database tracks every candidate across days. Each time a stock appears in a scan, its times_seen counter increases and conviction builds. Pre-catalyst setups are watched until volume confirms.</p>
                         </div>
                         <div style="border-top: 1px solid #334155; padding-top: 8px;">
-                            <p style="color: #c084fc; font-weight: 600; margin: 0 0 4px; font-size: 10px;">OVERNIGHT SELF-IMPROVEMENT</p>
-                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">After close: review scan picks vs actual moves, identify missed winners, check if trailing stops need tightening for big winners, suggest entry criteria adjustments.</p>
+                            <p style="color: #22d3ee; font-weight: 600; margin: 0 0 4px; font-size: 10px;">TRADE OUTCOME LEARNING</p>
+                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">Every closed trade is recorded with entry thesis, exit reason, and P&L. The system reviews winners and losers to adjust which factors predicted correctly.</p>
                         </div>
                         <div style="border-top: 1px solid #334155; padding-top: 8px;">
-                            <p style="color: #fbbf24; font-weight: 600; margin: 0 0 4px; font-size: 10px;">SOCIAL RESEARCH</p>
-                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">Scans r/pennystocks, r/squeezeplays, r/shortsqueeze, r/wallstreetbets, StockTwits trending. Cross-references with AH movers to build conviction watchlist.</p>
+                            <p style="color: #fbbf24; font-weight: 600; margin: 0 0 4px; font-size: 10px;">4 DISCOVERY CHANNELS</p>
+                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">Finviz (short squeeze + unusual volume + biotech + pre-catalyst), Alpaca real-time movers, Reddit social momentum across 5 subreddits, yfinance deep research.</p>
                         </div>
-                    </div>
-                    <div id="improvement-insights" style="margin-top: 10px; border-top: 1px solid #334155; padding-top: 8px; display: none;">
-                        <p style="font-size: 10px; color: #10b981; font-weight: 700; margin: 0 0 6px;">LATEST INSIGHTS</p>
-                        <div id="insights-list" style="font-size: 10px; color: #cbd5e1;"></div>
                     </div>
                 </div>
             </div>
@@ -446,7 +403,7 @@
 
             <!-- Footer -->
             <div style="text-align: center; font-size: 11px; color: #64748b; padding: 16px 0; border-top: 1px solid #334155;">
-                <p style="margin: 0;">Alpaca Paper Trading | 4:30 AM - 6:00 PM PT Autonomous | V2 AI Research Engine + V1 Scanner → Auto Execute → HWM Trailing Stops → Self-Learning</p>
+                <p style="margin: 0;">Alpaca Paper Trading | 4:30 AM - 6:00 PM PT Autonomous | AI Research → Evaluate → Watchlist → Execute → Monitor → Learn</p>
             </div>
         </main>
     </div>
