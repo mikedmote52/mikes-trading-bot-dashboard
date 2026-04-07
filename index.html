@@ -183,66 +183,7 @@
                 </div>
             </div>
 
-            <!-- INTELLIGENCE BRIDGE -->
-            <div class="card fade-in" style="padding: 20px; border-left: 3px solid #c084fc;">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="font-size: 18px;">🌐</span>
-                    <p style="font-size: 13px; font-weight: 700; color: #c084fc; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Intelligence Bridge</p>
-                    <span id="bridge-status" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8; margin-left: auto;">CHECKING...</span>
-                </div>
-                <p style="font-size: 11px; color: #64748b; margin: 0 0 14px; line-height: 1.5;">Three independent systems share intelligence through a read-only bridge. Each system runs in its own directory, its own database, its own process. If any system goes offline, the others continue normally. The bridge is additive, never load-bearing.</p>
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;">
-                    <!-- Kalshi Intelligence -->
-                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 14px; border-left: 2px solid #60a5fa;">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                            <span style="font-size: 14px;">📊</span>
-                            <span style="font-size: 11px; font-weight: 700; color: #60a5fa;">Kalshi Intelligence</span>
-                            <span id="kalshi-status" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8; margin-left: auto; font-size: 9px;">OFFLINE</span>
-                        </div>
-                        <div style="font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; gap: 4px;">
-                            <span>7 domain analyzers (geo, energy, macro, tech, ag, defense, regulatory)</span>
-                            <span id="kalshi-signals" style="color: #cbd5e1;">No signals</span>
-                            <span id="kalshi-opportunities" style="color: #cbd5e1;">No opportunities</span>
-                            <span id="kalshi-cascades" style="color: #fbbf24;">0 active cascades</span>
-                        </div>
-                    </div>
-                    <!-- Sentinel Compass -->
-                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 14px; border-left: 2px solid #10b981;">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                            <span style="font-size: 14px;">🧭</span>
-                            <span style="font-size: 11px; font-weight: 700; color: #10b981;">Sentinel Compass</span>
-                            <span id="sentinel-status" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8; margin-left: auto; font-size: 9px;">OFFLINE</span>
-                        </div>
-                        <div style="font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; gap: 4px;">
-                            <span>Narrative analysis, fact-checking, pattern detection</span>
-                            <span id="sentinel-narratives" style="color: #cbd5e1;">No narratives</span>
-                            <span id="sentinel-patterns" style="color: #cbd5e1;">No pattern alerts</span>
-                            <span id="sentinel-markets" style="color: #cbd5e1;">No market signals</span>
-                        </div>
-                    </div>
-                    <!-- Squeeze Bot -->
-                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 14px; border-left: 2px solid #fbbf24;">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 10px;">
-                            <span style="font-size: 14px;">🤖</span>
-                            <span style="font-size: 11px; font-weight: 700; color: #fbbf24;">Squeeze Bot</span>
-                            <span id="bot-bridge-status" class="tag" style="background: rgba(16,185,129,0.15); color: #10b981; margin-left: auto; font-size: 9px;">LIVE</span>
-                        </div>
-                        <div style="font-size: 10px; color: #94a3b8; display: flex; flex-direction: column; gap: 4px;">
-                            <span>AI research engine, HWM trailing stops, persistent watchlist</span>
-                            <span id="bot-positions-bridge" style="color: #cbd5e1;">0 positions</span>
-                            <span id="bot-equity-bridge" style="color: #cbd5e1;">$0</span>
-                            <span id="bot-bridge-modifiers" style="color: #c084fc;">No bridge modifiers active</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Sector Consensus -->
-                <div style="margin-top: 14px; border-top: 1px solid #334155; padding-top: 12px;">
-                    <p style="font-size: 10px; color: #c084fc; font-weight: 700; margin: 0 0 8px;">SECTOR CONSENSUS (Cross-System)</p>
-                    <div id="sector-consensus" style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px;">
-                        <span style="color: #64748b;">Bridge not yet populated. Signals appear when Kalshi Intelligence and/or Sentinel Compass publish sector analyses.</span>
-                    </div>
-                </div>
-            </div>
+            <!-- Intelligence Bridge removed — archived project -->
 
             <!-- V2 RESEARCH ENGINE -->
             <div class="card fade-in" style="padding: 20px; border-left: 3px solid #c084fc;">
@@ -695,27 +636,13 @@
         $('win-rate').textContent = ((w / (w+l)) * 100).toFixed(0) + '%';
     }
 
-    // ─── INTELLIGENCE BRIDGE ────────────────────────────────
-    // Bridge data URL: if the bridge daemon pushes bridge_summary.json to the repo, we read it.
-    // Otherwise we populate the Squeeze Bot card from live Alpaca data and show others as needing local bridge.
-    const BRIDGE_DATA_URL = 'data/bridge_summary.json';
+    // ─── INTELLIGENCE BRIDGE (removed — archived project) ──
+    const BRIDGE_DATA_URL = null;
     let lastBridgeData = null;
-
-    async function fetchBridgeData() {
-        try {
-            const res = await fetch(BRIDGE_DATA_URL + '?t=' + Date.now());
-            if (!res.ok) return null;
-            const data = await res.json();
-            // Only trust data less than 2 hours old
-            if (data.generated_at) {
-                const age = Date.now() - new Date(data.generated_at).getTime();
-                if (age > 7200000) return null;
-            }
-            return data;
-        } catch { return null; }
-    }
+    async function fetchBridgeData() { return null; }
 
     function updateBridge(bridgeData, positions, account) {
+        return; // Bridge UI removed
         // --- Squeeze Bot card (always live from Alpaca) ---
         if (positions && account) {
             const equity = parseFloat(account.equity);
