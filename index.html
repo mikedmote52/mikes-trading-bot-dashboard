@@ -769,6 +769,32 @@
         $('win-rate').textContent = ((w / (w+l)) * 100).toFixed(0) + '%';
     }
 
+    // ─── EQUITY HISTORY LOADER ─────────────────────────────
+    let equityHistoryTimestamp = null;
+    async function loadEquityHistory() {
+        try {
+            const res = await fetch('data/equity_history.json?t=' + Date.now());
+            if (!res.ok) return;
+            const history = await res.json();
+            if (!Array.isArray(history) || history.length === 0) return;
+
+            // Pre-populate equity chart with historical daily snapshots
+            history.forEach(snap => {
+                const label = snap.date; // YYYY-MM-DD
+                equityChart.data.labels.push(label);
+                equityChart.data.datasets[0].data.push(snap.equity);
+                // Calculate benchmark line for this day
+                const dayIndex = history.indexOf(snap) + 1;
+                equityChart.data.datasets[1].data.push(STARTING_EQUITY * (1 + 0.638 * (dayIndex / 34)));
+            });
+            equityChart.update('none');
+            equityHistoryTimestamp = new Date();
+            addActivity('INFO', `Loaded ${history.length} days of equity history`, 'ok');
+        } catch (e) {
+            // No history file available yet, that's fine
+        }
+    }
+
     // ─── V2 RESEARCH ENGINE ────────────────────────────────
     async function fetchV2Data() {
         try {
@@ -890,8 +916,22 @@
             $('h-daemon').className = 'stat-value health-ok';
             $('h-scan').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
             $('h-scan').className = 'stat-value';
-            $('h-research').textContent = now.getHours() >= 14 ? 'AH cycle done' : 'Next: 2:00 PM';
-            $('h-research').className = 'stat-value';
+
+            // Update research status with equity history timestamp
+            let researchText = now.getHours() >= 14 ? 'AH cycle done' : 'Next: 2:00 PM';
+            let researchClass = 'stat-value';
+            if (equityHistoryTimestamp) {
+                const histAge = now - equityHistoryTimestamp;
+                const staleThreshold = 60 * 60 * 1000; // 1 hour
+                if (histAge > staleThreshold) {
+                    researchText = 'Equity history STALE';
+                    researchClass = 'stat-value health-warn';
+                } else {
+                    researchText = 'Equity: ' + equityHistoryTimestamp.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+                }
+            }
+            $('h-research').textContent = researchText;
+            $('h-research').className = researchClass;
 
             // V2 Research Engine
             const v2Data = await fetchV2Data();
@@ -915,6 +955,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         initConfig();
         initCharts();
+        loadEquityHistory();
         renderSchedule();
         if (ALPACA_KEY && ALPACA_SECRET) {
             refresh();
