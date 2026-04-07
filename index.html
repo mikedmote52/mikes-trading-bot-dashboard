@@ -34,17 +34,6 @@
         .tier-A { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
         .tier-B { background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
         .tier-C { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
-        /* Config Modal */
-        .config-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; }
-        .config-modal.hidden { display: none; }
-        .config-card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; padding: 32px; max-width: 400px; width: 90%; }
-        .config-card h2 { color: #10b981; margin: 0 0 8px; font-size: 18px; }
-        .config-card p { color: #94a3b8; margin: 0 0 16px; font-size: 12px; line-height: 1.5; }
-        .config-input { width: 100%; background: #0f172a; border: 1px solid #334155; color: #e2e8f0; padding: 10px 12px; border-radius: 4px; margin: 0 0 16px; font-family: 'Courier New', monospace; }
-        .config-input:focus { outline: none; border-color: #10b981; }
-        .config-button { width: 100%; background: #10b981; color: #000; border: none; padding: 10px; border-radius: 4px; font-weight: 700; cursor: pointer; }
-        .config-button:hover { background: #059669; }
-        .config-note { font-size: 10px; color: #64748b; margin: 12px 0 0; }
         /* Connection Lost Banner */
         .connection-lost { background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #ef4444; padding: 12px 16px; border-radius: 4px; margin: 0 0 16px; font-size: 12px; font-weight: 700; text-align: center; }
         /* Stale Data Badge */
@@ -62,18 +51,6 @@
     </style>
 </head>
 <body>
-    <!-- Config Modal -->
-    <div id="config-modal" class="config-modal hidden">
-        <div class="config-card">
-            <h2>Alpaca API Configuration</h2>
-            <p>Enter your Alpaca API credentials to connect to paper trading.</p>
-            <input id="config-key" class="config-input" type="password" placeholder="API Key" />
-            <input id="config-secret" class="config-input" type="password" placeholder="API Secret" />
-            <button id="config-save" class="config-button">Save & Connect</button>
-            <p class="config-note">📋 Paper trading keys only. Stored locally in your browser.</p>
-        </div>
-    </div>
-
     <!-- Connection Lost Banner -->
     <div id="connection-lost-banner" class="connection-lost" style="display:none; position:fixed; top:70px; left:24px; right:24px; z-index:100;">
         ⚠ CONNECTION LOST - Unable to reach Alpaca API after 3 retries. Retrying...
@@ -91,7 +68,6 @@
                     <span id="health-badge" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8;">HEALTH: ?</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
-                    <button id="config-btn" style="background: none; border: none; color: #94a3b8; font-size: 18px; cursor: pointer; padding: 4px 8px;">⚙</button>
                     <div style="text-align: right; font-size: 11px; color: #94a3b8;">
                         <span id="last-update"></span>
                     </div>
@@ -399,54 +375,11 @@
     const MAX_EQUITY_POINTS = 500;
     const MAX_CONSECUTIVE_FAILURES = 3;
 
-    let ALPACA_KEY = '';
-    let ALPACA_SECRET = '';
+    const ALPACA_KEY = 'PKSXWVBYZ43C7U3BUHJN7KFNG3';
+    const ALPACA_SECRET = 'G4ri1PjAxnAfnL9DzE72Q1Gg7ogoAEcwnDhGPAQ8K223';
     let equityChart = null, winlossChart = null, activityLog = [];
     let consecutiveFailures = 0;
     let equityTimestamps = [];
-
-    // Initialize configuration on page load
-    function initConfig() {
-        const key = localStorage.getItem('alpaca_key');
-        const secret = localStorage.getItem('alpaca_secret');
-        if (key && secret) {
-            ALPACA_KEY = key;
-            ALPACA_SECRET = secret;
-        } else {
-            showConfigModal();
-        }
-    }
-
-    function showConfigModal() {
-        document.getElementById('config-modal').classList.remove('hidden');
-    }
-
-    function hideConfigModal() {
-        document.getElementById('config-modal').classList.add('hidden');
-    }
-
-    document.getElementById('config-btn').addEventListener('click', showConfigModal);
-    document.getElementById('config-save').addEventListener('click', () => {
-        const key = document.getElementById('config-key').value.trim();
-        const secret = document.getElementById('config-secret').value.trim();
-        if (key && secret) {
-            ALPACA_KEY = key;
-            ALPACA_SECRET = secret;
-            localStorage.setItem('alpaca_key', key);
-            localStorage.setItem('alpaca_secret', secret);
-            hideConfigModal();
-            addActivity('INFO', 'API credentials configured successfully', 'ok');
-            refresh();
-        }
-    });
-
-    // Pre-fill config form if values exist
-    document.addEventListener('DOMContentLoaded', () => {
-        const key = localStorage.getItem('alpaca_key');
-        const secret = localStorage.getItem('alpaca_secret');
-        if (key) document.getElementById('config-key').value = key;
-        if (secret) document.getElementById('config-secret').value = secret;
-    });
 
     // ─── RETRY LOGIC WITH EXPONENTIAL BACKOFF ────────────────
     async function alpacaFetchWithRetry(endpoint, retries = 3) {
@@ -953,14 +886,11 @@
 
     // ─── INIT ────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', () => {
-        initConfig();
         initCharts();
         loadEquityHistory();
         renderSchedule();
-        if (ALPACA_KEY && ALPACA_SECRET) {
-            refresh();
-            setInterval(refresh, POLL_INTERVAL);
-        }
+        refresh();
+        setInterval(refresh, POLL_INTERVAL);
         addActivity('INFO', 'Dashboard v2 initialized — full system visibility', 'ok');
     });
     </script>
