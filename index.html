@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mike's Trading Bot v1</title>
+    <title>Mike's Trading Bot v2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>📊</text></svg>">
@@ -30,6 +30,10 @@
         .conviction-HIGH { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
         .conviction-MEDIUM { background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
         .conviction-LOW { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
+        .tier-S { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
+        .tier-A { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+        .tier-B { background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
+        .tier-C { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
     </style>
 </head>
 <body>
@@ -38,7 +42,7 @@
         <header style="background: #0f172ae0; border-bottom: 1px solid #334155; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);">
             <div style="max-width: 1400px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
                 <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-                    <h1 style="font-size: 22px; font-weight: 700; color: #10b981; margin: 0;">MIKE'S TRADING BOT v1</h1>
+                    <h1 style="font-size: 22px; font-weight: 700; color: #10b981; margin: 0;">MIKE'S TRADING BOT v2</h1>
                     <span id="status-badge" style="padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;"></span>
                     <span style="padding: 4px 10px; font-size: 11px; font-weight: 700; background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); border-radius: 20px;">PAPER TRADING</span>
                     <span id="daemon-badge" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8;">DAEMON: ?</span>
@@ -59,24 +63,22 @@
                     <p style="font-size: 13px; font-weight: 700; color: #10b981; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Autonomous AI Trading System</p>
                 </div>
                 <p style="font-size: 12px; color: #cbd5e1; margin: 0 0 14px; line-height: 1.6;">
-                    Runs 4:30 AM - 6:00 PM PT fully autonomous. Pre-market research scans Reddit, StockTwits, and after-hours movers to build an overnight watchlist. During market hours, an 8-stage pipeline scores squeeze candidates across 20+ factors, executes paper trades via Alpaca ($300/day, $100/ticker), and monitors all positions every 60 seconds with real trailing stops. After close, the self-improvement engine reviews decisions, identifies missed winners, and adjusts scoring weights. Goal: beat ChatGPT's 63.8% in 34 days.
+                    Dual-engine system running 4:30 AM - 6:00 PM PT fully autonomous. <strong style="color:#c084fc;">V2 Research Engine</strong> mirrors the ChatGPT methodology that found PSTV (+1558%), GV (+95%), RGC (+32%): research-driven discovery across Finviz, yfinance, Reddit, and Alpaca movers, with AI evaluation scoring catalysts, float, short interest, volume acceleration, and social momentum. Persistent SQLite watchlist tracks candidates across days. V1 8-stage scanner runs in parallel. Paper trades via Alpaca ($300/day, $100/ticker) with HWM trailing stops. Goal: beat ChatGPT's 63.8% in 34 days.
                 </p>
                 <div style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 10px;">
-                    <span style="padding: 4px 8px; background: rgba(168,85,247,0.15); color: #c084fc; border-radius: 4px;">Pre-Market Research</span>
+                    <span style="padding: 4px 8px; background: rgba(168,85,247,0.15); color: #c084fc; border-radius: 4px; font-weight: 700;">V2 AI Research</span>
                     <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(99,102,241,0.15); color: #818cf8; border-radius: 4px;">8-Stage Scanner</span>
+                    <span style="padding: 4px 8px; background: rgba(99,102,241,0.15); color: #818cf8; border-radius: 4px;">Finviz + yfinance + Reddit</span>
                     <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(234,179,8,0.15); color: #fbbf24; border-radius: 4px;">AI Scoring</span>
+                    <span style="padding: 4px 8px; background: rgba(234,179,8,0.15); color: #fbbf24; border-radius: 4px;">AI Evaluation</span>
+                    <span style="color: #475569;">→</span>
+                    <span style="padding: 4px 8px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 4px;">Persistent Watchlist</span>
                     <span style="color: #475569;">→</span>
                     <span style="padding: 4px 8px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 4px;">Auto Execute</span>
                     <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(59,130,246,0.15); color: #60a5fa; border-radius: 4px;">HWM Monitor</span>
+                    <span style="padding: 4px 8px; background: rgba(59,130,246,0.15); color: #60a5fa; border-radius: 4px;">HWM Trailing Stops</span>
                     <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(234,179,8,0.15); color: #fbbf24; border-radius: 4px;">Exit Engine</span>
-                    <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(168,85,247,0.15); color: #c084fc; border-radius: 4px;">After-Hours Intel</span>
-                    <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 4px; font-weight: 700;">Self-Improve</span>
+                    <span style="padding: 4px 8px; background: rgba(168,85,247,0.15); color: #c084fc; border-radius: 4px;">Self-Learn</span>
                 </div>
             </div>
 
@@ -146,7 +148,7 @@
                 <div class="card fade-in" style="padding: 20px;">
                     <p class="section-title">🛡 Exit Rules & Safety</p>
                     <div style="font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
-                        <div class="stat-row"><span style="color: #ef4444;">Hard stop</span><span style="color: #fff; font-weight: 600;">-15%</span></div>
+                        <div class="stat-row"><span style="color: #ef4444;">Hard stop</span><span style="color: #fff; font-weight: 600;">-10%</span></div>
                         <div class="stat-row"><span style="color: #fbbf24;">Trailing stop</span><span style="color: #fff; font-weight: 600;">-10% from HWM after +20%</span></div>
                         <div class="stat-row"><span style="color: #10b981;">Profit target</span><span style="color: #fff; font-weight: 600;">+50%</span></div>
                         <div class="stat-row"><span style="color: #94a3b8;">Time exit</span><span style="color: #fff; font-weight: 600;">30 days</span></div>
@@ -238,6 +240,50 @@
                     <p style="font-size: 10px; color: #c084fc; font-weight: 700; margin: 0 0 8px;">SECTOR CONSENSUS (Cross-System)</p>
                     <div id="sector-consensus" style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 10px;">
                         <span style="color: #64748b;">Bridge not yet populated. Signals appear when Kalshi Intelligence and/or Sentinel Compass publish sector analyses.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- V2 RESEARCH ENGINE -->
+            <div class="card fade-in" style="padding: 20px; border-left: 3px solid #c084fc;">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
+                    <span style="font-size: 18px;">🧪</span>
+                    <p style="font-size: 13px; font-weight: 700; color: #c084fc; margin: 0; text-transform: uppercase; letter-spacing: 1px;">V2 Research Engine</p>
+                    <span id="v2-status" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8; margin-left: auto;">LOADING...</span>
+                    <span id="v2-timestamp" style="font-size: 10px; color: #64748b;"></span>
+                </div>
+                <p style="font-size: 11px; color: #64748b; margin: 0 0 14px; line-height: 1.5;">Research-driven AI stock picker mirroring the ChatGPT methodology. Discovers candidates via Finviz screeners, evaluates with multi-factor AI reasoning (catalyst, float, short interest, volume, social momentum), and tracks across days via persistent SQLite watchlist.</p>
+                <!-- V2 Stats Row -->
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px;">
+                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 10px; text-align: center;">
+                        <p style="font-size: 9px; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase;">Discovered</p>
+                        <p id="v2-discovered" style="font-size: 20px; font-weight: 700; color: #60a5fa; margin: 0;">—</p>
+                    </div>
+                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 10px; text-align: center;">
+                        <p style="font-size: 9px; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase;">Evaluated</p>
+                        <p id="v2-evaluated" style="font-size: 20px; font-weight: 700; color: #fbbf24; margin: 0;">—</p>
+                    </div>
+                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 10px; text-align: center;">
+                        <p style="font-size: 9px; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase;">Trade Ready</p>
+                        <p id="v2-ready" style="font-size: 20px; font-weight: 700; color: #10b981; margin: 0;">—</p>
+                    </div>
+                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 10px; text-align: center;">
+                        <p style="font-size: 9px; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase;">Social Trending</p>
+                        <p id="v2-social" style="font-size: 20px; font-weight: 700; color: #c084fc; margin: 0;">—</p>
+                    </div>
+                </div>
+                <!-- Top Picks Table -->
+                <div style="margin-bottom: 14px;">
+                    <p style="font-size: 10px; color: #c084fc; font-weight: 700; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px;">Top AI Picks (Conviction Tiers)</p>
+                    <div id="v2-picks" style="display: flex; flex-direction: column; gap: 6px; max-height: 320px; overflow-y: auto;" class="scrollbar-thin">
+                        <div style="text-align: center; color: #64748b; font-size: 11px; padding: 16px;">Waiting for first v2 research cycle...</div>
+                    </div>
+                </div>
+                <!-- Social Trending -->
+                <div style="border-top: 1px solid #334155; padding-top: 12px;">
+                    <p style="font-size: 10px; color: #fbbf24; font-weight: 700; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px;">Reddit Social Momentum</p>
+                    <div id="v2-reddit" style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 11px;">
+                        <span style="color: #64748b;">Waiting for research...</span>
                     </div>
                 </div>
             </div>
@@ -400,7 +446,7 @@
 
             <!-- Footer -->
             <div style="text-align: center; font-size: 11px; color: #64748b; padding: 16px 0; border-top: 1px solid #334155;">
-                <p style="margin: 0;">Alpaca Paper Trading | 4:30 AM - 6:00 PM PT Autonomous | Pre-market Research → 8-Stage Scanner → AI Scoring → HWM Trailing Stops → After-Hours Intel → Self-Improvement</p>
+                <p style="margin: 0;">Alpaca Paper Trading | 4:30 AM - 6:00 PM PT Autonomous | V2 AI Research Engine + V1 Scanner → Auto Execute → HWM Trailing Stops → Self-Learning</p>
             </div>
         </main>
     </div>
@@ -420,9 +466,12 @@
     const SCHEDULE = [
         { time: '4:30 AM', label: 'Daemon starts', icon: '🤖' },
         { time: '5:00 AM', label: 'Pre-market prep (gaps + watchlist merge)', icon: '🌅' },
-        { time: '6:30 AM', label: 'Market open scan + execute', icon: '🔔' },
-        { time: '9:00 AM', label: 'Midday scan + execute', icon: '📊' },
-        { time: '12:00 PM', label: 'Power hour scan + execute', icon: '⚡' },
+        { time: '6:15 AM', label: 'V2 AI research scan + execute', icon: '🧪' },
+        { time: '6:30 AM', label: 'V1 market open scan + execute', icon: '🔔' },
+        { time: '8:30 AM', label: 'V2 AI research scan + execute', icon: '🧪' },
+        { time: '9:00 AM', label: 'V1 midday scan + execute', icon: '📊' },
+        { time: '11:30 AM', label: 'V2 AI research scan + execute', icon: '🧪' },
+        { time: '12:00 PM', label: 'V1 power hour scan + execute', icon: '⚡' },
         { time: '1:00 PM', label: 'EOD summary via Telegram', icon: '📋' },
         { time: '1:30 PM', label: 'Self-health-check', icon: '💚' },
         { time: '1:35 PM', label: 'Learning loop (weight adjustments)', icon: '🧠' },
@@ -810,6 +859,94 @@
         }
     }
 
+    // ─── V2 RESEARCH ENGINE ────────────────────────────────
+    const V2_DATA_URL = 'data/v2_dashboard.json';
+
+    async function fetchV2Data() {
+        try {
+            const res = await fetch(V2_DATA_URL + '?t=' + Date.now());
+            if (!res.ok) return null;
+            const data = await res.json();
+            if (data.timestamp) {
+                const age = Date.now() - new Date(data.timestamp).getTime();
+                if (age > 86400000) return null; // 24 hour staleness
+            }
+            return data;
+        } catch { return null; }
+    }
+
+    function updateV2Panel(data) {
+        if (!data) {
+            $('v2-status').textContent = 'NO DATA';
+            $('v2-status').style.cssText = 'background:rgba(148,163,184,0.15);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;';
+            return;
+        }
+
+        // Status badge
+        const ready = data.ready_to_trade || 0;
+        $('v2-status').textContent = ready > 0 ? ready + ' READY' : 'SCANNING';
+        $('v2-status').style.cssText = ready > 0
+            ? 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(16,185,129,0.3);'
+            : 'background:rgba(234,179,8,0.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(234,179,8,0.3);';
+
+        // Timestamp
+        if (data.timestamp) {
+            const ts = new Date(data.timestamp);
+            $('v2-timestamp').textContent = 'Last: ' + ts.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+        }
+
+        // Stats
+        $('v2-discovered').textContent = data.candidates_discovered || 0;
+        $('v2-evaluated').textContent = data.candidates_evaluated || 0;
+        $('v2-ready').textContent = data.ready_to_trade || 0;
+        const socialCount = data.social_trending ? Object.keys(data.social_trending).length : 0;
+        $('v2-social').textContent = socialCount;
+
+        // Top Picks
+        const picks = data.top_picks || [];
+        if (picks.length > 0) {
+            $('v2-picks').innerHTML = picks.map((p, i) => {
+                const tierColors = {
+                    S: { bg: 'rgba(168,85,247,0.12)', border: '#c084fc', text: '#c084fc' },
+                    A: { bg: 'rgba(16,185,129,0.12)', border: '#10b981', text: '#10b981' },
+                    B: { bg: 'rgba(234,179,8,0.12)', border: '#fbbf24', text: '#fbbf24' },
+                    C: { bg: 'rgba(148,163,184,0.08)', border: '#64748b', text: '#94a3b8' },
+                };
+                const tier = p.conviction || (p.score >= 80 ? 'S' : p.score >= 60 ? 'A' : p.score >= 40 ? 'B' : 'C');
+                const tc = tierColors[tier] || tierColors.C;
+                const catalyst = p.has_catalyst ? '<span style="color:#10b981;font-size:9px;font-weight:700;">CATALYST</span>' : '';
+                const thesis = (p.thesis || '').length > 100 ? p.thesis.substring(0, 100) + '...' : (p.thesis || 'No thesis');
+
+                return `<div style="background:${tc.bg};border-left:2px solid ${tc.border};border-radius:4px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px;">
+                    <div style="min-width:26px;text-align:center;">
+                        <span class="tag tier-${tier}" style="font-size:11px;padding:2px 6px;">${tier}</span>
+                    </div>
+                    <div style="flex:1;">
+                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+                            <span style="font-weight:700;color:#fff;font-size:13px;">${p.symbol}</span>
+                            <span style="font-size:11px;color:${tc.text};font-weight:600;">Score: ${p.score}</span>
+                            ${catalyst}
+                        </div>
+                        <p style="font-size:10px;color:#94a3b8;margin:0;line-height:1.4;">${thesis}</p>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        // Social trending
+        const social = data.social_trending || {};
+        const sortedSocial = Object.entries(social).sort((a, b) => b[1] - a[1]);
+        if (sortedSocial.length > 0) {
+            $('v2-reddit').innerHTML = sortedSocial.slice(0, 15).map(([sym, count]) => {
+                const heat = count >= 10 ? '#ef4444' : count >= 5 ? '#fbbf24' : '#60a5fa';
+                const bg = count >= 10 ? 'rgba(239,68,68,0.12)' : count >= 5 ? 'rgba(234,179,8,0.12)' : 'rgba(96,165,250,0.12)';
+                return `<span style="padding:3px 8px;border-radius:4px;background:${bg};color:${heat};font-weight:600;">$${sym} <span style="font-size:9px;opacity:0.7;">x${count}</span></span>`;
+            }).join('');
+        }
+
+        addActivity('RESEARCH', `V2: ${data.candidates_evaluated || 0} evaluated, ${ready} trade-ready`, 'ok');
+    }
+
     // ─── MAIN REFRESH ────────────────────────────────────────
     async function refresh() {
         try {
@@ -836,6 +973,10 @@
             // Intelligence Bridge
             const bridgeData = await fetchBridgeData();
             updateBridge(bridgeData, positions, account);
+
+            // V2 Research Engine
+            const v2Data = await fetchV2Data();
+            updateV2Panel(v2Data);
 
             addActivity('SYNC', `${positions.length} positions, equity ${money(account.equity)}`, 'ok');
             $('last-update').textContent = 'Live: ' + now.toLocaleTimeString();

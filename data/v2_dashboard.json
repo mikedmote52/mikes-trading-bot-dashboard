@@ -1,0 +1,133 @@
+{
+  "timestamp": "2026-04-06T18:41:59.374694",
+  "candidates_discovered": 171,
+  "candidates_evaluated": 30,
+  "ready_to_trade": 2,
+  "top_picks": [
+    {
+      "symbol": "AIXI",
+      "score": 95,
+      "conviction": "S",
+      "thesis": "Low float (25.5M) | Very high short interest (27.0% of float) | Explosive volume acceleration (341.7x vs 10d avg) | Today +515.0% \u2014 confirmed breakout | Social attention (8 mentions)",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "has_catalyst": false,
+      "float_shares": 25475204,
+      "short_pct": 0.2697,
+      "social_mentions": 8,
+      "volume_acceleration": 341.6851469593367,
+      "sector": "technology",
+      "industry": "software - application"
+    },
+    {
+      "symbol": "CYCN",
+      "score": 80,
+      "conviction": "S",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.5M) | Explosive volume acceleration (2342.1x vs 10d avg) | Social attention (5 mentions)",
+      "risks": [
+        "Low short interest \u2014 no squeeze pressure"
+      ],
+      "catalyst_type": "biotech_potential",
+      "has_catalyst": true,
+      "float_shares": 3493264,
+      "short_pct": 0.026600001,
+      "social_mentions": 5,
+      "volume_acceleration": 2342.119075193018,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "AEHR",
+      "score": 55,
+      "conviction": "B",
+      "thesis": "Low float (27.2M) | Elevated short interest (15.3% of float) | Strong volume acceleration (3.3x) | Social attention (5 mentions)",
+      "risks": [
+        "Near 52-week high \u2014 limited upside without new catalyst",
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "has_catalyst": false,
+      "float_shares": 27201368,
+      "short_pct": 0.1531,
+      "social_mentions": 5,
+      "volume_acceleration": 3.3011413384419246,
+      "sector": "technology",
+      "industry": "semiconductor equipment & materials"
+    },
+    {
+      "symbol": "AI",
+      "score": 50,
+      "conviction": "B",
+      "thesis": "Very high short interest (30.7% of float) | High social momentum (42 mentions) | Near 52-week low \u2014 turnaround potential",
+      "risks": [
+        "No catalyst identified",
+        "Large float (135M) limits squeeze potential"
+      ],
+      "catalyst_type": null,
+      "has_catalyst": false,
+      "float_shares": 135433213,
+      "short_pct": 0.3074,
+      "social_mentions": 42,
+      "volume_acceleration": 0.7326250318388027,
+      "sector": "technology",
+      "industry": "software - infrastructure"
+    }
+  ],
+  "social_trending": {
+    "AI": 42,
+    "QQQ": 27,
+    "ET": 26,
+    "ABOVE": 25,
+    "RDDT": 25,
+    "BELOW": 25,
+    "THESE": 25,
+    "ONLY": 25,
+    "HINT": 25,
+    "POSTS": 25,
+    "US": 24,
+    "DR": 9,
+    "TL": 9,
+    "WTI": 9,
+    "FOMC": 9
+  },
+  "trade_candidates": [
+    {
+      "symbol": "AIXI",
+      "score": 95,
+      "thesis": "Low float (25.5M) | Very high short interest (27.0% of float) | Explosive volume acceleration (341.7x vs 10d avg) | Today +515.0% \u2014 confirmed breakout | Social attention (8 mentions)",
+      "times_seen": 1,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "sector": "technology"
+    },
+    {
+      "symbol": "CYCN",
+      "score": 80,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.5M) | Explosive volume acceleration (2342.1x vs 10d avg) | Social attention (5 mentions)",
+      "times_seen": 1,
+      "has_catalyst": true,
+      "catalyst_type": "biotech_potential",
+      "sector": "healthcare"
+    },
+    {
+      "symbol": "AEHR",
+      "score": 55,
+      "thesis": "Low float (27.2M) | Elevated short interest (15.3% of float) | Strong volume acceleration (3.3x) | Social attention (5 mentions)",
+      "times_seen": 1,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "sector": "technology"
+    },
+    {
+      "symbol": "AI",
+      "score": 50,
+      "thesis": "Very high short interest (30.7% of float) | High social momentum (42 mentions) | Near 52-week low \u2014 turnaround potential",
+      "times_seen": 1,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "sector": "technology"
+    }
+  ]
+}
