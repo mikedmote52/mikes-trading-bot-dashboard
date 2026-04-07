@@ -465,20 +465,16 @@
     // ─── SCHEDULE (full day) ─────────────────────────────────
     const SCHEDULE = [
         { time: '4:30 AM', label: 'Daemon starts', icon: '🤖' },
-        { time: '5:00 AM', label: 'Pre-market prep (gaps + watchlist merge)', icon: '🌅' },
-        { time: '6:15 AM', label: 'V2 AI research scan + execute', icon: '🧪' },
-        { time: '6:30 AM', label: 'V1 market open scan + execute', icon: '🔔' },
-        { time: '8:30 AM', label: 'V2 AI research scan + execute', icon: '🧪' },
-        { time: '9:00 AM', label: 'V1 midday scan + execute', icon: '📊' },
-        { time: '11:30 AM', label: 'V2 AI research scan + execute', icon: '🧪' },
-        { time: '12:00 PM', label: 'V1 power hour scan + execute', icon: '⚡' },
-        { time: '1:00 PM', label: 'EOD summary via Telegram', icon: '📋' },
-        { time: '1:30 PM', label: 'Self-health-check', icon: '💚' },
-        { time: '1:35 PM', label: 'Learning loop (weight adjustments)', icon: '🧠' },
-        { time: '2:00 PM', label: 'After-hours research cycle 1', icon: '🌙' },
-        { time: '5:00 PM', label: 'After-hours research cycle 2', icon: '🔬' },
+        { time: '5:00 AM', label: 'Pre-market prep (gaps + watchlist)', icon: '🌅' },
+        { time: '6:30 AM', label: 'Research scan + execute', icon: '🧪' },
+        { time: '9:00 AM', label: 'Research scan + execute', icon: '🧪' },
+        { time: '12:00 PM', label: 'Research scan + execute', icon: '🧪' },
+        { time: '1:00 PM', label: 'EOD summary', icon: '📋' },
+        { time: '1:35 PM', label: 'Learning loop', icon: '🧠' },
+        { time: '2:00 PM', label: 'After-hours research', icon: '🌙' },
+        { time: '5:00 PM', label: 'After-hours research', icon: '🔬' },
         { time: '6:00 PM', label: 'Daemon shutdown', icon: '🛑' },
-        { time: 'Always', label: 'Position monitor every 60s (market hours)', icon: '👁' },
+        { time: 'Always', label: 'Position monitor every 60s', icon: '👁' },
     ];
 
     function renderSchedule() {
