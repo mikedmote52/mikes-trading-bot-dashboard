@@ -51,6 +51,155 @@
     </style>
 </head>
 <body>
+<!--
+  MIKE'S TRADING BOT STALENESS BANNER
+  Inject immediately after <body> in index.html.
+
+  Reads BOTH data files the dashboard depends on:
+    - data/v2_dashboard.json (discovery pipeline output)
+    - data/bridge_summary.json (cross-system health snapshot)
+
+  Currently bridge_summary.json was found 5 DAYS stale while the dashboard
+  still rendered its contents as live. That is the exact failure class this
+  banner catches.
+
+  THRESHOLDS:
+    Trading data is time-sensitive. During market hours, anything older
+    than 15 minutes is already cold. The thresholds below reflect that.
+
+    WARN_MINUTES  = 30
+    STALE_MINUTES = 60
+    DEAD_MINUTES  = 180
+-->
+<style>
+  #tb-staleness-banner {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 99999;
+    padding: 12px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    display: none;
+  }
+  #tb-staleness-banner.visible { display: block; }
+  #tb-staleness-banner.warn   { background: #b58900; }
+  #tb-staleness-banner.stale  { background: #c0392b; }
+  #tb-staleness-banner.dead   { background: #8b0000; animation: tb-pulse 1.2s infinite; }
+  #tb-staleness-banner.fetch-fail { background: #4a0e4e; }
+  #tb-staleness-banner .subline {
+    display: block;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 4px;
+    opacity: 0.9;
+  }
+  @keyframes tb-pulse {
+    0%, 100% { background: #8b0000; }
+    50%      { background: #ff1a1a; }
+  }
+  body.tb-banner-visible { padding-top: 72px; }
+</style>
+
+<div id="tb-staleness-banner" role="alert" aria-live="assertive">
+  <span id="tb-staleness-headline">Checking data freshness…</span>
+  <span class="subline" id="tb-staleness-subline"></span>
+</div>
+
+<script>
+(function () {
+  var WARN_MINUTES  = 30;
+  var STALE_MINUTES = 60;
+  var DEAD_MINUTES  = 180;
+  var POLL_INTERVAL_MS = 60 * 1000;
+
+  var SOURCES = [
+    { name: 'discovery',     url: 'data/v2_dashboard.json',  tsField: 'timestamp' },
+    { name: 'bridge',        url: 'data/bridge_summary.json', tsField: 'generated_at' }
+  ];
+
+  var banner   = document.getElementById('tb-staleness-banner');
+  var headline = document.getElementById('tb-staleness-headline');
+  var subline  = document.getElementById('tb-staleness-subline');
+
+  function setState(cls, head, sub) {
+    banner.className = '';
+    banner.classList.add('visible', cls);
+    document.body.classList.add('tb-banner-visible');
+    headline.textContent = head;
+    subline.textContent = sub || '';
+  }
+  function hide() {
+    banner.className = '';
+    document.body.classList.remove('tb-banner-visible');
+  }
+  function fmtAge(min) {
+    if (min < 60) return min + ' min';
+    var h = Math.floor(min / 60);
+    var m = min % 60;
+    return h + 'h ' + m + 'm';
+  }
+
+  function checkOne(src) {
+    return fetch(src.url + '?ts=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var raw = data[src.tsField];
+        if (!raw) return { name: src.name, ok: false, reason: 'no timestamp' };
+        var ageMin = Math.round((Date.now() - new Date(raw).getTime()) / 60000);
+        return { name: src.name, ok: true, ageMin: ageMin, raw: raw };
+      })
+      .catch(function (err) {
+        return { name: src.name, ok: false, reason: err.message };
+      });
+  }
+
+  function check() {
+    Promise.all(SOURCES.map(checkOne)).then(function (results) {
+      var failures = results.filter(function (r) { return !r.ok; });
+      if (failures.length) {
+        setState('fetch-fail',
+          'Cannot verify freshness: ' + failures.map(function (f) { return f.name + ' (' + f.reason + ')'; }).join(', '),
+          'Dashboard cannot prove its data is current.');
+        return;
+      }
+
+      // worst-case: use the most-stale source
+      var worst = results.reduce(function (a, b) { return a.ageMin > b.ageMin ? a : b; });
+      var ageMin = worst.ageMin;
+      var detail = results.map(function (r) { return r.name + ': ' + fmtAge(r.ageMin); }).join('   ');
+
+      if (ageMin >= DEAD_MINUTES) {
+        setState('dead',
+          'DATA ' + fmtAge(ageMin) + ' STALE. Pipeline is not publishing.',
+          detail + '   —   Check health_publisher on MacBook.');
+      } else if (ageMin >= STALE_MINUTES) {
+        setState('stale',
+          'Data is ' + fmtAge(ageMin) + ' stale. Not live.',
+          detail);
+      } else if (ageMin >= WARN_MINUTES) {
+        setState('warn',
+          'Data is ' + fmtAge(ageMin) + ' old.',
+          detail);
+      } else {
+        hide();
+      }
+    });
+  }
+
+  check();
+  setInterval(check, POLL_INTERVAL_MS);
+  window.tbStalenessCheck = check;
+})();
+</script>
+<!-- END TRADING BOT STALENESS BANNER -->
+
     <!-- Connection Lost Banner -->
     <div id="connection-lost-banner" class="connection-lost" style="display:none; position:fixed; top:70px; left:24px; right:24px; z-index:100;">
         ⚠ CONNECTION LOST - Unable to reach Alpaca API after 3 retries. Retrying...
