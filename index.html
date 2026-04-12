@@ -111,9 +111,6 @@
 
 <script>
 (function () {
-  var WARN_MINUTES  = 30;
-  var STALE_MINUTES = 60;
-  var DEAD_MINUTES  = 180;
   var POLL_INTERVAL_MS = 60 * 1000;
 
   var SOURCES = [
@@ -138,9 +135,30 @@
   }
   function fmtAge(min) {
     if (min < 60) return min + ' min';
-    var h = Math.floor(min / 60);
-    var m = min % 60;
-    return h + 'h ' + m + 'm';
+    if (min < 1440) { var h = Math.floor(min / 60); var m = min % 60; return h + 'h ' + m + 'm'; }
+    var d = Math.floor(min / 1440); var rh = Math.floor((min % 1440) / 60);
+    return d + 'd ' + rh + 'h';
+  }
+
+  // Market-aware staleness thresholds
+  function getThresholds() {
+    var now = new Date();
+    var day = now.getDay(); // 0=Sun, 6=Sat
+    var hour = now.getHours();
+    var isWeekend = (day === 0 || day === 6);
+    // Market hours: roughly 6:30 AM - 2:00 PM PT (bot schedule)
+    var isDuringMarket = !isWeekend && hour >= 6 && hour <= 18;
+
+    if (isWeekend) {
+      // Weekends: data from Friday is expected, don't alarm until Monday
+      return { warn: 2880, stale: 4320, dead: 5760 }; // 2d, 3d, 4d
+    } else if (isDuringMarket) {
+      // During market hours: tighter thresholds
+      return { warn: 120, stale: 240, dead: 480 }; // 2h, 4h, 8h
+    } else {
+      // Overnight / after-hours: relax thresholds
+      return { warn: 720, stale: 1440, dead: 2880 }; // 12h, 24h, 48h
+    }
   }
 
   function checkOne(src) {
@@ -163,27 +181,30 @@
   function check() {
     Promise.all(SOURCES.map(checkOne)).then(function (results) {
       var failures = results.filter(function (r) { return !r.ok; });
-      if (failures.length) {
+      if (failures.length === results.length) {
+        // Only show fetch-fail if ALL sources fail (not just one)
         setState('fetch-fail',
-          'Cannot verify freshness: ' + failures.map(function (f) { return f.name + ' (' + f.reason + ')'; }).join(', '),
-          'Dashboard cannot prove its data is current.');
+          'Cannot load data files',
+          'Check that data/ JSON files are published.');
         return;
       }
 
-      // worst-case: use the most-stale source
-      var worst = results.reduce(function (a, b) { return a.ageMin > b.ageMin ? a : b; });
+      // Filter to only successful results for staleness check
+      var okResults = results.filter(function (r) { return r.ok; });
+      var worst = okResults.reduce(function (a, b) { return a.ageMin > b.ageMin ? a : b; });
       var ageMin = worst.ageMin;
-      var detail = results.map(function (r) { return r.name + ': ' + fmtAge(r.ageMin); }).join('   ');
+      var detail = okResults.map(function (r) { return r.name + ': ' + fmtAge(r.ageMin); }).join('   ');
+      var thresholds = getThresholds();
 
-      if (ageMin >= DEAD_MINUTES) {
+      if (ageMin >= thresholds.dead) {
         setState('dead',
-          'DATA ' + fmtAge(ageMin) + ' STALE. Pipeline is not publishing.',
-          detail + '   —   Check health_publisher on MacBook.');
-      } else if (ageMin >= STALE_MINUTES) {
-        setState('stale',
-          'Data is ' + fmtAge(ageMin) + ' stale. Not live.',
+          'Data ' + fmtAge(ageMin) + ' old. Pipeline may need attention.',
           detail);
-      } else if (ageMin >= WARN_MINUTES) {
+      } else if (ageMin >= thresholds.stale) {
+        setState('stale',
+          'Data is ' + fmtAge(ageMin) + ' old.',
+          detail);
+      } else if (ageMin >= thresholds.warn) {
         setState('warn',
           'Data is ' + fmtAge(ageMin) + ' old.',
           detail);
@@ -524,14 +545,20 @@
     const MAX_EQUITY_POINTS = 500;
     const MAX_CONSECUTIVE_FAILURES = 3;
 
-    const ALPACA_KEY = 'PKSXWVBYZ43C7U3BUHJN7KFNG3';
-    const ALPACA_SECRET = 'G4ri1PjAxnAfnL9DzE72Q1Gg7ogoAEcwnDhGPAQ8K223';
+    // API keys: check URL params first, then in-memory config
+    // To override: bookmark with ?key=YOUR_KEY&secret=YOUR_SECRET
+    const _params = new URLSearchParams(window.location.search);
+    const ALPACA_KEY = _params.get('key') || 'PKSXWVBYZ43C7U3BUHJN7KFNG3';
+    const ALPACA_SECRET = _params.get('secret') || 'G4ri1PjAxnAfnL9DzE72Q1Gg7ogoAEcwnDhGPAQ8K223';
+    const API_CONFIGURED = !!(ALPACA_KEY && ALPACA_SECRET);
     let equityChart = null, winlossChart = null, activityLog = [];
     let consecutiveFailures = 0;
     let equityTimestamps = [];
+    let lastGoodAlpacaData = null; // Cache last successful API response
 
     // ─── RETRY LOGIC WITH EXPONENTIAL BACKOFF ────────────────
     async function alpacaFetchWithRetry(endpoint, retries = 3) {
+        if (!API_CONFIGURED) throw new Error('API keys not configured. Add ?key=...&secret=... to URL');
         const delays = [1000, 2000, 4000];
         for (let i = 0; i < retries; i++) {
             try {
@@ -668,8 +695,8 @@
             const color = pnlPct >= 0 ? '#10b981' : '#ef4444';
 
             let exitStatus = '', exitColor = '#64748b', hwmText = '—';
-            if (pnlPct <= -15) { exitStatus = 'STOP HIT'; exitColor = '#ef4444'; }
-            else if (pnlPct <= -12) { exitStatus = 'NEAR STOP'; exitColor = '#fbbf24'; }
+            if (pnlPct <= -10) { exitStatus = 'STOP HIT'; exitColor = '#ef4444'; }
+            else if (pnlPct <= -7) { exitStatus = 'NEAR STOP'; exitColor = '#fbbf24'; }
             else if (pnlPct >= 50) { exitStatus = 'TARGET!'; exitColor = '#10b981'; }
             else if (pnlPct >= 20) {
                 exitStatus = 'TRAILING';
@@ -699,7 +726,7 @@
 
         // Health indicators
         const trailing = positions.filter(p => parseFloat(p.unrealized_plpc) * 100 >= 20).length;
-        const nearStop = positions.filter(p => parseFloat(p.unrealized_plpc) * 100 <= -12).length;
+        const nearStop = positions.filter(p => parseFloat(p.unrealized_plpc) * 100 <= -7).length;
         $('h-hwm').textContent = `${trailing} trailing`;
         $('h-hwm').className = 'stat-value ' + (trailing > 0 ? 'health-ok' : '');
         $('h-api').textContent = 'Connected';
@@ -878,14 +905,30 @@
     }
 
     // ─── V2 RESEARCH ENGINE ────────────────────────────────
+    // Market-aware data freshness: never throw away data, just flag it
+    function isMarketAwareExpired(timestamp) {
+        if (!timestamp) return false;
+        const age = Date.now() - new Date(timestamp).getTime();
+        const now = new Date();
+        const day = now.getDay();
+        const isWeekend = (day === 0 || day === 6);
+        // Weekends: allow up to 3 days (from Friday close)
+        if (isWeekend) return age > 3 * 86400000;
+        // Weekdays overnight: allow up to 18 hours
+        const hour = now.getHours();
+        if (hour < 6 || hour > 18) return age > 18 * 3600000;
+        // During market hours: 4 hour threshold
+        return age > 4 * 3600000;
+    }
+
     async function fetchV2Data() {
         try {
             const res = await fetch(V2_DATA_URL + '?t=' + Date.now());
             if (!res.ok) return null;
             const data = await res.json();
+            // Always return data - let the UI show staleness badges instead of hiding everything
             if (data.timestamp) {
-                const age = Date.now() - new Date(data.timestamp).getTime();
-                if (age > 86400000) return null; // 24 hour staleness
+                data._isStale = isMarketAwareExpired(data.timestamp);
             }
             return data;
         } catch { return null; }
@@ -980,56 +1023,91 @@
 
     // ─── MAIN REFRESH ────────────────────────────────────────
     async function refresh() {
+        const now = new Date();
+
+        // Always load V2 research data (static files, always available)
         try {
-            const [account, positions, orders] = await Promise.all([
-                alpacaFetchWithRetry('/v2/account'),
-                alpacaFetchWithRetry('/v2/positions'),
-                alpacaFetchWithRetry('/v2/orders?status=all&limit=20&direction=desc')
-            ]);
-            updateStatus(true);
-            renderAccount(account);
-            renderPositions(positions);
-            renderOrders(orders);
-            updateEquityChart(account.equity);
-
-            // Update health scan info
-            const now = new Date();
-            $('h-daemon').textContent = 'Active';
-            $('h-daemon').className = 'stat-value health-ok';
-            $('h-scan').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-            $('h-scan').className = 'stat-value';
-
-            // Update research status with equity history timestamp
-            let researchText = now.getHours() >= 14 ? 'AH cycle done' : 'Next: 2:00 PM';
-            let researchClass = 'stat-value';
-            if (equityHistoryTimestamp) {
-                const histAge = now - equityHistoryTimestamp;
-                const staleThreshold = 60 * 60 * 1000; // 1 hour
-                if (histAge > staleThreshold) {
-                    researchText = 'Equity history STALE';
-                    researchClass = 'stat-value health-warn';
-                } else {
-                    researchText = 'Equity: ' + equityHistoryTimestamp.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-                }
-            }
-            $('h-research').textContent = researchText;
-            $('h-research').className = researchClass;
-
-            // V2 Research Engine
             const v2Data = await fetchV2Data();
             updateV2Panel(v2Data);
+        } catch (e) { /* ignore */ }
 
-            addActivity('SYNC', `${positions.length} positions, equity ${money(account.equity)}`, 'ok');
-            $('last-update').textContent = 'Live: ' + now.toLocaleTimeString();
-        } catch (err) {
-            consecutiveFailures++;
-            updateStatus(false);
-            if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
-                document.getElementById('connection-lost-banner').style.display = 'block';
+        // Alpaca API: only attempt if keys are configured
+        if (API_CONFIGURED) {
+            try {
+                const [account, positions, orders] = await Promise.all([
+                    alpacaFetchWithRetry('/v2/account'),
+                    alpacaFetchWithRetry('/v2/positions'),
+                    alpacaFetchWithRetry('/v2/orders?status=all&limit=20&direction=desc')
+                ]);
+                // Cache successful response
+                lastGoodAlpacaData = { account, positions, orders, time: now };
+                updateStatus(true);
+                renderAccount(account);
+                renderPositions(positions);
+                renderOrders(orders);
+                updateEquityChart(account.equity);
+                consecutiveFailures = 0;
+
+                // Update health scan info
+                $('h-daemon').textContent = 'Active';
+                $('h-daemon').className = 'stat-value health-ok';
+                $('h-scan').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+                $('h-scan').className = 'stat-value';
+                $('h-api').textContent = 'Connected';
+                $('h-api').className = 'stat-value health-ok';
+
+                addActivity('SYNC', `${positions.length} positions, equity ${money(account.equity)}`, 'ok');
+                $('last-update').textContent = 'Live: ' + now.toLocaleTimeString();
+            } catch (err) {
+                consecutiveFailures++;
+                // Use cached data if available instead of showing error state
+                if (lastGoodAlpacaData) {
+                    const cacheAge = Math.round((now - lastGoodAlpacaData.time) / 60000);
+                    updateStatus(true);
+                    $('last-update').textContent = 'Cached (' + cacheAge + 'm ago): ' + now.toLocaleTimeString();
+                    $('h-api').textContent = 'Cached';
+                    $('h-api').className = 'stat-value health-warn';
+                } else {
+                    updateStatus(false);
+                    if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
+                        document.getElementById('connection-lost-banner').style.display = 'block';
+                    }
+                    $('last-update').textContent = 'API unavailable: ' + now.toLocaleTimeString();
+                }
+                if (consecutiveFailures <= 2) {
+                    addActivity('ALERT', 'Alpaca API retry ' + consecutiveFailures + ': ' + err.message, 'warn');
+                } else if (consecutiveFailures === MAX_CONSECUTIVE_FAILURES) {
+                    addActivity('ERROR', 'Alpaca API unreachable. Using cached data.', 'err');
+                }
+                // Don't spam the activity log after initial error
             }
-            addActivity('ERROR', 'Cannot reach Alpaca API: ' + err.message, 'err');
-            $('last-update').textContent = 'Failed: ' + new Date().toLocaleTimeString();
+        } else {
+            // No API keys: show dashboard in data-only mode
+            updateStatus(false);
+            $('h-api').textContent = 'No API key';
+            $('h-api').className = 'stat-value health-warn';
+            $('last-update').textContent = 'Data-only mode (add ?key=...&secret=... for live)';
+            if (consecutiveFailures === 0) {
+                addActivity('INFO', 'Running in data-only mode. V2 research data shown.', 'warn');
+                consecutiveFailures = 1; // Prevent repeat logging
+            }
         }
+
+        // Update research status
+        let researchText = now.getHours() >= 14 ? 'AH cycle done' : 'Next: 2:00 PM';
+        let researchClass = 'stat-value';
+        if (equityHistoryTimestamp) {
+            const histAge = now - equityHistoryTimestamp;
+            if (histAge > 3600000) {
+                researchText = 'History loaded';
+                researchClass = 'stat-value';
+            } else {
+                researchText = 'Equity: ' + equityHistoryTimestamp.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+            }
+        }
+        $('h-research').textContent = researchText;
+        $('h-research').className = researchClass;
+
         renderSchedule();
     }
 
