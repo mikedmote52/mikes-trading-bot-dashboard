@@ -113,9 +113,10 @@
 (function () {
   var POLL_INTERVAL_MS = 60 * 1000;
 
+  // Primary source drives the banner; secondary sources are informational only
   var SOURCES = [
-    { name: 'discovery',     url: 'data/v2_dashboard.json',  tsField: 'timestamp' },
-    { name: 'bridge',        url: 'data/bridge_summary.json', tsField: 'generated_at' }
+    { name: 'discovery', url: 'data/v2_dashboard.json',  tsField: 'timestamp', primary: true },
+    { name: 'bridge',    url: 'data/bridge_summary.json', tsField: 'generated_at', primary: false }
   ];
 
   var banner   = document.getElementById('tb-staleness-banner');
@@ -189,9 +190,15 @@
         return;
       }
 
-      // Filter to only successful results for staleness check
+      // Use primary sources only for banner severity; show all in detail line
       var okResults = results.filter(function (r) { return r.ok; });
-      var worst = okResults.reduce(function (a, b) { return a.ageMin > b.ageMin ? a : b; });
+      var primaryResults = okResults.filter(function (r) {
+        var src = SOURCES.find(function (s) { return s.name === r.name; });
+        return src && src.primary;
+      });
+      // If no primary sources succeeded, fall back to all
+      var driveResults = primaryResults.length > 0 ? primaryResults : okResults;
+      var worst = driveResults.reduce(function (a, b) { return a.ageMin > b.ageMin ? a : b; });
       var ageMin = worst.ageMin;
       var detail = okResults.map(function (r) { return r.name + ': ' + fmtAge(r.ageMin); }).join('   ');
       var thresholds = getThresholds();
