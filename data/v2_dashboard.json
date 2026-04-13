@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-13T11:38:23.765851",
+  "timestamp": "2026-04-13T11:38:57.488805",
   "candidates_discovered": 157,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
@@ -20,7 +20,7 @@
       "short_pct": 0.30290002,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.6071136442742775,
+      "volume_acceleration": 5.607144100243648,
       "sector": "consumer cyclical",
       "industry": "apparel manufacturing"
     },
@@ -38,7 +38,7 @@
       "short_pct": 0.3523,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 14.098025102298244,
+      "volume_acceleration": 14.104356356259073,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -47,7 +47,7 @@
       "score": 46,
       "raw_score": 70,
       "conviction": "B",
-      "thesis": "Low float (13.4M) | Elevated short interest (20.0% of float) | Explosive volume acceleration (8.5x vs 10d avg) | Today +37.6% \u2014 strong move [Raw: 70, Normalized: 46]",
+      "thesis": "Low float (13.4M) | Elevated short interest (20.0% of float) | Explosive volume acceleration (8.5x vs 10d avg) | Today +37.8% \u2014 strong move [Raw: 70, Normalized: 46]",
       "risks": [
         "No catalyst identified"
       ],
@@ -58,7 +58,7 @@
       "short_pct": 0.1998,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 8.48545920557252,
+      "volume_acceleration": 8.489261493935714,
       "sector": "technology",
       "industry": "semiconductors"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.156,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.736127724191756,
+      "volume_acceleration": 2.7385463059578043,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -85,7 +85,7 @@
       "score": 46,
       "raw_score": 70,
       "conviction": "B",
-      "thesis": "Very low float (6.1M) | Elevated short interest (18.2% of float) | Strong volume acceleration (4.7x) | Today +24.0% \u2014 strong move [Raw: 70, Normalized: 46]",
+      "thesis": "Very low float (6.1M) | Elevated short interest (18.2% of float) | Strong volume acceleration (4.7x) | Today +24.1% \u2014 strong move [Raw: 70, Normalized: 46]",
       "risks": [
         "Near 52-week high \u2014 limited upside without new catalyst",
         "No catalyst identified"
@@ -97,7 +97,7 @@
       "short_pct": 0.1825,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.67003854897697,
+      "volume_acceleration": 4.670783170241507,
       "sector": "technology",
       "industry": "electronic components"
     },
@@ -117,7 +117,7 @@
       "short_pct": 0.1863,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.230720965690717,
+      "volume_acceleration": 4.231280959507599,
       "sector": "industrials",
       "industry": "aerospace & defense"
     }
@@ -153,7 +153,7 @@
       "symbol": "PLCE",
       "score": 56.0,
       "thesis": "Very low float (7.7M) | Very high short interest (30.3% of float) | Explosive volume acceleration (5.6x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 85, Normalized: 56]",
-      "times_seen": 2,
+      "times_seen": 3,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
