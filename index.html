@@ -230,7 +230,8 @@
 
     <!-- Connection Lost Banner -->
     <div id="connection-lost-banner" class="connection-lost" style="display:none; position:fixed; top:70px; left:24px; right:24px; z-index:100;">
-        ⚠ CONNECTION LOST - Unable to reach Alpaca API after 3 retries. Retrying...
+        ⚠ <span id="connection-lost-msg">Unable to reach Alpaca API after 3 retries.</span>
+        <span style="font-size:10px;font-weight:400;margin-left:8px;">Dashboard shows research data only. <a href="?key=YOUR_KEY&amp;secret=YOUR_SECRET" style="color:#f87171;text-decoration:underline;">Add keys via URL params</a></span>
     </div>
 
     <div id="app">
@@ -352,10 +353,10 @@
                         <div class="stat-row"><span style="color: #94a3b8;">Time exit</span><span style="color: #fff; font-weight: 600;">30 days</span></div>
                         <div style="border-top: 1px solid #334155; padding-top: 6px; margin-top: 2px;">
                             <div class="stat-row">
-                                <span style="color: #ef4444; font-weight: 700;">Circuit Breaker</span>
-                                <span id="circuit-breaker" style="color: #10b981; font-weight: 600; font-size: 10px;">NORMAL</span>
+                                <span style="color: #94a3b8; font-weight: 700;">Circuit Breaker</span>
+                                <span id="circuit-breaker" style="color: #64748b; font-weight: 600; font-size: 10px;">DISABLED</span>
                             </div>
-                            <p style="font-size: 10px; color: #64748b; margin: 4px 0 0;">3 consecutive losses OR 10% daily drawdown</p>
+                            <p style="font-size: 10px; color: #64748b; margin: 4px 0 0;">Disabled — staying in market for max learning data</p>
                         </div>
                     </div>
                 </div>
@@ -498,7 +499,7 @@
                         <div class="stat-row"><span style="color: #60a5fa;">Social momentum</span><span style="color: #64748b;">0-20 pts</span></div>
                         <div class="stat-row"><span style="color: #22d3ee;">Real-time move</span><span style="color: #64748b;">0-20 pts</span></div>
                         <div style="border-top: 1px solid #334155; padding-top: 5px; margin-top: 2px;">
-                            <div class="stat-row"><span style="color: #ef4444;">No catalyst</span><span style="color: #64748b;">-10</span></div>
+                            <div class="stat-row"><span style="color: #ef4444;">No catalyst</span><span style="color: #64748b;">-30</span></div>
                             <div class="stat-row"><span style="color: #ef4444;">Near 52w high</span><span style="color: #64748b;">risk flag</span></div>
                             <div class="stat-row"><span style="color: #ef4444;">Large float</span><span style="color: #64748b;">risk flag</span></div>
                         </div>
@@ -564,26 +565,50 @@
     let lastGoodAlpacaData = null; // Cache last successful API response
 
     // ─── RETRY LOGIC WITH EXPONENTIAL BACKOFF ────────────────
+    let lastAlpacaError = '';
     async function alpacaFetchWithRetry(endpoint, retries = 3) {
         if (!API_CONFIGURED) throw new Error('API keys not configured. Add ?key=...&secret=... to URL');
         const delays = [1000, 2000, 4000];
+        let lastErr;
         for (let i = 0; i < retries; i++) {
             try {
                 const res = await fetch(ALPACA_BASE + endpoint, {
-                    headers: { 'APCA-API-KEY-ID': ALPACA_KEY, 'APCA-API-SECRET-KEY': ALPACA_SECRET }
+                    headers: { 'APCA-API-KEY-ID': ALPACA_KEY, 'APCA-API-SECRET-KEY': ALPACA_SECRET },
+                    mode: 'cors'
                 });
-                if (!res.ok) throw new Error(`Alpaca ${res.status}`);
+                if (res.status === 401 || res.status === 403) {
+                    lastAlpacaError = `Auth error (${res.status}) — API keys may be invalid or expired`;
+                    throw new Error(lastAlpacaError);
+                }
+                if (res.status === 429) {
+                    lastAlpacaError = 'Rate limited (429) — too many requests';
+                    throw new Error(lastAlpacaError);
+                }
+                if (!res.ok) {
+                    lastAlpacaError = `HTTP ${res.status} from Alpaca`;
+                    throw new Error(lastAlpacaError);
+                }
                 consecutiveFailures = 0;
+                lastAlpacaError = '';
                 document.getElementById('connection-lost-banner').style.display = 'none';
                 return res.json();
             } catch (err) {
+                lastErr = err;
+                // Auth errors won't resolve with retries — fail fast
+                if (err.message.includes('Auth error') || err.message.includes('Rate limited')) break;
                 if (i < retries - 1) {
                     await new Promise(r => setTimeout(r, delays[i]));
-                } else {
-                    throw err;
                 }
             }
         }
+        // Update banner with specific error before throwing
+        const msg = lastAlpacaError || (lastErr && lastErr.message) || 'Network error';
+        const banner = document.getElementById('connection-lost-banner');
+        if (banner) {
+            const msgEl = document.getElementById('connection-lost-msg');
+            if (msgEl) msgEl.textContent = msg;
+        }
+        throw lastErr || new Error(msg);
     }
 
     // ─── SCHEDULE (full day) ─────────────────────────────────
@@ -751,12 +776,7 @@
             hb.style.cssText = 'padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);display:inline-block;';
         }
 
-        // Circuit breaker
-        const losers = positions.filter(p => parseFloat(p.unrealized_plpc) < 0).length;
-        const cb = $('circuit-breaker');
-        if (losers >= positions.length * 0.8 && positions.length > 3) {
-            cb.textContent = 'CAUTION'; cb.style.color = '#fbbf24';
-        } else { cb.textContent = 'NORMAL'; cb.style.color = '#10b981'; }
+        // Circuit breaker — disabled in code, just show static DISABLED label
     }
 
     function renderOrders(orders) {
@@ -786,40 +806,8 @@
             </tr>`;
         }).join('');
 
-        // Real win/loss calculation from closed trades
-        const sells = orders.filter(o => o.side === 'sell' && o.status === 'filled');
-        $('trades-closed').textContent = `${sells.length} closed`;
-        if (sells.length > 0) {
-            const buys = orders.filter(o => o.side === 'buy' && o.status === 'filled');
-            if (buys.length > 0 && sells.length > 0) {
-                // Calculate actual wins/losses from completed trades
-                let wins = 0, losses = 0;
-                sells.forEach(sell => {
-                    const sellPrice = parseFloat(sell.filled_avg_price || 0);
-                    const correspondingBuy = buys.find(b => b.symbol === sell.symbol);
-                    if (correspondingBuy) {
-                        const buyPrice = parseFloat(correspondingBuy.filled_avg_price || 0);
-                        if (sellPrice > buyPrice) wins++;
-                        else losses++;
-                    }
-                });
-                if (wins + losses > 0) {
-                    updateWinLoss(wins, losses);
-                } else {
-                    $('win-rate').textContent = 'Calculating...';
-                    $('wins-pct').textContent = '—';
-                    $('losses-pct').textContent = '—';
-                }
-            } else {
-                $('win-rate').textContent = 'Calculating...';
-                $('wins-pct').textContent = '—';
-                $('losses-pct').textContent = '—';
-            }
-        } else {
-            $('win-rate').textContent = '—';
-            $('wins-pct').textContent = '—';
-            $('losses-pct').textContent = '—';
-        }
+        // Win/loss stats come from loadClosedTrades() — authoritative source is closed_trades.json
+        // Orders API only goes back 20 orders and can't accurately match buys to sells
     }
 
     function addActivity(type, detail, status) {
@@ -909,6 +897,30 @@
         } catch (e) {
             // No history file available yet, that's fine
         }
+    }
+
+    // ─── CLOSED TRADES (authoritative win/loss source) ───────
+    async function loadClosedTrades() {
+        try {
+            const res = await fetch('data/closed_trades.json?t=' + Date.now());
+            if (!res.ok) return;
+            const trades = await res.json();
+            if (!Array.isArray(trades) || trades.length === 0) return;
+
+            const wins = trades.filter(t => t.pnl_pct > 0).length;
+            const losses = trades.filter(t => t.pnl_pct <= 0).length;
+            const total = wins + losses;
+
+            $('trades-closed').textContent = `${total} closed`;
+            updateWinLoss(wins, losses);
+
+            // Show best/worst trade tooltip in activity log (first load only)
+            if (total > 0 && activityLog.every(a => a.type !== 'LEARN')) {
+                const best = trades.reduce((a, b) => a.pnl_pct > b.pnl_pct ? a : b);
+                const worst = trades.reduce((a, b) => a.pnl_pct < b.pnl_pct ? a : b);
+                addActivity('LEARN', `${total} closed trades — ${wins}W/${losses}L (${((wins/total)*100).toFixed(0)}%). Best: ${best.symbol} +${best.pnl_pct.toFixed(1)}% | Worst: ${worst.symbol} ${worst.pnl_pct.toFixed(1)}%`, wins > losses ? 'ok' : 'warn');
+            }
+        } catch (e) { /* closed_trades.json not available yet */ }
     }
 
     // ─── V2 RESEARCH ENGINE ────────────────────────────────
@@ -1122,9 +1134,12 @@
     document.addEventListener('DOMContentLoaded', () => {
         initCharts();
         loadEquityHistory();
+        loadClosedTrades();
         renderSchedule();
         refresh();
         setInterval(refresh, POLL_INTERVAL);
+        // Reload closed trades every 5 minutes to catch new closes
+        setInterval(loadClosedTrades, 300000);
         addActivity('INFO', 'Dashboard v2 initialized — full system visibility', 'ok');
     });
     </script>
