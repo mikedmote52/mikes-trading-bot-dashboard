@@ -231,7 +231,7 @@
     <!-- Connection Lost Banner -->
     <div id="connection-lost-banner" class="connection-lost" style="display:none; position:fixed; top:70px; left:24px; right:24px; z-index:100;">
         ⚠ <span id="connection-lost-msg">Unable to reach Alpaca API after 3 retries.</span>
-        <span style="font-size:10px;font-weight:400;margin-left:8px;">Dashboard shows research data only. <a href="?key=YOUR_KEY&amp;secret=YOUR_SECRET" style="color:#f87171;text-decoration:underline;">Add keys via URL params</a></span>
+        <span style="font-size:10px;font-weight:400;margin-left:8px;">Dashboard shows research data only. Bookmark with <code style="font-size:10px;">?key=ALPACA_KEY&amp;secret=ALPACA_SECRET</code> to enable live account data.</span>
     </div>
 
     <div id="app">
@@ -553,11 +553,14 @@
     const MAX_EQUITY_POINTS = 500;
     const MAX_CONSECUTIVE_FAILURES = 3;
 
-    // API keys: check URL params first, then in-memory config
-    // To override: bookmark with ?key=YOUR_KEY&secret=YOUR_SECRET
+    // API keys: read from URL params only — never hardcode in source.
+    // To enable live account data: bookmark the dashboard with
+    //   ?key=YOUR_ALPACA_KEY&secret=YOUR_ALPACA_SECRET
+    // Without keys the dashboard runs in data-only mode (research JSON only).
+    // Keys are stored only in memory for the duration of the browser session.
     const _params = new URLSearchParams(window.location.search);
-    const ALPACA_KEY = _params.get('key') || 'PKSXWVBYZ43C7U3BUHJN7KFNG3';
-    const ALPACA_SECRET = _params.get('secret') || 'G4ri1PjAxnAfnL9DzE72Q1Gg7ogoAEcwnDhGPAQ8K223';
+    const ALPACA_KEY = _params.get('key') || '';
+    const ALPACA_SECRET = _params.get('secret') || '';
     const API_CONFIGURED = !!(ALPACA_KEY && ALPACA_SECRET);
     let equityChart = null, winlossChart = null, activityLog = [];
     let consecutiveFailures = 0;
