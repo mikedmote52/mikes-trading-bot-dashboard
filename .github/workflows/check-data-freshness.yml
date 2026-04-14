@@ -1,0 +1,154 @@
+name: Check Dashboard Data Freshness
+
+# Runs every 2 hours on weekdays during market window (PT = UTC-7/UTC-8).
+# The bot publishes fresh JSON to GitHub Pages after every scan cycle.
+# If data goes stale (pipeline stopped, cron died, push failed), this
+# workflow opens a GitHub issue so you get notified.
+#
+# NOTE: This workflow belongs in the DASHBOARD repo
+# (mikedmote52/mikes-trading-bot-dashboard), not the bot source repo.
+# Copy .github/ into that repo and it will run automatically.
+
+on:
+  schedule:
+    # Every 2 hours Mon-Fri, 13:00-23:00 UTC (6 AM - 4 PM PT)
+    - cron: '0 13,15,17,19,21,23 * * 1-5'
+  workflow_dispatch:  # Allow manual trigger from GitHub UI
+
+jobs:
+  check-freshness:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write  # needed to open stale-data issues
+
+    steps:
+      - name: Fetch v2_dashboard.json and check age
+        id: freshness
+        run: |
+          set -euo pipefail
+
+          PAGES_URL="https://mikedmote52.github.io/mikes-trading-bot-dashboard"
+          STALE_MINUTES=180    # 3 hours — pipeline should run at minimum every 30 min
+          DEAD_MINUTES=480     # 8 hours — definitely broken
+
+          echo "Fetching $PAGES_URL/data/v2_dashboard.json ..."
+          HTTP_CODE=$(curl -sS -o /tmp/v2_dashboard.json -w "%{http_code}" \
+            "$PAGES_URL/data/v2_dashboard.json" || echo "000")
+
+          if [ "$HTTP_CODE" != "200" ]; then
+            echo "status=fetch_failed" >> $GITHUB_OUTPUT
+            echo "detail=HTTP $HTTP_CODE fetching v2_dashboard.json" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          TIMESTAMP=$(python3 -c "
+          import json, sys
+          d = json.load(open('/tmp/v2_dashboard.json'))
+          print(d.get('timestamp', ''))
+          " 2>/dev/null || echo "")
+
+          if [ -z "$TIMESTAMP" ]; then
+            echo "status=no_timestamp" >> $GITHUB_OUTPUT
+            echo "detail=v2_dashboard.json has no timestamp field" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          AGE_MINUTES=$(python3 -c "
+          from datetime import datetime, timezone
+          ts = datetime.fromisoformat('$TIMESTAMP')
+          if ts.tzinfo is None:
+              ts = ts.replace(tzinfo=timezone.utc)
+          now = datetime.now(timezone.utc)
+          print(int((now - ts).total_seconds() / 60))
+          ")
+
+          echo "age_minutes=$AGE_MINUTES" >> $GITHUB_OUTPUT
+          echo "timestamp=$TIMESTAMP" >> $GITHUB_OUTPUT
+
+          if [ "$AGE_MINUTES" -ge "$DEAD_MINUTES" ]; then
+            echo "status=dead" >> $GITHUB_OUTPUT
+            echo "detail=Data is ${AGE_MINUTES} minutes old (threshold: ${DEAD_MINUTES}m)" >> $GITHUB_OUTPUT
+          elif [ "$AGE_MINUTES" -ge "$STALE_MINUTES" ]; then
+            echo "status=stale" >> $GITHUB_OUTPUT
+            echo "detail=Data is ${AGE_MINUTES} minutes old (threshold: ${STALE_MINUTES}m)" >> $GITHUB_OUTPUT
+          else
+            echo "status=ok" >> $GITHUB_OUTPUT
+            echo "detail=Data is ${AGE_MINUTES} minutes old — fresh" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Log result
+        run: |
+          echo "Status : ${{ steps.freshness.outputs.status }}"
+          echo "Detail : ${{ steps.freshness.outputs.detail }}"
+          echo "Age    : ${{ steps.freshness.outputs.age_minutes }} min"
+          echo "TS     : ${{ steps.freshness.outputs.timestamp }}"
+
+      - name: Open issue if stale or dead
+        if: |
+          steps.freshness.outputs.status == 'stale' ||
+          steps.freshness.outputs.status == 'dead' ||
+          steps.freshness.outputs.status == 'fetch_failed' ||
+          steps.freshness.outputs.status == 'no_timestamp'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const status = '${{ steps.freshness.outputs.status }}';
+            const detail = '${{ steps.freshness.outputs.detail }}';
+            const ageMin = '${{ steps.freshness.outputs.age_minutes }}';
+            const ts     = '${{ steps.freshness.outputs.timestamp }}';
+
+            const emoji = status === 'dead' ? '🔴' : status === 'stale' ? '🟡' : '⚠️';
+            const title = `${emoji} Dashboard data pipeline alert: ${status.toUpperCase()}`;
+
+            // Check for an existing open issue with the same title to avoid spam
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              state: 'open',
+              labels: 'pipeline-health',
+            });
+
+            const alreadyOpen = issues.some(i => i.title === title);
+            if (alreadyOpen) {
+              console.log('Issue already open, skipping duplicate.');
+              return;
+            }
+
+            const body = [
+              `## Dashboard data pipeline is ${status}`,
+              '',
+              `**Status**: \`${status}\``,
+              `**Detail**: ${detail}`,
+              ageMin ? `**Data age**: ${ageMin} minutes` : '',
+              ts     ? `**Last data timestamp**: \`${ts}\`` : '',
+              '',
+              '## Likely causes',
+              '- Bot cron/launchd stopped running on your Mac',
+              '- `scripts/publish_dashboard.sh` failed (check `data/publish_dashboard.log`)',
+              '- GitHub Pages push failed (check `frontend/.git` remote)',
+              '- Bot `.env` credentials expired or revoked',
+              '',
+              '## Quick check',
+              '```bash',
+              '# On your Mac — check if the bot process is alive',
+              'ps aux | grep run_bot.py',
+              '',
+              '# Check last publish',
+              'tail -20 ~/Desktop/mikes-trading-bot/data/publish_dashboard.log',
+              '',
+              '# Re-run manually',
+              'cd ~/Desktop/mikes-trading-bot && python3 run_bot.py scan',
+              '```',
+              '',
+              `*Auto-opened by [check-data-freshness workflow](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions) at ${new Date().toISOString()}*`,
+            ].filter(Boolean).join('\n');
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              title,
+              body,
+              labels: ['pipeline-health'],
+            });
+
+            console.log(`Created issue: ${title}`);
