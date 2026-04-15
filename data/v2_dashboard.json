@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-15T06:31:19.281868",
+  "timestamp": "2026-04-15T06:31:56.402529",
   "candidates_discovered": 456,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
@@ -18,7 +18,7 @@
       "short_pct": 0.1265,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.5913931410067708,
+      "volume_acceleration": 2.592449219899912,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -56,7 +56,7 @@
       "short_pct": 0.30290002,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.271765125570776,
+      "volume_acceleration": 5.272491438356164,
       "sector": "consumer cyclical",
       "industry": "apparel manufacturing"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.1187,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 6.42400804668514,
+      "volume_acceleration": 6.436080330560551,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -94,7 +94,7 @@
       "short_pct": 0.1089,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.2671307414560418,
+      "volume_acceleration": 2.2724253365801776,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -112,7 +112,7 @@
       "short_pct": 0.12,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.06532576178752,
+      "volume_acceleration": 1.0723003203346306,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -123,11 +123,11 @@
     "AEHR": 5,
     "SOC": 5,
     "SNAL": 4,
+    "MLTX": 4,
     "BTIG": 4,
     "DXYZ": 4,
-    "MLTX": 4,
-    "AVGO": 4,
     "POET": 4,
+    "AVGO": 4,
     "NVDA": 4,
     "CIBC": 4,
     "WHAT": 3,
