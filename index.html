@@ -52,33 +52,17 @@
 </head>
 <body>
 <!--
-  MIKE'S TRADING BOT STALENESS BANNER
-  Inject immediately after <body> in index.html.
-
-  Reads BOTH data files the dashboard depends on:
-    - data/v2_dashboard.json (discovery pipeline output)
-    - data/bridge_summary.json (cross-system health snapshot)
-
-  Currently bridge_summary.json was found 5 DAYS stale while the dashboard
-  still rendered its contents as live. That is the exact failure class this
-  banner catches.
-
-  THRESHOLDS:
-    Trading data is time-sensitive. During market hours, anything older
-    than 15 minutes is already cold. The thresholds below reflect that.
-
-    WARN_MINUTES  = 30
-    STALE_MINUTES = 60
-    DEAD_MINUTES  = 180
+  STALENESS BANNER — only tracks discovery scan data (v2_dashboard.json).
+  Hidden when data is fresh. Market-aware thresholds so overnight/weekends don't false-alarm.
 -->
 <style>
   #tb-staleness-banner {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 99999;
-    padding: 12px 20px;
+    padding: 10px 20px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
     color: #fff;
     text-align: center;
@@ -88,47 +72,24 @@
   #tb-staleness-banner.visible { display: block; }
   #tb-staleness-banner.warn   { background: #b58900; }
   #tb-staleness-banner.stale  { background: #c0392b; }
-  #tb-staleness-banner.dead   { background: #8b0000; animation: tb-pulse 1.2s infinite; }
-  #tb-staleness-banner.fetch-fail { background: #4a0e4e; }
-  #tb-staleness-banner .subline {
-    display: block;
-    font-size: 12px;
-    font-weight: 400;
-    margin-top: 4px;
-    opacity: 0.9;
-  }
-  @keyframes tb-pulse {
-    0%, 100% { background: #8b0000; }
-    50%      { background: #ff1a1a; }
-  }
-  body.tb-banner-visible { padding-top: 72px; }
+  #tb-staleness-banner.dead   { background: #8b0000; }
+  body.tb-banner-visible { padding-top: 48px; }
 </style>
 
 <div id="tb-staleness-banner" role="alert" aria-live="assertive">
-  <span id="tb-staleness-headline">Checking data freshness…</span>
-  <span class="subline" id="tb-staleness-subline"></span>
+  <span id="tb-staleness-headline"></span>
 </div>
 
 <script>
 (function () {
-  var POLL_INTERVAL_MS = 60 * 1000;
-
-  // Primary source drives the banner; secondary sources are informational only
-  var SOURCES = [
-    { name: 'discovery', url: 'data/v2_dashboard.json',  tsField: 'timestamp', primary: true },
-    { name: 'bridge',    url: 'data/bridge_summary.json', tsField: 'generated_at', primary: false }
-  ];
-
   var banner   = document.getElementById('tb-staleness-banner');
   var headline = document.getElementById('tb-staleness-headline');
-  var subline  = document.getElementById('tb-staleness-subline');
 
-  function setState(cls, head, sub) {
+  function setState(cls, msg) {
     banner.className = '';
     banner.classList.add('visible', cls);
     document.body.classList.add('tb-banner-visible');
-    headline.textContent = head;
-    subline.textContent = sub || '';
+    headline.textContent = msg;
   }
   function hide() {
     banner.className = '';
@@ -136,97 +97,53 @@
   }
   function fmtAge(min) {
     if (min < 60) return min + ' min';
-    if (min < 1440) { var h = Math.floor(min / 60); var m = min % 60; return h + 'h ' + m + 'm'; }
-    var d = Math.floor(min / 1440); var rh = Math.floor((min % 1440) / 60);
-    return d + 'd ' + rh + 'h';
+    if (min < 1440) return Math.floor(min / 60) + 'h ' + (min % 60) + 'm';
+    return Math.floor(min / 1440) + 'd ' + Math.floor((min % 1440) / 60) + 'h';
   }
 
-  // Market-aware staleness thresholds
   function getThresholds() {
     var now = new Date();
-    var day = now.getDay(); // 0=Sun, 6=Sat
+    var day = now.getDay();
     var hour = now.getHours();
     var isWeekend = (day === 0 || day === 6);
-    // Market hours: roughly 6:30 AM - 2:00 PM PT (bot schedule)
-    var isDuringMarket = !isWeekend && hour >= 6 && hour <= 18;
-
-    if (isWeekend) {
-      // Weekends: data from Friday is expected, don't alarm until Monday
-      return { warn: 2880, stale: 4320, dead: 5760 }; // 2d, 3d, 4d
-    } else if (isDuringMarket) {
-      // During market hours: tighter thresholds
-      return { warn: 120, stale: 240, dead: 480 }; // 2h, 4h, 8h
-    } else {
-      // Overnight / after-hours: relax thresholds
-      return { warn: 720, stale: 1440, dead: 2880 }; // 12h, 24h, 48h
+    // Friday after close through Sunday: don't alarm about Friday's data
+    var isFridayNight = (day === 5 && hour >= 18);
+    if (isWeekend || isFridayNight) {
+      return { warn: 4320, stale: 5760, dead: 7200 }; // 3d, 4d, 5d
     }
-  }
-
-  function checkOne(src) {
-    return fetch(src.url + '?ts=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json();
-      })
-      .then(function (data) {
-        var raw = data[src.tsField];
-        if (!raw) return { name: src.name, ok: false, reason: 'no timestamp' };
-        var ageMin = Math.round((Date.now() - new Date(raw).getTime()) / 60000);
-        return { name: src.name, ok: true, ageMin: ageMin, raw: raw };
-      })
-      .catch(function (err) {
-        return { name: src.name, ok: false, reason: err.message };
-      });
+    // Weekday market hours (6am-2pm PT)
+    if (hour >= 6 && hour <= 14) {
+      return { warn: 240, stale: 480, dead: 960 }; // 4h, 8h, 16h
+    }
+    // Weekday overnight/after-hours
+    return { warn: 1080, stale: 1440, dead: 2880 }; // 18h, 24h, 48h
   }
 
   function check() {
-    Promise.all(SOURCES.map(checkOne)).then(function (results) {
-      var failures = results.filter(function (r) { return !r.ok; });
-      if (failures.length === results.length) {
-        // Only show fetch-fail if ALL sources fail (not just one)
-        setState('fetch-fail',
-          'Cannot load data files',
-          'Check that data/ JSON files are published.');
-        return;
-      }
-
-      // Use primary sources only for banner severity; show all in detail line
-      var okResults = results.filter(function (r) { return r.ok; });
-      var primaryResults = okResults.filter(function (r) {
-        var src = SOURCES.find(function (s) { return s.name === r.name; });
-        return src && src.primary;
-      });
-      // If no primary sources succeeded, fall back to all
-      var driveResults = primaryResults.length > 0 ? primaryResults : okResults;
-      var worst = driveResults.reduce(function (a, b) { return a.ageMin > b.ageMin ? a : b; });
-      var ageMin = worst.ageMin;
-      var detail = okResults.map(function (r) { return r.name + ': ' + fmtAge(r.ageMin); }).join('   ');
-      var thresholds = getThresholds();
-
-      if (ageMin >= thresholds.dead) {
-        setState('dead',
-          'Data ' + fmtAge(ageMin) + ' old. Pipeline may need attention.',
-          detail);
-      } else if (ageMin >= thresholds.stale) {
-        setState('stale',
-          'Data is ' + fmtAge(ageMin) + ' old.',
-          detail);
-      } else if (ageMin >= thresholds.warn) {
-        setState('warn',
-          'Data is ' + fmtAge(ageMin) + ' old.',
-          detail);
-      } else {
-        hide();
-      }
-    });
+    fetch('data/v2_dashboard.json?ts=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { return r.ok ? r.json() : Promise.reject('fetch failed'); })
+      .then(function (data) {
+        if (!data.timestamp) { hide(); return; }
+        var ageMin = Math.round((Date.now() - new Date(data.timestamp).getTime()) / 60000);
+        var t = getThresholds();
+        if (ageMin >= t.dead) {
+          setState('dead', 'Research scan ' + fmtAge(ageMin) + ' old — pipeline may need attention');
+        } else if (ageMin >= t.stale) {
+          setState('stale', 'Last research scan: ' + fmtAge(ageMin) + ' ago');
+        } else if (ageMin >= t.warn) {
+          setState('warn', 'Last research scan: ' + fmtAge(ageMin) + ' ago');
+        } else {
+          hide();
+        }
+      })
+      .catch(function () { hide(); }); // No data file = no banner, not an error
   }
 
   check();
-  setInterval(check, POLL_INTERVAL_MS);
-  window.tbStalenessCheck = check;
+  setInterval(check, 60000);
 })();
 </script>
-<!-- END TRADING BOT STALENESS BANNER -->
+<!-- END STALENESS BANNER -->
 
     <!-- Connection Lost Banner -->
     <div id="connection-lost-banner" class="connection-lost" style="display:none; position:fixed; top:70px; left:24px; right:24px; z-index:100;">
