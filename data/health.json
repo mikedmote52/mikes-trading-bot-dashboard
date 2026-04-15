@@ -1,0 +1,36 @@
+{
+  "timestamp": "2026-04-15T01:07:44.994188",
+  "status": "CRITICAL",
+  "issues": [
+    "Only 1 cron jobs found (expected 3: daemon + watchdog + shutdown)"
+  ],
+  "warnings": [
+    "HWM not evaluated today (monitor may not have run): SPCE, MAXN"
+  ],
+  "stats": {
+    "equity": 100478.32,
+    "cash": 99697.14,
+    "total_pnl": 478.320000000007,
+    "total_pnl_pct": 0.48,
+    "status": "ACTIVE",
+    "num_positions": 8,
+    "near_stop": [],
+    "trailing": [
+      "MAXN (+41.0%)",
+      "METU (+29.1%)"
+    ],
+    "big_winners": [
+      "MAXN (+41.0%)",
+      "METU (+29.1%)"
+    ],
+    "hwm_tracked": 8,
+    "last_scan_minutes_ago": 12243,
+    "cron_jobs": 1,
+    "errors_today": 0,
+    "circuit_breaker": false,
+    "total_closed_trades": 8,
+    "win_rate": 12.5,
+    "data_files": 35,
+    "data_size_kb": 2482
+  }
+}
