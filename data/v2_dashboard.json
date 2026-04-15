@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-15T02:41:56.213419",
+  "timestamp": "2026-04-15T02:42:30.221784",
   "candidates_discovered": 455,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
@@ -142,8 +142,8 @@
     "SOC": 5,
     "SNAL": 4,
     "WHAT": 4,
-    "AVGO": 4,
     "NVDA": 4,
+    "AVGO": 4,
     "POET": 4,
     "CIBC": 4,
     "VTIX": 3,
