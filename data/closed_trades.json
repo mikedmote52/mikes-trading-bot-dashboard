@@ -70,5 +70,41 @@
     "pnl_dollar": -10.56,
     "reason": "Hard stop: -10.6% <= -10.0%",
     "date": "2026-04-10"
+  },
+  {
+    "symbol": "VSA",
+    "entry": 0.71,
+    "exit_price": 0.646842,
+    "pnl_pct": -8.9,
+    "pnl_dollar": -8.84,
+    "reason": "Reconciled fill (market) at $0.65",
+    "date": "2026-04-13"
+  },
+  {
+    "symbol": "FCUV",
+    "entry": 6.67,
+    "exit_price": 4.024286,
+    "pnl_pct": -39.67,
+    "pnl_dollar": -37.04,
+    "reason": "Reconciled fill (market) at $4.02",
+    "date": "2026-04-07"
+  },
+  {
+    "symbol": "SPCE",
+    "entry": 2.55,
+    "exit_price": 2.411778,
+    "pnl_pct": -5.42,
+    "pnl_dollar": -6.22,
+    "reason": "Reconciled fill (market) at $2.41",
+    "date": "2026-03-31"
+  },
+  {
+    "symbol": "METU",
+    "entry": 23.0525,
+    "exit_price": 21.014,
+    "pnl_pct": -8.84,
+    "pnl_dollar": -10.19,
+    "reason": "Reconciled fill (market) at $21.01",
+    "date": "2026-03-31"
   }
 ]
