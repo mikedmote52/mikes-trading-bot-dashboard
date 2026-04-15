@@ -1,27 +1,9 @@
 {
-  "timestamp": "2026-04-15T02:43:53.444546",
-  "candidates_discovered": 455,
+  "timestamp": "2026-04-15T04:58:28.293814",
+  "candidates_discovered": 456,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
   "top_picks": [
-    {
-      "symbol": "REPL",
-      "score": 54,
-      "raw_score": 82,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (35.2% of float) | Explosive volume acceleration (20.7x vs 10d avg) | Social emerging (2 mentions) | Near 52-week low \u2014 turnaround potential [Raw: 82, Normalized: 54]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 62894738,
-      "short_pct": 0.3523,
-      "social_mentions": 2,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 20.704198091600592,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
     {
       "symbol": "ANVS",
       "score": 53,
@@ -136,21 +118,21 @@
     }
   ],
   "social_trending": {
-    "RDDT": 27,
+    "RDDT": 29,
     "HNST": 6,
     "AEHR": 5,
     "SOC": 5,
     "SNAL": 4,
-    "WHAT": 4,
+    "BTIG": 4,
+    "DXYZ": 4,
+    "MLTX": 4,
     "AVGO": 4,
-    "NVDA": 4,
     "POET": 4,
+    "NVDA": 4,
     "CIBC": 4,
-    "VTIX": 3,
+    "WHAT": 3,
     "APRIL": 3,
-    "OTCQB": 3,
-    "AIXI": 3,
-    "SMCI": 3
+    "OTCQB": 3
   },
   "trade_candidates": [
     {
