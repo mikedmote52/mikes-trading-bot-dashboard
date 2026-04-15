@@ -1036,7 +1036,12 @@
                             buying_power: stats.cash || 0,
                         };
                         renderAccount(synthAccount);
-                        $('open-positions').textContent = stats.num_positions || '—';
+                        // Render actual positions if available in health.json
+                        if (health.positions && health.positions.length > 0) {
+                            renderPositions(health.positions);
+                        } else {
+                            $('open-positions').textContent = stats.num_positions || '—';
+                        }
                         updateStatus(true);
                         $('status-badge').textContent = '● DATA';
                         $('status-badge').style.cssText = 'padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);';
