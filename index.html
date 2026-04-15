@@ -1021,14 +1021,53 @@
                 // Don't spam the activity log after initial error
             }
         } else {
-            // No API keys: show dashboard in data-only mode
-            updateStatus(false);
-            $('h-api').textContent = 'No API key';
-            $('h-api').className = 'stat-value health-warn';
-            $('last-update').textContent = 'Data-only mode (add ?key=...&secret=... for live)';
-            if (consecutiveFailures === 0) {
-                addActivity('INFO', 'Running in data-only mode. V2 research data shown.', 'warn');
-                consecutiveFailures = 1; // Prevent repeat logging
+            // No API keys: fall back to health.json for account data
+            try {
+                const healthResp = await fetch('data/health.json?t=' + Date.now());
+                if (healthResp.ok) {
+                    const health = await healthResp.json();
+                    const stats = health.stats || {};
+                    if (stats.equity) {
+                        // Build a synthetic account object from health data
+                        const synthAccount = {
+                            equity: stats.equity,
+                            cash: stats.cash || 0,
+                            last_equity: stats.equity - (stats.total_pnl || 0),
+                            buying_power: stats.cash || 0,
+                        };
+                        renderAccount(synthAccount);
+                        $('open-positions').textContent = stats.num_positions || '—';
+                        updateStatus(true);
+                        $('status-badge').textContent = '● DATA';
+                        $('status-badge').style.cssText = 'padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);';
+
+                        // Populate health section
+                        $('h-api').textContent = 'File-based';
+                        $('h-api').className = 'stat-value health-ok';
+                        const healthAge = Math.round((Date.now() - new Date(health.timestamp).getTime()) / 60000);
+                        $('h-scan').textContent = healthAge < 120 ? healthAge + 'm ago' : Math.round(healthAge / 60) + 'h ago';
+                        $('h-scan').className = healthAge < 30 ? 'stat-value health-ok' : 'stat-value health-warn';
+                        $('h-daemon').textContent = health.status || '—';
+                        $('h-daemon').className = health.status === 'OK' ? 'stat-value health-ok' : 'stat-value health-warn';
+
+                        const ht = new Date(health.timestamp);
+                        $('last-update').textContent = 'Health data: ' + ht.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+                        addActivity('INFO', 'Loaded account data from health.json (no API key needed)', 'ok');
+                    }
+                }
+            } catch(e) {
+                // health.json not available, fall through to data-only
+            }
+
+            if (!$('total-equity').textContent || $('total-equity').textContent === '—') {
+                updateStatus(false);
+                $('h-api').textContent = 'No API key';
+                $('h-api').className = 'stat-value health-warn';
+                $('last-update').textContent = 'Data-only mode (add ?key=...&secret=... for live)';
+                if (consecutiveFailures === 0) {
+                    addActivity('INFO', 'Running in data-only mode. V2 research data shown.', 'warn');
+                    consecutiveFailures = 1; // Prevent repeat logging
+                }
             }
         }
 
