@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-15T08:59:20.936059",
+  "timestamp": "2026-04-15T08:59:34.659206",
   "candidates_discovered": 453,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
@@ -9,7 +9,7 @@
       "score": 43,
       "raw_score": 65,
       "conviction": "B",
-      "thesis": "Very low float (5.7M) | Elevated short interest (18.4% of float) | Explosive volume acceleration (2255.2x vs 10d avg) | Today +695.2% \u2014 confirmed breakout [Raw: 65, Normalized: 43]",
+      "thesis": "Very low float (5.7M) | Elevated short interest (18.4% of float) | Explosive volume acceleration (2255.8x vs 10d avg) | Today +695.2% \u2014 confirmed breakout [Raw: 65, Normalized: 43]",
       "risks": [
         "No catalyst identified"
       ],
@@ -20,7 +20,7 @@
       "short_pct": 0.18370001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2255.1709810479374,
+      "volume_acceleration": 2255.7697212932,
       "sector": "consumer cyclical",
       "industry": "apparel retail"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.1187,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 7.982639309042253,
+      "volume_acceleration": 7.986073147664683,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -94,7 +94,7 @@
       "short_pct": 0.15630001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.437005329640354,
+      "volume_acceleration": 3.437282303076084,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -112,7 +112,7 @@
       "short_pct": 0.1089,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.60198057491533,
+      "volume_acceleration": 2.6020891762532536,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -124,11 +124,11 @@
     "NVDA": 5,
     "SOC": 5,
     "SNAL": 4,
+    "MLTX": 4,
     "BTIG": 4,
     "DXYZ": 4,
-    "MLTX": 4,
-    "AVGO": 4,
     "POET": 4,
+    "AVGO": 4,
     "CIBC": 4,
     "AIMN": 3,
     "WHAT": 3,
