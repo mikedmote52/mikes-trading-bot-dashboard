@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-15T11:59:26.954923",
-  "candidates_discovered": 435,
+  "timestamp": "2026-04-15T11:59:39.844128",
+  "candidates_discovered": 436,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
   "top_picks": [
@@ -20,7 +20,7 @@
       "short_pct": 0.1759,
       "social_mentions": 0,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 5.816605088847996,
+      "volume_acceleration": 5.819837092195546,
       "sector": "technology",
       "industry": "solar"
     },
@@ -29,7 +29,7 @@
       "score": 43,
       "raw_score": 65,
       "conviction": "B",
-      "thesis": "Very low float (5.7M) | Elevated short interest (18.4% of float) | Explosive volume acceleration (2876.2x vs 10d avg) | Today +618.4% \u2014 confirmed breakout [Raw: 65, Normalized: 43]",
+      "thesis": "Very low float (5.7M) | Elevated short interest (18.4% of float) | Explosive volume acceleration (2876.3x vs 10d avg) | Today +618.4% \u2014 confirmed breakout [Raw: 65, Normalized: 43]",
       "risks": [
         "No catalyst identified"
       ],
@@ -40,7 +40,7 @@
       "short_pct": 0.18370001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2876.2361204013378,
+      "volume_acceleration": 2876.346722408027,
       "sector": "consumer cyclical",
       "industry": "apparel retail"
     },
@@ -136,7 +136,7 @@
       "short_pct": 0.1187,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 8.773712995424127,
+      "volume_acceleration": 8.776630264118765,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -167,11 +167,11 @@
     "AEHR": 5,
     "SOC": 5,
     "SNAL": 4,
+    "MLTX": 4,
     "BTIG": 4,
     "DXYZ": 4,
-    "MLTX": 4,
-    "AVGO": 4,
     "POET": 4,
+    "AVGO": 4,
     "CIBC": 4,
     "AIMN": 3,
     "WHAT": 3
