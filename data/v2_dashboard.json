@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-16T04:58:23.501687",
+  "timestamp": "2026-04-16T04:58:35.938052",
   "candidates_discovered": 446,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
@@ -166,12 +166,12 @@
     "AEHR": 5,
     "SOC": 5,
     "WHAT": 4,
+    "MLTX": 4,
     "BTIG": 4,
     "DXYZ": 4,
-    "MLTX": 4,
     "NBIS": 4,
-    "AVGO": 4,
     "POET": 4,
+    "AVGO": 4,
     "CIBC": 4
   },
   "trade_candidates": [
