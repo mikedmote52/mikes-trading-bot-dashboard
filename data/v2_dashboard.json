@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-16T04:58:35.938052",
+  "timestamp": "2026-04-16T06:31:45.371803",
   "candidates_discovered": 446,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
@@ -18,7 +18,7 @@
       "short_pct": 0.1191,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.551753061566851,
+      "volume_acceleration": 1.2156678667750636,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -36,7 +36,7 @@
       "short_pct": 0.1026,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.5351226858003366,
+      "volume_acceleration": 1.4088847550713084,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -45,7 +45,7 @@
       "score": 40,
       "raw_score": 61,
       "conviction": "B",
-      "thesis": "Very low float (5.7M) | Elevated short interest (18.4% of float) | Explosive volume acceleration (3187.5x vs 10d avg) | Today +582.3% \u2014 confirmed breakout | Social emerging (2 mentions) [Raw: 61, Normalized: 40]",
+      "thesis": "Very low float (5.7M) | Elevated short interest (18.4% of float) | Explosive volume acceleration (3275.3x vs 10d avg) | Today +582.3% \u2014 confirmed breakout | Social emerging (2 mentions) [Raw: 61, Normalized: 40]",
       "risks": [
         "No catalyst identified"
       ],
@@ -56,34 +56,16 @@
       "short_pct": 0.18370001,
       "social_mentions": 2,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3187.4715719063547,
+      "volume_acceleration": 3275.261727982163,
       "sector": "consumer cyclical",
       "industry": "apparel retail"
-    },
-    {
-      "symbol": "AGEN",
-      "score": 40,
-      "raw_score": 60,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (35.6M) | Elevated short interest (10.9% of float) | Strong volume acceleration (3.0x) [Raw: 60, Normalized: 40]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 35632905,
-      "short_pct": 0.1089,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.0470512497550875,
-      "sector": "healthcare",
-      "industry": "biotechnology"
     },
     {
       "symbol": "ALLO",
       "score": 40,
       "raw_score": 60,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (11.9% of float) | Explosive volume acceleration (9.4x vs 10d avg) [Raw: 60, Normalized: 40]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (11.9% of float) | Explosive volume acceleration (5.4x vs 10d avg) [Raw: 60, Normalized: 40]",
       "risks": [
         "Large float (187M) limits squeeze potential"
       ],
@@ -94,7 +76,7 @@
       "short_pct": 0.1187,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 9.4029125721858,
+      "volume_acceleration": 5.443209861195142,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -103,7 +85,7 @@
       "score": 40,
       "raw_score": 60,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (15.6% of float) | Strong volume acceleration (4.9x) | Near 52-week low \u2014 turnaround potential [Raw: 60, Normalized: 40]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (15.6% of float) | Strong volume acceleration (4.0x) | Near 52-week low \u2014 turnaround potential [Raw: 60, Normalized: 40]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -112,7 +94,7 @@
       "short_pct": 0.15630001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.862856183641781,
+      "volume_acceleration": 3.96059129631961,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -121,7 +103,7 @@
       "score": 39,
       "raw_score": 59,
       "conviction": "B",
-      "thesis": "Very low float (8.7M) | Elevated short interest (17.6% of float) | Explosive volume acceleration (6.8x vs 10d avg) | Today +59.8% \u2014 confirmed breakout [Raw: 59, Normalized: 39]",
+      "thesis": "Very low float (8.7M) | Elevated short interest (17.6% of float) | Explosive volume acceleration (6.4x vs 10d avg) | Today +59.8% \u2014 confirmed breakout [Raw: 59, Normalized: 39]",
       "risks": [
         "No catalyst identified"
       ],
@@ -132,29 +114,27 @@
       "short_pct": 0.1759,
       "social_mentions": 0,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 6.815404440260006,
+      "volume_acceleration": 6.3569972848699265,
       "sector": "technology",
       "industry": "solar"
     },
     {
-      "symbol": "PLCE",
-      "score": 39,
-      "raw_score": 59,
+      "symbol": "AGEN",
+      "score": 36,
+      "raw_score": 55,
       "conviction": "B",
-      "thesis": "Very low float (7.7M) | Very high short interest (30.3% of float) | Explosive volume acceleration (6.4x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 59, Normalized: 39]",
-      "risks": [
-        "No catalyst identified"
-      ],
-      "catalyst_type": null,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (35.6M) | Elevated short interest (10.9% of float) | Volume building (2.3x) [Raw: 55, Normalized: 36]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
-      "has_catalyst": false,
-      "float_shares": 7745727,
-      "short_pct": 0.30290002,
+      "has_catalyst": true,
+      "float_shares": 35632905,
+      "short_pct": 0.1089,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 6.3916952054794525,
-      "sector": "consumer cyclical",
-      "industry": "apparel manufacturing"
+      "volume_acceleration": 2.3399641727544997,
+      "sector": "healthcare",
+      "industry": "biotechnology"
     }
   ],
   "social_trending": {
@@ -165,14 +145,14 @@
     "CYCU": 5,
     "AEHR": 5,
     "SOC": 5,
+    "AIMN": 4,
     "WHAT": 4,
     "MLTX": 4,
     "BTIG": 4,
     "DXYZ": 4,
     "NBIS": 4,
     "POET": 4,
-    "AVGO": 4,
-    "CIBC": 4
+    "AVGO": 4
   },
   "trade_candidates": [
     {
