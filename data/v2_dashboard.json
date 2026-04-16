@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-16T06:31:45.371803",
+  "timestamp": "2026-04-16T06:31:46.733091",
   "candidates_discovered": 446,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
@@ -45,7 +45,7 @@
       "score": 40,
       "raw_score": 61,
       "conviction": "B",
-      "thesis": "Very low float (5.7M) | Elevated short interest (18.4% of float) | Explosive volume acceleration (3275.3x vs 10d avg) | Today +582.3% \u2014 confirmed breakout | Social emerging (2 mentions) [Raw: 61, Normalized: 40]",
+      "thesis": "Very low float (5.7M) | Elevated short interest (18.4% of float) | Explosive volume acceleration (3275.2x vs 10d avg) | Today +582.3% \u2014 confirmed breakout | Social emerging (2 mentions) [Raw: 61, Normalized: 40]",
       "risks": [
         "No catalyst identified"
       ],
@@ -56,7 +56,7 @@
       "short_pct": 0.18370001,
       "social_mentions": 2,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3275.261727982163,
+      "volume_acceleration": 3275.187658862876,
       "sector": "consumer cyclical",
       "industry": "apparel retail"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.1187,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.443209861195142,
+      "volume_acceleration": 5.4438429690039625,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -94,7 +94,7 @@
       "short_pct": 0.15630001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.96059129631961,
+      "volume_acceleration": 3.960717612992572,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -114,7 +114,7 @@
       "short_pct": 0.1759,
       "social_mentions": 0,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 6.3569972848699265,
+      "volume_acceleration": 6.357235512569959,
       "sector": "technology",
       "industry": "solar"
     },
@@ -147,12 +147,12 @@
     "SOC": 5,
     "AIMN": 4,
     "WHAT": 4,
-    "MLTX": 4,
     "BTIG": 4,
     "DXYZ": 4,
+    "MLTX": 4,
     "NBIS": 4,
-    "POET": 4,
-    "AVGO": 4
+    "AVGO": 4,
+    "POET": 4
   },
   "trade_candidates": [
     {
