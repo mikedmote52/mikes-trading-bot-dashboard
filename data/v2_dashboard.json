@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-17T08:59:42.653509",
-  "candidates_discovered": 462,
+  "timestamp": "2026-04-17T11:59:30.445902",
+  "candidates_discovered": 439,
   "candidates_evaluated": 30,
   "ready_to_trade": 3,
   "top_picks": [
@@ -9,7 +9,7 @@
       "score": 46,
       "raw_score": 70,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (47.1M) | Elevated short interest (15.6% of float) | Explosive volume acceleration (5.6x vs 10d avg) [Raw: 70, Normalized: 46]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (47.1M) | Elevated short interest (15.6% of float) | Explosive volume acceleration (5.8x vs 10d avg) [Raw: 70, Normalized: 46]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -18,7 +18,43 @@
       "short_pct": 0.15609999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.623570411429647,
+      "volume_acceleration": 5.825591665489808,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "HYPD",
+      "score": 43,
+      "raw_score": 65,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (9.7M) | Elevated short interest (11.1% of float) [Raw: 65, Normalized: 43]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 9666153,
+      "short_pct": 0.111099996,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.128436015216808,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "CADL",
+      "score": 40,
+      "raw_score": 60,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (24.0% of float) | Today +21.2% \u2014 strong move [Raw: 60, Normalized: 40]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 63310981,
+      "short_pct": 0.23969999,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.5115147669496631,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -38,7 +74,7 @@
       "short_pct": 0.1031,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.170367530106794,
+      "volume_acceleration": 1.5423909338786639,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -46,8 +82,8 @@
   "social_trending": {
     "RDDT": 29,
     "NVDA": 9,
-    "BIRD": 6,
     "HNST": 6,
+    "BIRD": 5,
     "AEHR": 5,
     "APRIL": 4,
     "WHAT": 4,
@@ -58,7 +94,7 @@
     "POET": 4,
     "SOC": 4,
     "CIBC": 4,
-    "NFLX": 4
+    "TSMC": 3
   },
   "trade_candidates": [
     {
