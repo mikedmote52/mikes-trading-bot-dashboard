@@ -1,0 +1,90 @@
+{
+  "version": 4,
+  "multipliers": {
+    "catalyst": 1.0,
+    "low_float": 1.0,
+    "high_short": 1.0,
+    "social": 1.0,
+    "volume": 1.0,
+    "biotech": 1.0,
+    "price_sweet_spot": 1.0,
+    "no_catalyst_penalty": 1.0
+  },
+  "history": [
+    {
+      "timestamp": "2026-04-15T13:33:11.488676",
+      "changes": [
+        {
+          "factor": "no_catalyst_penalty",
+          "old": 1.0,
+          "new": 1.1,
+          "reason": "Low win rate (8%) \u2014 increasing no-catalyst penalty"
+        }
+      ],
+      "stats": {
+        "win_rate": 8.3,
+        "avg_win_pct": 20.5,
+        "avg_loss_pct": -16.41,
+        "trades_analyzed": 12
+      }
+    },
+    {
+      "timestamp": "2026-04-15T13:33:13.733933",
+      "changes": [
+        {
+          "factor": "no_catalyst_penalty",
+          "old": 1.1,
+          "new": 1.21,
+          "reason": "Low win rate (8%) \u2014 increasing no-catalyst penalty"
+        }
+      ],
+      "stats": {
+        "win_rate": 8.3,
+        "avg_win_pct": 20.5,
+        "avg_loss_pct": -16.41,
+        "trades_analyzed": 12
+      }
+    },
+    {
+      "timestamp": "2026-04-16T13:33:03.463479",
+      "changes": [
+        {
+          "factor": "no_catalyst_penalty",
+          "old": 1.21,
+          "new": 1.331,
+          "reason": "Low win rate (8%) \u2014 increasing no-catalyst penalty"
+        }
+      ],
+      "stats": {
+        "win_rate": 8.3,
+        "avg_win_pct": 20.5,
+        "avg_loss_pct": -16.41,
+        "trades_analyzed": 12
+      }
+    },
+    {
+      "timestamp": "2026-04-17T13:33:06.919128",
+      "changes": [
+        {
+          "factor": "no_catalyst_penalty",
+          "old": 1.331,
+          "new": 1.464,
+          "reason": "Low win rate (8%) \u2014 increasing no-catalyst penalty"
+        }
+      ],
+      "stats": {
+        "win_rate": 8.3,
+        "avg_win_pct": 20.5,
+        "avg_loss_pct": -16.41,
+        "trades_analyzed": 12
+      }
+    }
+  ],
+  "last_updated": "2026-04-17T13:33:06.919090",
+  "last_stats": {
+    "win_rate": 8.3,
+    "avg_win_pct": 20.5,
+    "avg_loss_pct": -16.41,
+    "trades_analyzed": 12
+  }
+}
