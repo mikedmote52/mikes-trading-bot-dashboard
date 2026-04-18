@@ -1,0 +1,42 @@
+[
+  {
+    "ts": "2026-04-17T20:52:20.454569",
+    "signal": "composite_score",
+    "old_weight": 0.5,
+    "new_weight": 0.6,
+    "change_pct": 20.0,
+    "sample_size": 12,
+    "win_rate": 0.083,
+    "reasoning": "Impact: 18.111, Win rate: 8.3%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-04-17T20:52:20.454569",
+    "signal": "float_shares",
+    "old_weight": 0.5,
+    "new_weight": 0.4,
+    "change_pct": -20.0,
+    "sample_size": 12,
+    "win_rate": 0.083,
+    "reasoning": "Impact: -42356148.500, Win rate: 8.3%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-04-17T20:52:20.454569",
+    "signal": "short_pct",
+    "old_weight": 0.5,
+    "new_weight": 0.493729999975,
+    "change_pct": -1.25,
+    "sample_size": 12,
+    "win_rate": 0.083,
+    "reasoning": "Impact: -0.125, Win rate: 8.3%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-04-17T20:52:20.454569",
+    "signal": "has_catalyst",
+    "old_weight": 0.5,
+    "new_weight": 0.475,
+    "change_pct": -5.0,
+    "sample_size": 12,
+    "win_rate": 0.083,
+    "reasoning": "Impact: -0.500, Win rate: 8.3%, Capped at \u00b120.0%"
+  }
+]

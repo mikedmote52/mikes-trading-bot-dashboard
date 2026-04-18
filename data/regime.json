@@ -1,0 +1,10 @@
+{
+  "ts": "2026-04-17T20:53:10.620575",
+  "regime": "yellow",
+  "regime_label": "Neutral \u2014 mixed signals",
+  "iwm_return_20d": 13.86,
+  "spy_realized_vol_20d": 19.8,
+  "breadth_differential": 0.54,
+  "data_source": "yfinance",
+  "stub": false
+}
