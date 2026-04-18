@@ -1,1111 +1,1044 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mike's Trading Bot v2</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>📊</text></svg>">
-    <style>
-        body { margin: 0; font-family: 'Courier New', monospace; background: #0f172a; color: #e2e8f0; }
-        .card { background: #1e293b; border: 1px solid #334155; border-radius: 8px; }
-        .card:hover { border-color: #475569; }
-        .pulse { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
-        .scrollbar-thin::-webkit-scrollbar { width: 4px; }
-        .scrollbar-thin::-webkit-scrollbar-thumb { background: #475569; border-radius: 2px; }
-        .fade-in { animation: fadeIn 0.4s ease-in; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-        .schedule-item.active { background: rgba(16,185,129,0.12); border-left: 2px solid #10b981; }
-        .schedule-item { background: rgba(30,41,59,0.5); border-left: 2px solid #334155; border-radius: 4px; padding: 8px 12px; }
-        .tag { padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; display: inline-block; }
-        .section-title { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 14px; font-weight: 700; }
-        .stat-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
-        .stat-label { font-size: 11px; color: #94a3b8; }
-        .stat-value { font-size: 13px; font-weight: 700; }
-        .health-ok { color: #10b981; }
-        .health-warn { color: #fbbf24; }
-        .health-crit { color: #ef4444; }
-        .conviction-HIGH { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
-        .conviction-MEDIUM { background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
-        .conviction-LOW { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
-        .tier-S { background: rgba(168,85,247,0.15); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); }
-        .tier-A { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
-        .tier-B { background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
-        .tier-C { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
-        /* Connection Lost Banner */
-        .connection-lost { background: rgba(239,68,68,0.15); border: 1px solid #ef4444; color: #ef4444; padding: 12px 16px; border-radius: 4px; margin: 0 0 16px; font-size: 12px; font-weight: 700; text-align: center; }
-        /* Stale Data Badge */
-        .stale-badge { padding: 2px 6px; border-radius: 3px; font-size: 9px; font-weight: 700; display: inline-block; margin-left: 8px; }
-        .stale-badge.warn { background: rgba(234,179,8,0.15); color: #fbbf24; border: 1px solid rgba(234,179,8,0.3); }
-        .stale-badge.err { background: rgba(239,68,68,0.15); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
-        /* Responsive Design */
-        .grid-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-        .grid-chart { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; }
-        .grid-bottom { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-        @media (max-width: 900px) {
-            .grid-3col, .grid-chart, .grid-bottom { grid-template-columns: 1fr !important; }
-            .grid-chart > div { height: auto !important; min-height: 300px; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#121212">
+  <title>Squeeze Prophet</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>⚡</text></svg>">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+    body {
+      background: #121212;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    #root { height: 100%; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+    button { font-family: inherit; }
+  </style>
 </head>
 <body>
-<!--
-  STALENESS BANNER — only tracks discovery scan data (v2_dashboard.json).
-  Hidden when data is fresh. Market-aware thresholds so overnight/weekends don't false-alarm.
--->
-<style>
-  #tb-staleness-banner {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 99999;
-    padding: 10px 20px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.35);
-    display: none;
-  }
-  #tb-staleness-banner.visible { display: block; }
-  #tb-staleness-banner.warn   { background: #b58900; }
-  #tb-staleness-banner.stale  { background: #c0392b; }
-  #tb-staleness-banner.dead   { background: #8b0000; }
-  body.tb-banner-visible { padding-top: 48px; }
-</style>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useEffect, useId, useRef } = React;
 
-<div id="tb-staleness-banner" role="alert" aria-live="assertive">
-  <span id="tb-staleness-headline"></span>
-</div>
+// ── Constants ───────────────────────────────────────────────────────────
+const STARTING_EQUITY = 100000;
+const HEALTH_POLL_MS  = 30 * 1000;
+const V2_POLL_MS      = 5  * 60 * 1000;
+const CLOSED_POLL_MS  = 5  * 60 * 1000;
 
-<script>
-(function () {
-  var banner   = document.getElementById('tb-staleness-banner');
-  var headline = document.getElementById('tb-staleness-headline');
+// Tiered stop/target levels from the 2026-04-17 strategy overhaul
+const TIER_STOPS   = { S: 0.05, A: 0.07, B: 0.10, C: 0.12 };
+const TIER_TARGETS = { S: 0.40, A: 0.35, B: 0.30, C: 0.20 };
 
-  function setState(cls, msg) {
-    banner.className = '';
-    banner.classList.add('visible', cls);
-    document.body.classList.add('tb-banner-visible');
-    headline.textContent = msg;
-  }
-  function hide() {
-    banner.className = '';
-    document.body.classList.remove('tb-banner-visible');
-  }
-  function fmtAge(min) {
-    if (min < 60) return min + ' min';
-    if (min < 1440) return Math.floor(min / 60) + 'h ' + (min % 60) + 'm';
-    return Math.floor(min / 1440) + 'd ' + Math.floor((min % 1440) / 60) + 'h';
-  }
+const TIER_COLORS = {
+  S: { bg: 'rgba(168,85,247,0.18)',  text: '#c084fc', border: 'rgba(168,85,247,0.5)' },
+  A: { bg: 'rgba(16,185,129,0.18)',  text: '#10B981', border: 'rgba(16,185,129,0.5)' },
+  B: { bg: 'rgba(245,158,11,0.18)',  text: '#F59E0B', border: 'rgba(245,158,11,0.5)' },
+  C: { bg: 'rgba(148,163,184,0.10)', text: '#94a3b8', border: 'rgba(100,116,139,0.4)' },
+};
 
-  function getThresholds() {
-    var now = new Date();
-    var day = now.getDay();
-    var hour = now.getHours();
-    var isWeekend = (day === 0 || day === 6);
-    // Friday after close through Sunday: don't alarm about Friday's data
-    var isFridayNight = (day === 5 && hour >= 18);
-    if (isWeekend || isFridayNight) {
-      return { warn: 4320, stale: 5760, dead: 7200 }; // 3d, 4d, 5d
-    }
-    // Weekday market hours (6am-2pm PT)
-    if (hour >= 6 && hour <= 14) {
-      return { warn: 240, stale: 480, dead: 960 }; // 4h, 8h, 16h
-    }
-    // Weekday overnight/after-hours
-    return { warn: 1080, stale: 1440, dead: 2880 }; // 18h, 24h, 48h
-  }
+const GAIN    = '#10B981';
+const LOSS    = '#F87171';
+const SQUEEZE = '#F59E0B';
+const CARD_BG = '#1E1E1E';
 
-  function check() {
-    fetch('data/v2_dashboard.json?ts=' + Date.now(), { cache: 'no-store' })
-      .then(function (r) { return r.ok ? r.json() : Promise.reject('fetch failed'); })
-      .then(function (data) {
-        if (!data.timestamp) { hide(); return; }
-        var ageMin = Math.round((Date.now() - new Date(data.timestamp).getTime()) / 60000);
-        var t = getThresholds();
-        if (ageMin >= t.dead) {
-          setState('dead', 'Research scan ' + fmtAge(ageMin) + ' old — pipeline may need attention');
-        } else if (ageMin >= t.stale) {
-          setState('stale', 'Last research scan: ' + fmtAge(ageMin) + ' ago');
-        } else if (ageMin >= t.warn) {
-          setState('warn', 'Last research scan: ' + fmtAge(ageMin) + ' ago');
-        } else {
-          hide();
-        }
-      })
-      .catch(function () { hide(); }); // No data file = no banner, not an error
-  }
+// ── Utilities ───────────────────────────────────────────────────────────
+const fmt$ = n => {
+  const v = Math.abs(Number(n));
+  return (Number(n) < 0 ? '-' : '') + '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+};
+const fmt$k = n => {
+  const v = Math.abs(Number(n));
+  if (v >= 10000) return (Number(n) < 0 ? '-' : '') + '$' + (v / 1000).toFixed(1) + 'k';
+  return fmt$(n);
+};
+const fmtPct = (n, dec = 1) => (Number(n) >= 0 ? '+' : '') + Number(n).toFixed(dec) + '%';
+const fmtFloat = n => {
+  const m = n / 1e6;
+  return m < 1 ? (n / 1e3).toFixed(0) + 'K' : m < 10 ? m.toFixed(1) + 'M' : Math.round(m) + 'M';
+};
+const fmtAge = ms => {
+  const m = Math.floor(ms / 60000);
+  if (m < 60) return m + 'm';
+  const h = Math.floor(m / 60);
+  return h + 'h ' + (m % 60) + 'm';
+};
+const pnlColor = v => Number(v) >= 0 ? GAIN : LOSS;
 
-  check();
-  setInterval(check, 60000);
-})();
+function isTrifecta(pick) {
+  const floatM  = (pick.float_shares || 0) / 1e6;
+  const siPct   = (pick.short_pct || 0) * 100;
+  const volAcc  = pick.volume_acceleration || 1;
+  return floatM < 20 && siPct > 10 && volAcc > 2;
+}
+
+function scoreTier(score) {
+  if (score >= 80) return 'S';
+  if (score >= 60) return 'A';
+  if (score >= 40) return 'B';
+  return 'C';
+}
+
+function convTier(conv) {
+  if (!conv) return 'C';
+  const c = conv.toUpperCase();
+  if (['S','A','B','C'].includes(c)) return c;
+  if (c === 'HIGH')   return 'A';
+  if (c === 'MEDIUM') return 'B';
+  return 'C';
+}
+
+// ── Data fetching ───────────────────────────────────────────────────────
+function usePoll(url, ms) {
+  const [data, setData]   = useState(null);
+  const [stamp, setStamp] = useState(null);
+  useEffect(() => {
+    let dead = false;
+    const load = () =>
+      fetch(url + '?t=' + Date.now(), { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : null)
+        .then(d => { if (!dead && d) { setData(d); setStamp(Date.now()); } })
+        .catch(() => {});
+    load();
+    const id = setInterval(load, ms);
+    return () => { dead = true; clearInterval(id); };
+  }, [url, ms]);
+  return { data, stamp };
+}
+
+function useOnce(url) {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    fetch(url + '?t=' + Date.now(), { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d) setData(d); })
+      .catch(() => {});
+  }, [url]);
+  return data;
+}
+
+// ── SVG Sparkline (equity curve) ────────────────────────────────────────
+function Sparkline({ data, height = 80, color = GAIN, baseline = false }) {
+  const uid = useId().replace(/[^a-z0-9]/gi, '');
+  if (!data || data.length < 2) {
+    return (
+      <svg width="100%" height={height} style={{ display: 'block' }}>
+        <text x="50%" y="50%" textAnchor="middle" fill="#444" fontSize="11">No data yet</text>
+      </svg>
+    );
+  }
+  const values = data.map(d => (typeof d === 'object' ? d.equity : d));
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  const range = max - min || 1;
+  const W = 300, H = height;
+  const toX = i => (i / (values.length - 1)) * W;
+  const toY = v => H - 4 - ((v - min) / range) * (H - 10);
+  const linePts = values.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(' ');
+  const areaPts = linePts + ` ${W},${H} 0,${H}`;
+  let basePts = '';
+  if (baseline) {
+    basePts = values.map((_, i) => {
+      const bv = STARTING_EQUITY * (1 + 0.638 * ((i + 1) / 34));
+      const by = toY(Math.max(Math.min(bv, max * 1.2), min * 0.8));
+      return `${toX(i).toFixed(1)},${by.toFixed(1)}`;
+    }).join(' ');
+  }
+  return (
+    <svg width="100%" height={height} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ display: 'block' }}>
+      <defs>
+        <linearGradient id={`g${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stopColor={color} stopOpacity="0.3"/>
+          <stop offset="100%" stopColor={color} stopOpacity="0.02"/>
+        </linearGradient>
+      </defs>
+      <polygon points={areaPts} fill={`url(#g${uid})`} />
+      {basePts && (
+        <polyline points={basePts} fill="none" stroke={SQUEEZE}
+          strokeWidth="1.5" strokeDasharray="5,4" opacity="0.55" />
+      )}
+      <polyline points={linePts} fill="none" stroke={color}
+        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// ── Tier Badge ──────────────────────────────────────────────────────────
+function TierBadge({ tier, sm }) {
+  const c = TIER_COLORS[tier] || TIER_COLORS.C;
+  return (
+    <span style={{
+      background: c.bg, color: c.text, border: `1px solid ${c.border}`,
+      borderRadius: 4, padding: sm ? '1px 5px' : '2px 7px',
+      fontSize: sm ? 9 : 11, fontWeight: 700, letterSpacing: 0.5,
+      display: 'inline-block', lineHeight: 1.4,
+    }}>{tier}</span>
+  );
+}
+
+// ── Card wrapper ────────────────────────────────────────────────────────
+function Card({ children, style, leftBorder }) {
+  return (
+    <div style={{
+      background: CARD_BG, borderRadius: 12, padding: 14,
+      borderLeft: leftBorder ? `3px solid ${leftBorder}` : undefined,
+      ...style,
+    }}>
+      {children}
+    </div>
+  );
+}
+
+// ── Section label ───────────────────────────────────────────────────────
+function Label({ children, color }) {
+  return (
+    <div style={{
+      fontSize: 10, color: color || '#94a3b8', textTransform: 'uppercase',
+      letterSpacing: 1, fontWeight: 700, marginBottom: 10,
+    }}>{children}</div>
+  );
+}
+
+// ── Stat row ────────────────────────────────────────────────────────────
+function StatRow({ label, value, color }) {
+  return (
+    <div style={{
+      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      padding: '6px 0', borderBottom: '1px solid #252525',
+    }}>
+      <span style={{ fontSize: 12, color: '#94a3b8' }}>{label}</span>
+      <span style={{ fontSize: 13, fontWeight: 700, color: color || '#e2e8f0' }}>{value}</span>
+    </div>
+  );
+}
+
+// ── Squeeze Trifecta Banner ─────────────────────────────────────────────
+function SqueezeBanner({ picks }) {
+  const hits = (picks || []).filter(isTrifecta);
+  if (!hits.length) return null;
+  return (
+    <div style={{
+      background: 'rgba(245,158,11,0.10)', border: `1px solid rgba(245,158,11,0.45)`,
+      borderRadius: 10, padding: '12px 14px', marginBottom: 12,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+        <span style={{ fontSize: 16 }}>⚡</span>
+        <span style={{ color: SQUEEZE, fontWeight: 800, fontSize: 13, textTransform: 'uppercase', letterSpacing: 1 }}>
+          Squeeze Trifecta — {hits.length} Signal{hits.length > 1 ? 's' : ''}
+        </span>
+      </div>
+      <p style={{ fontSize: 11, color: '#d4930a', margin: '0 0 8px', lineHeight: 1.5 }}>
+        Low float · High short interest · Volume surge
+      </p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+        {hits.map(p => (
+          <span key={p.symbol} style={{
+            background: 'rgba(245,158,11,0.12)', color: SQUEEZE,
+            border: '1px solid rgba(245,158,11,0.35)',
+            borderRadius: 6, padding: '4px 10px', fontWeight: 700, fontSize: 12,
+          }}>
+            {p.symbol}
+            <span style={{ fontSize: 9, opacity: 0.75, marginLeft: 5 }}>
+              {fmtFloat(p.float_shares || 0)} · {((p.short_pct || 0) * 100).toFixed(0)}% SI · {(p.volume_acceleration || 1).toFixed(1)}×
+            </span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ── Position Card ───────────────────────────────────────────────────────
+function PositionCard({ pos, tier }) {
+  const pnlPct   = parseFloat(pos.unrealized_plpc) * 100;
+  const pnlDollar = parseFloat(pos.unrealized_pl);
+  const entry    = parseFloat(pos.avg_entry_price);
+  const current  = parseFloat(pos.current_price);
+  const color    = pnlColor(pnlPct);
+
+  const stopPct   = TIER_STOPS[tier]   || 0.10;
+  const targetPct = TIER_TARGETS[tier] || 0.30;
+  const stopPrice = (entry * (1 - stopPct)).toFixed(2);
+
+  let exitLabel = 'HOLD', exitColor = '#64748b';
+  if (pnlPct <= -(stopPct * 100))              { exitLabel = 'STOP';      exitColor = LOSS;    }
+  else if (pnlPct <= -(stopPct * 100 * 0.65)) { exitLabel = 'NEAR STOP'; exitColor = SQUEEZE; }
+  else if (pnlPct >= targetPct * 100)         { exitLabel = 'TARGET';    exitColor = GAIN;    }
+  else if (pnlPct >= 20)                      { exitLabel = 'TRAILING';  exitColor = '#22d3ee'; }
+
+  return (
+    <Card style={{ marginBottom: 8 }}>
+      {/* Header row */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <span style={{ fontWeight: 800, fontSize: 17, color: '#fff' }}>{pos.symbol}</span>
+          <TierBadge tier={tier} />
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div style={{ fontSize: 22, fontWeight: 800, color, lineHeight: 1 }}>{fmtPct(pnlPct)}</div>
+          <div style={{ fontSize: 11, color, opacity: 0.85, marginTop: 2 }}>
+            {pnlDollar >= 0 ? '+' : ''}{fmt$(pnlDollar)}
+          </div>
+        </div>
+      </div>
+      {/* Stats grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 6 }}>
+        {[
+          { label: 'Entry',   value: fmt$(entry),    valueColor: '#94a3b8' },
+          { label: 'Current', value: fmt$(current),  valueColor: '#fff'    },
+          { label: 'Stop',    value: '$' + stopPrice, valueColor: LOSS     },
+          { label: 'Status',  value: exitLabel,       valueColor: exitColor },
+        ].map(({ label, value, valueColor }) => (
+          <div key={label}>
+            <div style={{ fontSize: 9, color: '#555', textTransform: 'uppercase', marginBottom: 2 }}>{label}</div>
+            <div style={{ fontSize: 12, fontWeight: 700, color: valueColor }}>{value}</div>
+          </div>
+        ))}
+      </div>
+    </Card>
+  );
+}
+
+// ── Anti-Chase Filter ───────────────────────────────────────────────────
+function AntiChaseActivity({ positions, picks }) {
+  if (!positions?.length) return null;
+  const inRadar = new Set((picks || []).map(p => p.symbol));
+  const aligned = positions.filter(p => inRadar.has(p.symbol));
+  const other   = positions.filter(p => !inRadar.has(p.symbol));
+  return (
+    <Card style={{ marginBottom: 12 }}>
+      <Label>Anti-Chase Filter</Label>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 8 }}>
+        {aligned.map(p => (
+          <span key={p.symbol} style={{
+            background: 'rgba(16,185,129,0.10)', color: GAIN,
+            border: '1px solid rgba(16,185,129,0.3)',
+            borderRadius: 4, padding: '3px 9px', fontSize: 11, fontWeight: 600,
+          }}>✓ {p.symbol}</span>
+        ))}
+        {other.map(p => (
+          <span key={p.symbol} style={{
+            background: 'rgba(100,116,139,0.10)', color: '#64748b',
+            border: '1px solid rgba(100,116,139,0.25)',
+            borderRadius: 4, padding: '3px 9px', fontSize: 11, fontWeight: 600,
+          }}>~ {p.symbol}</span>
+        ))}
+      </div>
+      <p style={{ fontSize: 10, color: '#475569', margin: 0 }}>
+        ✓ matches today's radar picks  ·  ~ not in current scan
+      </p>
+    </Card>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// HOME TAB
+// ═══════════════════════════════════════════════════════════════════════
+function HomeTab({ health, v2Data, closedTrades }) {
+  const stats     = health?.stats || {};
+  const positions = health?.positions || [];
+  const picks     = v2Data?.top_picks || [];
+
+  const equity     = stats.equity      || 0;
+  const totalPnl   = stats.total_pnl   || 0;
+  const totalPct   = stats.total_pnl_pct || 0;
+  const dayPnl     = stats.day_pnl     || 0;
+  const dayPct     = equity > 0 ? (dayPnl / (equity - dayPnl)) * 100 : 0;
+  const cash       = stats.cash        || 0;
+
+  const wins     = (closedTrades || []).filter(t => t.pnl_pct > 0).length;
+  const total    = (closedTrades || []).length;
+  const winRate  = total > 0 ? (wins / total * 100).toFixed(0) + '%' : '—';
+
+  // symbol → tier map from v2 research
+  const tierMap = {};
+  [...(picks), ...(v2Data?.trade_candidates || [])].forEach(p => {
+    if (!tierMap[p.symbol]) tierMap[p.symbol] = convTier(p.conviction) || scoreTier(p.score || 0);
+  });
+
+  return (
+    <div style={{ padding: '12px 16px 8px' }}>
+      <SqueezeBanner picks={picks} />
+
+      {/* Hero P&L */}
+      <Card style={{ marginBottom: 12 }}>
+        <div style={{ fontSize: 10, color: '#64748b', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>
+          Total P&L
+        </div>
+        <div style={{ fontSize: 36, fontWeight: 800, color: pnlColor(totalPnl), lineHeight: 1, letterSpacing: -1 }}>
+          {totalPnl >= 0 ? '+' : ''}{fmt$(totalPnl)}
+        </div>
+        <div style={{ fontSize: 13, color: pnlColor(totalPct), fontWeight: 600, marginTop: 4, marginBottom: 16 }}>
+          {fmtPct(totalPct)} from ${STARTING_EQUITY.toLocaleString()}
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: 10, paddingTop: 12, borderTop: '1px solid #2a2a2a' }}>
+          {[
+            { label: 'Equity',   value: fmt$k(equity),   color: '#fff'             },
+            { label: 'Day P&L',  value: (dayPnl >= 0 ? '+' : '') + fmt$(dayPnl), color: pnlColor(dayPnl) },
+            { label: 'Cash',     value: fmt$k(cash),      color: '#cbd5e1'          },
+            { label: 'Win Rate', value: winRate,           color: GAIN               },
+          ].map(({ label, value, color }) => (
+            <div key={label}>
+              <div style={{ fontSize: 9, color: '#555', textTransform: 'uppercase', marginBottom: 2 }}>{label}</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color }}>{value}</div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <AntiChaseActivity positions={positions} picks={picks} />
+
+      <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700, marginBottom: 8 }}>
+        Open Positions ({positions.length})
+      </div>
+
+      {positions.length === 0 ? (
+        <Card>
+          <p style={{ textAlign: 'center', color: '#475569', fontSize: 13, margin: '8px 0' }}>No open positions</p>
+        </Card>
+      ) : (
+        [...positions]
+          .sort((a, b) => parseFloat(b.unrealized_plpc) - parseFloat(a.unrealized_plpc))
+          .map(pos => (
+            <PositionCard key={pos.symbol} pos={pos} tier={tierMap[pos.symbol] || 'C'} />
+          ))
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// RADAR TAB
+// ═══════════════════════════════════════════════════════════════════════
+function PickCard({ pick }) {
+  const tier = convTier(pick.conviction) || scoreTier(pick.score || 0);
+  const tc   = TIER_COLORS[tier] || TIER_COLORS.C;
+  const hit  = isTrifecta(pick);
+  const floatM = (pick.float_shares || 0) / 1e6;
+  const siPct  = ((pick.short_pct || 0) * 100).toFixed(1);
+  const vol    = (pick.volume_acceleration || 1).toFixed(1);
+
+  return (
+    <Card style={{ marginBottom: 8, borderLeft: `3px solid ${hit ? SQUEEZE : tc.border}` }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <span style={{ fontWeight: 800, fontSize: 16, color: '#fff' }}>{pick.symbol}</span>
+          <TierBadge tier={tier} />
+          {hit && (
+            <span style={{
+              fontSize: 9, fontWeight: 700, color: SQUEEZE,
+              background: 'rgba(245,158,11,0.12)', border: `1px solid rgba(245,158,11,0.3)`,
+              borderRadius: 3, padding: '2px 5px',
+            }}>⚡ TRIFECTA</span>
+          )}
+          {pick.has_catalyst && (
+            <span style={{
+              fontSize: 9, fontWeight: 700, color: '#c084fc',
+              background: 'rgba(168,85,247,0.12)', border: '1px solid rgba(168,85,247,0.3)',
+              borderRadius: 3, padding: '2px 5px',
+            }}>CATALYST</span>
+          )}
+        </div>
+        <span style={{ fontSize: 20, fontWeight: 800, color: tc.text, flexShrink: 0 }}>
+          {pick.score || pick.raw_score || '—'}
+        </span>
+      </div>
+      <p style={{ fontSize: 10, color: '#94a3b8', margin: '0 0 8px', lineHeight: 1.5 }}>
+        {(pick.thesis || '').substring(0, 130)}{(pick.thesis || '').length > 130 ? '…' : ''}
+      </p>
+      <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', fontSize: 10 }}>
+        {floatM > 0 && (
+          <span style={{ color: floatM < 10 ? GAIN : '#64748b' }}>
+            Float: {fmtFloat(pick.float_shares || 0)}
+          </span>
+        )}
+        {pick.short_pct > 0 && (
+          <span style={{ color: parseFloat(siPct) > 15 ? SQUEEZE : '#64748b' }}>
+            SI: {siPct}%
+          </span>
+        )}
+        {pick.volume_acceleration > 1 && (
+          <span style={{ color: pick.volume_acceleration > 3 ? GAIN : '#64748b' }}>
+            Vol: {vol}×
+          </span>
+        )}
+      </div>
+    </Card>
+  );
+}
+
+function RadarTab({ v2Data, premarket }) {
+  const picks      = v2Data?.top_picks || [];
+  const candidates = v2Data?.trade_candidates || [];
+  const social     = v2Data?.social_trending || {};
+  const trifectas  = picks.filter(isTrifecta);
+  const socialList = Object.entries(social).sort((a, b) => b[1] - a[1]);
+
+  const v2ts = v2Data?.timestamp ? new Date(v2Data.timestamp) : null;
+
+  return (
+    <div style={{ padding: '12px 16px 8px' }}>
+      {/* Scan summary */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, marginBottom: 14 }}>
+        {[
+          { label: 'Discovered', val: v2Data?.candidates_discovered, color: '#60a5fa' },
+          { label: 'Evaluated',  val: v2Data?.candidates_evaluated,  color: SQUEEZE   },
+          { label: 'Trade Ready',val: v2Data?.ready_to_trade,         color: GAIN      },
+        ].map(s => (
+          <Card key={s.label} style={{ textAlign: 'center', padding: '10px 8px' }}>
+            <div style={{ fontSize: 9, color: '#555', textTransform: 'uppercase', marginBottom: 4 }}>{s.label}</div>
+            <div style={{ fontSize: 24, fontWeight: 800, color: s.color }}>{s.val ?? '—'}</div>
+          </Card>
+        ))}
+      </div>
+
+      {v2ts && (
+        <p style={{ fontSize: 10, color: '#475569', margin: '-6px 0 12px', textAlign: 'right' }}>
+          Last scan: {v2ts.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </p>
+      )}
+
+      {/* Trifecta alerts */}
+      {trifectas.length > 0 && (
+        <>
+          <div style={{ fontSize: 10, color: SQUEEZE, textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700, marginBottom: 8 }}>
+            ⚡ Trifecta ({trifectas.length})
+          </div>
+          {trifectas.map(p => <PickCard key={p.symbol} pick={p} />)}
+        </>
+      )}
+
+      {/* Top picks */}
+      <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700, marginBottom: 8, marginTop: trifectas.length ? 6 : 0 }}>
+        Top Picks ({picks.length})
+      </div>
+      {picks.length === 0 ? (
+        <Card>
+          <p style={{ textAlign: 'center', color: '#475569', fontSize: 12, margin: '12px 0' }}>
+            Waiting for next research scan…
+          </p>
+        </Card>
+      ) : (
+        picks.map(p => <PickCard key={p.symbol} pick={p} />)
+      )}
+
+      {/* Watchlist / candidates */}
+      {candidates.length > 0 && (
+        <>
+          <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700, margin: '14px 0 8px' }}>
+            Watchlist ({candidates.length})
+          </div>
+          {candidates.map(c => (
+            <Card key={c.symbol} style={{ marginBottom: 6, display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px' }}>
+              <div>
+                <span style={{ fontWeight: 700, fontSize: 14, color: '#fff' }}>{c.symbol}</span>
+                <span style={{ fontSize: 10, color: '#475569', marginLeft: 8 }}>seen {c.times_seen}×</span>
+              </div>
+              <TierBadge tier={scoreTier(c.score || 0)} sm />
+            </Card>
+          ))}
+        </>
+      )}
+
+      {/* Premarket targets */}
+      {premarket?.targets?.length > 0 && (
+        <>
+          <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700, margin: '14px 0 8px' }}>
+            Pre-Market Targets ({premarket.targets.length})
+          </div>
+          <Card style={{ padding: 12 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {premarket.targets.map(t => {
+                const prioColor = t.priority === 'HIGH' ? GAIN : t.priority === 'MEDIUM' ? SQUEEZE : '#64748b';
+                return (
+                  <span key={t.symbol} style={{
+                    background: `${prioColor}18`, color: prioColor,
+                    border: `1px solid ${prioColor}40`,
+                    borderRadius: 5, padding: '4px 10px', fontSize: 11, fontWeight: 600,
+                  }}>
+                    {t.symbol}
+                    {t.premarket_mover && <span style={{ fontSize: 9, marginLeft: 4, opacity: 0.7 }}>↑PM</span>}
+                  </span>
+                );
+              })}
+            </div>
+          </Card>
+        </>
+      )}
+
+      {/* Social */}
+      {socialList.length > 0 && (
+        <>
+          <div style={{ fontSize: 10, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: 1, fontWeight: 700, margin: '14px 0 8px' }}>
+            Reddit Trending
+          </div>
+          <Card style={{ padding: 12 }}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+              {socialList.slice(0, 20).map(([sym, cnt]) => {
+                const heat = cnt >= 10 ? '#ef4444' : cnt >= 5 ? SQUEEZE : '#60a5fa';
+                const bg   = cnt >= 10 ? 'rgba(239,68,68,0.10)' : cnt >= 5 ? 'rgba(245,158,11,0.10)' : 'rgba(96,165,250,0.10)';
+                return (
+                  <span key={sym} style={{ padding: '3px 9px', borderRadius: 4, background: bg, color: heat, fontWeight: 600, fontSize: 11 }}>
+                    ${sym} <span style={{ fontSize: 9, opacity: 0.65 }}>×{cnt}</span>
+                  </span>
+                );
+              })}
+            </div>
+          </Card>
+        </>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// PERFORMANCE TAB
+// ═══════════════════════════════════════════════════════════════════════
+const SIGNAL_LABELS = {
+  has_float_squeeze: 'Float Squeeze',
+  has_short_squeeze: 'Short Squeeze',
+  has_volume_spike:  'Volume Spike',
+  has_catalyst:      'Catalyst',
+  has_social_buzz:   'Social Buzz',
+  has_biotech:       'Biotech Sector',
+};
+
+function SignalRow({ label, fired }) {
+  if (!fired || !fired.n) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: '1px solid #252525' }}>
+        <span style={{ fontSize: 12, color: '#475569' }}>{label}</span>
+        <span style={{ fontSize: 10, color: '#333' }}>no data (n=0)</span>
+      </div>
+    );
+  }
+  const wr  = (fired.win_rate * 100).toFixed(0);
+  const edge = fired.edge != null ? (fired.edge * 100).toFixed(1) : null;
+  return (
+    <div style={{ padding: '8px 0', borderBottom: '1px solid #252525' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <span style={{ fontSize: 12, color: '#e2e8f0' }}>{label}</span>
+        <div>
+          <span style={{ fontSize: 14, fontWeight: 700, color: fired.win_rate >= 0.5 ? GAIN : LOSS }}>
+            {wr}%
+          </span>
+          {edge != null && (
+            <span style={{ fontSize: 10, marginLeft: 8, color: parseFloat(edge) > 0 ? GAIN : LOSS }}>
+              {parseFloat(edge) > 0 ? '+' : ''}{edge}% edge
+            </span>
+          )}
+        </div>
+      </div>
+      <div style={{ display: 'flex', gap: 10, marginTop: 2, fontSize: 10, color: '#555' }}>
+        <span>n={fired.n}</span>
+        <span style={{ color: GAIN }}>+{(fired.avg_win || 0).toFixed(1)}% avg win</span>
+        <span style={{ color: LOSS }}>{(fired.avg_loss || 0).toFixed(1)}% avg loss</span>
+      </div>
+    </div>
+  );
+}
+
+function PerformanceTab({ evalReport, equityHistory, closedTrades }) {
+  const overall   = evalReport?.overall || {};
+  const bySignal  = evalReport?.by_signal || {};
+
+  const n       = overall.n || 0;
+  const wins    = n ? Math.round(n * (overall.win_rate || 0)) : 0;
+  const losses  = n - wins;
+  const wr      = overall.win_rate != null ? (overall.win_rate * 100).toFixed(1) + '%' : '—';
+  const avgRet  = overall.avg_return != null ? overall.avg_return : null;
+
+  const eqColor = (() => {
+    if (!equityHistory || !equityHistory.length) return GAIN;
+    const last = equityHistory[equityHistory.length - 1];
+    const v = typeof last === 'object' ? last.equity : last;
+    return v >= STARTING_EQUITY ? GAIN : LOSS;
+  })();
+
+  const sorted  = [...(closedTrades || [])].sort((a, b) => b.pnl_pct - a.pnl_pct);
+  const best    = sorted[0];
+  const worst   = sorted[sorted.length - 1];
+
+  const hasAnySignalData = Object.values(bySignal).some(v => v?.fired?.n > 0);
+
+  return (
+    <div style={{ padding: '12px 16px 8px' }}>
+      {/* Key stats */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 12 }}>
+        <Card>
+          <div style={{ fontSize: 9, color: '#555', textTransform: 'uppercase', marginBottom: 4 }}>Win Rate</div>
+          <div style={{ fontSize: 34, fontWeight: 800, color: wins >= losses ? GAIN : LOSS, lineHeight: 1 }}>{wr}</div>
+          <div style={{ fontSize: 10, color: '#555', marginTop: 4 }}>{wins}W / {losses}L · {n} trades</div>
+        </Card>
+        <Card>
+          <div style={{ fontSize: 9, color: '#555', textTransform: 'uppercase', marginBottom: 4 }}>Avg Return</div>
+          <div style={{ fontSize: 34, fontWeight: 800, color: avgRet != null ? pnlColor(avgRet) : '#64748b', lineHeight: 1 }}>
+            {avgRet != null ? fmtPct(avgRet, 2) : '—'}
+          </div>
+          <div style={{ fontSize: 10, color: '#555', marginTop: 4 }}>
+            <span style={{ color: GAIN }}>+{(overall.avg_win || 0).toFixed(1)}%</span>
+            {' / '}
+            <span style={{ color: LOSS }}>{(overall.avg_loss || 0).toFixed(1)}%</span>
+          </div>
+        </Card>
+      </div>
+
+      {/* Equity curve */}
+      <Card style={{ marginBottom: 12 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+          <Label style={{ margin: 0 }}>Equity Curve</Label>
+          <div style={{ display: 'flex', gap: 12, fontSize: 10 }}>
+            <span style={{ color: eqColor }}>● Bot</span>
+            <span style={{ color: SQUEEZE, opacity: 0.7 }}>- - 63.8% target</span>
+          </div>
+        </div>
+        <Sparkline data={equityHistory} height={80} color={eqColor} baseline />
+      </Card>
+
+      {/* Best / Worst */}
+      {(best || worst) && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 12 }}>
+          {best && (
+            <Card leftBorder={GAIN}>
+              <div style={{ fontSize: 9, color: '#555', textTransform: 'uppercase', marginBottom: 4 }}>Best Trade</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>{best.symbol}</div>
+              <div style={{ fontSize: 18, fontWeight: 800, color: GAIN }}>+{best.pnl_pct?.toFixed(1)}%</div>
+              {best.reason && <div style={{ fontSize: 9, color: '#475569', marginTop: 3, lineHeight: 1.3 }}>{best.reason}</div>}
+            </Card>
+          )}
+          {worst && (
+            <Card leftBorder={LOSS}>
+              <div style={{ fontSize: 9, color: '#555', textTransform: 'uppercase', marginBottom: 4 }}>Worst Trade</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#fff' }}>{worst.symbol}</div>
+              <div style={{ fontSize: 18, fontWeight: 800, color: LOSS }}>{worst.pnl_pct?.toFixed(1)}%</div>
+              {worst.reason && <div style={{ fontSize: 9, color: '#475569', marginTop: 3, lineHeight: 1.3 }}>{worst.reason}</div>}
+            </Card>
+          )}
+        </div>
+      )}
+
+      {/* Signal quality */}
+      <Card style={{ marginBottom: 12 }}>
+        <Label>Signal Quality</Label>
+        {hasAnySignalData ? (
+          Object.entries(bySignal).map(([key, val]) => (
+            <SignalRow
+              key={key}
+              label={SIGNAL_LABELS[key] || key.replace(/_/g, ' ')}
+              fired={val?.fired}
+            />
+          ))
+        ) : (
+          <p style={{ textAlign: 'center', color: '#475569', fontSize: 12, margin: '12px 0' }}>
+            Insufficient signal data — signals fire on closed trades
+          </p>
+        )}
+      </Card>
+
+      {/* Recent closed trades */}
+      {closedTrades?.length > 0 && (
+        <Card style={{ marginBottom: 12 }}>
+          <Label>Recent Closed Trades</Label>
+          {[...closedTrades].reverse().slice(0, 10).map((t, i) => (
+            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 0', borderBottom: '1px solid #252525' }}>
+              <div>
+                <span style={{ fontWeight: 700, fontSize: 13, color: '#fff' }}>{t.symbol}</span>
+                <span style={{ fontSize: 10, color: '#475569', marginLeft: 8 }}>{t.date || ''}</span>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: pnlColor(t.pnl_pct) }}>
+                  {t.pnl_pct >= 0 ? '+' : ''}{t.pnl_pct?.toFixed(1)}%
+                </div>
+                <div style={{ fontSize: 9, color: '#475569' }}>{fmt$(t.pnl_dollar || 0)}</div>
+              </div>
+            </div>
+          ))}
+        </Card>
+      )}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// SYSTEM TAB
+// ═══════════════════════════════════════════════════════════════════════
+const SCHEDULE = [
+  { time: '4:30 AM',  label: 'Daemon starts',       icon: '🤖' },
+  { time: '5:00 AM',  label: 'Pre-market prep',      icon: '🌅' },
+  { time: '6:30 AM',  label: 'Research + execute',   icon: '🧪' },
+  { time: '9:00 AM',  label: 'Research + execute',   icon: '🧪' },
+  { time: '12:00 PM', label: 'Research + execute',   icon: '🧪' },
+  { time: '1:00 PM',  label: 'EOD summary',          icon: '📋' },
+  { time: '1:35 PM',  label: 'Learning loop',        icon: '🧠' },
+  { time: '2:00 PM',  label: 'After-hours research', icon: '🌙' },
+  { time: '5:00 PM',  label: 'After-hours research', icon: '🔬' },
+  { time: '6:00 PM',  label: 'Daemon shutdown',      icon: '🛑' },
+  { time: 'Always',   label: 'Position monitor 60s', icon: '👁' },
+];
+
+function parseMins(t) {
+  if (t === 'Always') return null;
+  const m = t.match(/(\d+):(\d+)\s*(AM|PM)/);
+  if (!m) return null;
+  let h = parseInt(m[1]);
+  const min = parseInt(m[2]);
+  if (m[3] === 'PM' && h !== 12) h += 12;
+  if (m[3] === 'AM' && h === 12) h = 0;
+  return h * 60 + min;
+}
+
+function SystemTab({ health, v2Data }) {
+  const stats = health?.stats || {};
+  const now   = new Date();
+  const nm    = now.getHours() * 60 + now.getMinutes();
+  const wkday = now.getDay() >= 1 && now.getDay() <= 5;
+  const inHrs = wkday && now.getHours() >= 4 && now.getHours() < 18;
+
+  const hAge = health?.timestamp  ? Math.round((Date.now() - new Date(health.timestamp).getTime())  / 60000) : null;
+  const vAge = v2Data?.timestamp  ? Math.round((Date.now() - new Date(v2Data.timestamp).getTime())  / 60000) : null;
+
+  return (
+    <div style={{ padding: '12px 16px 8px' }}>
+      {/* Bot Status */}
+      <Card style={{ marginBottom: 12 }}>
+        <Label>Bot Status</Label>
+        <StatRow label="System"       value={health?.status || '—'}      color={health?.status === 'OK' ? GAIN : LOSS} />
+        <StatRow label="Daemon"       value={inHrs ? 'RUNNING' : 'SLEEPING'} color={inHrs ? GAIN : '#64748b'} />
+        <StatRow label="Health data"  value={hAge != null ? (hAge < 5 ? 'Live' : hAge + 'm ago') : '—'} color={hAge != null && hAge < 30 ? GAIN : SQUEEZE} />
+        <StatRow label="Research data" value={vAge != null ? (vAge < 60 ? 'Fresh' : vAge + 'm ago') : '—'} color={vAge != null && vAge < 300 ? GAIN : SQUEEZE} />
+        <StatRow label="Open positions" value={stats.num_positions ?? '—'} />
+        <StatRow label="Total P&L"   value={stats.total_pnl != null ? fmt$(stats.total_pnl) : '—'} color={pnlColor(stats.total_pnl || 0)} />
+      </Card>
+
+      {/* Tiered exit rules */}
+      <Card style={{ marginBottom: 12 }}>
+        <Label>Tiered Exit Rules</Label>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+          {Object.entries(TIER_STOPS).map(([tier, stop]) => {
+            const tc = TIER_COLORS[tier];
+            return (
+              <div key={tier} style={{
+                background: '#252525', borderRadius: 8, padding: '10px 12px',
+                borderLeft: `3px solid ${tc.border}`,
+              }}>
+                <div style={{ marginBottom: 6 }}><TierBadge tier={tier} sm /></div>
+                <div style={{ fontSize: 11, color: LOSS }}>Stop: −{(stop * 100).toFixed(0)}%</div>
+                <div style={{ fontSize: 11, color: GAIN }}>Target: +{(TIER_TARGETS[tier] * 100).toFixed(0)}%</div>
+              </div>
+            );
+          })}
+        </div>
+        <p style={{ fontSize: 10, color: '#475569', margin: '10px 0 0' }}>
+          HWM trailing stop −10% after +20% · Time exit: 30 days
+        </p>
+      </Card>
+
+      {/* Config */}
+      <Card style={{ marginBottom: 12 }}>
+        <Label>Configuration</Label>
+        <StatRow label="Starting equity" value="$100,000" />
+        <StatRow label="Daily budget"    value="$300" />
+        <StatRow label="Per ticker"      value="$100" />
+        <StatRow label="Max positions"   value="20" />
+        <StatRow label="Mode"            value="Paper Trading" color="#60a5fa" />
+        <StatRow label="Exchange"        value="Alpaca" />
+      </Card>
+
+      {/* Schedule */}
+      <Card style={{ marginBottom: 12 }}>
+        <Label>Daily Schedule (PT)</Label>
+        {SCHEDULE.map((s, i) => {
+          const sm = parseMins(s.time);
+          const active = s.time === 'Always'
+            ? (nm >= 270 && nm <= 795)
+            : (sm != null && Math.abs(nm - sm) < 20);
+          return (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '7px 10px', borderRadius: 6, marginBottom: 2,
+              background: active ? 'rgba(16,185,129,0.07)' : 'transparent',
+              borderLeft: active ? `2px solid ${GAIN}` : '2px solid #252525',
+            }}>
+              <span style={{ fontSize: 13 }}>{s.icon}</span>
+              <span style={{ fontSize: 10, color: '#60a5fa', fontWeight: 600, minWidth: 65 }}>{s.time}</span>
+              <span style={{ fontSize: 10, color: active ? GAIN : '#94a3b8', flex: 1 }}>{s.label}</span>
+              {active && <span style={{ fontSize: 9, color: GAIN, fontWeight: 700 }}>NOW</span>}
+            </div>
+          );
+        })}
+      </Card>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// STALE BANNER
+// ═══════════════════════════════════════════════════════════════════════
+function StaleBanner({ v2Data }) {
+  if (!v2Data?.timestamp) return null;
+  const ageMs = Date.now() - new Date(v2Data.timestamp).getTime();
+  const hour  = new Date().getHours();
+  const isWknd = [0, 6].includes(new Date().getDay());
+  const warnMs = isWknd ? 3 * 24 * 3600000 : (hour >= 6 && hour <= 14 ? 4 * 3600000 : 18 * 3600000);
+  if (ageMs < warnMs) return null;
+  const isDead  = ageMs > warnMs * 4;
+  const isStale = ageMs > warnMs * 2;
+  const bg = isDead ? '#7f1d1d' : isStale ? '#92400e' : '#78350f';
+  return (
+    <div style={{
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 300,
+      background: bg, color: '#fef3c7',
+      padding: '7px 16px', fontSize: 12, fontWeight: 600, textAlign: 'center',
+    }}>
+      Research scan {fmtAge(ageMs)} old{isDead ? ' — pipeline may need attention' : ''}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// BOTTOM TAB BAR
+// ═══════════════════════════════════════════════════════════════════════
+const TABS = [
+  { id: 'home',   label: 'Home',   icon: '◉' },
+  { id: 'radar',  label: 'Radar',  icon: '◎' },
+  { id: 'perf',   label: 'Perf',   icon: '↗' },
+  { id: 'system', label: 'System', icon: '⚙' },
+];
+
+function BottomTabBar({ active, onChange }) {
+  return (
+    <div style={{
+      position: 'fixed', bottom: 0, left: 0, right: 0,
+      height: 56, background: '#181818', borderTop: '1px solid #2a2a2a',
+      display: 'flex', zIndex: 200,
+      paddingBottom: 'env(safe-area-inset-bottom, 0)',
+    }}>
+      {TABS.map(tab => {
+        const on = active === tab.id;
+        return (
+          <button key={tab.id} onClick={() => onChange(tab.id)} style={{
+            flex: 1, background: 'none', border: 'none', cursor: 'pointer',
+            display: 'flex', flexDirection: 'column', alignItems: 'center',
+            justifyContent: 'center', gap: 2, minHeight: 44,
+            color: on ? GAIN : '#555',
+            transition: 'color 0.15s',
+            WebkitTapHighlightColor: 'transparent',
+          }}>
+            <span style={{ fontSize: 18, lineHeight: 1 }}>{tab.icon}</span>
+            <span style={{ fontSize: 10, fontWeight: on ? 700 : 400, letterSpacing: 0.3 }}>{tab.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// APP ROOT
+// ═══════════════════════════════════════════════════════════════════════
+function App() {
+  const [tab, setTab] = useState('home');
+
+  const { data: health }      = usePoll('data/health.json',       HEALTH_POLL_MS);
+  const { data: v2Data }      = usePoll('data/v2_dashboard.json', V2_POLL_MS);
+  const { data: closedTrades }= usePoll('data/closed_trades.json',CLOSED_POLL_MS);
+  const equityHistory          = useOnce('data/equity_history.json');
+  const evalReport             = useOnce('data/learning_eval_report.json');
+  const premarket              = useOnce('data/premarket_targets.json');
+
+  const [tick, setTick] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setTick(t => t + 1), 60000);
+    return () => clearInterval(id);
+  }, []);
+
+  const picks       = v2Data?.top_picks || [];
+  const trifectas   = picks.filter(isTrifecta).length;
+  const stats       = health?.stats || {};
+  const equity      = stats.equity;
+  const totalPnl    = stats.total_pnl || 0;
+  const wkday       = new Date().getDay();
+  const hour        = new Date().getHours();
+  const inHrs       = wkday >= 1 && wkday <= 5 && hour >= 4 && hour < 18;
+
+  const staleBannerH = (() => {
+    if (!v2Data?.timestamp) return 0;
+    const ageMs  = Date.now() - new Date(v2Data.timestamp).getTime();
+    const isWknd = [0, 6].includes(new Date().getDay());
+    const warnMs = isWknd ? 3*24*3600000 : (hour >= 6 && hour <= 14 ? 4*3600000 : 18*3600000);
+    return ageMs >= warnMs ? 34 : 0;
+  })();
+
+  return (
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <StaleBanner v2Data={v2Data} />
+
+      {/* Header */}
+      <div style={{
+        background: '#181818', borderBottom: '1px solid #2a2a2a',
+        padding: '10px 16px', display: 'flex', alignItems: 'center',
+        justifyContent: 'space-between', flexShrink: 0,
+        marginTop: staleBannerH,
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
+          <span style={{ fontSize: 15, fontWeight: 800, color: GAIN, letterSpacing: -0.3 }}>
+            SQUEEZE PROPHET
+          </span>
+          <span style={{
+            fontSize: 9, fontWeight: 700, background: 'rgba(96,165,250,0.12)',
+            color: '#60a5fa', border: '1px solid rgba(96,165,250,0.3)',
+            borderRadius: 10, padding: '2px 7px',
+          }}>PAPER</span>
+          {inHrs && (
+            <span style={{
+              fontSize: 9, fontWeight: 700, background: 'rgba(16,185,129,0.12)',
+              color: GAIN, border: `1px solid rgba(16,185,129,0.3)`,
+              borderRadius: 10, padding: '2px 7px',
+            }}>● LIVE</span>
+          )}
+          {trifectas > 0 && (
+            <span style={{
+              fontSize: 9, fontWeight: 700, color: SQUEEZE,
+              background: 'rgba(245,158,11,0.12)', border: `1px solid rgba(245,158,11,0.3)`,
+              borderRadius: 10, padding: '2px 7px',
+            }}>⚡ {trifectas}</span>
+          )}
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          {equity != null && (
+            <div style={{ fontSize: 14, fontWeight: 700, color: pnlColor(totalPnl) }}>
+              {fmt$k(equity)}
+            </div>
+          )}
+          <div style={{ fontSize: 9, color: '#475569' }}>
+            {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          </div>
+        </div>
+      </div>
+
+      {/* Scrollable content */}
+      <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', paddingBottom: 64 }}>
+        {tab === 'home'   && <HomeTab        health={health} v2Data={v2Data} closedTrades={closedTrades} />}
+        {tab === 'radar'  && <RadarTab       v2Data={v2Data} premarket={premarket} />}
+        {tab === 'perf'   && <PerformanceTab evalReport={evalReport} equityHistory={equityHistory} closedTrades={closedTrades} />}
+        {tab === 'system' && <SystemTab      health={health} v2Data={v2Data} />}
+      </div>
+
+      <BottomTabBar active={tab} onChange={setTab} />
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
-<!-- END STALENESS BANNER -->
-
-    <!-- Connection Lost Banner -->
-    <div id="connection-lost-banner" class="connection-lost" style="display:none; position:fixed; top:70px; left:24px; right:24px; z-index:100;">
-        ⚠ <span id="connection-lost-msg">Unable to reach Alpaca API after 3 retries.</span>
-        <span style="font-size:10px;font-weight:400;margin-left:8px;">Dashboard shows research data only. Bookmark with <code style="font-size:10px;">?key=ALPACA_KEY&amp;secret=ALPACA_SECRET</code> to enable live account data.</span>
-    </div>
-
-    <div id="app">
-        <!-- Header -->
-        <header style="background: #0f172ae0; border-bottom: 1px solid #334155; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(8px);">
-            <div style="max-width: 1400px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
-                <div style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
-                    <h1 style="font-size: 22px; font-weight: 700; color: #10b981; margin: 0;">MIKE'S TRADING BOT v2</h1>
-                    <span id="status-badge" style="padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700;"></span>
-                    <span style="padding: 4px 10px; font-size: 11px; font-weight: 700; background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); border-radius: 20px;">PAPER TRADING</span>
-                    <span id="daemon-badge" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8;">DAEMON: ?</span>
-                    <span id="health-badge" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8;">HEALTH: ?</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="text-align: right; font-size: 11px; color: #94a3b8;">
-                        <span id="last-update"></span>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <main style="max-width: 1400px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 20px;">
-
-            <!-- SECTION: HOW THIS SYSTEM WORKS -->
-            <div class="card fade-in" style="padding: 20px; border-left: 3px solid #10b981;">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
-                    <span style="font-size: 18px;">🧠</span>
-                    <p style="font-size: 13px; font-weight: 700; color: #10b981; margin: 0; text-transform: uppercase; letter-spacing: 1px;">Autonomous AI Trading System</p>
-                </div>
-                <p style="font-size: 12px; color: #cbd5e1; margin: 0 0 14px; line-height: 1.6;">
-                    Research-driven AI system running 4:30 AM - 6:00 PM PT fully autonomous. Mirrors the ChatGPT methodology that found PSTV (+1558%), GV (+95%), RGC (+32%). Four Finviz screeners (short squeeze, unusual volume, biotech catalyst, pre-catalyst setup) plus Alpaca movers and Reddit social scanning. AI evaluation scores each candidate on catalysts, float, short interest, volume acceleration, and social momentum. Persistent SQLite watchlist tracks candidates across days — building conviction before stocks move. Paper trades via Alpaca ($300/day, $100/ticker) with HWM trailing stops. Goal: beat ChatGPT's 63.8% in 34 days.
-                </p>
-                <div style="display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 10px;">
-                    <span style="padding: 4px 8px; background: rgba(168,85,247,0.15); color: #c084fc; border-radius: 4px; font-weight: 700;">V2 AI Research</span>
-                    <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(99,102,241,0.15); color: #818cf8; border-radius: 4px;">Finviz + yfinance + Reddit</span>
-                    <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(234,179,8,0.15); color: #fbbf24; border-radius: 4px;">AI Evaluation</span>
-                    <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 4px;">Persistent Watchlist</span>
-                    <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(16,185,129,0.15); color: #10b981; border-radius: 4px;">Auto Execute</span>
-                    <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(59,130,246,0.15); color: #60a5fa; border-radius: 4px;">HWM Trailing Stops</span>
-                    <span style="color: #475569;">→</span>
-                    <span style="padding: 4px 8px; background: rgba(168,85,247,0.15); color: #c084fc; border-radius: 4px;">Self-Learn</span>
-                </div>
-            </div>
-
-            <!-- Portfolio Summary Cards -->
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px;">
-                <div class="card fade-in" style="padding: 16px;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px;">Total Equity</p>
-                    <p id="total-equity" style="font-size: 26px; font-weight: 700; color: #fff; margin: 0 0 4px;">—</p>
-                    <p id="equity-change" style="font-size: 11px; color: #10b981; margin: 0;"></p>
-                </div>
-                <div class="card fade-in" style="padding: 16px;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px;">Cash</p>
-                    <p id="cash" style="font-size: 26px; font-weight: 700; color: #fff; margin: 0 0 4px;">—</p>
-                    <p id="buying-power" style="font-size: 11px; color: #94a3b8; margin: 0;"></p>
-                </div>
-                <div class="card fade-in" id="pnl-card" style="padding: 16px;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px;">Today's P&L</p>
-                    <p id="day-pnl" style="font-size: 26px; font-weight: 700; margin: 0 0 4px;">—</p>
-                    <p id="day-pnl-pct" style="font-size: 11px; margin: 0;"></p>
-                </div>
-                <div class="card fade-in" style="padding: 16px;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px;">Positions</p>
-                    <p id="open-positions" style="font-size: 26px; font-weight: 700; color: #22d3ee; margin: 0 0 4px;">—</p>
-                    <p style="font-size: 11px; color: #94a3b8; margin: 0;">Max 20</p>
-                </div>
-                <div class="card fade-in" style="padding: 16px;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px;">Budget</p>
-                    <p style="font-size: 26px; font-weight: 700; color: #60a5fa; margin: 0 0 4px;">$300</p>
-                    <p style="font-size: 11px; color: #94a3b8; margin: 0;">$100/ticker</p>
-                </div>
-                <div class="card fade-in" style="padding: 16px;">
-                    <p style="font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px;">Win Rate</p>
-                    <p id="win-rate" style="font-size: 26px; font-weight: 700; color: #10b981; margin: 0 0 4px;">—</p>
-                    <p id="trades-closed" style="font-size: 11px; color: #94a3b8; margin: 0;">0 closed</p>
-                </div>
-            </div>
-
-            <!-- Benchmark + Health + Circuit Breaker -->
-            <div class="grid-3col">
-                <!-- Benchmark Gauge -->
-                <div class="card fade-in" style="padding: 20px; text-align: center;">
-                    <p class="section-title">🎯 Target: Beat ChatGPT 63.8%</p>
-                    <div style="position: relative; width: 180px; height: 100px; margin: 0 auto;">
-                        <svg viewBox="0 0 200 100" style="width: 100%; height: 100%;">
-                            <path d="M 20,80 A 60,60 0 0,1 180,80" fill="none" stroke="#374151" stroke-width="10" stroke-linecap="round"/>
-                            <path id="gauge-arc" d="M 20,80 A 60,60 0 0,1 180,80" fill="none" stroke="#10b981" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 251.2"/>
-                            <text id="gauge-text" x="100" y="55" text-anchor="middle" fill="#fff" font-size="22" font-weight="bold">0%</text>
-                        </svg>
-                    </div>
-                    <p id="benchmark-label" style="font-size: 14px; color: #10b981; font-weight: 600; margin: 4px 0 0;">0.0% / 63.8%</p>
-                </div>
-
-                <!-- System Health -->
-                <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">💚 System Health</p>
-                    <div id="health-details" style="font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
-                        <div class="stat-row"><span class="stat-label">Alpaca API</span><span id="h-api" class="stat-value health-ok">—</span></div>
-                        <div class="stat-row"><span class="stat-label">Daemon</span><span id="h-daemon" class="stat-value">—</span></div>
-                        <div class="stat-row"><span class="stat-label">HWM Tracking</span><span id="h-hwm" class="stat-value">—</span></div>
-                        <div class="stat-row"><span class="stat-label">Last Scan</span><span id="h-scan" class="stat-value">—</span></div>
-                        <div class="stat-row"><span class="stat-label">Errors Today</span><span id="h-errors" class="stat-value">—</span></div>
-                        <div class="stat-row"><span class="stat-label">Research</span><span id="h-research" class="stat-value">—</span></div>
-                    </div>
-                </div>
-
-                <!-- Exit Rules + Circuit Breaker -->
-                <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">🛡 Exit Rules & Safety</p>
-                    <div style="font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
-                        <div class="stat-row"><span style="color: #ef4444;">Hard stop</span><span style="color: #fff; font-weight: 600;">-10%</span></div>
-                        <div class="stat-row"><span style="color: #fbbf24;">Trailing stop</span><span style="color: #fff; font-weight: 600;">-10% from HWM after +20%</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Profit target</span><span style="color: #fff; font-weight: 600;">+50%</span></div>
-                        <div class="stat-row"><span style="color: #94a3b8;">Time exit</span><span style="color: #fff; font-weight: 600;">30 days</span></div>
-                        <div style="border-top: 1px solid #334155; padding-top: 6px; margin-top: 2px;">
-                            <div class="stat-row">
-                                <span style="color: #94a3b8; font-weight: 700;">Circuit Breaker</span>
-                                <span id="circuit-breaker" style="color: #64748b; font-weight: 600; font-size: 10px;">DISABLED</span>
-                            </div>
-                            <p style="font-size: 10px; color: #64748b; margin: 4px 0 0;">Disabled — staying in market for max learning data</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Charts Row -->
-            <div class="grid-chart" style="height: 320px;">
-                <div class="card fade-in" style="padding: 20px; overflow: hidden; height: 320px; box-sizing: border-box;">
-                    <p class="section-title">📈 Equity Curve vs 63.8% Benchmark</p>
-                    <div style="position: relative; width: 100%; height: 260px;">
-                        <canvas id="equity-chart" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
-                    </div>
-                </div>
-                <div class="card fade-in" style="padding: 20px; overflow: hidden; height: 320px; box-sizing: border-box;">
-                    <p class="section-title">📊 Win / Loss</p>
-                    <div style="position: relative; width: 100%; height: 180px;">
-                        <canvas id="winloss-chart" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
-                    </div>
-                    <div style="margin-top: 12px; font-size: 11px;">
-                        <div class="stat-row"><span style="color: #94a3b8;">Wins</span><span id="wins-pct" style="color: #10b981; font-weight: 700;">—</span></div>
-                        <div class="stat-row"><span style="color: #94a3b8;">Losses</span><span id="losses-pct" style="color: #ef4444; font-weight: 700;">—</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- V2 RESEARCH ENGINE -->
-            <div class="card fade-in" style="padding: 20px; border-left: 3px solid #c084fc;">
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                    <span style="font-size: 18px;">🧪</span>
-                    <p style="font-size: 13px; font-weight: 700; color: #c084fc; margin: 0; text-transform: uppercase; letter-spacing: 1px;">V2 Research Engine</p>
-                    <span id="v2-status" class="tag" style="background: rgba(148,163,184,0.15); color: #94a3b8; margin-left: auto;">LOADING...</span>
-                    <span id="v2-timestamp" style="font-size: 10px; color: #64748b;"></span>
-                </div>
-                <p style="font-size: 11px; color: #64748b; margin: 0 0 14px; line-height: 1.5;">Research-driven AI stock picker mirroring the ChatGPT methodology. Discovers candidates via Finviz screeners, evaluates with multi-factor AI reasoning (catalyst, float, short interest, volume, social momentum), and tracks across days via persistent SQLite watchlist.</p>
-                <!-- V2 Stats Row -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px;">
-                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 10px; text-align: center;">
-                        <p style="font-size: 9px; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase;">Discovered</p>
-                        <p id="v2-discovered" style="font-size: 20px; font-weight: 700; color: #60a5fa; margin: 0;">—</p>
-                    </div>
-                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 10px; text-align: center;">
-                        <p style="font-size: 9px; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase;">Evaluated</p>
-                        <p id="v2-evaluated" style="font-size: 20px; font-weight: 700; color: #fbbf24; margin: 0;">—</p>
-                    </div>
-                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 10px; text-align: center;">
-                        <p style="font-size: 9px; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase;">Trade Ready</p>
-                        <p id="v2-ready" style="font-size: 20px; font-weight: 700; color: #10b981; margin: 0;">—</p>
-                    </div>
-                    <div style="background: rgba(30,41,59,0.5); border-radius: 6px; padding: 10px; text-align: center;">
-                        <p style="font-size: 9px; color: #94a3b8; margin: 0 0 4px; text-transform: uppercase;">Social Trending</p>
-                        <p id="v2-social" style="font-size: 20px; font-weight: 700; color: #c084fc; margin: 0;">—</p>
-                    </div>
-                </div>
-                <!-- Top Picks Table -->
-                <div style="margin-bottom: 14px;">
-                    <p style="font-size: 10px; color: #c084fc; font-weight: 700; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px;">Top AI Picks (Conviction Tiers)</p>
-                    <div id="v2-picks" style="display: flex; flex-direction: column; gap: 6px; max-height: 320px; overflow-y: auto;" class="scrollbar-thin">
-                        <div style="text-align: center; color: #64748b; font-size: 11px; padding: 16px;">Waiting for first v2 research cycle...</div>
-                    </div>
-                </div>
-                <!-- Social Trending -->
-                <div style="border-top: 1px solid #334155; padding-top: 12px;">
-                    <p style="font-size: 10px; color: #fbbf24; font-weight: 700; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px;">Reddit Social Momentum</p>
-                    <div id="v2-reddit" style="display: flex; flex-wrap: wrap; gap: 6px; font-size: 11px;">
-                        <span style="color: #64748b;">Waiting for research...</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Positions Table (with HWM/trailing data) -->
-            <div class="card fade-in" style="overflow: hidden;">
-                <div style="padding: 16px; border-bottom: 1px solid #334155; display: flex; justify-content: space-between; align-items: center;">
-                    <p class="section-title" style="margin: 0;">↗ Active Positions (Live Trailing Stops)</p>
-                    <p id="positions-total-pnl" style="font-size: 12px; margin: 0; font-weight: 700;"></p>
-                </div>
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
-                        <thead>
-                            <tr style="background: rgba(30,41,59,0.5); border-bottom: 1px solid #475569;">
-                                <th style="padding: 10px 12px; text-align: left; font-weight: 600; color: #94a3b8;">Symbol</th>
-                                <th style="padding: 10px 12px; text-align: right; font-weight: 600; color: #94a3b8;">Entry</th>
-                                <th style="padding: 10px 12px; text-align: right; font-weight: 600; color: #94a3b8;">Current</th>
-                                <th style="padding: 10px 12px; text-align: right; font-weight: 600; color: #94a3b8;">P&L $</th>
-                                <th style="padding: 10px 12px; text-align: right; font-weight: 600; color: #94a3b8;">P&L %</th>
-                                <th style="padding: 10px 12px; text-align: right; font-weight: 600; color: #94a3b8;">Qty</th>
-                                <th style="padding: 10px 12px; text-align: right; font-weight: 600; color: #94a3b8;">Cost</th>
-                                <th style="padding: 10px 12px; text-align: right; font-weight: 600; color: #94a3b8;">Mkt Val</th>
-                                <th style="padding: 10px 12px; text-align: center; font-weight: 600; color: #94a3b8;">HWM Peak</th>
-                                <th style="padding: 10px 12px; text-align: center; font-weight: 600; color: #94a3b8;">Exit Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="positions-body">
-                            <tr><td colspan="10" style="padding: 24px; text-align: center; color: #64748b;">Loading...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Recent Orders -->
-            <div class="card fade-in" style="overflow: hidden;">
-                <div style="padding: 16px; border-bottom: 1px solid #334155;">
-                    <p class="section-title" style="margin: 0;">⚡ Recent Orders</p>
-                </div>
-                <div style="overflow-x: auto;">
-                    <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
-                        <thead>
-                            <tr style="background: rgba(30,41,59,0.5); border-bottom: 1px solid #475569;">
-                                <th style="padding: 10px 14px; text-align: left; font-weight: 600; color: #94a3b8;">Symbol</th>
-                                <th style="padding: 10px 14px; text-align: center; font-weight: 600; color: #94a3b8;">Side</th>
-                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Qty</th>
-                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Price</th>
-                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Total</th>
-                                <th style="padding: 10px 14px; text-align: center; font-weight: 600; color: #94a3b8;">Status</th>
-                                <th style="padding: 10px 14px; text-align: right; font-weight: 600; color: #94a3b8;">Time</th>
-                            </tr>
-                        </thead>
-                        <tbody id="orders-body">
-                            <tr><td colspan="7" style="padding: 24px; text-align: center; color: #64748b;">Loading...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Schedule + Scoring + Learning -->
-            <div class="grid-bottom">
-                <!-- Full Day Schedule -->
-                <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">🕐 Full Day Schedule (PT)</p>
-                    <div id="schedule-list" style="display: flex; flex-direction: column; gap: 5px; font-size: 11px;"></div>
-                </div>
-
-                <!-- V2 AI Evaluation -->
-                <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">🧪 AI Evaluation (6 Factors)</p>
-                    <div style="font-size: 11px; display: flex; flex-direction: column; gap: 5px;">
-                        <div class="stat-row"><span style="color: #c084fc;">Catalyst (news/FDA/biotech)</span><span style="color: #64748b;">0-35 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Float size</span><span style="color: #64748b;">0-30 pts</span></div>
-                        <div class="stat-row"><span style="color: #10b981;">Short interest</span><span style="color: #64748b;">0-30 pts</span></div>
-                        <div class="stat-row"><span style="color: #fbbf24;">Volume acceleration</span><span style="color: #64748b;">0-25 pts</span></div>
-                        <div class="stat-row"><span style="color: #60a5fa;">Social momentum</span><span style="color: #64748b;">0-20 pts</span></div>
-                        <div class="stat-row"><span style="color: #22d3ee;">Real-time move</span><span style="color: #64748b;">0-20 pts</span></div>
-                        <div style="border-top: 1px solid #334155; padding-top: 5px; margin-top: 2px;">
-                            <div class="stat-row"><span style="color: #ef4444;">No catalyst</span><span style="color: #64748b;">-30</span></div>
-                            <div class="stat-row"><span style="color: #ef4444;">Near 52w high</span><span style="color: #64748b;">risk flag</span></div>
-                            <div class="stat-row"><span style="color: #ef4444;">Large float</span><span style="color: #64748b;">risk flag</span></div>
-                        </div>
-                        <p style="font-size: 10px; color: #64748b; margin: 4px 0 0;">S-tier: 80+ | A-tier: 60+ | B-tier: 40+ | C: 25+ | PASS: &lt;25</p>
-                    </div>
-                </div>
-
-                <!-- How It Learns -->
-                <div class="card fade-in" style="padding: 20px;">
-                    <p class="section-title">🔬 How It Learns</p>
-                    <div style="font-size: 11px; display: flex; flex-direction: column; gap: 8px;">
-                        <div>
-                            <p style="color: #c084fc; font-weight: 600; margin: 0 0 4px; font-size: 10px;">DAILY WINNERS RESEARCH</p>
-                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">After-hours, the system pulls each day's top gainers and researches their characteristics (float, short interest, sector, catalyst). Patterns are tracked in SQLite to identify what makes stocks move.</p>
-                        </div>
-                        <div style="border-top: 1px solid #334155; padding-top: 8px;">
-                            <p style="color: #22d3ee; font-weight: 600; margin: 0 0 4px; font-size: 10px;">TRADE OUTCOME LEARNING</p>
-                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">Every closed trade is recorded with entry thesis, exit reason, and P&L. Price sweet spot ($2-10) and high-conviction-only filters are calibrated from historical results.</p>
-                        </div>
-                        <div style="border-top: 1px solid #334155; padding-top: 8px;">
-                            <p style="color: #fbbf24; font-weight: 600; margin: 0 0 4px; font-size: 10px;">PERSISTENT WATCHLIST</p>
-                            <p style="color: #64748b; margin: 0; font-size: 10px; line-height: 1.5;">SQLite tracks every candidate across days. Each scan appearance increases conviction. Pre-catalyst setups are watched until volume confirms. 4 discovery channels: Finviz, Alpaca, Reddit, yfinance.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Activity Log -->
-            <div class="card fade-in" style="overflow: hidden;">
-                <div style="padding: 16px; border-bottom: 1px solid #334155;">
-                    <p class="section-title" style="margin: 0;">🔄 Activity Log</p>
-                </div>
-                <div id="activity-feed" class="scrollbar-thin" style="padding: 16px; max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;">
-                    <div style="padding: 12px; text-align: center; color: #64748b; font-size: 12px;">Waiting for data...</div>
-                </div>
-            </div>
-
-            <!-- Footer -->
-            <div style="text-align: center; font-size: 11px; color: #64748b; padding: 16px 0; border-top: 1px solid #334155;">
-                <p style="margin: 0;">Alpaca Paper Trading | 4:30 AM - 6:00 PM PT Autonomous | Research → Evaluate → Execute → Monitor → Learn from Winners</p>
-            </div>
-        </main>
-    </div>
-
-    <script>
-    // ─── CONFIGURATION MANAGEMENT ────────────────────────────
-    const ALPACA_BASE = 'https://paper-api.alpaca.markets';
-    const POLL_INTERVAL = 30000;
-    const STARTING_EQUITY = 100000;
-    const V2_DATA_URL = 'data/v2_dashboard.json';
-    const MAX_EQUITY_POINTS = 500;
-    const MAX_CONSECUTIVE_FAILURES = 3;
-
-    // API keys: read from URL params only — never hardcode in source.
-    // To enable live account data: bookmark the dashboard with
-    //   ?key=YOUR_ALPACA_KEY&secret=YOUR_ALPACA_SECRET
-    // Without keys the dashboard runs in data-only mode (research JSON only).
-    // Keys are stored only in memory for the duration of the browser session.
-    const _params = new URLSearchParams(window.location.search);
-    const ALPACA_KEY = _params.get('key') || '';
-    const ALPACA_SECRET = _params.get('secret') || '';
-    const API_CONFIGURED = !!(ALPACA_KEY && ALPACA_SECRET);
-    let equityChart = null, winlossChart = null, activityLog = [];
-    let consecutiveFailures = 0;
-    let equityTimestamps = [];
-    let lastGoodAlpacaData = null; // Cache last successful API response
-
-    // ─── RETRY LOGIC WITH EXPONENTIAL BACKOFF ────────────────
-    let lastAlpacaError = '';
-    async function alpacaFetchWithRetry(endpoint, retries = 3) {
-        if (!API_CONFIGURED) throw new Error('API keys not configured. Add ?key=...&secret=... to URL');
-        const delays = [1000, 2000, 4000];
-        let lastErr;
-        for (let i = 0; i < retries; i++) {
-            try {
-                const res = await fetch(ALPACA_BASE + endpoint, {
-                    headers: { 'APCA-API-KEY-ID': ALPACA_KEY, 'APCA-API-SECRET-KEY': ALPACA_SECRET },
-                    mode: 'cors'
-                });
-                if (res.status === 401 || res.status === 403) {
-                    lastAlpacaError = `Auth error (${res.status}) — API keys may be invalid or expired`;
-                    throw new Error(lastAlpacaError);
-                }
-                if (res.status === 429) {
-                    lastAlpacaError = 'Rate limited (429) — too many requests';
-                    throw new Error(lastAlpacaError);
-                }
-                if (!res.ok) {
-                    lastAlpacaError = `HTTP ${res.status} from Alpaca`;
-                    throw new Error(lastAlpacaError);
-                }
-                consecutiveFailures = 0;
-                lastAlpacaError = '';
-                document.getElementById('connection-lost-banner').style.display = 'none';
-                return res.json();
-            } catch (err) {
-                lastErr = err;
-                // Auth errors won't resolve with retries — fail fast
-                if (err.message.includes('Auth error') || err.message.includes('Rate limited')) break;
-                if (i < retries - 1) {
-                    await new Promise(r => setTimeout(r, delays[i]));
-                }
-            }
-        }
-        // Update banner with specific error before throwing
-        const msg = lastAlpacaError || (lastErr && lastErr.message) || 'Network error';
-        const banner = document.getElementById('connection-lost-banner');
-        if (banner) {
-            const msgEl = document.getElementById('connection-lost-msg');
-            if (msgEl) msgEl.textContent = msg;
-        }
-        throw lastErr || new Error(msg);
-    }
-
-    // ─── SCHEDULE (full day) ─────────────────────────────────
-    const SCHEDULE = [
-        { time: '4:30 AM', label: 'Daemon starts', icon: '🤖' },
-        { time: '5:00 AM', label: 'Pre-market prep (gaps + watchlist)', icon: '🌅' },
-        { time: '6:30 AM', label: 'Research scan + execute', icon: '🧪' },
-        { time: '9:00 AM', label: 'Research scan + execute', icon: '🧪' },
-        { time: '12:00 PM', label: 'Research scan + execute', icon: '🧪' },
-        { time: '1:00 PM', label: 'EOD summary', icon: '📋' },
-        { time: '1:35 PM', label: 'Learning loop', icon: '🧠' },
-        { time: '2:00 PM', label: 'After-hours research', icon: '🌙' },
-        { time: '5:00 PM', label: 'After-hours research', icon: '🔬' },
-        { time: '6:00 PM', label: 'Daemon shutdown', icon: '🛑' },
-        { time: 'Always', label: 'Position monitor every 60s', icon: '👁' },
-    ];
-
-    function renderSchedule() {
-        const now = new Date();
-        const nowMins = now.getHours() * 60 + now.getMinutes();
-        const list = document.getElementById('schedule-list');
-        list.innerHTML = SCHEDULE.map(s => {
-            let active = false;
-            if (s.time === 'Always') active = nowMins >= 390 && nowMins <= 795;
-            else {
-                const parts = s.time.match(/(\d+):(\d+)\s*(AM|PM)/);
-                if (parts) {
-                    let h = parseInt(parts[1]);
-                    const m = parseInt(parts[2]);
-                    if (parts[3] === 'PM' && h !== 12) h += 12;
-                    if (parts[3] === 'AM' && h === 12) h = 0;
-                    active = Math.abs(nowMins - (h * 60 + m)) < 20;
-                }
-            }
-            return `<div class="schedule-item${active ? ' active' : ''}" style="display:flex;align-items:center;gap:8px;">
-                <span style="font-size:12px;">${s.icon}</span>
-                <span style="color:#60a5fa;font-weight:600;min-width:65px;font-size:10px;">${s.time}</span>
-                <span style="color:${active ? '#10b981' : '#cbd5e1'};font-size:10px;">${s.label}</span>
-                ${active && s.time !== 'Always' ? '<span style="font-size:9px;color:#10b981;font-weight:700;margin-left:auto;">NOW</span>' : ''}</div>`;
-        }).join('');
-    }
-
-    // ─── RENDERING ───────────────────────────────────────────
-    function $(id) { return document.getElementById(id); }
-    function money(n) { return '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-    function pct(n) { return (n >= 0 ? '+' : '') + Number(n).toFixed(2) + '%'; }
-
-    function updateStatus(live) {
-        const badge = $('status-badge');
-        if (live) {
-            badge.textContent = '● LIVE';
-            badge.style.cssText = 'padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);';
-        } else {
-            badge.textContent = '○ OFFLINE';
-            badge.style.cssText = 'padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3);';
-        }
-    }
-
-    function renderAccount(acct) {
-        const equity = parseFloat(acct.equity);
-        const cash = parseFloat(acct.cash);
-        const lastEquity = parseFloat(acct.last_equity);
-        const dayPnl = equity - lastEquity;
-        const dayPnlPct = lastEquity > 0 ? (dayPnl / lastEquity) * 100 : 0;
-        const totalReturn = ((equity - STARTING_EQUITY) / STARTING_EQUITY) * 100;
-
-        $('total-equity').textContent = money(equity);
-        $('equity-change').textContent = `Total: ${pct(totalReturn)} from $${STARTING_EQUITY.toLocaleString()}`;
-        $('equity-change').style.color = totalReturn >= 0 ? '#10b981' : '#ef4444';
-        $('cash').textContent = money(cash);
-        $('buying-power').textContent = `BP: ${money(acct.buying_power)}`;
-        $('day-pnl').textContent = (dayPnl >= 0 ? '+' : '') + money(Math.abs(dayPnl));
-        $('day-pnl').style.color = dayPnl >= 0 ? '#10b981' : '#ef4444';
-        $('day-pnl-pct').textContent = pct(dayPnlPct);
-        $('day-pnl-pct').style.color = dayPnl >= 0 ? '#10b981' : '#ef4444';
-
-        const benchPct = Math.max(0, Math.min(totalReturn, 100));
-        const gaugeRatio = Math.min(benchPct / 63.8, 1);
-        $('gauge-arc').setAttribute('stroke-dasharray', `${gaugeRatio * 251.2} 251.2`);
-        $('gauge-arc').setAttribute('stroke', totalReturn >= 63.8 ? '#10b981' : totalReturn >= 30 ? '#fbbf24' : '#ef4444');
-        $('gauge-text').textContent = totalReturn.toFixed(1) + '%';
-        $('benchmark-label').textContent = `${totalReturn.toFixed(1)}% / 63.8%`;
-
-        // Daemon badge
-        const now = new Date();
-        const h = now.getHours(), m = now.getMinutes();
-        const inDaemonWindow = (h >= 4 || (h === 4 && m >= 30)) && h < 18;
-        const weekday = now.getDay() >= 1 && now.getDay() <= 5;
-        const db = $('daemon-badge');
-        if (inDaemonWindow && weekday) {
-            db.textContent = 'DAEMON: RUNNING';
-            db.style.cssText = 'padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);display:inline-block;';
-        } else {
-            db.textContent = 'DAEMON: SLEEPING';
-            db.style.cssText = 'padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:rgba(148,163,184,0.15);color:#94a3b8;border:1px solid rgba(148,163,184,0.3);display:inline-block;';
-        }
-    }
-
-    function renderPositions(positions) {
-        $('open-positions').textContent = positions.length;
-        const tbody = $('positions-body');
-
-        if (positions.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="10" style="padding:24px;text-align:center;color:#64748b;">No open positions</td></tr>';
-            $('positions-total-pnl').textContent = '';
-            return;
-        }
-
-        let totalPnl = 0;
-        tbody.innerHTML = positions.sort((a,b) => parseFloat(b.unrealized_plpc) - parseFloat(a.unrealized_plpc)).map(p => {
-            const pnlPct = parseFloat(p.unrealized_plpc) * 100;
-            const pnlDollar = parseFloat(p.unrealized_pl);
-            const cost = parseFloat(p.cost_basis);
-            const mktVal = parseFloat(p.market_value);
-            totalPnl += pnlDollar;
-            const color = pnlPct >= 0 ? '#10b981' : '#ef4444';
-
-            let exitStatus = '', exitColor = '#64748b', hwmText = '—';
-            if (pnlPct <= -10) { exitStatus = 'STOP HIT'; exitColor = '#ef4444'; }
-            else if (pnlPct <= -7) { exitStatus = 'NEAR STOP'; exitColor = '#fbbf24'; }
-            else if (pnlPct >= 50) { exitStatus = 'TARGET!'; exitColor = '#10b981'; }
-            else if (pnlPct >= 20) {
-                exitStatus = 'TRAILING';
-                exitColor = '#22d3ee';
-                hwmText = `+${pnlPct.toFixed(0)}%`;
-            }
-            else { exitStatus = 'HOLDING'; }
-
-            return `<tr style="border-bottom:1px solid #334155;">
-                <td style="padding:8px 12px;font-weight:700;color:#fff;">${p.symbol}</td>
-                <td style="padding:8px 12px;text-align:right;color:#94a3b8;">${money(p.avg_entry_price)}</td>
-                <td style="padding:8px 12px;text-align:right;color:#fff;font-weight:600;">${money(p.current_price)}</td>
-                <td style="padding:8px 12px;text-align:right;font-weight:700;color:${color};">${pnlDollar >= 0 ? '+' : ''}${money(Math.abs(pnlDollar))}</td>
-                <td style="padding:8px 12px;text-align:right;font-weight:700;color:${color};">${pct(pnlPct)}</td>
-                <td style="padding:8px 12px;text-align:right;color:#94a3b8;">${p.qty}</td>
-                <td style="padding:8px 12px;text-align:right;color:#94a3b8;">${money(cost)}</td>
-                <td style="padding:8px 12px;text-align:right;color:#fff;">${money(mktVal)}</td>
-                <td style="padding:8px 12px;text-align:center;color:${exitColor};font-size:11px;font-weight:600;">${hwmText}</td>
-                <td style="padding:8px 12px;text-align:center;">
-                    <span class="tag" style="color:${exitColor};background:${exitColor}15;">${exitStatus}</span>
-                </td>
-            </tr>`;
-        }).join('');
-
-        const tc = totalPnl >= 0 ? '#10b981' : '#ef4444';
-        $('positions-total-pnl').innerHTML = `Unrealized: <span style="color:${tc}">${totalPnl >= 0 ? '+' : ''}${money(Math.abs(totalPnl))}</span>`;
-
-        // Health indicators
-        const trailing = positions.filter(p => parseFloat(p.unrealized_plpc) * 100 >= 20).length;
-        const nearStop = positions.filter(p => parseFloat(p.unrealized_plpc) * 100 <= -7).length;
-        $('h-hwm').textContent = `${trailing} trailing`;
-        $('h-hwm').className = 'stat-value ' + (trailing > 0 ? 'health-ok' : '');
-        $('h-api').textContent = 'Connected';
-        $('h-api').className = 'stat-value health-ok';
-        $('h-errors').textContent = nearStop > 0 ? `${nearStop} near stop` : '0';
-        $('h-errors').className = 'stat-value ' + (nearStop > 0 ? 'health-warn' : 'health-ok');
-
-        // Health badge
-        const hb = $('health-badge');
-        if (nearStop > 0) {
-            hb.textContent = 'HEALTH: WARNING';
-            hb.style.cssText = 'padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:rgba(234,179,8,0.15);color:#fbbf24;border:1px solid rgba(234,179,8,0.3);display:inline-block;';
-        } else {
-            hb.textContent = 'HEALTH: OK';
-            hb.style.cssText = 'padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:rgba(16,185,129,0.15);color:#10b981;border:1px solid rgba(16,185,129,0.3);display:inline-block;';
-        }
-
-        // Circuit breaker — disabled in code, just show static DISABLED label
-    }
-
-    function renderOrders(orders) {
-        const tbody = $('orders-body');
-        const recent = orders.slice(0, 15);
-        if (recent.length === 0) { tbody.innerHTML = '<tr><td colspan="7" style="padding:24px;text-align:center;color:#64748b;">No orders</td></tr>'; return; }
-
-        tbody.innerHTML = recent.map(o => {
-            const sideColor = o.side === 'buy' ? '#10b981' : '#ef4444';
-            const sColor = { filled:'#10b981', partially_filled:'#fbbf24', new:'#60a5fa', canceled:'#64748b', expired:'#64748b', rejected:'#ef4444' }[o.status] || '#94a3b8';
-            const price = o.filled_avg_price || o.limit_price || o.stop_price || null;
-            const qty = parseFloat(o.filled_qty || o.qty);
-            const total = price ? (qty * parseFloat(price)) : null;
-            const time = o.filled_at || o.submitted_at || o.created_at;
-            const timeStr = time ? new Date(time).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }) : '—';
-
-            return `<tr style="border-bottom:1px solid #334155;">
-                <td style="padding:8px 14px;font-weight:700;color:#fff;">${o.symbol}</td>
-                <td style="padding:8px 14px;text-align:center;">
-                    <span class="tag" style="background:${o.side==='buy'?'rgba(16,185,129,0.15)':'rgba(239,68,68,0.15)'};color:${sideColor};">${o.side.toUpperCase()}</span>
-                </td>
-                <td style="padding:8px 14px;text-align:right;color:#94a3b8;">${qty}</td>
-                <td style="padding:8px 14px;text-align:right;color:#fff;">${price ? money(price) : '—'}</td>
-                <td style="padding:8px 14px;text-align:right;color:#fff;">${total ? money(total) : '—'}</td>
-                <td style="padding:8px 14px;text-align:center;"><span style="color:${sColor};font-size:10px;font-weight:600;">${o.status.replace('_',' ').toUpperCase()}</span></td>
-                <td style="padding:8px 14px;text-align:right;color:#94a3b8;">${timeStr}</td>
-            </tr>`;
-        }).join('');
-
-        // Win/loss stats come from loadClosedTrades() — authoritative source is closed_trades.json
-        // Orders API only goes back 20 orders and can't accurately match buys to sells
-    }
-
-    function addActivity(type, detail, status) {
-        activityLog.unshift({ time: new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'}), type, detail, status });
-        if (activityLog.length > 25) activityLog.pop();
-        const icons = { SYNC:'🔄', ENTRY:'↗', EXIT:'↙', SCAN:'📊', LEARN:'🧠', ALERT:'⚠', ERROR:'❌', INFO:'ℹ', RESEARCH:'🌙' };
-        const colors = { ok:'rgba(16,185,129,0.08);border-left:2px solid rgba(16,185,129,0.4);color:#10b981', warn:'rgba(234,179,8,0.08);border-left:2px solid rgba(234,179,8,0.4);color:#fbbf24', err:'rgba(239,68,68,0.08);border-left:2px solid rgba(239,68,68,0.4);color:#ef4444' };
-        $('activity-feed').innerHTML = activityLog.map(a => `
-            <div style="padding:8px 12px;border-radius:6px;display:flex;align-items:flex-start;gap:10px;background:${colors[a.status]};">
-                <span style="flex-shrink:0;font-size:13px;">${icons[a.type] || 'ℹ'}</span>
-                <div style="flex:1;"><div style="display:flex;gap:8px;"><span style="font-size:10px;font-weight:700;">${a.type}</span><span style="font-size:10px;color:#64748b;">${a.time}</span></div><p style="font-size:11px;color:#cbd5e1;margin:3px 0 0;">${a.detail}</p></div>
-            </div>
-        `).join('');
-    }
-
-    // ─── CHARTS ──────────────────────────────────────────────
-    function initCharts() {
-        Chart.defaults.color = '#94a3b8';
-        Chart.defaults.borderColor = '#334155';
-        Chart.defaults.font.family = "'Courier New', monospace";
-
-        equityChart = new Chart($('equity-chart').getContext('2d'), {
-            type: 'line',
-            data: { labels: [], datasets: [
-                { label: 'Bot Equity', data: [], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.08)', fill: true, tension: 0.3, pointRadius: 0, borderWidth: 2 },
-                { label: '63.8% Target', data: [], borderColor: '#f59e0b', borderDash: [6, 3], fill: false, tension: 0, pointRadius: 0, borderWidth: 1.5 }
-            ]},
-            options: { responsive: true, maintainAspectRatio: false,
-                plugins: { legend: { labels: { boxWidth: 12, font: { size: 10 } } } },
-                scales: { x: { grid: { color: '#1e293b' }, ticks: { font: { size: 9 } } }, y: { grid: { color: '#1e293b' }, ticks: { font: { size: 9 }, callback: v => '$' + (v/1000).toFixed(0) + 'k' } } }
-            }
-        });
-
-        winlossChart = new Chart($('winloss-chart').getContext('2d'), {
-            type: 'doughnut',
-            data: { labels: ['Wins', 'Losses'], datasets: [{ data: [50, 50], backgroundColor: ['#10b981', '#ef4444'], borderColor: ['#064e3b', '#7f1d1d'], borderWidth: 2 }] },
-            options: { responsive: true, maintainAspectRatio: false, cutout: '60%', plugins: { legend: { display: false } } }
-        });
-    }
-
-    function updateEquityChart(equity) {
-        const label = new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-        equityChart.data.labels.push(label);
-        equityChart.data.datasets[0].data.push(parseFloat(equity));
-        const days = equityChart.data.labels.length;
-        equityChart.data.datasets[1].data.push(STARTING_EQUITY * (1 + 0.638 * (days / 34)));
-
-        // Keep last 500 points
-        if (equityChart.data.labels.length > MAX_EQUITY_POINTS) {
-            equityChart.data.labels.shift();
-            equityChart.data.datasets[0].data.shift();
-            equityChart.data.datasets[1].data.shift();
-        }
-        equityChart.update('none');
-    }
-
-    function updateWinLoss(w, l) {
-        if (w + l === 0) return;
-        winlossChart.data.datasets[0].data = [w, l];
-        winlossChart.update('none');
-        $('wins-pct').textContent = ((w / (w+l)) * 100).toFixed(1) + '%';
-        $('losses-pct').textContent = ((l / (w+l)) * 100).toFixed(1) + '%';
-        $('win-rate').textContent = ((w / (w+l)) * 100).toFixed(0) + '%';
-    }
-
-    // ─── EQUITY HISTORY LOADER ─────────────────────────────
-    let equityHistoryTimestamp = null;
-    async function loadEquityHistory() {
-        try {
-            const res = await fetch('data/equity_history.json?t=' + Date.now());
-            if (!res.ok) return;
-            const history = await res.json();
-            if (!Array.isArray(history) || history.length === 0) return;
-
-            // Pre-populate equity chart with historical daily snapshots
-            history.forEach(snap => {
-                const label = snap.date; // YYYY-MM-DD
-                equityChart.data.labels.push(label);
-                equityChart.data.datasets[0].data.push(snap.equity);
-                // Calculate benchmark line for this day
-                const dayIndex = history.indexOf(snap) + 1;
-                equityChart.data.datasets[1].data.push(STARTING_EQUITY * (1 + 0.638 * (dayIndex / 34)));
-            });
-            equityChart.update('none');
-            equityHistoryTimestamp = new Date();
-            addActivity('INFO', `Loaded ${history.length} days of equity history`, 'ok');
-        } catch (e) {
-            // No history file available yet, that's fine
-        }
-    }
-
-    // ─── CLOSED TRADES (authoritative win/loss source) ───────
-    async function loadClosedTrades() {
-        try {
-            const res = await fetch('data/closed_trades.json?t=' + Date.now());
-            if (!res.ok) return;
-            const trades = await res.json();
-            if (!Array.isArray(trades) || trades.length === 0) return;
-
-            const wins = trades.filter(t => t.pnl_pct > 0).length;
-            const losses = trades.filter(t => t.pnl_pct <= 0).length;
-            const total = wins + losses;
-
-            $('trades-closed').textContent = `${total} closed`;
-            updateWinLoss(wins, losses);
-
-            // Show best/worst trade tooltip in activity log (first load only)
-            if (total > 0 && activityLog.every(a => a.type !== 'LEARN')) {
-                const best = trades.reduce((a, b) => a.pnl_pct > b.pnl_pct ? a : b);
-                const worst = trades.reduce((a, b) => a.pnl_pct < b.pnl_pct ? a : b);
-                addActivity('LEARN', `${total} closed trades — ${wins}W/${losses}L (${((wins/total)*100).toFixed(0)}%). Best: ${best.symbol} +${best.pnl_pct.toFixed(1)}% | Worst: ${worst.symbol} ${worst.pnl_pct.toFixed(1)}%`, wins > losses ? 'ok' : 'warn');
-            }
-        } catch (e) { /* closed_trades.json not available yet */ }
-    }
-
-    // ─── V2 RESEARCH ENGINE ────────────────────────────────
-    // Market-aware data freshness: never throw away data, just flag it
-    function isMarketAwareExpired(timestamp) {
-        if (!timestamp) return false;
-        const age = Date.now() - new Date(timestamp).getTime();
-        const now = new Date();
-        const day = now.getDay();
-        const isWeekend = (day === 0 || day === 6);
-        // Weekends: allow up to 3 days (from Friday close)
-        if (isWeekend) return age > 3 * 86400000;
-        // Weekdays overnight: allow up to 18 hours
-        const hour = now.getHours();
-        if (hour < 6 || hour > 18) return age > 18 * 3600000;
-        // During market hours: 4 hour threshold
-        return age > 4 * 3600000;
-    }
-
-    async function fetchV2Data() {
-        try {
-            const res = await fetch(V2_DATA_URL + '?t=' + Date.now());
-            if (!res.ok) return null;
-            const data = await res.json();
-            // Always return data - let the UI show staleness badges instead of hiding everything
-            if (data.timestamp) {
-                data._isStale = isMarketAwareExpired(data.timestamp);
-            }
-            return data;
-        } catch { return null; }
-    }
-
-    function updateV2Panel(data) {
-        if (!data) {
-            $('v2-status').textContent = 'NO DATA';
-            $('v2-status').style.cssText = 'background:rgba(148,163,184,0.15);color:#94a3b8;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;';
-            return;
-        }
-
-        // Status badge with stale data warnings
-        const ready = data.ready_to_trade || 0;
-        let statusText = ready > 0 ? ready + ' READY' : 'SCANNING';
-        let statusStyle = ready > 0
-            ? 'background:rgba(16,185,129,0.15);color:#10b981;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(16,185,129,0.3);'
-            : 'background:rgba(234,179,8,0.15);color:#fbbf24;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(234,179,8,0.3);';
-
-        // Check for stale data
-        if (data.timestamp) {
-            const age = Date.now() - new Date(data.timestamp).getTime();
-            const twoHours = 2 * 60 * 60 * 1000;
-            const twentyFourHours = 24 * 60 * 60 * 1000;
-            if (age > twentyFourHours) {
-                statusText += ' EXPIRED';
-                statusStyle = 'background:rgba(239,68,68,0.15);color:#ef4444;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;display:inline-block;margin-left:auto;border:1px solid rgba(239,68,68,0.3);';
-            } else if (age > twoHours) {
-                statusText += ' STALE';
-            }
-        }
-
-        $('v2-status').textContent = statusText;
-        $('v2-status').style.cssText = statusStyle;
-
-        // Timestamp
-        if (data.timestamp) {
-            const ts = new Date(data.timestamp);
-            $('v2-timestamp').textContent = 'Last: ' + ts.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-        }
-
-        // Stats
-        $('v2-discovered').textContent = data.candidates_discovered || 0;
-        $('v2-evaluated').textContent = data.candidates_evaluated || 0;
-        $('v2-ready').textContent = data.ready_to_trade || 0;
-        const socialCount = data.social_trending ? Object.keys(data.social_trending).length : 0;
-        $('v2-social').textContent = socialCount;
-
-        // Top Picks
-        const picks = data.top_picks || [];
-        if (picks.length > 0) {
-            $('v2-picks').innerHTML = picks.map((p, i) => {
-                const tierColors = {
-                    S: { bg: 'rgba(168,85,247,0.12)', border: '#c084fc', text: '#c084fc' },
-                    A: { bg: 'rgba(16,185,129,0.12)', border: '#10b981', text: '#10b981' },
-                    B: { bg: 'rgba(234,179,8,0.12)', border: '#fbbf24', text: '#fbbf24' },
-                    C: { bg: 'rgba(148,163,184,0.08)', border: '#64748b', text: '#94a3b8' },
-                };
-                const tier = p.conviction || (p.score >= 80 ? 'S' : p.score >= 60 ? 'A' : p.score >= 40 ? 'B' : 'C');
-                const tc = tierColors[tier] || tierColors.C;
-                const catalyst = p.has_catalyst ? '<span style="color:#10b981;font-size:9px;font-weight:700;">CATALYST</span>' : '';
-                const thesis = (p.thesis || '').length > 100 ? p.thesis.substring(0, 100) + '...' : (p.thesis || 'No thesis');
-                return `<div style="background:${tc.bg};border-left:2px solid ${tc.border};border-radius:4px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px;">
-                    <div style="min-width:26px;text-align:center;">
-                        <span class="tag tier-${tier}" style="font-size:11px;padding:2px 6px;">${tier}</span>
-                    </div>
-                    <div style="flex:1;">
-                        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-                            <span style="font-weight:700;color:#fff;font-size:13px;">${p.symbol}</span>
-                            <span style="font-size:11px;color:${tc.text};font-weight:600;">Score: ${p.score}</span>
-                            ${catalyst}
-                        </div>
-                        <p style="font-size:10px;color:#94a3b8;margin:0;line-height:1.4;">${thesis}</p>
-                    </div>
-                </div>`;
-            }).join('');
-        }
-
-        // Social trending
-        const social = data.social_trending || {};
-        const sortedSocial = Object.entries(social).sort((a, b) => b[1] - a[1]);
-        if (sortedSocial.length > 0) {
-            $('v2-reddit').innerHTML = sortedSocial.slice(0, 15).map(([sym, count]) => {
-                const heat = count >= 10 ? '#ef4444' : count >= 5 ? '#fbbf24' : '#60a5fa';
-                const bg = count >= 10 ? 'rgba(239,68,68,0.12)' : count >= 5 ? 'rgba(234,179,8,0.12)' : 'rgba(96,165,250,0.12)';
-                return `<span style="padding:3px 8px;border-radius:4px;background:${bg};color:${heat};font-weight:600;">$${sym} <span style="font-size:9px;opacity:0.7;">x${count}</span></span>`;
-            }).join('');
-        }
-
-        addActivity('RESEARCH', `V2: ${data.candidates_evaluated || 0} evaluated, ${ready} trade-ready`, 'ok');
-    }
-
-    // ─── MAIN REFRESH ────────────────────────────────────────
-    async function refresh() {
-        const now = new Date();
-
-        // Always load V2 research data (static files, always available)
-        try {
-            const v2Data = await fetchV2Data();
-            updateV2Panel(v2Data);
-        } catch (e) { /* ignore */ }
-
-        // Alpaca API: only attempt if keys are configured
-        if (API_CONFIGURED) {
-            try {
-                const [account, positions, orders] = await Promise.all([
-                    alpacaFetchWithRetry('/v2/account'),
-                    alpacaFetchWithRetry('/v2/positions'),
-                    alpacaFetchWithRetry('/v2/orders?status=all&limit=20&direction=desc')
-                ]);
-                // Cache successful response
-                lastGoodAlpacaData = { account, positions, orders, time: now };
-                updateStatus(true);
-                renderAccount(account);
-                renderPositions(positions);
-                renderOrders(orders);
-                updateEquityChart(account.equity);
-                consecutiveFailures = 0;
-
-                // Update health scan info
-                $('h-daemon').textContent = 'Active';
-                $('h-daemon').className = 'stat-value health-ok';
-                $('h-scan').textContent = now.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-                $('h-scan').className = 'stat-value';
-                $('h-api').textContent = 'Connected';
-                $('h-api').className = 'stat-value health-ok';
-
-                addActivity('SYNC', `${positions.length} positions, equity ${money(account.equity)}`, 'ok');
-                $('last-update').textContent = 'Live: ' + now.toLocaleTimeString();
-            } catch (err) {
-                consecutiveFailures++;
-                // Use cached data if available instead of showing error state
-                if (lastGoodAlpacaData) {
-                    const cacheAge = Math.round((now - lastGoodAlpacaData.time) / 60000);
-                    updateStatus(true);
-                    $('last-update').textContent = 'Cached (' + cacheAge + 'm ago): ' + now.toLocaleTimeString();
-                    $('h-api').textContent = 'Cached';
-                    $('h-api').className = 'stat-value health-warn';
-                } else {
-                    updateStatus(false);
-                    if (consecutiveFailures >= MAX_CONSECUTIVE_FAILURES) {
-                        document.getElementById('connection-lost-banner').style.display = 'block';
-                    }
-                    $('last-update').textContent = 'API unavailable: ' + now.toLocaleTimeString();
-                }
-                if (consecutiveFailures <= 2) {
-                    addActivity('ALERT', 'Alpaca API retry ' + consecutiveFailures + ': ' + err.message, 'warn');
-                } else if (consecutiveFailures === MAX_CONSECUTIVE_FAILURES) {
-                    addActivity('ERROR', 'Alpaca API unreachable. Using cached data.', 'err');
-                }
-                // Don't spam the activity log after initial error
-            }
-        } else {
-            // No API keys: fall back to health.json for account data
-            try {
-                const healthResp = await fetch('data/health.json?t=' + Date.now());
-                if (healthResp.ok) {
-                    const health = await healthResp.json();
-                    const stats = health.stats || {};
-                    if (stats.equity) {
-                        // Build a synthetic account object from health data
-                        const synthAccount = {
-                            equity: stats.equity,
-                            cash: stats.cash || 0,
-                            last_equity: stats.equity - (stats.total_pnl || 0),
-                            buying_power: stats.cash || 0,
-                        };
-                        renderAccount(synthAccount);
-                        // Render actual positions if available in health.json
-                        if (health.positions && health.positions.length > 0) {
-                            renderPositions(health.positions);
-                        } else {
-                            $('open-positions').textContent = stats.num_positions || '—';
-                        }
-                        updateStatus(true);
-                        $('status-badge').textContent = '● DATA';
-                        $('status-badge').style.cssText = 'padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(251,191,36,0.15);color:#fbbf24;border:1px solid rgba(251,191,36,0.3);';
-
-                        // Populate health section
-                        $('h-api').textContent = 'File-based';
-                        $('h-api').className = 'stat-value health-ok';
-                        const healthAge = Math.round((Date.now() - new Date(health.timestamp).getTime()) / 60000);
-                        $('h-scan').textContent = healthAge < 120 ? healthAge + 'm ago' : Math.round(healthAge / 60) + 'h ago';
-                        $('h-scan').className = healthAge < 30 ? 'stat-value health-ok' : 'stat-value health-warn';
-                        $('h-daemon').textContent = health.status || '—';
-                        $('h-daemon').className = health.status === 'OK' ? 'stat-value health-ok' : 'stat-value health-warn';
-
-                        const ht = new Date(health.timestamp);
-                        $('last-update').textContent = 'Health data: ' + ht.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-                        addActivity('INFO', 'Loaded account data from health.json (no API key needed)', 'ok');
-                    }
-                }
-            } catch(e) {
-                // health.json not available, fall through to data-only
-            }
-
-            if (!$('total-equity').textContent || $('total-equity').textContent === '—') {
-                updateStatus(false);
-                $('h-api').textContent = 'No API key';
-                $('h-api').className = 'stat-value health-warn';
-                $('last-update').textContent = 'Data-only mode (add ?key=...&secret=... for live)';
-                if (consecutiveFailures === 0) {
-                    addActivity('INFO', 'Running in data-only mode. V2 research data shown.', 'warn');
-                    consecutiveFailures = 1; // Prevent repeat logging
-                }
-            }
-        }
-
-        // Update research status
-        let researchText = now.getHours() >= 14 ? 'AH cycle done' : 'Next: 2:00 PM';
-        let researchClass = 'stat-value';
-        if (equityHistoryTimestamp) {
-            const histAge = now - equityHistoryTimestamp;
-            if (histAge > 3600000) {
-                researchText = 'History loaded';
-                researchClass = 'stat-value';
-            } else {
-                researchText = 'Equity: ' + equityHistoryTimestamp.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-            }
-        }
-        $('h-research').textContent = researchText;
-        $('h-research').className = researchClass;
-
-        renderSchedule();
-    }
-
-    // ─── INIT ────────────────────────────────────────────────
-    document.addEventListener('DOMContentLoaded', () => {
-        initCharts();
-        loadEquityHistory();
-        loadClosedTrades();
-        renderSchedule();
-        refresh();
-        setInterval(refresh, POLL_INTERVAL);
-        // Reload closed trades every 5 minutes to catch new closes
-        setInterval(loadClosedTrades, 300000);
-        addActivity('INFO', 'Dashboard v2 initialized — full system visibility', 'ok');
-    });
-    </script>
 </body>
 </html>
