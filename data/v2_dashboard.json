@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-20T06:31:38.533425",
-  "candidates_discovered": 408,
+  "timestamp": "2026-04-20T08:59:39.318229",
+  "candidates_discovered": 445,
   "candidates_evaluated": 30,
   "ready_to_trade": 5,
   "top_picks": [
@@ -9,7 +9,7 @@
       "score": 62,
       "raw_score": 34,
       "conviction": "S",
-      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (49.4x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 49.4x volume [Raw: 34, Normalized: 62]",
+      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (53.3x vs 10d avg) | Social emerging (3 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 53.3x volume [Raw: 34, Normalized: 62]",
       "risks": [
         "No catalyst identified"
       ],
@@ -18,18 +18,38 @@
       "has_catalyst": false,
       "float_shares": 5743101,
       "short_pct": 0.199,
-      "social_mentions": 2,
+      "social_mentions": 3,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 49.44808422538974,
+      "volume_acceleration": 53.252924227679515,
       "sector": "consumer cyclical",
       "industry": "apparel retail"
     },
     {
+      "symbol": "FRMM",
+      "score": 56,
+      "raw_score": 24,
+      "conviction": "S",
+      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (55.6x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 55.6x volume [Raw: 24, Normalized: 56]",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "catalyst_quality": "none",
+      "has_catalyst": false,
+      "float_shares": 14149910,
+      "short_pct": 0.1721,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 55.5818933374476,
+      "sector": "technology",
+      "industry": "software - application"
+    },
+    {
       "symbol": "ACHV",
-      "score": 37,
-      "raw_score": 56,
+      "score": 44,
+      "raw_score": 66,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (47.1M) | Elevated short interest (15.6% of float) | Strong volume acceleration (4.8x) [Raw: 56, Normalized: 37]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (47.1M) | Elevated short interest (15.6% of float) | Explosive volume acceleration (5.0x vs 10d avg) [Raw: 66, Normalized: 44]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -38,37 +58,57 @@
       "short_pct": 0.15609999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.812886380156875,
+      "volume_acceleration": 5.049522264996628,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
     {
-      "symbol": "ALT",
-      "score": 35,
-      "raw_score": 53,
+      "symbol": "CADL",
+      "score": 42,
+      "raw_score": 63,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.5% of float) | Near 52-week low \u2014 turnaround potential [Raw: 53, Normalized: 35]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (24.0% of float) | Volume building (2.6x) | Today +19.7% [Raw: 63, Normalized: 42]",
       "risks": [
-        "Large float (129M) limits squeeze potential"
+        "Near 52-week high \u2014 limited upside without new catalyst"
       ],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 129145185,
-      "short_pct": 0.2252,
+      "float_shares": 63310981,
+      "short_pct": 0.23969999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.46235652754160483,
+      "volume_acceleration": 2.5643788574875868,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "GRCE",
+      "score": 38,
+      "raw_score": 57,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (9.8M) | Elevated short interest (12.6% of float) [Raw: 57, Normalized: 38]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 9774787,
+      "short_pct": 0.1257,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.3788113239691464,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 29,
-    "ASTS": 6,
     "NVDA": 6,
     "HNST": 6,
+    "ASTS": 5,
     "AEHR": 5,
+    "POET": 5,
+    "AIMN": 4,
     "WHAT": 4,
     "APRIL": 4,
     "PLSE": 4,
@@ -76,9 +116,7 @@
     "BTIG": 4,
     "DXYZ": 4,
     "NBIS": 4,
-    "AVGO": 4,
-    "POET": 4,
-    "SOC": 4
+    "AVGO": 4
   },
   "trade_candidates": [
     {
@@ -91,22 +129,22 @@
       "sector": "healthcare"
     },
     {
-      "symbol": "FRMM",
-      "score": 69.0,
-      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (54.9x vs 10d avg) | Today +81.0% \u2014 confirmed breakout | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 54.9x volume [Raw: 44, Normalized: 69]",
-      "times_seen": 12,
-      "has_catalyst": 0,
-      "catalyst_type": null,
-      "sector": "technology"
-    },
-    {
       "symbol": "BIRD",
       "score": 62.0,
-      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (49.4x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 49.4x volume [Raw: 34, Normalized: 62]",
-      "times_seen": 31,
+      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (53.3x vs 10d avg) | Social emerging (3 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 53.3x volume [Raw: 34, Normalized: 62]",
+      "times_seen": 32,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
+    },
+    {
+      "symbol": "FRMM",
+      "score": 56.0,
+      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (55.6x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 55.6x volume [Raw: 24, Normalized: 56]",
+      "times_seen": 13,
+      "has_catalyst": 0,
+      "catalyst_type": null,
+      "sector": "technology"
     }
   ]
 }

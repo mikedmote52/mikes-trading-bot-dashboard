@@ -252,5 +252,14 @@
     "entry_signals": {
       "backfill_status": "no_data"
     }
+  },
+  {
+    "symbol": "FRMM",
+    "entry": 4.07,
+    "exit_price": 3.49,
+    "pnl_pct": -14.25,
+    "pnl_dollar": -9.28,
+    "reason": "Reconciled fill (market) at $3.49",
+    "date": "2026-04-20"
   }
 ]
