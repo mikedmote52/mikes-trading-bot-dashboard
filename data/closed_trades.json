@@ -261,5 +261,14 @@
     "pnl_dollar": -9.28,
     "reason": "Reconciled fill (market) at $3.49",
     "date": "2026-04-20"
+  },
+  {
+    "symbol": "FLWS",
+    "entry": 4.88,
+    "exit_price": 4.495,
+    "pnl_pct": -7.89,
+    "pnl_dollar": -7.7,
+    "reason": "Server-side stop at $4.50",
+    "date": "2026-04-20"
   }
 ]
