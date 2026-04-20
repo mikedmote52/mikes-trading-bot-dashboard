@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-20T12:14:15.691298",
+  "timestamp": "2026-04-20T12:15:26.000546",
   "candidates_discovered": 426,
   "candidates_evaluated": 30,
   "ready_to_trade": 6,
@@ -20,7 +20,7 @@
       "short_pct": 0.4405,
       "social_mentions": 2,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 5.626032347472196,
+      "volume_acceleration": 5.628275970950426,
       "sector": "consumer cyclical",
       "industry": "specialty retail"
     },
@@ -40,7 +40,7 @@
       "short_pct": 0.199,
       "social_mentions": 2,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 54.2784494437766,
+      "volume_acceleration": 54.28030797412559,
       "sector": "consumer cyclical",
       "industry": "apparel retail"
     },
@@ -60,7 +60,7 @@
       "short_pct": 0.1721,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 57.5079212630821,
+      "volume_acceleration": 57.53146776723495,
       "sector": "technology",
       "industry": "software - application"
     },
@@ -78,7 +78,7 @@
       "short_pct": 0.15609999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.288370085207665,
+      "volume_acceleration": 5.306118576950631,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -96,7 +96,7 @@
       "short_pct": 0.1934,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.013658273082357,
+      "volume_acceleration": 4.013662428322114,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -134,7 +134,7 @@
       "short_pct": 0.23969999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.9022875191424196,
+      "volume_acceleration": 2.904203791359228,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -147,8 +147,8 @@
     "NVDA": 5,
     "AIMN": 4,
     "PLSE": 4,
-    "MLTX": 4,
     "BTIG": 4,
+    "MLTX": 4,
     "DXYZ": 4,
     "NBIS": 4,
     "POET": 4,
@@ -161,7 +161,7 @@
       "symbol": "FLWS",
       "score": 81.0,
       "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (5.6x vs 10d avg) | Today +24.6% \u2014 strong move | Emerging social interest with positive sentiment | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 5.6x volume [Raw: 62, Normalized: 81]",
-      "times_seen": 4,
+      "times_seen": 5,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -179,7 +179,7 @@
       "symbol": "BIRD",
       "score": 62.0,
       "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (54.3x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 54.3x volume [Raw: 34, Normalized: 62]",
-      "times_seen": 35,
+      "times_seen": 36,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -188,7 +188,7 @@
       "symbol": "FRMM",
       "score": 56.0,
       "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (57.5x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 57.5x volume [Raw: 24, Normalized: 56]",
-      "times_seen": 16,
+      "times_seen": 17,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "technology"
