@@ -1,15 +1,35 @@
 {
-  "timestamp": "2026-04-20T08:59:39.318229",
-  "candidates_discovered": 445,
+  "timestamp": "2026-04-20T11:59:36.671130",
+  "candidates_discovered": 427,
   "candidates_evaluated": 30,
-  "ready_to_trade": 5,
+  "ready_to_trade": 6,
   "top_picks": [
+    {
+      "symbol": "FLWS",
+      "score": 81,
+      "raw_score": 62,
+      "conviction": "S",
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (5.5x vs 10d avg) | Today +27.5% \u2014 strong move | Emerging social interest with positive sentiment | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 5.5x volume [Raw: 62, Normalized: 81]",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "catalyst_quality": "none",
+      "has_catalyst": false,
+      "float_shares": 8832112,
+      "short_pct": 0.4405,
+      "social_mentions": 2,
+      "reddit_sentiment": 1.0,
+      "volume_acceleration": 5.47945830263481,
+      "sector": "consumer cyclical",
+      "industry": "specialty retail"
+    },
     {
       "symbol": "BIRD",
       "score": 62,
       "raw_score": 34,
       "conviction": "S",
-      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (53.3x vs 10d avg) | Social emerging (3 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 53.3x volume [Raw: 34, Normalized: 62]",
+      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (54.2x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 54.2x volume [Raw: 34, Normalized: 62]",
       "risks": [
         "No catalyst identified"
       ],
@@ -18,9 +38,9 @@
       "has_catalyst": false,
       "float_shares": 5743101,
       "short_pct": 0.199,
-      "social_mentions": 3,
+      "social_mentions": 2,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 53.252924227679515,
+      "volume_acceleration": 54.221638330757344,
       "sector": "consumer cyclical",
       "industry": "apparel retail"
     },
@@ -29,7 +49,7 @@
       "score": 56,
       "raw_score": 24,
       "conviction": "S",
-      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (55.6x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 55.6x volume [Raw: 24, Normalized: 56]",
+      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (57.4x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 57.4x volume [Raw: 24, Normalized: 56]",
       "risks": [
         "No catalyst identified"
       ],
@@ -40,7 +60,7 @@
       "short_pct": 0.1721,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 55.5818933374476,
+      "volume_acceleration": 57.39199645143871,
       "sector": "technology",
       "industry": "software - application"
     },
@@ -49,7 +69,7 @@
       "score": 44,
       "raw_score": 66,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (47.1M) | Elevated short interest (15.6% of float) | Explosive volume acceleration (5.0x vs 10d avg) [Raw: 66, Normalized: 44]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (47.1M) | Elevated short interest (15.6% of float) | Explosive volume acceleration (5.3x vs 10d avg) [Raw: 66, Normalized: 44]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -58,27 +78,25 @@
       "short_pct": 0.15609999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.049522264996628,
+      "volume_acceleration": 5.274965163789235,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
     {
-      "symbol": "CADL",
+      "symbol": "PRLD",
       "score": 42,
-      "raw_score": 63,
+      "raw_score": 64,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (24.0% of float) | Volume building (2.6x) | Today +19.7% [Raw: 63, Normalized: 42]",
-      "risks": [
-        "Near 52-week high \u2014 limited upside without new catalyst"
-      ],
+      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (14.6M) | Elevated short interest (19.3% of float) | Strong volume acceleration (4.0x) [Raw: 64, Normalized: 42]",
+      "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 63310981,
-      "short_pct": 0.23969999,
+      "float_shares": 14559075,
+      "short_pct": 0.1934,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.5643788574875868,
+      "volume_acceleration": 4.004013961605585,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -96,29 +114,58 @@
       "short_pct": 0.1257,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.3788113239691464,
+      "volume_acceleration": 1.4962842859073098,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "CADL",
+      "score": 35,
+      "raw_score": 53,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (24.0% of float) | Volume building (2.9x) [Raw: 53, Normalized: 35]",
+      "risks": [
+        "Near 52-week high \u2014 limited upside without new catalyst"
+      ],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 63310981,
+      "short_pct": 0.23969999,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 2.8790065664299966,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 29,
-    "NVDA": 6,
+    "ASTS": 6,
     "HNST": 6,
-    "ASTS": 5,
+    "NBIS": 5,
     "AEHR": 5,
-    "POET": 5,
+    "NVDA": 5,
     "AIMN": 4,
-    "WHAT": 4,
-    "APRIL": 4,
     "PLSE": 4,
     "MLTX": 4,
     "BTIG": 4,
     "DXYZ": 4,
-    "NBIS": 4,
-    "AVGO": 4
+    "POET": 4,
+    "SOC": 4,
+    "CIBC": 4,
+    "MSFT": 4
   },
   "trade_candidates": [
+    {
+      "symbol": "FLWS",
+      "score": 81.0,
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (5.5x vs 10d avg) | Today +27.5% \u2014 strong move | Emerging social interest with positive sentiment | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 5.5x volume [Raw: 62, Normalized: 81]",
+      "times_seen": 2,
+      "has_catalyst": 0,
+      "catalyst_type": null,
+      "sector": "consumer cyclical"
+    },
     {
       "symbol": "CYCN",
       "score": 80.0,
@@ -131,8 +178,8 @@
     {
       "symbol": "BIRD",
       "score": 62.0,
-      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (53.3x vs 10d avg) | Social emerging (3 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 53.3x volume [Raw: 34, Normalized: 62]",
-      "times_seen": 32,
+      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (54.2x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 54.2x volume [Raw: 34, Normalized: 62]",
+      "times_seen": 33,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -140,8 +187,8 @@
     {
       "symbol": "FRMM",
       "score": 56.0,
-      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (55.6x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 55.6x volume [Raw: 24, Normalized: 56]",
-      "times_seen": 13,
+      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (57.4x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 57.4x volume [Raw: 24, Normalized: 56]",
+      "times_seen": 14,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "technology"
