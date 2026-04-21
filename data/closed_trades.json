@@ -270,5 +270,14 @@
     "pnl_dollar": -7.7,
     "reason": "Server-side stop at $4.50",
     "date": "2026-04-20"
+  },
+  {
+    "symbol": "BIRD",
+    "entry": 11.01,
+    "exit_price": 9.5,
+    "pnl_pct": -13.71,
+    "pnl_dollar": -9.06,
+    "reason": "Reconciled fill (market) at $9.50",
+    "date": "2026-04-21"
   }
 ]
