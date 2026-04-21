@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-21T04:58:42.073499",
-  "candidates_discovered": 439,
+  "timestamp": "2026-04-21T06:31:46.540925",
+  "candidates_discovered": 438,
   "candidates_evaluated": 30,
   "ready_to_trade": 6,
   "top_picks": [
@@ -20,7 +20,7 @@
       "short_pct": 0.4405,
       "social_mentions": 3,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 7.0418238741269965,
+      "volume_acceleration": 7.016365631104332,
       "sector": "consumer cyclical",
       "industry": "specialty retail"
     },
@@ -29,7 +29,7 @@
       "score": 51,
       "raw_score": 17,
       "conviction": "S",
-      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (52.0x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 52.0x volume [Raw: 17, Normalized: 51]",
+      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (24.5x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 24.5x volume [Raw: 17, Normalized: 51]",
       "risks": [
         "No catalyst identified"
       ],
@@ -40,7 +40,7 @@
       "short_pct": 0.199,
       "social_mentions": 2,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 51.97236951267901,
+      "volume_acceleration": 24.545299931464847,
       "sector": "consumer cyclical",
       "industry": "apparel retail"
     },
@@ -49,7 +49,7 @@
       "score": 45,
       "raw_score": 8,
       "conviction": "S",
-      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (49.5x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 49.5x volume [Raw: 8, Normalized: 45]",
+      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (48.8x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 48.8x volume [Raw: 8, Normalized: 45]",
       "risks": [
         "No catalyst identified"
       ],
@@ -60,45 +60,27 @@
       "short_pct": 0.1721,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 49.50630607061491,
+      "volume_acceleration": 48.80003052203582,
       "sector": "technology",
       "industry": "software - application"
-    },
-    {
-      "symbol": "ACHV",
-      "score": 36,
-      "raw_score": 55,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (47.1M) | Elevated short interest (15.6% of float) | Explosive volume acceleration (5.4x vs 10d avg) [Raw: 55, Normalized: 36]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 47129102,
-      "short_pct": 0.15609999,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.3787577649433755,
-      "sector": "healthcare",
-      "industry": "biotechnology"
     }
   ],
   "social_trending": {
-    "RDDT": 31,
+    "RDDT": 32,
     "NVDA": 7,
-    "BTIG": 6,
-    "AEHR": 6,
     "HNST": 6,
-    "FCHL": 5,
+    "BETR": 5,
     "PLSE": 5,
+    "BTIG": 5,
     "COVID": 5,
-    "BYND": 4,
+    "FCHL": 4,
     "AIMN": 4,
     "HIMS": 4,
     "MLTX": 4,
     "DXYZ": 4,
-    "ASTS": 4,
-    "POET": 4
+    "AEHR": 4,
+    "POET": 4,
+    "SOC": 4
   },
   "trade_candidates": [
     {
@@ -114,7 +96,7 @@
       "symbol": "FLWS",
       "score": 58.0,
       "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (7.0x vs 10d avg) | Emerging social interest with positive sentiment | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 7.0x volume [Raw: 28, Normalized: 58]",
-      "times_seen": 8,
+      "times_seen": 9,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -122,8 +104,8 @@
     {
       "symbol": "BIRD",
       "score": 51.0,
-      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (52.0x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 52.0x volume [Raw: 17, Normalized: 51]",
-      "times_seen": 39,
+      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (24.5x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 24.5x volume [Raw: 17, Normalized: 51]",
+      "times_seen": 40,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
