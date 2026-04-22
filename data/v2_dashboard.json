@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-04-21T11:59:42.405350",
-  "candidates_discovered": 427,
+  "timestamp": "2026-04-22T04:58:31.340948",
+  "candidates_discovered": 430,
   "candidates_evaluated": 30,
   "ready_to_trade": 6,
   "top_picks": [
     {
       "symbol": "FLWS",
-      "score": 65,
-      "raw_score": 38,
+      "score": 53,
+      "raw_score": 20,
       "conviction": "S",
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (9.6x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 9.6x volume [Raw: 38, Normalized: 65]",
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (10.7x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 10.7x volume [Raw: 20, Normalized: 53]",
       "risks": [
         "No catalyst identified"
       ],
@@ -18,49 +18,29 @@
       "has_catalyst": false,
       "float_shares": 8832112,
       "short_pct": 0.4405,
-      "social_mentions": 3,
+      "social_mentions": 4,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 9.596098579112146,
+      "volume_acceleration": 10.713565777385316,
       "sector": "consumer cyclical",
       "industry": "specialty retail"
-    },
-    {
-      "symbol": "BIRD",
-      "score": 51,
-      "raw_score": 17,
-      "conviction": "S",
-      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (28.6x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 28.6x volume [Raw: 17, Normalized: 51]",
-      "risks": [
-        "No catalyst identified"
-      ],
-      "catalyst_type": null,
-      "catalyst_quality": "none",
-      "has_catalyst": false,
-      "float_shares": 5743101,
-      "short_pct": 0.199,
-      "social_mentions": 2,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 28.56875428344696,
-      "sector": "consumer cyclical",
-      "industry": "apparel retail"
     }
   ],
   "social_trending": {
-    "RDDT": 33,
-    "NVDA": 7,
+    "RDDT": 32,
+    "NVDA": 8,
+    "POET": 6,
     "HNST": 6,
     "BETR": 5,
     "PLSE": 5,
     "HIMS": 5,
-    "BTIG": 5,
-    "POET": 5,
-    "COVID": 5,
-    "FCHL": 4,
     "MLTX": 4,
+    "BTIG": 4,
     "DXYZ": 4,
     "AEHR": 4,
     "SOC": 4,
-    "CIBC": 4
+    "CIBC": 4,
+    "COVID": 4,
+    "FLWS": 4
   },
   "trade_candidates": [
     {
@@ -74,9 +54,9 @@
     },
     {
       "symbol": "FLWS",
-      "score": 65.0,
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (9.6x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 9.6x volume [Raw: 38, Normalized: 65]",
-      "times_seen": 11,
+      "score": 53.0,
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (10.7x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 10.7x volume [Raw: 20, Normalized: 53]",
+      "times_seen": 14,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
