@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-22T08:59:42.352730",
-  "candidates_discovered": 459,
+  "timestamp": "2026-04-22T11:59:33.095720",
+  "candidates_discovered": 441,
   "candidates_evaluated": 30,
   "ready_to_trade": 6,
   "top_picks": [
@@ -9,7 +9,7 @@
       "score": 53,
       "raw_score": 20,
       "conviction": "S",
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (12.3x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 12.3x volume [Raw: 20, Normalized: 53]",
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (13.0x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 13.0x volume [Raw: 20, Normalized: 53]",
       "risks": [
         "No catalyst identified"
       ],
@@ -20,47 +20,27 @@
       "short_pct": 0.4405,
       "social_mentions": 4,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 12.337222266820083,
+      "volume_acceleration": 13.041827441955883,
       "sector": "consumer cyclical",
       "industry": "specialty retail"
-    },
-    {
-      "symbol": "FRMM",
-      "score": 40,
-      "raw_score": -5,
-      "conviction": "S",
-      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (8.3x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 8.3x volume [Raw: -5, Normalized: 40]",
-      "risks": [
-        "No catalyst identified"
-      ],
-      "catalyst_type": null,
-      "catalyst_quality": "none",
-      "has_catalyst": false,
-      "float_shares": 14149910,
-      "short_pct": 0.1721,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 8.30691869147672,
-      "sector": "technology",
-      "industry": "software - application"
     }
   ],
   "social_trending": {
-    "RDDT": 32,
-    "NVDA": 8,
+    "RDDT": 31,
+    "NVDA": 9,
     "POET": 6,
     "HNST": 6,
+    "CAR": 6,
     "BETR": 5,
     "PLSE": 5,
-    "HIMS": 5,
+    "HIMS": 4,
     "MLTX": 4,
     "BTIG": 4,
     "DXYZ": 4,
     "AEHR": 4,
     "SOC": 4,
     "CIBC": 4,
-    "FLWS": 4,
-    "BYND": 4
+    "FLWS": 4
   },
   "trade_candidates": [
     {
@@ -75,8 +55,8 @@
     {
       "symbol": "FLWS",
       "score": 53.0,
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (12.3x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 12.3x volume [Raw: 20, Normalized: 53]",
-      "times_seen": 16,
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (13.0x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 13.0x volume [Raw: 20, Normalized: 53]",
+      "times_seen": 17,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
