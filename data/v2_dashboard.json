@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-04-22T04:58:31.340948",
-  "candidates_discovered": 430,
+  "timestamp": "2026-04-22T06:31:48.401681",
+  "candidates_discovered": 431,
   "candidates_evaluated": 30,
   "ready_to_trade": 6,
   "top_picks": [
     {
       "symbol": "FLWS",
-      "score": 53,
-      "raw_score": 20,
+      "score": 46,
+      "raw_score": 10,
       "conviction": "S",
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (10.7x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 10.7x volume [Raw: 20, Normalized: 53]",
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (10.9x vs 10d avg) | Emerging social interest with positive sentiment | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 10.9x volume [Raw: 10, Normalized: 46]",
       "risks": [
         "No catalyst identified"
       ],
@@ -20,7 +20,7 @@
       "short_pct": 0.4405,
       "social_mentions": 4,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 10.713565777385316,
+      "volume_acceleration": 10.891200842007617,
       "sector": "consumer cyclical",
       "industry": "specialty retail"
     }
@@ -51,15 +51,6 @@
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
-    },
-    {
-      "symbol": "FLWS",
-      "score": 53.0,
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (10.7x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 10.7x volume [Raw: 20, Normalized: 53]",
-      "times_seen": 14,
-      "has_catalyst": 0,
-      "catalyst_type": null,
-      "sector": "consumer cyclical"
     },
     {
       "symbol": "BIRD",
