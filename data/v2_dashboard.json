@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-23T04:58:41.334658",
-  "candidates_discovered": 446,
+  "timestamp": "2026-04-23T06:31:41.385263",
+  "candidates_discovered": 448,
   "candidates_evaluated": 30,
   "ready_to_trade": 6,
   "top_picks": [
@@ -9,7 +9,7 @@
       "score": 44,
       "raw_score": 7,
       "conviction": "S",
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (13.5x vs 10d avg) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 13.5x volume [Raw: 7, Normalized: 44]",
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (7.2x vs 10d avg) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 7.2x volume [Raw: 7, Normalized: 44]",
       "risks": [
         "No catalyst identified"
       ],
@@ -20,7 +20,7 @@
       "short_pct": 0.4405,
       "social_mentions": 5,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 13.509316493180988,
+      "volume_acceleration": 7.246480782781658,
       "sector": "consumer cyclical",
       "industry": "specialty retail",
       "is_china_adr": false
@@ -30,7 +30,7 @@
       "score": 40,
       "raw_score": -18,
       "conviction": "S",
-      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (9.8x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 9.8x volume [Raw: -18, Normalized: 40]",
+      "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (5.1x vs 10d avg) | SQUEEZE TRIFECTA: 14.1M float + 17.2% SI + 5.1x volume [Raw: -18, Normalized: 40]",
       "risks": [
         "No catalyst identified"
       ],
@@ -41,25 +41,25 @@
       "short_pct": 0.1721,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 9.821773112266587,
+      "volume_acceleration": 5.110070091675114,
       "sector": "technology",
       "industry": "software - application",
       "is_china_adr": false
     }
   ],
   "social_trending": {
-    "RDDT": 32,
+    "RDDT": 34,
     "POET": 9,
     "NVDA": 6,
     "HNST": 6,
-    "BYND": 5,
     "BETR": 5,
     "PLSE": 5,
     "FLWS": 5,
     "CAR": 5,
-    "MSFT": 5,
     "APRIL": 4,
     "WHAT": 4,
+    "UAMY": 4,
+    "TSLA": 4,
     "RKLB": 4,
     "MLTX": 4,
     "BTIG": 4
