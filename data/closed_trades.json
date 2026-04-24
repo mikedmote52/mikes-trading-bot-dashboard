@@ -279,5 +279,28 @@
     "pnl_dollar": -9.06,
     "reason": "Reconciled fill (market) at $9.50",
     "date": "2026-04-21"
+  },
+  {
+    "symbol": "BIRD",
+    "entry": 8.7,
+    "exit_price": 7.35,
+    "pnl_pct": -15.52,
+    "pnl_dollar": -6.75,
+    "reason": "Server-side stop at $7.35",
+    "date": "2026-04-24",
+    "entry_signals": {
+      "tier": null,
+      "composite_score": 51.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 5743101.0,
+      "short_pct": 0.199,
+      "volume_acceleration": null,
+      "sector": "consumer cyclical",
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (28.6x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 28.6x vol"
+    }
   }
 ]
