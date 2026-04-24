@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-24T04:58:33.358793",
+  "timestamp": "2026-04-24T06:31:33.829325",
   "candidates_discovered": 433,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
@@ -9,7 +9,7 @@
       "score": 85,
       "raw_score": 68,
       "conviction": "S",
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (9.8x vs 10d avg) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 9.8x volume [Raw: 68, Normalized: 85]",
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (5.7x vs 10d avg) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 5.7x volume [Raw: 68, Normalized: 85]",
       "risks": [
         "No catalyst identified"
       ],
@@ -20,7 +20,7 @@
       "short_pct": 0.4405,
       "social_mentions": 5,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 9.825207076576826,
+      "volume_acceleration": 5.736341247440367,
       "sector": "consumer cyclical",
       "industry": "specialty retail",
       "is_china_adr": false
@@ -30,7 +30,7 @@
       "score": 78,
       "raw_score": 58,
       "conviction": "S",
-      "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (6.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.4% SI + 6.0x volume [Raw: 58, Normalized: 78]",
+      "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (5.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.4% SI + 5.1x volume [Raw: 58, Normalized: 78]",
       "risks": [
         "No catalyst identified"
       ],
@@ -41,7 +41,7 @@
       "short_pct": 0.3643,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.97847809377402,
+      "volume_acceleration": 5.134194209582372,
       "sector": "consumer defensive",
       "industry": "packaged foods",
       "is_china_adr": false
@@ -51,7 +51,7 @@
       "score": 45,
       "raw_score": 68,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.5% of float) | Strong volume acceleration (4.3x) | Near 52-week low \u2014 turnaround potential [Raw: 68, Normalized: 45]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.5% of float) | Strong volume acceleration (4.0x) | Near 52-week low \u2014 turnaround potential [Raw: 68, Normalized: 45]",
       "risks": [
         "Large float (129M) limits squeeze potential"
       ],
@@ -62,47 +62,7 @@
       "short_pct": 0.2252,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.329403960533941,
-      "sector": "healthcare",
-      "industry": "biotechnology",
-      "is_china_adr": false
-    },
-    {
-      "symbol": "PRLD",
-      "score": 39,
-      "raw_score": 59,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (14.6M) | Elevated short interest (19.3% of float) | Volume building (2.1x) [Raw: 59, Normalized: 39]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 14559075,
-      "short_pct": 0.1934,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.140151515151515,
-      "sector": "healthcare",
-      "industry": "biotechnology",
-      "is_china_adr": false
-    },
-    {
-      "symbol": "ABCL",
-      "score": 35,
-      "raw_score": 53,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (21.5% of float) | Volume building (2.2x) [Raw: 53, Normalized: 35]",
-      "risks": [
-        "Large float (207M) limits squeeze potential"
-      ],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 206791831,
-      "short_pct": 0.2149,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.222747055811572,
+      "volume_acceleration": 3.9914658602540816,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -110,15 +70,15 @@
   ],
   "social_trending": {
     "RDDT": 35,
-    "INTC": 8,
+    "INTC": 9,
     "CAR": 8,
     "PLSE": 6,
     "UAMY": 6,
+    "NVDA": 6,
     "HNST": 6,
     "BYND": 5,
     "BETR": 5,
     "POET": 5,
-    "NVDA": 5,
     "FLWS": 5,
     "OTCQB": 4,
     "APRIL": 4,
@@ -129,8 +89,8 @@
     {
       "symbol": "FLWS",
       "score": 85.0,
-      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (9.8x vs 10d avg) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 9.8x volume [Raw: 68, Normalized: 85]",
-      "times_seen": 25,
+      "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (5.7x vs 10d avg) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 5.7x volume [Raw: 68, Normalized: 85]",
+      "times_seen": 26,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -147,8 +107,8 @@
     {
       "symbol": "LFVN",
       "score": 78.0,
-      "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (6.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.4% SI + 6.0x volume [Raw: 58, Normalized: 78]",
-      "times_seen": 4,
+      "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (5.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.4% SI + 5.1x volume [Raw: 58, Normalized: 78]",
+      "times_seen": 5,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
