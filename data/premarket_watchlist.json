@@ -1,13 +1,11 @@
 {
-  "built_at": "2026-04-23T17:27:37.870452",
-  "count": 353,
+  "built_at": "2026-04-24T17:27:38.820689",
+  "count": 359,
   "symbols": [
-    "SLDP",
     "CRML",
     "NUCL",
     "PAR",
     "PATH",
-    "LPAA",
     "MBLY",
     "ACHV",
     "HURA",
@@ -22,7 +20,6 @@
     "LOVE",
     "BATL",
     "POET",
-    "SRG",
     "MH",
     "TDOC",
     "TLRY",
@@ -33,7 +30,6 @@
     "WTI",
     "ASPI",
     "ABR",
-    "PENN",
     "ASTI",
     "SLNH",
     "HTZ",
@@ -42,13 +38,12 @@
     "FUBO",
     "SKIN",
     "PRLD",
-    "BURU",
     "OWL",
-    "ELDN",
     "RILY",
     "WT",
     "CRMT",
     "AISP",
+    "NCNO",
     "CLVT",
     "NTLA",
     "ULCC",
@@ -57,8 +52,8 @@
     "RANI",
     "FLNA",
     "MRLN",
-    "CPRX",
     "SNBR",
+    "TRAK",
     "PLCE",
     "IKT",
     "UPWK",
@@ -71,7 +66,6 @@
     "HUMA",
     "CRVS",
     "AIXI",
-    "ENIC",
     "MDWD",
     "SKLZ",
     "ANGI",
@@ -81,24 +75,28 @@
     "KPTI",
     "VUZI",
     "FLG",
-    "RRGB",
     "OPTX",
     "ARRY",
     "RZLT",
     "LDI",
     "CRMD",
+    "PROP",
     "ENVX",
     "DYN",
     "PDYN",
     "PGEN",
     "QURE",
     "PRME",
+    "GPGI",
+    "LWLG",
     "BBAI",
     "PBI",
     "LAKE",
     "BCRX",
     "QUBT",
+    "DLO",
     "ABSI",
+    "SIDU",
     "HPK",
     "AI",
     "FIP",
@@ -114,20 +112,21 @@
     "EVH",
     "IMMR",
     "TNXP",
+    "HTCO",
     "QS",
     "CLPT",
-    "KOPN",
     "GPRO",
+    "CTMX",
     "PEB",
     "TNYA",
     "FUN",
     "ORGO",
-    "PTLO",
     "DBI",
-    "TDAY",
+    "LOKV",
     "RUN",
     "GTM",
     "TE",
+    "EVCM",
     "METC",
     "CXM",
     "NRDY",
@@ -138,56 +137,48 @@
     "DERM",
     "EVER",
     "BMBL",
-    "XNCR",
     "RCEL",
     "CWH",
-    "INBX",
     "KSCP",
     "RC",
     "AVXL",
     "RNAC",
     "SLS",
-    "PINS",
     "TBCH",
     "OFRM",
     "PSNL",
     "SERV",
-    "CAEP",
     "STIM",
     "SDGR",
     "KLAR",
     "WYFI",
     "PCT",
-    "ZENA",
     "PK",
     "CIFR",
     "SKIL",
     "WRAP",
     "VYX",
-    "BDCI",
-    "MPT",
-    "VALN",
     "FA",
+    "MPT",
     "COUR",
     "SPRY",
     "ABEO",
-    "OBE",
     "HRTX",
     "NNOX",
+    "GALT",
     "JBLU",
     "LYFT",
-    "AQST",
     "GO",
     "EBS",
     "DDD",
     "PHAT",
+    "GLUE",
     "NUVB",
     "ONEW",
     "UAMY",
     "BMEA",
     "GPRE",
     "AGEN",
-    "VOR",
     "INV",
     "SVV",
     "RIVN",
@@ -196,71 +187,78 @@
     "UPXI",
     "MED",
     "LFMD",
+    "NRXS",
     "KULR",
     "CDLX",
     "XRX",
-    "BBCQ",
     "BBNX",
     "PLUG",
     "IBRX",
     "NFE",
     "WBTN",
     "ABX",
+    "SEER",
     "RCAT",
     "PACB",
     "LFVN",
     "GOSS",
-    "BGS",
     "PRCH",
     "PALI",
+    "ACTU",
     "TSHA",
     "AIRS",
     "CGEM",
     "FTCI",
     "SRFM",
+    "ALLO",
     "ANVS",
-    "CATX",
     "SEAT",
     "EOSE",
     "VSTM",
     "BHVN",
-    "ASAN",
+    "KRSP",
     "REPL",
+    "ASAN",
+    "OMDA",
     "PLAY",
     "RCKT",
+    "SGMO",
     "CERT",
     "OPEN",
     "TEAD",
+    "CSHR",
     "TTEC",
     "DVLT",
     "UA",
-    "ACB",
     "BDTX",
     "FLNC",
     "EYPT",
+    "LMRI",
     "NMAX",
     "AMC",
     "CABA",
     "SBH",
     "ZBIO",
+    "TOYO",
     "GEMI",
-    "FLWS",
+    "INO",
     "CCCC",
+    "FLWS",
     "FBIO",
-    "CRSR",
     "SPCE",
     "DRVN",
     "TRON",
     "FIG",
     "BARK",
     "PGY",
+    "MPLT",
     "INDI",
     "BKD",
     "CHPT",
     "BYRN",
+    "FRST",
     "BKKT",
     "AMLX",
-    "QBTS",
     "RDW",
     "SANA",
     "ORIC",
@@ -279,35 +277,40 @@
     "CSIQ",
     "DFDV",
     "DMRC",
+    "OGN",
     "BOBS",
     "HELE",
     "SVRA",
     "BTBT",
     "ABUS",
     "KLRS",
+    "CLBR",
     "AVTX",
     "JACK",
     "ALT",
+    "ATOM",
     "AUR",
     "KALV",
-    "UWMC",
-    "ACHR",
+    "KEEL",
     "TDUP",
     "MNRO",
     "LIFE",
     "AESI",
+    "CMPS",
     "DEI",
     "GETY",
     "QDEL",
     "MBC",
+    "COEP",
+    "OSTX",
     "CRK",
+    "NXXT",
     "WU",
     "PLSE",
     "VELO",
-    "GPAT",
     "IOVA",
     "ALMU",
-    "KYTX",
+    "SPIR",
     "RR",
     "ATYR",
     "AMCX",
@@ -316,10 +319,13 @@
     "LCID",
     "SOC",
     "NKLR",
+    "WW",
     "BIRD",
     "FDMT",
     "CMPX",
+    "RGNX",
     "REAL",
+    "AAPG",
     "UAA",
     "RLAY",
     "OCGN",
@@ -328,22 +334,21 @@
     "BNED",
     "NVTS",
     "UMAC",
-    "NUAI",
     "DMAC",
-    "NRDS",
     "AEVA",
     "VIVO",
     "RXRX",
     "ONDS",
-    "RGTI",
     "JANX",
+    "SBC",
     "RXT",
     "JBGS",
+    "ROLR",
+    "CDZI",
     "CBIO",
     "TZOO",
     "SG",
     "NEXT",
-    "PTON",
     "TRIP",
     "RUM",
     "TSSI",
@@ -351,6 +356,7 @@
     "IMRX",
     "ELTX",
     "MVIS",
+    "CGEN",
     "MARA",
     "AEHR",
     "GRND",
@@ -370,19 +376,13 @@
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "ACB",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
       "symbol": "ALT",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "BURU",
+      "symbol": "ATOM",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -394,49 +394,61 @@
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "ELDN",
+      "symbol": "CDZI",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "FLWS",
+      "symbol": "CMPS",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "GRPN",
+      "symbol": "CMPX",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "INV",
+      "symbol": "COUR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "KOPN",
+      "symbol": "CWH",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "KYTX",
+      "symbol": "FLG",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "LCID",
+      "symbol": "HRTX",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "LFVN",
+      "symbol": "HTCO",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_short_squeeze"
+    },
+    {
+      "symbol": "INDI",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_short_squeeze"
+    },
+    {
+      "symbol": "LWLG",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -448,19 +460,13 @@
       "source": "finviz_short_squeeze"
     },
     {
+      "symbol": "NCNO",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_short_squeeze"
+    },
+    {
       "symbol": "NKLR",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "NMAX",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "NN",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -472,37 +478,19 @@
       "source": "finviz_short_squeeze"
     },
     {
+      "symbol": "NTLA",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_short_squeeze"
+    },
+    {
       "symbol": "NUCL",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "NVTS",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "OBE",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "PALI",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "PBI",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "PENN",
+      "symbol": "NXXT",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -514,19 +502,7 @@
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "PRLD",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
       "symbol": "QS",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "RDW",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -538,13 +514,25 @@
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "SKLZ",
+      "symbol": "SBC",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "SLDP",
+      "symbol": "SGMO",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_short_squeeze"
+    },
+    {
+      "symbol": "SHMD",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_short_squeeze"
+    },
+    {
+      "symbol": "SKLZ",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -556,7 +544,7 @@
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "SMR",
+      "symbol": "SPCE",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -568,19 +556,13 @@
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "SRFM",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "SRG",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
       "symbol": "TLRY",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_short_squeeze"
+    },
+    {
+      "symbol": "TRAK",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -598,61 +580,97 @@
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "ZENA",
+      "symbol": "WU",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "BBCQ",
+      "symbol": "CLBR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_unusual_volume"
     },
     {
-      "symbol": "BDCI",
+      "symbol": "CSHR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_unusual_volume"
     },
     {
-      "symbol": "CAEP",
+      "symbol": "FRST",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_unusual_volume"
     },
     {
-      "symbol": "ENIC",
+      "symbol": "KRSP",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_unusual_volume"
     },
     {
-      "symbol": "GPAT",
+      "symbol": "LOKV",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_unusual_volume"
     },
     {
-      "symbol": "LPAA",
+      "symbol": "OGN",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_unusual_volume"
     },
     {
-      "symbol": "CPRX",
+      "symbol": "AAPG",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_biotech"
     },
     {
-      "symbol": "INBX",
+      "symbol": "ACTU",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_biotech"
     },
     {
-      "symbol": "VALN",
+      "symbol": "CGEN",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_biotech"
+    },
+    {
+      "symbol": "COEP",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_biotech"
+    },
+    {
+      "symbol": "MPLT",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_biotech"
+    },
+    {
+      "symbol": "NRXS",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_biotech"
+    },
+    {
+      "symbol": "OSTX",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_biotech"
+    },
+    {
+      "symbol": "PRLD",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_biotech"
+    },
+    {
+      "symbol": "SEER",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_biotech"
@@ -694,18 +712,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "ACHR",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "ACHV",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "AESI",
       "float_shares": 0,
       "short_pct": 0,
@@ -731,6 +737,12 @@
     },
     {
       "symbol": "AISP",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "ALLO",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -766,13 +778,7 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "ANNA",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "AQST",
+      "symbol": "ANVS",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -862,19 +868,7 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "BGS",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "BHVN",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "BIRD",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -946,12 +940,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "CATX",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "CCCC",
       "float_shares": 0,
       "short_pct": 0,
@@ -1012,18 +1000,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "CMPX",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "COUR",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "CRDF",
       "float_shares": 0,
       "short_pct": 0,
@@ -1054,12 +1030,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "CRSR",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "CRVS",
       "float_shares": 0,
       "short_pct": 0,
@@ -1072,13 +1042,13 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "CURR",
+      "symbol": "CTMX",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "CWH",
+      "symbol": "CURR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1121,6 +1091,12 @@
     },
     {
       "symbol": "DFH",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "DLO",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1175,6 +1151,12 @@
     },
     {
       "symbol": "EOSE",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "EVCM",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1240,12 +1222,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "FLG",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "FLNA",
       "float_shares": 0,
       "short_pct": 0,
@@ -1253,6 +1229,12 @@
     },
     {
       "symbol": "FLNC",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "FLWS",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1276,6 +1258,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "GALT",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "GEMI",
       "float_shares": 0,
       "short_pct": 0,
@@ -1283,6 +1271,12 @@
     },
     {
       "symbol": "GETY",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "GLUE",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1306,6 +1300,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "GPGI",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "GPRE",
       "float_shares": 0,
       "short_pct": 0,
@@ -1324,6 +1324,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "GRPN",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "GTM",
       "float_shares": 0,
       "short_pct": 0,
@@ -1331,12 +1337,6 @@
     },
     {
       "symbol": "HPK",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "HRTX",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1384,7 +1384,13 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "INDI",
+      "symbol": "INO",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "INV",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1420,6 +1426,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "KEEL",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "KLAR",
       "float_shares": 0,
       "short_pct": 0,
@@ -1427,6 +1439,12 @@
     },
     {
       "symbol": "KPTI",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "KSCP",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1456,6 +1474,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "LCID",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "LDI",
       "float_shares": 0,
       "short_pct": 0,
@@ -1480,7 +1504,19 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "LFVN",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "LIFE",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "LMRI",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1588,7 +1624,7 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "NRDS",
+      "symbol": "NN",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1606,12 +1642,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "NTLA",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "NUVB",
       "float_shares": 0,
       "short_pct": 0,
@@ -1619,6 +1649,12 @@
     },
     {
       "symbol": "NVAX",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "NVTS",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1637,6 +1673,12 @@
     },
     {
       "symbol": "OLMA",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "OMDA",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1696,6 +1738,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "PALI",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "PAR",
       "float_shares": 0,
       "short_pct": 0,
@@ -1703,6 +1751,12 @@
     },
     {
       "symbol": "PATH",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "PBI",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1739,12 +1793,6 @@
     },
     {
       "symbol": "PHAT",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "PINS",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1792,6 +1840,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "PROP",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "PRTA",
       "float_shares": 0,
       "short_pct": 0,
@@ -1799,24 +1853,6 @@
     },
     {
       "symbol": "PSNL",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "PTLO",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "PTON",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "QBTS",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1858,13 +1894,13 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "RCEL",
+      "symbol": "RCKT",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "RCKT",
+      "symbol": "RDW",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1876,7 +1912,7 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "RGTI",
+      "symbol": "RGNX",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1918,13 +1954,13 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "RR",
+      "symbol": "ROLR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "RRGB",
+      "symbol": "RR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2026,7 +2062,7 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "SHMD",
+      "symbol": "SIDU",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2050,6 +2086,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "SMR",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "SNBR",
       "float_shares": 0,
       "short_pct": 0,
@@ -2068,13 +2110,19 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "SPCE",
+      "symbol": "SPIR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
     },
     {
       "symbol": "SPRY",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "SRFM",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2099,12 +2147,6 @@
     },
     {
       "symbol": "TBCH",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "TDAY",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2147,6 +2189,12 @@
     },
     {
       "symbol": "TNYA",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "TOYO",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2236,12 +2284,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "UWMC",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "VELO",
       "float_shares": 0,
       "short_pct": 0,
@@ -2249,12 +2291,6 @@
     },
     {
       "symbol": "VITL",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "VOR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2314,19 +2350,13 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "WU",
+      "symbol": "WW",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
     },
     {
       "symbol": "WYFI",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "XNCR",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2350,11 +2380,11 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "ANVS",
-      "float_shares": 23769933.0,
-      "short_pct": 0.1265,
-      "times_seen": 8,
-      "ai_score": 50.0,
+      "symbol": "BIRD",
+      "float_shares": 5743101.0,
+      "short_pct": 0.199,
+      "times_seen": 42,
+      "ai_score": 51.0,
       "source": "persistent_watchlist"
     },
     {
@@ -2422,11 +2452,35 @@
       "source": "persistent_watchlist"
     },
     {
+      "symbol": "NMAX",
+      "float_shares": 30922203.0,
+      "short_pct": 0.9458,
+      "times_seen": 11,
+      "ai_score": 28.0,
+      "source": "persistent_watchlist"
+    },
+    {
+      "symbol": "BDTX",
+      "float_shares": 46246343.0,
+      "short_pct": 0.1267,
+      "times_seen": 2,
+      "ai_score": 27.0,
+      "source": "persistent_watchlist"
+    },
+    {
       "symbol": "GRCE",
       "float_shares": 9774787.0,
       "short_pct": 0.1257,
       "times_seen": 36,
       "ai_score": 24.0,
+      "source": "persistent_watchlist"
+    },
+    {
+      "symbol": "ACHV",
+      "float_shares": 47129102.0,
+      "short_pct": 0.15609999,
+      "times_seen": 41,
+      "ai_score": 23.0,
       "source": "persistent_watchlist"
     },
     {
@@ -2446,14 +2500,6 @@
       "source": "persistent_watchlist"
     },
     {
-      "symbol": "BDTX",
-      "float_shares": 46246343.0,
-      "short_pct": 0.1267,
-      "times_seen": 1,
-      "ai_score": 20.0,
-      "source": "persistent_watchlist"
-    },
-    {
       "symbol": "IMMR",
       "float_shares": 27149984.0,
       "short_pct": 0.1278,
@@ -2462,11 +2508,11 @@
       "source": "persistent_watchlist"
     },
     {
-      "symbol": "KSCP",
-      "float_shares": 15945205.0,
-      "short_pct": 0.103199996,
-      "times_seen": 2,
-      "ai_score": 13.0,
+      "symbol": "ANNA",
+      "float_shares": 9533929.0,
+      "short_pct": 0.1893,
+      "times_seen": 16,
+      "ai_score": 10.0,
       "source": "persistent_watchlist"
     },
     {
@@ -2494,14 +2540,6 @@
       "source": "persistent_watchlist"
     },
     {
-      "symbol": "QMCO",
-      "float_shares": 14364737.0,
-      "short_pct": 0.1393,
-      "times_seen": 8,
-      "ai_score": 6.0,
-      "source": "persistent_watchlist"
-    },
-    {
       "symbol": "PLSE",
       "float_shares": 17794101.0,
       "short_pct": 0.1458,
@@ -2510,10 +2548,18 @@
       "source": "persistent_watchlist"
     },
     {
-      "symbol": "NUAI",
-      "float_shares": 39030102.0,
-      "short_pct": 0.123,
-      "times_seen": 10,
+      "symbol": "QMCO",
+      "float_shares": 14364737.0,
+      "short_pct": 0.1238,
+      "times_seen": 9,
+      "ai_score": 3.0,
+      "source": "persistent_watchlist"
+    },
+    {
+      "symbol": "RCEL",
+      "float_shares": 30282592.0,
+      "short_pct": 0.121700004,
+      "times_seen": 8,
       "ai_score": 0,
       "source": "persistent_watchlist"
     }

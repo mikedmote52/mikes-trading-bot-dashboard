@@ -78,5 +78,45 @@
     "sample_size": 15,
     "win_rate": 0.067,
     "reasoning": "Impact: -0.500, Win rate: 6.7%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-04-24T14:27:09.362158",
+    "signal": "composite_score",
+    "old_weight": 0.72,
+    "new_weight": 0.864,
+    "change_pct": 20.0,
+    "sample_size": 16,
+    "win_rate": 0.062,
+    "reasoning": "Impact: 19.700, Win rate: 6.2%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-04-24T14:27:09.362158",
+    "signal": "float_shares",
+    "old_weight": 0.32000000000000006,
+    "new_weight": 0.25600000000000006,
+    "change_pct": -20.0,
+    "sample_size": 16,
+    "win_rate": 0.062,
+    "reasoning": "Impact: -30151799.333, Win rate: 6.2%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-04-24T14:27:09.362158",
+    "signal": "short_pct",
+    "old_weight": 0.487538625750627,
+    "new_weight": 0.48022879660562134,
+    "change_pct": -1.5,
+    "sample_size": 16,
+    "win_rate": 0.062,
+    "reasoning": "Impact: -0.150, Win rate: 6.2%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-04-24T14:27:09.362158",
+    "signal": "has_catalyst",
+    "old_weight": 0.45125,
+    "new_weight": 0.4362083333333333,
+    "change_pct": -3.33,
+    "sample_size": 16,
+    "win_rate": 0.062,
+    "reasoning": "Impact: -0.333, Win rate: 6.2%, Capped at \u00b120.0%"
   }
 ]
