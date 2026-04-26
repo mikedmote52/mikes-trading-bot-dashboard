@@ -1,6 +1,6 @@
 {
-  "built_at": "2026-04-24T17:27:38.820689",
-  "count": 359,
+  "built_at": "2026-04-25T17:27:39.082456",
+  "count": 358,
   "symbols": [
     "CRML",
     "NUCL",
@@ -22,7 +22,6 @@
     "POET",
     "MH",
     "TDOC",
-    "TLRY",
     "CURR",
     "RZLV",
     "LE",
@@ -96,7 +95,6 @@
     "QUBT",
     "DLO",
     "ABSI",
-    "SIDU",
     "HPK",
     "AI",
     "FIP",
@@ -137,7 +135,6 @@
     "DERM",
     "EVER",
     "BMBL",
-    "RCEL",
     "CWH",
     "KSCP",
     "RC",
@@ -346,10 +343,12 @@
     "ROLR",
     "CDZI",
     "CBIO",
+    "INR",
     "TZOO",
     "SG",
     "NEXT",
     "TRIP",
+    "SAFX",
     "RUM",
     "TSSI",
     "KURA",
@@ -551,12 +550,6 @@
     },
     {
       "symbol": "SPWR",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "TLRY",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -1390,6 +1383,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "INR",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "INV",
       "float_shares": 0,
       "short_pct": 0,
@@ -2008,6 +2007,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "SAFX",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "SAIL",
       "float_shares": 0,
       "short_pct": 0,
@@ -2057,12 +2062,6 @@
     },
     {
       "symbol": "SGRY",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "SIDU",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2553,14 +2552,6 @@
       "short_pct": 0.1238,
       "times_seen": 9,
       "ai_score": 3.0,
-      "source": "persistent_watchlist"
-    },
-    {
-      "symbol": "RCEL",
-      "float_shares": 30282592.0,
-      "short_pct": 0.121700004,
-      "times_seen": 8,
-      "ai_score": 0,
       "source": "persistent_watchlist"
     }
   ]

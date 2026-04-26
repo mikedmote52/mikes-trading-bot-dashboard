@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-25T13:33:11.611872",
+  "timestamp": "2026-04-26T13:33:09.411765",
   "status": "OK",
   "stats": {
     "equity": 100403.37,
@@ -97,7 +97,7 @@
       "asset_class": "us_equity",
       "asset_marginable": true,
       "qty": "12",
-      "qty_available": "12",
+      "qty_available": "0",
       "avg_entry_price": "5.17",
       "side": "long",
       "market_value": "60.96",
