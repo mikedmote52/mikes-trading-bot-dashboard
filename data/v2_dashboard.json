@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-27T06:31:36.912380",
-  "candidates_discovered": 408,
+  "timestamp": "2026-04-27T06:33:21.084884",
+  "candidates_discovered": 420,
   "candidates_evaluated": 30,
   "ready_to_trade": 8,
   "top_picks": [
@@ -20,7 +20,7 @@
       "short_pct": 0.22129999,
       "social_mentions": 0,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 6.312890866910765,
+      "volume_acceleration": 6.31803418767735,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -39,7 +39,7 @@
       "short_pct": 0.33200002,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.30944594221540883,
+      "volume_acceleration": 0.3102412292294409,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -58,7 +58,7 @@
       "short_pct": 0.1499,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.4575570138184874,
+      "volume_acceleration": 0.4577291740873679,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -79,7 +79,7 @@
       "short_pct": 0.3685,
       "social_mentions": 2,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 4.951645912957712,
+      "volume_acceleration": 4.9626679817531745,
       "sector": "consumer defensive",
       "industry": "packaged foods",
       "is_china_adr": false
@@ -100,7 +100,7 @@
       "short_pct": 0.2033,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.1747454338565677,
+      "volume_acceleration": 2.181773234327284,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
