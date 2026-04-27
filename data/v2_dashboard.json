@@ -1,9 +1,30 @@
 {
-  "timestamp": "2026-04-25T04:58:36.870479",
-  "candidates_discovered": 437,
+  "timestamp": "2026-04-27T06:13:39.286841",
+  "candidates_discovered": 395,
   "candidates_evaluated": 30,
   "ready_to_trade": 8,
   "top_picks": [
+    {
+      "symbol": "LFVN",
+      "score": 82,
+      "raw_score": 63,
+      "conviction": "S",
+      "thesis": "Very low float (8.4M) | Very high short interest (36.9% of float) | Explosive volume acceleration (5.4x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.9% SI + 5.4x volume [Raw: 63, Normalized: 82]",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "catalyst_quality": "none",
+      "has_catalyst": false,
+      "float_shares": 8366473,
+      "short_pct": 0.3685,
+      "social_mentions": 2,
+      "reddit_sentiment": 1.0,
+      "volume_acceleration": 5.403133526978259,
+      "sector": "consumer defensive",
+      "industry": "packaged foods",
+      "is_china_adr": false
+    },
     {
       "symbol": "FLWS",
       "score": 76,
@@ -37,10 +58,10 @@
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 129145185,
+      "float_shares": 129450850,
       "short_pct": 0.22129999,
       "social_mentions": 0,
-      "reddit_sentiment": 0.0,
+      "reddit_sentiment": 1.0,
       "volume_acceleration": 6.032984087108477,
       "sector": "healthcare",
       "industry": "biotechnology",
@@ -71,21 +92,30 @@
   "social_trending": {
     "RDDT": 34,
     "NVDA": 11,
-    "INTC": 7,
-    "PLSE": 6,
+    "INTC": 10,
+    "POET": 8,
     "UAMY": 6,
-    "HIMS": 6,
-    "DXYZ": 6,
-    "POET": 6,
     "HNST": 6,
-    "CAR": 6,
-    "OTCQB": 5,
+    "PLSE": 5,
     "BETR": 5,
+    "HIMS": 5,
+    "DXYZ": 5,
+    "GOOGL": 5,
     "MSFT": 5,
+    "OTCQB": 4,
     "BYND": 4,
-    "AEHR": 4
+    "BTIG": 4
   },
   "trade_candidates": [
+    {
+      "symbol": "LFVN",
+      "score": 82.0,
+      "thesis": "Very low float (8.4M) | Very high short interest (36.9% of float) | Explosive volume acceleration (5.4x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.9% SI + 5.4x volume [Raw: 63, Normalized: 82]",
+      "times_seen": 8,
+      "has_catalyst": 0,
+      "catalyst_type": null,
+      "sector": "consumer defensive"
+    },
     {
       "symbol": "CYCN",
       "score": 80.0,
@@ -96,19 +126,10 @@
       "sector": "healthcare"
     },
     {
-      "symbol": "LFVN",
-      "score": 78.0,
-      "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (5.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.4% SI + 5.1x volume [Raw: 58, Normalized: 78]",
-      "times_seen": 5,
-      "has_catalyst": 0,
-      "catalyst_type": null,
-      "sector": "consumer defensive"
-    },
-    {
       "symbol": "FLWS",
       "score": 76.0,
       "thesis": "Low float (10.6M) | Very high short interest (43.5% of float) | Explosive volume acceleration (6.6x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 10.6M float + 43.5% SI + 6.6x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 31,
+      "times_seen": 36,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
