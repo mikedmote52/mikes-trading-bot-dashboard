@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-27T06:13:39.286841",
+  "timestamp": "2026-04-27T06:15:24.262925",
   "candidates_discovered": 395,
   "candidates_evaluated": 30,
   "ready_to_trade": 8,
@@ -111,7 +111,7 @@
       "symbol": "LFVN",
       "score": 82.0,
       "thesis": "Very low float (8.4M) | Very high short interest (36.9% of float) | Explosive volume acceleration (5.4x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.9% SI + 5.4x volume [Raw: 63, Normalized: 82]",
-      "times_seen": 8,
+      "times_seen": 9,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
@@ -129,7 +129,7 @@
       "symbol": "FLWS",
       "score": 76.0,
       "thesis": "Low float (10.6M) | Very high short interest (43.5% of float) | Explosive volume acceleration (6.6x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 10.6M float + 43.5% SI + 6.6x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 36,
+      "times_seen": 37,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
