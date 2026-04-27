@@ -325,5 +325,28 @@
       "previous_close": null,
       "thesis": "Very low float (9.8M) | Elevated short interest (15.9% of float) | Explosive volume acceleration (235.9x vs 10d avg) | SQUEEZE TRIFECTA: 9.8M float + 15.9% SI + 235.9x volume [Raw: 38, Normalized: 65]"
     }
+  },
+  {
+    "symbol": "ROLR",
+    "entry": 10.795,
+    "exit_price": 10.333333,
+    "pnl_pct": -4.28,
+    "pnl_dollar": -2.77,
+    "reason": "Server-side stop at $10.33",
+    "date": "2026-04-27",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 72.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 4636895.0,
+      "short_pct": 0.2922,
+      "volume_acceleration": null,
+      "sector": "consumer cyclical",
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": "Very low float (4.6M) | Very high short interest (29.2% of float) | Explosive volume acceleration (25.5x vs 10d avg) | SQUEEZE TRIFECTA: 4.6M float + 29.2% SI + 25.5x volume [Raw: 48, Normalized: 72]"
+    }
   }
 ]
