@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-04-28T12:01:27.132985",
-  "candidates_discovered": 426,
+  "timestamp": "2026-04-28T12:03:18.950612",
+  "candidates_discovered": 424,
   "candidates_evaluated": 30,
   "ready_to_trade": 12,
   "top_picks": [
@@ -20,7 +20,7 @@
       "short_pct": 0.1807,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 13.029735497967037,
+      "volume_acceleration": 13.034663078236461,
       "sector": "industrials",
       "industry": "marine shipping",
       "is_china_adr": false
@@ -41,7 +41,7 @@
       "short_pct": 0.15529999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 114.67950530035336,
+      "volume_acceleration": 114.68813136562045,
       "sector": "communication services",
       "industry": "electronic gaming & multimedia",
       "is_china_adr": false
@@ -51,7 +51,7 @@
       "score": 52,
       "raw_score": 78,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Explosive volume acceleration (23.9x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 78, Normalized: 52]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Explosive volume acceleration (24.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 78, Normalized: 52]",
       "risks": [
         "Large float (119M) limits squeeze potential"
       ],
@@ -62,7 +62,7 @@
       "short_pct": 0.22709998,
       "social_mentions": 0,
       "reddit_sentiment": -1.0,
-      "volume_acceleration": 23.931676908238497,
+      "volume_acceleration": 23.95107449500599,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -81,7 +81,7 @@
       "short_pct": 0.12100001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 49.76807605561424,
+      "volume_acceleration": 49.77428935773356,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -102,7 +102,7 @@
       "short_pct": 0.3677,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.550964005598157,
+      "volume_acceleration": 5.556917636139215,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -123,7 +123,7 @@
       "short_pct": 0.2033,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.733961809888524,
+      "volume_acceleration": 3.7345268786061716,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -133,7 +133,7 @@
       "score": 37,
       "raw_score": 56,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (12.3% of float) | Strong volume acceleration (4.2x) | High absolute volume conviction: 43.2M shares (4.2x) [Raw: 56, Normalized: 37]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (12.3% of float) | Strong volume acceleration (4.2x) | High absolute volume conviction: 43.3M shares (4.2x) [Raw: 56, Normalized: 37]",
       "risks": [
         "Large float (224M) limits squeeze potential"
       ],
@@ -144,7 +144,7 @@
       "short_pct": 0.122600004,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.174050662645225,
+      "volume_acceleration": 4.180078772802653,
       "sector": "healthcare",
       "industry": "biotechnology",
       "is_china_adr": false
@@ -165,7 +165,7 @@
       "short_pct": 0.3685,
       "social_mentions": 3,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 3.4135235076597996,
+      "volume_acceleration": 3.4135272809599275,
       "sector": "consumer defensive",
       "industry": "packaged foods",
       "is_china_adr": false
@@ -211,7 +211,7 @@
       "symbol": "SKLZ",
       "score": 65.0,
       "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (114.7x vs 10d avg) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 114.7x volume [Raw: 38, Normalized: 65]",
-      "times_seen": 10,
+      "times_seen": 11,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "communication services"
@@ -220,7 +220,7 @@
       "symbol": "HTCO",
       "score": 65.0,
       "thesis": "Very low float (2.9M) | Elevated short interest (18.1% of float) | Explosive volume acceleration (13.0x vs 10d avg) | SQUEEZE TRIFECTA: 2.9M float + 18.1% SI + 13.0x volume [Raw: 38, Normalized: 65]",
-      "times_seen": 14,
+      "times_seen": 15,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "industrials"
@@ -228,8 +228,8 @@
     {
       "symbol": "CMPX",
       "score": 52.0,
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Explosive volume acceleration (23.9x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 78, Normalized: 52]",
-      "times_seen": 31,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Explosive volume acceleration (24.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 78, Normalized: 52]",
+      "times_seen": 32,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
