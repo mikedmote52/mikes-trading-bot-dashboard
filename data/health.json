@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-04-30T03:38:42.353535",
+  "timestamp": "2026-04-29T22:28:51.831094",
   "status": "OK",
   "stats": {
-    "equity": 100326.47,
+    "equity": 100326.46,
     "cash": 99778.08,
-    "total_pnl": 326.47,
+    "total_pnl": 326.46,
     "total_pnl_pct": 0.33,
     "num_positions": 9,
-    "day_pnl": -16.91
+    "day_pnl": -16.92
   },
   "positions": [
     {
@@ -28,7 +28,23 @@
       "unrealized_intraday_plpc": "-0.00879",
       "current_price": "40.59",
       "lastday_price": "40.95",
-      "change_today": "-0.00879"
+      "change_today": "-0.00879",
+      "entry_signals": {
+        "tier": null,
+        "composite_score": null,
+        "has_catalyst": null,
+        "catalyst_type": null,
+        "float_shares": null,
+        "short_pct": null,
+        "volume_acceleration": null,
+        "sector": null,
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": null,
+        "scanner_pick": null,
+        "regime_context": null
+      }
     },
     {
       "asset_id": "b8fd79a0-8167-41eb-ba57-7f659e1c297c",
@@ -48,7 +64,23 @@
       "unrealized_intraday_plpc": "-0.04154",
       "current_price": "6.46",
       "lastday_price": "6.74",
-      "change_today": "-0.04154"
+      "change_today": "-0.04154",
+      "entry_signals": {
+        "tier": "B",
+        "composite_score": 51.0,
+        "has_catalyst": false,
+        "catalyst_type": null,
+        "float_shares": 5743101.0,
+        "short_pct": 0.199,
+        "volume_acceleration": null,
+        "sector": "consumer cyclical",
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (28.6x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 5.7M float + 19.9% SI + 28.6x vol",
+        "scanner_pick": null,
+        "regime_context": null
+      }
     },
     {
       "asset_id": "49728256-228e-4516-9cc4-54d2d36b2f70",
@@ -68,7 +100,23 @@
       "unrealized_intraday_plpc": "0",
       "current_price": "3.32",
       "lastday_price": "3.32",
-      "change_today": "0"
+      "change_today": "0",
+      "entry_signals": {
+        "tier": "S",
+        "composite_score": 80.0,
+        "has_catalyst": true,
+        "catalyst_type": "biotech_potential",
+        "float_shares": 3493264.0,
+        "short_pct": 0.026600001,
+        "volume_acceleration": null,
+        "sector": "healthcare",
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.5M) | Explosive volume acceleration (2342.1x vs 10d avg) | Social attention (5 mentions)",
+        "scanner_pick": null,
+        "regime_context": null
+      }
     },
     {
       "asset_id": "db4c8f34-b59c-4c26-a143-5e607afd4a1f",
@@ -88,7 +136,23 @@
       "unrealized_intraday_plpc": "0.00917",
       "current_price": "3.522",
       "lastday_price": "3.49",
-      "change_today": "0.00917"
+      "change_today": "0.00917",
+      "entry_signals": {
+        "tier": "B",
+        "composite_score": 53.0,
+        "has_catalyst": false,
+        "catalyst_type": null,
+        "float_shares": 10584312.0,
+        "short_pct": 0.43490002,
+        "volume_acceleration": null,
+        "sector": "consumer cyclical",
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (12.3x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 12.3x volume [Raw: 20, Nor",
+        "scanner_pick": null,
+        "regime_context": null
+      }
     },
     {
       "asset_id": "cbbb8a86-059e-4b0c-914c-e0f119a4e7cd",
@@ -108,7 +172,23 @@
       "unrealized_intraday_plpc": "-0.03766",
       "current_price": "6.9",
       "lastday_price": "7.17",
-      "change_today": "-0.03766"
+      "change_today": "-0.03766",
+      "entry_signals": {
+        "tier": "A",
+        "composite_score": 72.0,
+        "has_catalyst": false,
+        "catalyst_type": null,
+        "float_shares": 2875426.0,
+        "short_pct": 0.1807,
+        "volume_acceleration": null,
+        "sector": "industrials",
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": "Very low float (2.9M) | Elevated short interest (18.1% of float) | Explosive volume acceleration (13.3x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 2.9M float + 18.1% SI ",
+        "scanner_pick": null,
+        "regime_context": null
+      }
     },
     {
       "asset_id": "69e31b98-c3ae-45e1-9d31-6fca3f601443",
@@ -128,7 +208,23 @@
       "unrealized_intraday_plpc": "0",
       "current_price": "79.99",
       "lastday_price": "79.99",
-      "change_today": "0"
+      "change_today": "0",
+      "entry_signals": {
+        "tier": null,
+        "composite_score": null,
+        "has_catalyst": null,
+        "catalyst_type": null,
+        "float_shares": null,
+        "short_pct": null,
+        "volume_acceleration": null,
+        "sector": null,
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": null,
+        "scanner_pick": null,
+        "regime_context": null
+      }
     },
     {
       "asset_id": "606d8399-7cf9-496f-ae5f-312e937412d9",
@@ -148,7 +244,23 @@
       "unrealized_intraday_plpc": "-0.02376",
       "current_price": "4.93",
       "lastday_price": "5.05",
-      "change_today": "-0.02376"
+      "change_today": "-0.02376",
+      "entry_signals": {
+        "tier": "A",
+        "composite_score": 78.0,
+        "has_catalyst": false,
+        "catalyst_type": null,
+        "float_shares": 8366473.0,
+        "short_pct": 0.3643,
+        "volume_acceleration": null,
+        "sector": "consumer defensive",
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (5.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.4% SI ",
+        "scanner_pick": null,
+        "regime_context": null
+      }
     },
     {
       "asset_id": "664a0bfd-263e-4109-b0a1-e9ee2564026b",
@@ -168,7 +280,23 @@
       "unrealized_intraday_plpc": "0.02125",
       "current_price": "56.7",
       "lastday_price": "55.52",
-      "change_today": "0.02125"
+      "change_today": "0.02125",
+      "entry_signals": {
+        "tier": null,
+        "composite_score": null,
+        "has_catalyst": null,
+        "catalyst_type": null,
+        "float_shares": null,
+        "short_pct": null,
+        "volume_acceleration": null,
+        "sector": null,
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": null,
+        "scanner_pick": null,
+        "regime_context": null
+      }
     },
     {
       "asset_id": "b28f4066-5c6d-479b-a2af-85dc1a8f16fb",
@@ -180,15 +308,31 @@
       "qty_available": "0.002804536",
       "avg_entry_price": "713.13",
       "side": "long",
-      "market_value": "1.997727",
+      "market_value": "1.990828",
       "cost_basis": "1.999999",
-      "unrealized_pl": "-0.002272",
-      "unrealized_plpc": "-0.00114",
-      "unrealized_intraday_pl": "0.002075",
-      "unrealized_intraday_plpc": "0.00104",
-      "current_price": "712.32",
+      "unrealized_pl": "-0.009171",
+      "unrealized_plpc": "-0.00459",
+      "unrealized_intraday_pl": "-0.004824",
+      "unrealized_intraday_plpc": "-0.00242",
+      "current_price": "709.86",
       "lastday_price": "711.58",
-      "change_today": "0.00104"
+      "change_today": "-0.00242",
+      "entry_signals": {
+        "tier": null,
+        "composite_score": 0.0,
+        "has_catalyst": false,
+        "catalyst_type": null,
+        "float_shares": 0.0,
+        "short_pct": 0.0,
+        "volume_acceleration": null,
+        "sector": "financial",
+        "gap_pct": null,
+        "rvol": null,
+        "previous_close": null,
+        "thesis": null,
+        "scanner_pick": null,
+        "regime_context": null
+      }
     }
   ]
 }

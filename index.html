@@ -537,8 +537,13 @@ function PositionMemoCard({ pos }) {
   const es = pos.entry_signals || {};
   const tier = es.tier || (es.scanner_pick && es.scanner_pick.tier) || null;
   const thesis = es.thesis
+    || (es.scanner_pick && es.scanner_pick.reasoning)
     || (es.scanner_pick && es.scanner_pick.thesis)
     || null;
+  // A position without any scanner thesis is almost always a hedge/ETF/manual
+  // buy (SPY, IYT, MPLX) rather than a scanner pick. Surface that explicitly
+  // instead of pretending a thesis is "missing" — it never existed.
+  const isLikelyHedge = !thesis && /^(SPY|QQQ|IWM|DIA|IYT|MPLX|VTI|VOO)$/.test(pos.symbol || '');
   const opinion = botOpinion(plPct);
 
   // Synthetic intraday sparkline — single point trail (we don't have intraday series)
@@ -576,9 +581,13 @@ function PositionMemoCard({ pos }) {
         <div style={{ fontSize: 13, color: C.inkSoft, lineHeight: 1.55, marginTop: 4 }}>
           {thesis.split('[Raw:')[0].trim()}
         </div>
+      ) : isLikelyHedge ? (
+        <div style={{ fontSize: 12, color: C.inkDim, fontStyle: 'italic', marginTop: 4 }}>
+          Hedge / market exposure — not a scanner pick.
+        </div>
       ) : (
         <div style={{ fontSize: 12, color: C.inkDim, fontStyle: 'italic', marginTop: 4 }}>
-          Entry thesis missing — scanner_pick.reasoning not in entry_signals payload.
+          Entry thesis being recovered from scan history.
         </div>
       )}
 
