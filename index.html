@@ -617,11 +617,166 @@ function MindTab({ v2Data, driftData, regime }) {
 }
 
 // ══════════════════════════════════════════════════════════════════
+// OPTIONS TAB
+// ══════════════════════════════════════════════════════════════════
+function OptionsTab({ optionsData }) {
+  if (!optionsData) {
+    return (
+      <div style={{ padding: 16, color: MUTED, fontSize: 13 }}>
+        Waiting for options_dashboard.json…
+      </div>
+    );
+  }
+  const { open_positions = [], closes = [], totals = {}, alerts = [], generated_at } = optionsData;
+  const dailyCap = totals.daily_cap || 300;
+  const deployed = totals.deployed_today || 0;
+  const capPctUsed = Math.min(100, (deployed / dailyCap) * 100);
+
+  return (
+    <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 12 }}>
+      {/* Summary card */}
+      <div style={{ background: CARD_BG, borderRadius: 10, padding: 14, border: '1px solid #2a2a2a' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
+          <div>
+            <div style={{ fontSize: 10, color: DIM, letterSpacing: 0.5, textTransform: 'uppercase' }}>Open Premium</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: '#e2e8f0' }}>
+              {fmt$(totals.total_open_premium || 0)}
+            </div>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontSize: 10, color: DIM, letterSpacing: 0.5, textTransform: 'uppercase' }}>Unrealized P&L</div>
+            <div style={{ fontSize: 18, fontWeight: 700, color: pnlColor(totals.total_open_unrealized_pl || 0) }}>
+              {fmt$(totals.total_open_unrealized_pl || 0)}
+            </div>
+          </div>
+        </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 11, color: MUTED }}>
+          <span>Realized MTD: <span style={{ color: pnlColor(totals.realized_this_month || 0) }}>{fmt$(totals.realized_this_month || 0)}</span></span>
+          <span>{totals.realized_count_this_month || 0} closes</span>
+        </div>
+        <div style={{ marginTop: 8 }}>
+          <div style={{ fontSize: 10, color: DIM, marginBottom: 4 }}>
+            Daily deploy: {fmt$(deployed)} / {fmt$(dailyCap)} ({capPctUsed.toFixed(0)}%)
+          </div>
+          <div style={{ height: 6, background: '#222', borderRadius: 3, overflow: 'hidden' }}>
+            <div style={{
+              width: capPctUsed + '%',
+              height: '100%',
+              background: capPctUsed >= 100 ? LOSS : capPctUsed >= 80 ? SQUEEZE : GAIN,
+              transition: 'width 0.3s',
+            }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Alerts */}
+      {alerts.length > 0 && (
+        <div style={{
+          background: 'rgba(245,158,11,0.12)',
+          border: '1px solid rgba(245,158,11,0.4)',
+          borderRadius: 10, padding: 10,
+        }}>
+          <div style={{ fontSize: 11, fontWeight: 700, color: SQUEEZE, marginBottom: 4 }}>
+            ⚠ MAX-HOLD COUNTDOWN
+          </div>
+          {alerts.map((a, i) => (
+            <div key={i} style={{ fontSize: 12, color: '#e2e8f0' }}>
+              {a.ticker} ({a.occ_symbol}): {a.max_hold_days_left} day(s) left
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Open positions table */}
+      <div style={{ background: CARD_BG, borderRadius: 10, padding: 12, border: '1px solid #2a2a2a' }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: '#e2e8f0', marginBottom: 10 }}>
+          OPEN ({open_positions.length})
+        </div>
+        {open_positions.length === 0 ? (
+          <div style={{ color: MUTED, fontSize: 12, padding: '8px 0' }}>No open contracts.</div>
+        ) : (
+          <table>
+            <thead>
+              <tr style={{ fontSize: 9, color: DIM, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                <th style={{ padding: '4px 6px' }}>Ticker</th>
+                <th style={{ padding: '4px 6px' }}>Strike</th>
+                <th style={{ padding: '4px 6px' }}>DTE</th>
+                <th style={{ padding: '4px 6px', textAlign: 'right' }}>Mid</th>
+                <th style={{ padding: '4px 6px', textAlign: 'right' }}>P&L</th>
+                <th style={{ padding: '4px 6px', textAlign: 'right' }}>Hold</th>
+              </tr>
+            </thead>
+            <tbody>
+              {open_positions.map((p, i) => (
+                <tr key={i} style={{ borderTop: '1px solid #222', fontSize: 12 }}>
+                  <td style={{ padding: '6px', fontWeight: 700 }}>{p.ticker}</td>
+                  <td style={{ padding: '6px', color: MUTED }}>{p.strike}c</td>
+                  <td style={{ padding: '6px', color: MUTED }}>{p.days_to_expire}d</td>
+                  <td style={{ padding: '6px', textAlign: 'right', color: MUTED }}>
+                    {p.current_mid != null ? '$' + Number(p.current_mid).toFixed(2) : '—'}
+                  </td>
+                  <td style={{ padding: '6px', textAlign: 'right',
+                              color: pnlColor(p.unrealized_pl || 0), fontWeight: 600 }}>
+                    {p.unrealized_pl != null ? fmt$(p.unrealized_pl) : '—'}
+                    <span style={{ fontSize: 10, color: MUTED, marginLeft: 4 }}>
+                      {p.unrealized_pl_pct != null ? fmtPct(p.unrealized_pl_pct) : ''}
+                    </span>
+                  </td>
+                  <td style={{ padding: '6px', textAlign: 'right',
+                              color: p.max_hold_alert ? SQUEEZE : MUTED }}>
+                    {p.max_hold_days_left}d
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
+      </div>
+
+      {/* Recent closes */}
+      {closes.length > 0 && (
+        <div style={{ background: CARD_BG, borderRadius: 10, padding: 12, border: '1px solid #2a2a2a' }}>
+          <div style={{ fontSize: 12, fontWeight: 700, color: '#e2e8f0', marginBottom: 10 }}>
+            RECENT CLOSES ({closes.length})
+          </div>
+          <table>
+            <thead>
+              <tr style={{ fontSize: 9, color: DIM, textTransform: 'uppercase', letterSpacing: 0.5 }}>
+                <th style={{ padding: '4px 6px' }}>Ticker</th>
+                <th style={{ padding: '4px 6px' }}>Reason</th>
+                <th style={{ padding: '4px 6px', textAlign: 'right' }}>P&L</th>
+              </tr>
+            </thead>
+            <tbody>
+              {closes.slice(-15).reverse().map((c, i) => (
+                <tr key={i} style={{ borderTop: '1px solid #222', fontSize: 12 }}>
+                  <td style={{ padding: '6px', fontWeight: 700 }}>{c.ticker}</td>
+                  <td style={{ padding: '6px', color: MUTED, fontSize: 10 }}>{c.reason}</td>
+                  <td style={{ padding: '6px', textAlign: 'right',
+                              color: pnlColor(c.pnl || 0), fontWeight: 600 }}>
+                    {c.pnl != null ? fmt$(c.pnl) : '—'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <div style={{ textAlign: 'center', fontSize: 9, color: DIM, paddingBottom: 4 }}>
+        Updated {generated_at ? fmtAge(generated_at) : '—'}
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════
 // HEADER + BOTTOM NAV
 // ══════════════════════════════════════════════════════════════════
 const TABS = [
-  { id: 'month', label: 'Month',  icon: '◈' },
-  { id: 'mind',  label: 'Mind',   icon: '◉' },
+  { id: 'month',   label: 'Month',   icon: '◈' },
+  { id: 'mind',    label: 'Mind',    icon: '◉' },
+  { id: 'options', label: 'Options', icon: '⊕' },
 ];
 
 function BottomTabBar({ active, onChange }) {
@@ -656,7 +811,13 @@ function BottomTabBar({ active, onChange }) {
 // APP ROOT
 // ══════════════════════════════════════════════════════════════════
 function App() {
-  const [tab, setTab] = useState('month');
+  const [tab, setTab] = useState(() => {
+    try {
+      const t = new URLSearchParams(window.location.search).get('tab');
+      if (t && ['month','mind','options'].includes(t)) return t;
+    } catch {}
+    return 'month';
+  });
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
@@ -667,13 +828,20 @@ function App() {
   const health       = usePoll('data/health.json',        HEALTH_POLL_MS);
   const v2Data       = usePoll('data/v2_dashboard.json',  V2_POLL_MS);
   const closedTrades = usePoll('data/closed_trades.json', CLOSED_POLL_MS);
+  const optionsData  = usePoll('data/options_dashboard.json', V2_POLL_MS);
   const equityHistory = useOnce('data/equity_history.json');
   const driftData    = useOnce('data/weight_drift.json');
   const regime       = useOnce('data/regime.json');
 
-  const stats    = health?.stats || {};
-  const equity   = stats.equity;
-  const totalPnl = stats.total_pnl || 0;
+  const stats     = health?.stats || {};
+  const equity    = stats.equity;
+  const eqPnl     = stats.total_pnl || 0;
+  const optPnl    = (optionsData?.totals?.total_open_unrealized_pl || 0)
+                  + (optionsData?.totals?.realized_this_month || 0);
+  const totalPnl  = eqPnl + optPnl;
+  const optsOpen  = optionsData?.open_count || 0;
+  const optsDeployed = optionsData?.totals?.deployed_today || 0;
+  const optsCap   = optionsData?.totals?.daily_cap || 300;
 
   const now   = new Date();
   const wkday = now.getDay();
@@ -708,11 +876,22 @@ function App() {
         <div style={{ textAlign: 'right' }}>
           {equity != null && (
             <div style={{ fontSize: 14, fontWeight: 700, color: pnlColor(totalPnl) }}>
-              {fmt$k(equity)}
+              {fmt$k(equity)} <span style={{ fontSize: 10, fontWeight: 500, color: pnlColor(totalPnl) }}>
+                {totalPnl >= 0 ? '+' : ''}{fmt$(totalPnl).replace('$','')}
+              </span>
             </div>
           )}
-          <div style={{ fontSize: 9, color: DIM }}>
-            {now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+          <div style={{ fontSize: 9, color: DIM, display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
+            <span>{now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+            {(optsOpen > 0 || optsDeployed > 0) && (
+              <span style={{
+                background: 'rgba(168,85,247,0.15)', color: '#c084fc',
+                border: '1px solid rgba(168,85,247,0.4)', borderRadius: 8,
+                padding: '1px 6px', fontWeight: 700, letterSpacing: 0.3,
+              }}>
+                Opt: {optsOpen} open · {fmt$k(optsDeployed)}/${optsCap}
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -732,6 +911,9 @@ function App() {
             driftData={driftData}
             regime={regime}
           />
+        )}
+        {tab === 'options' && (
+          <OptionsTab optionsData={optionsData} />
         )}
       </div>
 

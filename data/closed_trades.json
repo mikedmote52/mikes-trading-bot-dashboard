@@ -348,5 +348,120 @@
       "previous_close": null,
       "thesis": "Very low float (4.6M) | Very high short interest (29.2% of float) | Explosive volume acceleration (25.5x vs 10d avg) | SQUEEZE TRIFECTA: 4.6M float + 29.2% SI + 25.5x volume [Raw: 48, Normalized: 72]"
     }
+  },
+  {
+    "symbol": "HTCO",
+    "entry": 14.65,
+    "exit_price": 7.11,
+    "pnl_pct": -51.47,
+    "pnl_dollar": -30.16,
+    "reason": "Reconciled fill (market) at $7.11",
+    "date": "2026-04-29",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 65.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 2875426.0,
+      "short_pct": 0.1807,
+      "volume_acceleration": null,
+      "sector": "industrials",
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": "Very low float (2.9M) | Elevated short interest (18.1% of float) | Explosive volume acceleration (11.8x vs 10d avg) | SQUEEZE TRIFECTA: 2.9M float + 18.1% SI + 11.8x volume [Raw: 38, Normalized: 65]"
+    }
+  },
+  {
+    "symbol": "MAXN",
+    "entry": 1.135,
+    "exit_price": 1.1,
+    "pnl_pct": -3.08,
+    "pnl_dollar": -0.03,
+    "reason": "Reconciled fill (market) at $1.10",
+    "date": "2026-04-29",
+    "entry_signals": {
+      "tier": null,
+      "composite_score": null,
+      "has_catalyst": null,
+      "catalyst_type": null,
+      "float_shares": null,
+      "short_pct": null,
+      "volume_acceleration": null,
+      "sector": null,
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": null
+    }
+  },
+  {
+    "symbol": "CMPX",
+    "entry": 1.87,
+    "exit_price": 1.7,
+    "pnl_pct": -9.09,
+    "pnl_dollar": -4.42,
+    "reason": "Server-side stop at $1.70",
+    "date": "2026-04-29",
+    "entry_signals": {
+      "tier": "B",
+      "composite_score": 57.0,
+      "has_catalyst": true,
+      "catalyst_type": "biotech_potential",
+      "float_shares": 118868829.0,
+      "short_pct": 0.22709998,
+      "volume_acceleration": null,
+      "sector": "healthcare",
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Explosive volume acceleration (20.4x vs 10d avg) | High absolute volume conviction: 159.0M shares (20.4x) | Near 52-week "
+    }
+  },
+  {
+    "symbol": "ROLR",
+    "entry": 9.01,
+    "exit_price": 8.74,
+    "pnl_pct": -3.0,
+    "pnl_dollar": -1.89,
+    "reason": "Server-side stop at $8.74",
+    "date": "2026-04-29",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 72.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 4636895.0,
+      "short_pct": 0.2922,
+      "volume_acceleration": null,
+      "sector": "consumer cyclical",
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": "Very low float (4.6M) | Very high short interest (29.2% of float) | Explosive volume acceleration (13.6x vs 10d avg) | SQUEEZE TRIFECTA: 4.6M float + 29.2% SI + 13.6x volume [Raw: 48, Normalized: 72]"
+    }
+  },
+  {
+    "symbol": "SKLZ",
+    "entry": 5.85,
+    "exit_price": 5.64,
+    "pnl_pct": -3.59,
+    "pnl_dollar": -2.31,
+    "reason": "Server-side stop at $5.64",
+    "date": "2026-04-29",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 65.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 9770160.0,
+      "short_pct": 0.15529999,
+      "volume_acceleration": null,
+      "sector": "communication services",
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (51.9x vs 10d avg) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 51.9x volume [Raw: 38, Normalized: 65]"
+    }
   }
 ]
