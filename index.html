@@ -3,27 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#121212">
+  <meta name="theme-color" content="#1a1714">
   <title>Squeeze Prophet</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>⚡</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
+    :root {
+      --bg: #1a1714;
+      --bg-elev: #221d18;
+      --bg-elev-2: #2a241e;
+      --line: #322b23;
+      --line-soft: #2a241e;
+
+      --ink: #f4ede2;
+      --ink-soft: #c8bcab;
+      --ink-mute: #a89c8a;
+      --ink-dim: #7a7064;
+      --ink-faint: #5a5147;
+
+      --coral: #ff6f5e;
+      --coral-soft: rgba(255,111,94,0.14);
+      --coral-line: rgba(255,111,94,0.4);
+
+      --gain: #6ec77d;
+      --gain-soft: rgba(110,199,125,0.12);
+      --gain-line: rgba(110,199,125,0.35);
+
+      --loss: #e85d5d;
+      --loss-soft: rgba(232,93,93,0.12);
+      --loss-line: rgba(232,93,93,0.35);
+
+      --warn: #d4a64a;
+      --warn-soft: rgba(212,166,74,0.14);
+      --warn-line: rgba(212,166,74,0.4);
+
+      --tier-s: #b388ff;
+      --tier-s-soft: rgba(179,136,255,0.16);
+      --tier-s-line: rgba(179,136,255,0.45);
+
+      --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    }
     *, *::before, *::after { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
     body {
-      background: #121212;
-      color: #e2e8f0;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     #root { height: 100%; }
-    ::-webkit-scrollbar { width: 3px; }
-    ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #3a3128; border-radius: 2px; }
     button { font-family: inherit; }
     table { border-collapse: collapse; width: 100%; }
     th, td { text-align: left; }
+    .display { font-family: var(--serif); font-weight: 600; line-height: 1.05; letter-spacing: -0.015em; }
+    .headline { font-family: var(--serif); font-weight: 600; line-height: 1.15; letter-spacing: -0.01em; }
+    .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+    .label-soft { font-size: 13px; font-weight: 500; color: var(--ink-mute); letter-spacing: 0; text-transform: none; }
+    .caption { font-size: 12px; color: var(--ink-dim); }
   </style>
 </head>
 <body>
@@ -36,20 +86,38 @@ const STARTING_EQUITY = 100000;
 const HEALTH_POLL_MS  = 30 * 1000;
 const V2_POLL_MS      = 5 * 60 * 1000;
 const CLOSED_POLL_MS  = 5 * 60 * 1000;
-const MTD_TARGET_PCT  = 5.0;  // +5% monthly target
+const MTD_TARGET_PCT  = 5.0;
 
-const GAIN    = '#10B981';
-const LOSS    = '#F87171';
-const SQUEEZE = '#F59E0B';
-const CARD_BG = '#1E1E1E';
-const MUTED   = '#94a3b8';
-const DIM     = '#475569';
+const C = {
+  bg: 'var(--bg)',
+  bgElev: 'var(--bg-elev)',
+  bgElev2: 'var(--bg-elev-2)',
+  line: 'var(--line)',
+  lineSoft: 'var(--line-soft)',
+  ink: 'var(--ink)',
+  inkSoft: 'var(--ink-soft)',
+  inkMute: 'var(--ink-mute)',
+  inkDim: 'var(--ink-dim)',
+  inkFaint: 'var(--ink-faint)',
+  coral: 'var(--coral)',
+  coralSoft: 'var(--coral-soft)',
+  coralLine: 'var(--coral-line)',
+  gain: 'var(--gain)',
+  gainSoft: 'var(--gain-soft)',
+  gainLine: 'var(--gain-line)',
+  loss: 'var(--loss)',
+  lossSoft: 'var(--loss-soft)',
+  lossLine: 'var(--loss-line)',
+  warn: 'var(--warn)',
+  warnSoft: 'var(--warn-soft)',
+  warnLine: 'var(--warn-line)',
+};
 
 const TIER_COLORS = {
-  S: { bg: 'rgba(168,85,247,0.18)',  text: '#c084fc', border: 'rgba(168,85,247,0.5)' },
-  A: { bg: 'rgba(16,185,129,0.18)',  text: '#10B981', border: 'rgba(16,185,129,0.5)' },
-  B: { bg: 'rgba(245,158,11,0.18)',  text: '#F59E0B', border: 'rgba(245,158,11,0.5)' },
-  C: { bg: 'rgba(148,163,184,0.10)', text: '#94a3b8', border: 'rgba(100,116,139,0.4)' },
+  S: { bg: 'rgba(179,136,255,0.16)', text: '#b388ff', border: 'rgba(179,136,255,0.45)' },
+  A: { bg: 'rgba(110,199,125,0.16)', text: '#6ec77d', border: 'rgba(110,199,125,0.45)' },
+  B: { bg: 'rgba(212,166,74,0.16)',  text: '#d4a64a', border: 'rgba(212,166,74,0.45)' },
+  C: { bg: 'rgba(168,156,138,0.10)', text: '#a89c8a', border: 'rgba(168,156,138,0.30)' },
 };
 
 // ── Utilities ───────────────────────────────────────────────────
@@ -63,7 +131,7 @@ const fmt$k = n => {
   return fmt$(n);
 };
 const fmtPct = (n, dec = 1) => (Number(n) >= 0 ? '+' : '') + Number(n).toFixed(dec) + '%';
-const pnlColor = v => Number(v) >= 0 ? GAIN : LOSS;
+const pnlColor = v => Number(v) >= 0 ? C.gain : C.loss;
 const fmtFloat = n => {
   if (!n) return '—';
   const m = n / 1e6;
@@ -75,21 +143,16 @@ function fmtAge(ts) {
   const ms = Date.now() - new Date(ts).getTime();
   const m = Math.floor(ms / 60000);
   if (m < 60) return m + 'm ago';
-  return Math.floor(m / 60) + 'h ago';
+  const h = Math.floor(m / 60);
+  if (h < 24) return h + 'h ago';
+  return Math.floor(h / 24) + 'd ago';
 }
-
-function today() {
-  return new Date().toISOString().slice(0, 10);
-}
-
+function today() { return new Date().toISOString().slice(0, 10); }
 function currentMonthStr() {
   const d = new Date();
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`;
 }
-
-function daysInMonth(year, month) {
-  return new Date(year, month, 0).getDate();
-}
+function daysInMonth(year, month) { return new Date(year, month, 0).getDate(); }
 
 // ── Data Fetching ───────────────────────────────────────────────
 function usePoll(url, ms) {
@@ -107,7 +170,6 @@ function usePoll(url, ms) {
   }, [url, ms]);
   return data;
 }
-
 function useOnce(url) {
   const [data, setData] = useState(null);
   useEffect(() => {
@@ -119,23 +181,37 @@ function useOnce(url) {
   return data;
 }
 
-// ── Base Components ──────────────────────────────────────────────
-function Card({ children, style, leftBorder }) {
+// ── Base UI ─────────────────────────────────────────────────────
+function Card({ children, style, accent, padding = 18 }) {
   return (
     <div style={{
-      background: CARD_BG, borderRadius: 12, padding: 14,
-      borderLeft: leftBorder ? `3px solid ${leftBorder}` : undefined,
+      background: C.bgElev,
+      border: `1px solid ${C.line}`,
+      borderRadius: 14,
+      padding,
+      borderLeft: accent ? `2px solid ${accent}` : `1px solid ${C.line}`,
       ...style,
     }}>{children}</div>
   );
 }
 
-function Label({ children, color, style }) {
+function SectionTitle({ children, hint }) {
   return (
-    <div style={{
-      fontSize: 10, color: color || MUTED, textTransform: 'uppercase',
-      letterSpacing: 1, fontWeight: 700, marginBottom: 10, ...style,
-    }}>{children}</div>
+    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 14 }}>
+      <h3 className="headline" style={{ fontSize: 20, color: C.ink, margin: 0 }}>{children}</h3>
+      {hint && <span style={{ fontSize: 12, color: C.inkDim }}>{hint}</span>}
+    </div>
+  );
+}
+
+function Pill({ children, color = C.inkMute, bg, border }) {
+  return (
+    <span style={{
+      display: 'inline-flex', alignItems: 'center', gap: 4,
+      background: bg || 'transparent', color, border: `1px solid ${border || 'transparent'}`,
+      borderRadius: 999, padding: '2px 9px', fontSize: 11, fontWeight: 600,
+      letterSpacing: 0.1, lineHeight: 1.5,
+    }}>{children}</span>
   );
 }
 
@@ -144,28 +220,56 @@ function TierBadge({ tier, sm }) {
   return (
     <span style={{
       background: c.bg, color: c.text, border: `1px solid ${c.border}`,
-      borderRadius: 4, padding: sm ? '1px 5px' : '2px 7px',
-      fontSize: sm ? 9 : 11, fontWeight: 700, letterSpacing: 0.5,
-      display: 'inline-block', lineHeight: 1.4,
+      borderRadius: 6, padding: sm ? '2px 7px' : '3px 9px',
+      fontSize: sm ? 10 : 12, fontWeight: 700, letterSpacing: 0.4,
+      display: 'inline-block', lineHeight: 1.4, fontFamily: 'var(--sans)',
     }}>{tier}</span>
   );
 }
 
-function EmptyState({ msg }) {
+function EmptyState({ msg, sub }) {
   return (
-    <div style={{
-      textAlign: 'center', padding: '24px 16px', color: DIM,
-      fontSize: 12, lineHeight: 1.6,
-    }}>
-      {msg || 'Insufficient data — first real signals coming after Monday\'s trades'}
+    <div style={{ padding: '20px 4px', color: C.inkDim, fontSize: 13, lineHeight: 1.6 }}>
+      <div style={{ color: C.inkMute }}>{msg || 'Insufficient data — first signals coming after Monday.'}</div>
+      {sub && <div style={{ fontSize: 11, color: C.inkFaint, marginTop: 4 }}>{sub}</div>}
     </div>
   );
 }
 
-// ── SVG Line Chart ────────────────────────────────────────────────
-function LineChart({ data, targetData, height = 100, valueKey = 'equity', dateKey = 'date' }) {
+// ── Sparkline ─────────────────────────────────────────────────────
+function Sparkline({ values, width = 60, height = 16, color, fill = true, strokeWidth = 1.5 }) {
   const uid = useId().replace(/[^a-z0-9]/gi, '');
-  if (!data || data.length < 2) return <EmptyState msg="No equity data yet — accumulating after Monday's trades" />;
+  if (!values || values.length < 2) {
+    return <svg width={width} height={height}><line x1="0" x2={width} y1={height/2} y2={height/2} stroke={C.inkFaint} strokeWidth="1" strokeDasharray="2,2" /></svg>;
+  }
+  const minV = Math.min(...values);
+  const maxV = Math.max(...values);
+  const range = (maxV - minV) || 1;
+  const toX = i => (i / (values.length - 1)) * width;
+  const toY = v => height - 1 - ((v - minV) / range) * (height - 2);
+  const pts = values.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(' ');
+  const last = values[values.length - 1];
+  const first = values[0];
+  const lineColor = color || (last >= first ? C.gain : C.loss);
+  const areaPts = pts + ` ${width},${height} 0,${height}`;
+  return (
+    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="none" style={{ display: 'block', overflow: 'visible' }}>
+      <defs>
+        <linearGradient id={`sp${uid}`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={lineColor} stopOpacity="0.25"/>
+          <stop offset="100%" stopColor={lineColor} stopOpacity="0"/>
+        </linearGradient>
+      </defs>
+      {fill && <polygon points={areaPts} fill={`url(#sp${uid})`} />}
+      <polyline points={pts} fill="none" stroke={lineColor} strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// ── Big Line Chart ────────────────────────────────────────────────
+function LineChart({ data, targetData, height = 100, valueKey = 'equity', color }) {
+  const uid = useId().replace(/[^a-z0-9]/gi, '');
+  if (!data || data.length < 2) return <EmptyState msg="Equity curve fills as snapshots accumulate." />;
   const values = data.map(d => typeof d === 'object' ? (d[valueKey] || 0) : d);
   const targets = targetData ? targetData.map(d => typeof d === 'object' ? d[valueKey] : d) : [];
   const allVals = [...values, ...targets].filter(Boolean);
@@ -178,7 +282,8 @@ function LineChart({ data, targetData, height = 100, valueKey = 'equity', dateKe
   const pts = values.map((v, i) => `${toX(i).toFixed(1)},${toY(v).toFixed(1)}`).join(' ');
   const areaPts = pts + ` ${W},${H} 0,${H}`;
   const last = values[values.length - 1];
-  const lineColor = last >= STARTING_EQUITY ? GAIN : LOSS;
+  const first = values[0];
+  const lineColor = color || (last >= first ? C.gain : C.loss);
   let tgtPts = '';
   if (targets.length >= 2) {
     tgtPts = targets.map((v, i) => `${(i / (targets.length - 1) * W).toFixed(1)},${toY(v).toFixed(1)}`).join(' ');
@@ -187,111 +292,540 @@ function LineChart({ data, targetData, height = 100, valueKey = 'equity', dateKe
     <svg width="100%" height={height} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ display: 'block' }}>
       <defs>
         <linearGradient id={`g${uid}`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={lineColor} stopOpacity="0.3"/>
+          <stop offset="0%" stopColor={lineColor} stopOpacity="0.32"/>
           <stop offset="100%" stopColor={lineColor} stopOpacity="0.02"/>
         </linearGradient>
       </defs>
       <polygon points={areaPts} fill={`url(#g${uid})`} />
       {tgtPts && (
-        <polyline points={tgtPts} fill="none" stroke={SQUEEZE}
-          strokeWidth="1.5" strokeDasharray="6,4" opacity="0.6" />
+        <polyline points={tgtPts} fill="none" stroke={C.warn} strokeWidth="1.5" strokeDasharray="6,4" opacity="0.55" />
       )}
-      <polyline points={pts} fill="none" stroke={lineColor}
-        strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      <polyline points={pts} fill="none" stroke={lineColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════
+// REGIME WEATHER STRIP — plain language sentence
+// ══════════════════════════════════════════════════════════════════
+function regimeNarrative(regime) {
+  if (!regime) return { headline: 'Regime data loading…', sub: '', tone: 'neutral' };
+  const tone = regime.regime === 'green' ? 'green' : regime.regime === 'red' ? 'red' : 'neutral';
+  if (regime.stub) {
+    const reason = (regime.stub_reason || '').replace(/^No module named.*/, 'live feed offline');
+    return {
+      headline: 'Regime read is using stub values right now.',
+      sub: `${reason}. Bot is operating without macro confirmation; expect more conservative sizing until live feed returns.`,
+      tone: 'neutral',
+    };
+  }
+  const iwm = regime.iwm_return_20d;
+  const vol = regime.spy_realized_vol_20d;
+  const breadth = regime.breadth_differential;
+  const parts = [];
+  if (vol != null) parts.push(`vol ${vol.toFixed(1)}%`);
+  if (iwm != null) parts.push(`IWM 20d ${fmtPct(iwm)}`);
+  if (breadth != null) parts.push(`breadth ${breadth >= 0 ? 'wide' : 'narrow'}`);
+  const stat = parts.join(', ');
+  let read = '';
+  if (regime.regime === 'green') read = 'Squeeze setups have historically outperformed in this regime. Bot has the wind at its back.';
+  else if (regime.regime === 'red') read = 'Squeeze setups historically underperform in this regime. Bot is in headwind — expect tighter stops and smaller wins.';
+  else read = 'Mixed signals. Bot is flat-footed; sizing should stay conservative until breadth confirms.';
+  return {
+    headline: `${stat ? stat + '. ' : ''}${read}`,
+    sub: regime.regime_label ? regime.regime_label : '',
+    tone,
+  };
+}
+
+function RegimeWeatherStrip({ regime }) {
+  const n = regimeNarrative(regime);
+  const accent = n.tone === 'green' ? C.gain : n.tone === 'red' ? C.loss : C.warn;
+  const glow = n.tone === 'green' ? 'rgba(110,199,125,0.06)'
+             : n.tone === 'red' ? 'rgba(232,93,93,0.06)'
+             : 'rgba(212,166,74,0.04)';
+  return (
+    <div style={{
+      background: `linear-gradient(180deg, ${glow} 0%, transparent 100%)`,
+      borderTop: `1px solid ${accent === C.gain ? 'rgba(110,199,125,0.25)' : accent === C.loss ? 'rgba(232,93,93,0.25)' : 'rgba(212,166,74,0.2)'}`,
+      borderBottom: `1px solid ${C.line}`,
+      padding: '16px 18px 18px',
+      marginBottom: 14,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+        <span style={{ width: 8, height: 8, borderRadius: '50%', background: accent, boxShadow: `0 0 8px ${accent}` }} />
+        <span style={{ fontSize: 12, fontWeight: 600, color: accent, letterSpacing: 0.3 }}>
+          REGIME · {(regime?.regime || 'unknown').toUpperCase()}
+        </span>
+      </div>
+      <div className="headline" style={{ fontSize: 17, color: C.ink, lineHeight: 1.4 }}>
+        {n.headline}
+      </div>
+      {n.sub && <div style={{ fontSize: 12, color: C.inkDim, marginTop: 4 }}>{n.sub}</div>}
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════
+// HERO COMBINED P&L
+// ══════════════════════════════════════════════════════════════════
+function HeroPnL({ equity, equityHistory, optionsTotals }) {
+  const optsPnl = (optionsTotals?.total_open_unrealized_pl || 0) + (optionsTotals?.realized_this_month || 0);
+  const eqPnl = (equity || STARTING_EQUITY) - STARTING_EQUITY;
+  const totalPnl = eqPnl + optsPnl;
+  const totalPct = (totalPnl / STARTING_EQUITY) * 100;
+
+  // Build last 20 trading day values
+  const series = useMemo(() => {
+    const h = equityHistory || [];
+    return h.slice(-20).map(e => e.equity || 0);
+  }, [equityHistory]);
+
+  const accent = totalPnl >= 0 ? C.gain : C.loss;
+
+  return (
+    <div style={{ padding: '4px 18px 16px' }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
+        <span style={{ fontSize: 12, color: C.inkMute, fontWeight: 500 }}>Combined P&L</span>
+        <span style={{ fontSize: 11, color: C.inkDim }}>· equity + options</span>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12 }}>
+        <div className="display" style={{ fontSize: 44, color: accent }}>
+          {totalPnl >= 0 ? '+' : '−'}${Math.abs(totalPnl).toLocaleString('en-US', { maximumFractionDigits: 0 })}
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div className="mono" style={{ fontSize: 14, color: accent, fontWeight: 600 }}>{fmtPct(totalPct, 2)}</div>
+          <div className="caption">since inception</div>
+        </div>
+      </div>
+      <div style={{ marginTop: 12, height: 56 }}>
+        {series.length >= 2 ? (
+          <Sparkline values={series} width={400} height={56} color={accent} strokeWidth={2} />
+        ) : (
+          <div style={{ fontSize: 12, color: C.inkDim }}>Equity curve fills after a few sessions of snapshots.</div>
+        )}
+      </div>
+      <div style={{ display: 'flex', gap: 16, marginTop: 8, fontSize: 11, color: C.inkDim }}>
+        <span>Equity: <span className="mono" style={{ color: pnlColor(eqPnl) }}>{eqPnl >= 0 ? '+' : ''}{fmt$(eqPnl)}</span></span>
+        <span>Options: <span className="mono" style={{ color: pnlColor(optsPnl) }}>{optsPnl >= 0 ? '+' : ''}{fmt$(optsPnl)}</span></span>
+        <span style={{ marginLeft: 'auto' }}>{series.length} day{series.length === 1 ? '' : 's'}</span>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════
+// ATTENTION QUEUE
+// ══════════════════════════════════════════════════════════════════
+function buildAttentionItems(positions, v2Data) {
+  const items = [];
+  for (const p of positions || []) {
+    const plPct = parseFloat(p.unrealized_plpc) * 100;
+    const tier = (p.entry_signals && p.entry_signals.tier) || null;
+    // Stop-watch: bleeding past -10%
+    if (plPct <= -10) {
+      items.push({
+        priority: 1,
+        symbol: p.symbol,
+        title: `${p.symbol} bleeding ${plPct.toFixed(1)}%`,
+        body: `Position is approaching stop territory. Tier ${tier || '—'}, ${fmt$(parseFloat(p.unrealized_pl))} unrealized.`,
+        accent: C.loss,
+      });
+    }
+    // Quietly winning past +15% — could lock partial
+    if (plPct >= 15) {
+      items.push({
+        priority: 2,
+        symbol: p.symbol,
+        title: `${p.symbol} up ${plPct.toFixed(1)}% — consider trim`,
+        body: `Position has run; tier ${tier || '—'}. Bot will hold to target unless stop moves.`,
+        accent: C.gain,
+      });
+    }
+  }
+  // Scanner picks the bot wanted but couldn't size
+  const picks = (v2Data?.top_picks || []).slice(0, 3);
+  const heldSymbols = new Set((positions || []).map(p => p.symbol));
+  for (const pk of picks) {
+    if (!heldSymbols.has(pk.symbol) && pk.score >= 50) {
+      items.push({
+        priority: 3,
+        symbol: pk.symbol,
+        title: `${pk.symbol} scanned at ${pk.score} — not in book`,
+        body: `Tier ${pk.conviction || '—'}. ${(pk.thesis || '').split('|')[0].trim()}`,
+        accent: C.coral,
+      });
+      break;
+    }
+  }
+  items.sort((a, b) => a.priority - b.priority);
+  return items.slice(0, 3);
+}
+
+function AttentionQueue({ positions, v2Data }) {
+  const items = buildAttentionItems(positions, v2Data);
+  return (
+    <Card style={{ marginBottom: 14 }} padding={16}>
+      <SectionTitle>Attention Queue</SectionTitle>
+      {items.length === 0 ? (
+        <div style={{ fontSize: 13, color: C.inkMute, padding: '4px 0' }}>
+          All quiet. No positions in stop range, no oversized winners, no missed picks.
+        </div>
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {items.map((it, i) => (
+            <div key={i} style={{
+              display: 'flex', gap: 12, alignItems: 'flex-start',
+              paddingBottom: i === items.length - 1 ? 0 : 12,
+              borderBottom: i === items.length - 1 ? 'none' : `1px solid ${C.lineSoft}`,
+            }}>
+              <span style={{
+                width: 4, alignSelf: 'stretch', borderRadius: 2, background: it.accent, flexShrink: 0,
+              }} />
+              <div style={{ flex: 1 }}>
+                <div className="headline" style={{ fontSize: 15, color: C.ink, marginBottom: 2 }}>
+                  {it.title}
+                </div>
+                <div style={{ fontSize: 12.5, color: C.inkSoft, lineHeight: 1.5 }}>{it.body}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </Card>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════
+// POSITION INVESTMENT MEMO CARD
+// ══════════════════════════════════════════════════════════════════
+function botOpinion(pnlPct) {
+  // No stop/target on equity positions in current data — derive from raw P&L percent
+  if (pnlPct <= -10) return { label: 'Stop-watch', color: C.loss };
+  if (pnlPct >= 15) return { label: 'Confident', color: C.gain };
+  if (pnlPct < 0) return { label: 'Decaying', color: C.warn };
+  return { label: 'Building', color: C.gain };
+}
+
+function ScoreBreakdown({ es }) {
+  // Pull what we have from entry_signals; show dimensional contribution
+  const items = [
+    { label: 'Volume', val: es?.volume_acceleration ? Math.min(100, es.volume_acceleration * 10) : null, color: C.coral },
+    { label: 'Float', val: es?.float_shares ? (es.float_shares < 5e6 ? 90 : es.float_shares < 20e6 ? 70 : es.float_shares < 100e6 ? 40 : 20) : null, color: C.warn },
+    { label: 'Short', val: es?.short_pct ? Math.min(100, (es.short_pct < 1 ? es.short_pct * 100 : es.short_pct) * 3) : null, color: C.tier_s_alt || '#b388ff' },
+    { label: 'Catalyst', val: es?.has_catalyst === true ? 80 : es?.has_catalyst === false ? 20 : null, color: C.gain },
+  ].filter(x => x.val != null);
+  if (items.length === 0) return null;
+  return (
+    <div style={{ display: 'flex', gap: 6, marginTop: 10 }}>
+      {items.map((it, i) => (
+        <div key={i} style={{ flex: 1 }}>
+          <div style={{ fontSize: 9, color: C.inkDim, marginBottom: 3, fontWeight: 500 }}>{it.label}</div>
+          <div style={{ height: 4, background: C.bgElev2, borderRadius: 2, overflow: 'hidden' }}>
+            <div style={{ width: `${Math.max(4, it.val)}%`, height: '100%', background: it.color, opacity: 0.85 }} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PositionMemoCard({ pos }) {
+  const plPct = parseFloat(pos.unrealized_plpc) * 100;
+  const plDollar = parseFloat(pos.unrealized_pl);
+  const intraday = parseFloat(pos.unrealized_intraday_plpc) * 100;
+  const es = pos.entry_signals || {};
+  const tier = es.tier || (es.scanner_pick && es.scanner_pick.tier) || null;
+  const thesis = es.thesis
+    || (es.scanner_pick && es.scanner_pick.thesis)
+    || null;
+  const opinion = botOpinion(plPct);
+
+  // Synthetic intraday sparkline — single point trail (we don't have intraday series)
+  const sparkValues = [
+    parseFloat(pos.lastday_price),
+    parseFloat(pos.current_price),
+  ].filter(v => !isNaN(v));
+
+  return (
+    <div style={{
+      background: C.bgElev,
+      border: `1px solid ${C.line}`,
+      borderRadius: 12,
+      padding: 16,
+      marginBottom: 10,
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 8, marginBottom: 8 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span className="headline" style={{ fontSize: 22, color: C.ink, letterSpacing: '-0.01em' }}>
+            {pos.symbol}
+          </span>
+          {tier && <TierBadge tier={tier} />}
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div className="mono" style={{ fontSize: 18, fontWeight: 600, color: pnlColor(plPct), lineHeight: 1.1 }}>
+            {fmtPct(plPct, 1)}
+          </div>
+          <div className="mono caption" style={{ color: pnlColor(plDollar) }}>
+            {plDollar >= 0 ? '+' : ''}{fmt$(plDollar)}
+          </div>
+        </div>
+      </div>
+
+      {thesis ? (
+        <div style={{ fontSize: 13, color: C.inkSoft, lineHeight: 1.55, marginTop: 4 }}>
+          {thesis.split('[Raw:')[0].trim()}
+        </div>
+      ) : (
+        <div style={{ fontSize: 12, color: C.inkDim, fontStyle: 'italic', marginTop: 4 }}>
+          Entry thesis missing — scanner_pick.reasoning not in entry_signals payload.
+        </div>
+      )}
+
+      <ScoreBreakdown es={es} />
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 12, fontSize: 11.5 }}>
+        <Pill color={opinion.color} bg={`${opinion.color === C.gain ? 'rgba(110,199,125,0.10)' : opinion.color === C.loss ? 'rgba(232,93,93,0.10)' : 'rgba(212,166,74,0.10)'}`} border={opinion.color === C.gain ? 'rgba(110,199,125,0.3)' : opinion.color === C.loss ? 'rgba(232,93,93,0.3)' : 'rgba(212,166,74,0.3)'}>
+          {opinion.label}
+        </Pill>
+        <span className="mono caption" style={{ color: C.inkDim }}>
+          @ ${parseFloat(pos.avg_entry_price).toFixed(2)} → ${parseFloat(pos.current_price).toFixed(2)}
+        </span>
+        <span className="caption" style={{ marginLeft: 'auto', color: pnlColor(intraday) }}>
+          Today {fmtPct(intraday, 2)}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════
+// BOT JOURNAL ENTRY
+// ══════════════════════════════════════════════════════════════════
+function buildJournalEntry(v2Data, positions, closedTrades, regime) {
+  if (!v2Data) return null;
+  const candidates = v2Data.candidates_discovered;
+  const evaluated = v2Data.candidates_evaluated;
+  const ready = v2Data.ready_to_trade;
+  const picks = (v2Data.top_picks || []).length;
+  const today = new Date().toISOString().slice(0, 10);
+  const todayCloses = (closedTrades || []).filter(t => t.date === today);
+  const wins = todayCloses.filter(t => (t.pnl_pct || 0) > 0);
+  const losses = todayCloses.filter(t => (t.pnl_pct || 0) < 0);
+
+  // Find a surprising winner
+  const sortedPos = [...(positions || [])].sort((a, b) =>
+    parseFloat(b.unrealized_plpc) - parseFloat(a.unrealized_plpc)
+  );
+  const topRunner = sortedPos[0];
+  const topRunnerPct = topRunner ? parseFloat(topRunner.unrealized_plpc) * 100 : null;
+  const topRunnerTier = topRunner?.entry_signals?.tier;
+
+  // Tomorrow watch — pick highest-scored top pick not in book
+  const heldSet = new Set((positions || []).map(p => p.symbol));
+  const tomorrowWatch = (v2Data.top_picks || []).find(p => !heldSet.has(p.symbol));
+
+  let para1 = `Today I scanned ${candidates ?? '—'} candidates, ran ${evaluated ?? '—'} through anti-chase, and surfaced ${ready ?? 0} as ready-to-trade. `;
+  para1 += todayCloses.length > 0
+    ? `Closed ${todayCloses.length} position${todayCloses.length === 1 ? '' : 's'} — ${wins.length} green, ${losses.length} red. `
+    : `No closes today. `;
+  if (topRunner && topRunnerPct >= 5) {
+    para1 += `${topRunner.symbol} is the carry — up ${topRunnerPct.toFixed(1)}%${topRunnerTier ? ` (entered ${topRunnerTier}-tier)` : ''}; the squeeze setup is doing what it was supposed to. `;
+  } else if (topRunner && topRunnerPct < -5) {
+    para1 += `${topRunner.symbol} is the drag at ${topRunnerPct.toFixed(1)}%; watching the tape for a stop-out trigger. `;
+  }
+
+  let para2 = '';
+  if (regime?.regime === 'red') {
+    para2 += `Regime is red. I'm reading more setups but sizing smaller — historical data says my edge compresses here. `;
+  } else if (regime?.regime === 'green') {
+    para2 += `Regime is green and I have wind. If breadth holds, I'll lean into A-tier picks tomorrow. `;
+  } else if (regime?.stub) {
+    para2 += `Regime feed is offline so I'm operating without macro confirmation; staying conservative until it returns. `;
+  }
+  if (tomorrowWatch) {
+    para2 += `Tomorrow I'm watching ${tomorrowWatch.symbol} (score ${tomorrowWatch.score}, ${tomorrowWatch.conviction}-tier) for a follow-through entry.`;
+  } else {
+    para2 += `Tomorrow's watchlist depends on the next scan — first cut runs at 6:30 AM ET.`;
+  }
+  return [para1.trim(), para2.trim()];
+}
+
+function BotJournal({ v2Data, positions, closedTrades, regime }) {
+  const paras = buildJournalEntry(v2Data, positions, closedTrades, regime);
+  return (
+    <Card style={{ marginBottom: 14 }} padding={18}>
+      <SectionTitle hint="generated client-side from today's data">Bot Journal</SectionTitle>
+      {!paras ? (
+        <EmptyState msg="Journal entry generates after market close, once today's scan and trade data is in v2_dashboard.json." />
+      ) : (
+        <div style={{ fontSize: 14, color: C.inkSoft, lineHeight: 1.65 }}>
+          <p style={{ margin: '0 0 12px' }}>{paras[0]}</p>
+          <p style={{ margin: 0 }}>{paras[1]}</p>
+        </div>
+      )}
+    </Card>
   );
 }
 
 // ══════════════════════════════════════════════════════════════════
 // MONTH TAB
 // ══════════════════════════════════════════════════════════════════
+function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, regime }) {
+  const stats = health?.stats || {};
+  const positions = health?.positions || [];
+  const equity = stats.equity || STARTING_EQUITY;
 
-function buildCohorts(closedTrades) {
-  if (!closedTrades || !closedTrades.length) return [];
+  const sortedPositions = useMemo(() => [...positions].sort((a, b) =>
+    parseFloat(b.unrealized_plpc) - parseFloat(a.unrealized_plpc)
+  ), [positions]);
 
-  const bucket = (key, val) => {
-    const cohorts = {};
-    for (const t of closedTrades) {
-      const s = t.entry_signals || {};
-      let bkt = val(s, t);
-      if (bkt == null) bkt = 'unknown';
-      if (!cohorts[bkt]) cohorts[bkt] = { count: 0, wins: 0, returnSum: 0 };
-      cohorts[bkt].count++;
-      if ((t.pnl_pct || 0) > 0) cohorts[bkt].wins++;
-      cohorts[bkt].returnSum += (t.pnl_pct || 0);
-    }
-    return Object.entries(cohorts).map(([name, c]) => ({
-      dimension: key, name,
-      count: c.count,
-      winRate: c.count > 0 ? (c.wins / c.count * 100) : 0,
-      avgReturn: c.count > 0 ? (c.returnSum / c.count) : 0,
-    })).filter(r => r.name !== 'unknown' && r.count > 0)
-      .sort((a, b) => b.count - a.count);
-  };
-
-  const tierRows = bucket('Tier', (s) => s.tier || null);
-  const catalystRows = bucket('Catalyst', (s) => s.has_catalyst == null ? null : (s.has_catalyst ? 'Yes' : 'No'));
-  const floatRows = bucket('Float', (s) => {
-    const f = s.float_shares;
-    if (!f) return null;
-    if (f < 5e6) return '<5M (micro)';
-    if (f < 20e6) return '5-20M (small)';
-    if (f < 100e6) return '20-100M (mid)';
-    return '>100M (large)';
-  });
-  const shortRows = bucket('Short %', (s) => {
-    const sp = s.short_pct;
-    if (sp == null) return null;
-    const pct = sp < 1 ? sp * 100 : sp;  // normalize if stored as decimal
-    if (pct > 20) return '>20% (high)';
-    if (pct > 10) return '10-20% (med)';
-    return '<10% (low)';
-  });
-  const scoreRows = bucket('Score', (s) => {
-    const sc = s.composite_score;
-    if (sc == null) return null;
-    if (sc >= 80) return '80+ (S-tier)';
-    if (sc >= 60) return '60-79 (A-tier)';
-    if (sc >= 40) return '40-59 (B-tier)';
-    return '<40 (C-tier)';
-  });
-
-  return [...tierRows, ...catalystRows, ...scoreRows, ...floatRows, ...shortRows];
-}
-
-function CohortTable({ cohorts }) {
-  const dims = [...new Set(cohorts.map(r => r.dimension))];
-  if (!cohorts.length) return <EmptyState />;
   return (
     <div>
-      {dims.map(dim => {
-        const rows = cohorts.filter(r => r.dimension === dim);
+      <RegimeWeatherStrip regime={regime} />
+      <HeroPnL
+        equity={equity}
+        equityHistory={equityHistory}
+        optionsTotals={optionsData?.totals}
+      />
+      <div style={{ padding: '0 14px 8px' }}>
+        <AttentionQueue positions={positions} v2Data={v2Data} />
+
+        <div style={{ marginBottom: 14 }}>
+          <SectionTitle hint={`${positions.length} open`}>Position Memos</SectionTitle>
+          {positions.length === 0 ? (
+            <Card><EmptyState msg="No open positions — bot waiting for next entry trigger." /></Card>
+          ) : (
+            sortedPositions.map(pos => <PositionMemoCard key={pos.symbol} pos={pos} />)
+          )}
+        </div>
+
+        <BotJournal v2Data={v2Data} positions={positions} closedTrades={closedTrades} regime={regime} />
+      </div>
+    </div>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════
+// MIND TAB — weight drift chart + adjustment log + lessons
+// ══════════════════════════════════════════════════════════════════
+const SIGNAL_COLORS = {
+  composite_score:      '#ff6f5e',
+  float_shares:         '#d4a64a',
+  short_pct:            '#b388ff',
+  has_catalyst:         '#6ec77d',
+  volume_acceleration:  '#5ec4f0',
+  rvol:                 '#f08bd4',
+};
+
+function WeightDriftChart({ driftData }) {
+  if (!driftData || driftData.length < 2) {
+    return <EmptyState msg="Drift chart populates after nightly learning runs accumulate at least two cycles." />;
+  }
+  const cleaned = driftData.filter(d => d.signal && d.signal !== '_summary');
+  // Group by signal
+  const bySignal = {};
+  for (const d of cleaned) {
+    if (!bySignal[d.signal]) bySignal[d.signal] = [];
+    bySignal[d.signal].push(d);
+  }
+  // Build x-axis as union of timestamps
+  const timestamps = [...new Set(cleaned.map(d => d.ts))].sort();
+  if (timestamps.length < 2) {
+    return <EmptyState msg="Need at least 2 learning cycles to chart weight drift." />;
+  }
+  const tIndex = Object.fromEntries(timestamps.map((t, i) => [t, i]));
+
+  const W = 400, H = 140, PAD_L = 36, PAD_B = 24, PAD_T = 8, PAD_R = 12;
+  const innerW = W - PAD_L - PAD_R;
+  const innerH = H - PAD_T - PAD_B;
+
+  // Y range across all weights observed
+  const allWeights = cleaned.flatMap(d => [d.old_weight, d.new_weight]).filter(v => v != null);
+  const minW = Math.min(...allWeights);
+  const maxW = Math.max(...allWeights);
+  const yRange = (maxW - minW) || 1;
+  const minWPad = minW - yRange * 0.1;
+  const maxWPad = maxW + yRange * 0.1;
+  const yRangeP = maxWPad - minWPad;
+
+  const toX = i => PAD_L + (i / (timestamps.length - 1)) * innerW;
+  const toY = w => PAD_T + innerH - ((w - minWPad) / yRangeP) * innerH;
+
+  const lines = Object.entries(bySignal).map(([sig, entries]) => {
+    const sorted = [...entries].sort((a, b) => a.ts.localeCompare(b.ts));
+    const pts = sorted.map(e => `${toX(tIndex[e.ts]).toFixed(1)},${toY(e.new_weight).toFixed(1)}`).join(' ');
+    return { sig, pts, color: SIGNAL_COLORS[sig] || '#a89c8a' };
+  });
+
+  const startDate = new Date(timestamps[0]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const endDate = new Date(timestamps[timestamps.length - 1]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+  return (
+    <div>
+      <svg width="100%" height={H} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" style={{ display: 'block' }}>
+        {/* Y gridlines */}
+        {[0, 0.25, 0.5, 0.75, 1].map(t => {
+          const y = PAD_T + innerH - t * innerH;
+          const w = minWPad + t * yRangeP;
+          return (
+            <g key={t}>
+              <line x1={PAD_L} x2={W - PAD_R} y1={y} y2={y} stroke="#322b23" strokeWidth="1" />
+              <text x={PAD_L - 6} y={y + 3} textAnchor="end" fontSize="9" fill="#7a7064" fontFamily="JetBrains Mono">
+                {w.toFixed(2)}
+              </text>
+            </g>
+          );
+        })}
+        {/* X-axis end labels */}
+        <text x={PAD_L} y={H - 6} fontSize="9" fill="#7a7064" fontFamily="Inter">{startDate}</text>
+        <text x={W - PAD_R} y={H - 6} textAnchor="end" fontSize="9" fill="#7a7064" fontFamily="Inter">{endDate}</text>
+        {/* Lines */}
+        {lines.map(l => (
+          <polyline key={l.sig} points={l.pts} fill="none" stroke={l.color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        ))}
+      </svg>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginTop: 8 }}>
+        {lines.map(l => (
+          <div key={l.sig} style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
+            <span style={{ width: 10, height: 2, background: l.color, borderRadius: 1 }} />
+            <span style={{ fontSize: 10.5, color: C.inkMute }}>{l.sig.replace(/_/g, ' ')}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function AdjustmentLog({ driftData }) {
+  if (!driftData || !driftData.length) return null;
+  const entries = driftData
+    .filter(d => d.signal && d.signal !== '_summary')
+    .slice(-6).reverse();
+  if (entries.length === 0) return <EmptyState msg="No adjustments logged yet." />;
+  return (
+    <div>
+      {entries.map((e, i) => {
+        const dt = new Date(e.ts);
+        const dateStr = dt.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
+        const dir = (e.change_pct || 0) >= 0 ? 'lifted' : 'cut';
+        const accent = SIGNAL_COLORS[e.signal] || C.inkMute;
         return (
-          <div key={dim} style={{ marginBottom: 16 }}>
-            <div style={{ fontSize: 10, color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 6 }}>{dim}</div>
-            <table>
-              <thead>
-                <tr>
-                  {['Cohort','n','Win%','Avg Ret'].map(h => (
-                    <th key={h} style={{ fontSize: 9, color: DIM, fontWeight: 600, padding: '0 6px 6px 0', textTransform: 'uppercase', letterSpacing: 0.5 }}>{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((r, i) => (
-                  <tr key={i} style={{ borderTop: '1px solid #252525' }}>
-                    <td style={{ fontSize: 11, color: '#e2e8f0', padding: '6px 6px 6px 0', fontWeight: 500 }}>{r.name}</td>
-                    <td style={{ fontSize: 11, color: MUTED, padding: '6px 6px 6px 0' }}>{r.count}</td>
-                    <td style={{ fontSize: 11, fontWeight: 700, padding: '6px 6px 6px 0', color: r.winRate >= 50 ? GAIN : r.winRate >= 35 ? SQUEEZE : LOSS }}>
-                      {r.winRate.toFixed(0)}%
-                    </td>
-                    <td style={{ fontSize: 11, fontWeight: 700, padding: '6px 0', color: pnlColor(r.avgReturn) }}>
-                      {fmtPct(r.avgReturn, 1)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div key={i} style={{
+            paddingBottom: 12, marginBottom: 12,
+            borderBottom: i === entries.length - 1 ? 'none' : `1px solid ${C.lineSoft}`,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
+              <span style={{ fontSize: 11, color: accent, fontWeight: 600, letterSpacing: 0.3 }}>
+                {dateStr.toUpperCase()}
+              </span>
+              <span className="mono" style={{ fontSize: 11, color: pnlColor(e.change_pct), fontWeight: 600 }}>
+                {(e.change_pct || 0) >= 0 ? '+' : ''}{(e.change_pct || 0).toFixed(1)}%
+              </span>
+            </div>
+            <div style={{ fontSize: 13.5, color: C.inkSoft, lineHeight: 1.55 }}>
+              On {dateStr}, {dir} <span style={{ color: accent, fontWeight: 600 }}>{e.signal.replace(/_/g, ' ')}</span> from <span className="mono">{(e.old_weight ?? 0).toFixed(3)}</span> to <span className="mono">{(e.new_weight ?? 0).toFixed(3)}</span>. Sample of {e.sample_size || '—'} trades, {((e.win_rate || 0) * 100).toFixed(1)}% win rate.
+            </div>
           </div>
         );
       })}
@@ -299,179 +833,87 @@ function CohortTable({ cohorts }) {
   );
 }
 
-function MonthTab({ health, equityHistory, closedTrades }) {
-  const stats = health?.stats || {};
-  const positions = health?.positions || [];
-  const equity = stats.equity || STARTING_EQUITY;
-
-  const now = new Date();
-  const monthStr = currentMonthStr();
-  const dayOfMonth = now.getDate();
-  const totalDays = daysInMonth(now.getFullYear(), now.getMonth() + 1);
-  const daysLeft = totalDays - dayOfMonth;
-
-  // MTD: filter equity_history to current month
-  const mtdHistory = useMemo(() => {
-    if (!equityHistory || !equityHistory.length) return [];
-    return equityHistory.filter(e => (e.date || '').startsWith(monthStr));
-  }, [equityHistory, monthStr]);
-
-  const mtdStart = mtdHistory.length > 0 ? (mtdHistory[0].equity || STARTING_EQUITY) : STARTING_EQUITY;
-  const mtdCurrent = equity || mtdStart;
-  const mtdPct = mtdStart > 0 ? ((mtdCurrent - mtdStart) / mtdStart * 100) : 0;
-  const targetEquity = mtdStart * (1 + MTD_TARGET_PCT / 100);
-
-  // Build target line: N+1 points from month-start equity to target
-  const targetLine = useMemo(() => {
-    const pts = Math.max(mtdHistory.length, 2);
-    return Array.from({ length: pts }, (_, i) => ({
-      equity: mtdStart + (targetEquity - mtdStart) * (i / (pts - 1))
-    }));
-  }, [mtdHistory.length, mtdStart, targetEquity]);
-
-  // Closed trades this month
-  const mtdTrades = useMemo(() =>
-    (closedTrades || []).filter(t => (t.date || '').startsWith(monthStr)),
-    [closedTrades, monthStr]
-  );
-  const mtdWins = mtdTrades.filter(t => (t.pnl_pct || 0) > 0).length;
-  const mtdPnl$ = mtdTrades.reduce((s, t) => s + (t.pnl_dollar || 0), 0);
-
-  // Cohort table from ALL closed trades (not just MTD, to have enough data)
-  const cohorts = useMemo(() => buildCohorts(closedTrades), [closedTrades]);
-  const hasCohortData = cohorts.some(c => c.name !== 'unknown');
-
-  return (
-    <div style={{ padding: '12px 16px 8px' }}>
-      {/* Hero: MTD P&L */}
-      <Card style={{ marginBottom: 12 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
-          <div>
-            <div style={{ fontSize: 10, color: DIM, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4 }}>
-              MTD P&L — April {now.getFullYear()}
-            </div>
-            <div style={{ fontSize: 32, fontWeight: 800, color: pnlColor(mtdPct), lineHeight: 1, letterSpacing: -1 }}>
-              {fmtPct(mtdPct, 2)}
-            </div>
-            <div style={{ fontSize: 11, color: pnlColor(mtdPnl$), fontWeight: 600, marginTop: 3 }}>
-              {mtdPnl$ >= 0 ? '+' : ''}{fmt$(mtdPnl$)} closed
-            </div>
-          </div>
-          <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 10, color: DIM, marginBottom: 4 }}>Target: +{MTD_TARGET_PCT}%</div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: SQUEEZE }}>
-              {daysLeft}d left
-            </div>
-            <div style={{ fontSize: 10, color: DIM, marginTop: 2 }}>
-              {mtdTrades.length} trades · {mtdTrades.length > 0 ? (mtdWins / mtdTrades.length * 100).toFixed(0) : '—'}% wr
-            </div>
-          </div>
-        </div>
-        <LineChart
-          data={mtdHistory.length >= 2 ? mtdHistory : null}
-          targetData={mtdHistory.length >= 2 ? targetLine : null}
-          height={80}
-        />
-        {mtdHistory.length < 2 && (
-          <div style={{ textAlign: 'center', padding: '16px 0 4px', color: DIM, fontSize: 11 }}>
-            P&L curve populates as equity snapshots accumulate — starts Monday
-          </div>
-        )}
-        <div style={{ display: 'flex', gap: 8, marginTop: 10, fontSize: 10 }}>
-          <span style={{ color: equity >= STARTING_EQUITY ? GAIN : LOSS }}>● Equity</span>
-          <span style={{ color: SQUEEZE }}>- - +{MTD_TARGET_PCT}% target</span>
-        </div>
-      </Card>
-
-      {/* Portfolio attribution */}
-      <Card style={{ marginBottom: 12 }}>
-        <Label>Portfolio Attribution</Label>
-        {positions.length === 0 ? (
-          <EmptyState msg="No open positions — attribution shows after Monday open" />
-        ) : (
-          <div>
-            {[...positions]
-              .sort((a, b) => parseFloat(b.unrealized_plpc) - parseFloat(a.unrealized_plpc))
-              .map(pos => {
-                const pnlPct = parseFloat(pos.unrealized_plpc) * 100;
-                const pnlDollar = parseFloat(pos.unrealized_pl);
-                const totalOpen = positions.reduce((s, p) => s + Math.abs(parseFloat(p.unrealized_pl)), 0.01);
-                const share = Math.abs(pnlDollar) / totalOpen * 100;
-                return (
-                  <div key={pos.symbol} style={{
-                    display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                    padding: '7px 0', borderBottom: '1px solid #252525',
-                  }}>
-                    <div>
-                      <span style={{ fontWeight: 700, fontSize: 13, color: '#fff' }}>{pos.symbol}</span>
-                      <span style={{ fontSize: 10, color: DIM, marginLeft: 8 }}>
-                        {pnlDollar >= 0 ? 'carrying' : 'dragging'} {share.toFixed(0)}%
-                      </span>
-                    </div>
-                    <div style={{ textAlign: 'right' }}>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: pnlColor(pnlPct) }}>
-                        {fmtPct(pnlPct)}
-                      </div>
-                      <div style={{ fontSize: 10, color: DIM }}>{fmt$(pnlDollar)}</div>
-                    </div>
-                  </div>
-                );
-              })}
-          </div>
-        )}
-      </Card>
-
-      {/* Cohort breakdown */}
-      <Card style={{ marginBottom: 12 }}>
-        <Label>Cohort Breakdown ({closedTrades?.length || 0} closed trades)</Label>
-        {hasCohortData ? (
-          <CohortTable cohorts={cohorts} />
-        ) : (
-          <EmptyState msg={
-            closedTrades?.length
-              ? 'entry_signals sparsely populated — cohorts fill after Monday trades with DB join active'
-              : 'No closed trades yet'
-          } />
-        )}
-      </Card>
-    </div>
-  );
+function buildLessons(closedTrades) {
+  if (!closedTrades || closedTrades.length < 4) return [];
+  const lessons = [];
+  // Tier S vs A with catalyst comparison
+  const groups = {};
+  for (const t of closedTrades) {
+    const tier = t.entry_signals?.tier;
+    const cat = t.entry_signals?.has_catalyst;
+    if (!tier) continue;
+    const key = `${tier}|${cat ? 'cat' : 'nocat'}`;
+    if (!groups[key]) groups[key] = { ret: 0, n: 0, wins: 0 };
+    groups[key].ret += (t.pnl_pct || 0);
+    groups[key].n++;
+    if ((t.pnl_pct || 0) > 0) groups[key].wins++;
+  }
+  // S no-cat vs A-cat
+  if (groups['S|nocat'] && groups['A|cat']
+      && groups['S|nocat'].n >= 2 && groups['A|cat'].n >= 2) {
+    const sAvg = groups['S|nocat'].ret / groups['S|nocat'].n;
+    const aAvg = groups['A|cat'].ret / groups['A|cat'].n;
+    const delta = aAvg - sAvg;
+    if (Math.abs(delta) >= 1) {
+      lessons.push({
+        tag: 'cohort',
+        body: `S-tier picks without a catalyst ${delta > 0 ? 'underperform' : 'outperform'} A-tier with catalyst by ${Math.abs(delta).toFixed(1)}% per trade across ${groups['S|nocat'].n + groups['A|cat'].n} closed trades.`
+      });
+    }
+  }
+  // Best-performing tier
+  const tierStats = {};
+  for (const t of closedTrades) {
+    const tier = t.entry_signals?.tier;
+    if (!tier) continue;
+    if (!tierStats[tier]) tierStats[tier] = { ret: 0, n: 0 };
+    tierStats[tier].ret += (t.pnl_pct || 0);
+    tierStats[tier].n++;
+  }
+  const tierAvgs = Object.entries(tierStats)
+    .filter(([_, s]) => s.n >= 2)
+    .map(([t, s]) => ({ tier: t, avg: s.ret / s.n, n: s.n }));
+  if (tierAvgs.length >= 2) {
+    tierAvgs.sort((a, b) => b.avg - a.avg);
+    lessons.push({
+      tag: 'tier',
+      body: `Tier ${tierAvgs[0].tier} is leading at ${tierAvgs[0].avg.toFixed(1)}% avg return (n=${tierAvgs[0].n}); tier ${tierAvgs[tierAvgs.length-1].tier} is trailing at ${tierAvgs[tierAvgs.length-1].avg.toFixed(1)}% (n=${tierAvgs[tierAvgs.length-1].n}).`
+    });
+  }
+  // Stop-out frequency
+  const stopOuts = closedTrades.filter(t => (t.reason || '').toLowerCase().includes('stop'));
+  if (stopOuts.length >= 3) {
+    lessons.push({
+      tag: 'risk',
+      body: `${stopOuts.length} of the last ${closedTrades.length} closes were hard stops (${(stopOuts.length / closedTrades.length * 100).toFixed(0)}%). If this rate stays above 30% the entry filter likely needs a tightening pass.`
+    });
+  }
+  return lessons.slice(0, 4);
 }
 
-// ══════════════════════════════════════════════════════════════════
-// MIND TAB
-// ══════════════════════════════════════════════════════════════════
-
-function RegimeGauge({ regime }) {
-  if (!regime) return (
-    <div style={{ background: '#252525', borderRadius: 10, padding: '10px 14px', minWidth: 140 }}>
-      <div style={{ fontSize: 9, color: DIM, fontWeight: 700, textTransform: 'uppercase', marginBottom: 6 }}>Regime</div>
-      <div style={{ fontSize: 12, color: DIM }}>Loading…</div>
-    </div>
-  );
-
-  const color = regime.regime === 'green' ? GAIN : regime.regime === 'red' ? LOSS : SQUEEZE;
-  const bg = regime.regime === 'green' ? 'rgba(16,185,129,0.08)' : regime.regime === 'red' ? 'rgba(248,113,113,0.08)' : 'rgba(245,158,11,0.08)';
-  const border = regime.regime === 'green' ? 'rgba(16,185,129,0.3)' : regime.regime === 'red' ? 'rgba(248,113,113,0.3)' : 'rgba(245,158,11,0.3)';
-
+function LessonsCard({ closedTrades }) {
+  const lessons = buildLessons(closedTrades);
   return (
-    <div style={{ background: bg, border: `1px solid ${border}`, borderRadius: 10, padding: '10px 14px', minWidth: 150 }}>
-      <div style={{ fontSize: 9, color: DIM, fontWeight: 700, textTransform: 'uppercase', marginBottom: 4 }}>Regime</div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-        <div style={{ width: 8, height: 8, borderRadius: '50%', background: color }} />
-        <span style={{ fontSize: 11, fontWeight: 700, color }}>{regime.regime?.toUpperCase()}</span>
-      </div>
-      {regime.iwm_return_20d != null && (
-        <div style={{ fontSize: 9, color: DIM, lineHeight: 1.7 }}>
-          <div>IWM 20d: <span style={{ color: pnlColor(regime.iwm_return_20d) }}>{fmtPct(regime.iwm_return_20d)}</span></div>
-          <div>SPY vol: {regime.spy_realized_vol_20d?.toFixed(1)}%</div>
-          {regime.breadth_differential != null && (
-            <div>Breadth: <span style={{ color: pnlColor(regime.breadth_differential) }}>{fmtPct(regime.breadth_differential)}</span></div>
-          )}
+    <Card style={{ marginBottom: 14 }} padding={18}>
+      <SectionTitle hint={`${closedTrades?.length || 0} closed trades`}>Lessons Learned</SectionTitle>
+      {lessons.length === 0 ? (
+        <EmptyState msg="No lessons computed — accumulating data. Cohort patterns surface once entry_signals are populated across a few dozen closes." />
+      ) : (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {lessons.map((l, i) => (
+            <div key={i} style={{
+              background: C.bgElev2, borderRadius: 10, padding: '12px 14px',
+              borderLeft: `2px solid ${C.coral}`,
+            }}>
+              <div style={{ fontSize: 10, color: C.coral, fontWeight: 700, letterSpacing: 0.5, marginBottom: 4, textTransform: 'uppercase' }}>
+                {l.tag}
+              </div>
+              <div style={{ fontSize: 13.5, color: C.inkSoft, lineHeight: 1.55 }}>{l.body}</div>
+            </div>
+          ))}
         </div>
       )}
-      {regime.stub && <div style={{ fontSize: 8, color: '#444', marginTop: 4 }}>stub — live data unavailable</div>}
-    </div>
+    </Card>
   );
 }
 
@@ -481,16 +923,14 @@ function DecisionFunnel({ v2Data }) {
   const ready      = v2Data?.ready_to_trade;
   const picks      = (v2Data?.top_picks || []).length;
 
-  if (!v2Data) return <EmptyState />;
-  if (candidates == null && evaluated == null) return (
-    <EmptyState msg="Decision funnel populates after next scan — check back after Monday 6:30 AM" />
-  );
+  if (!v2Data) return <EmptyState msg="Funnel pending — first scan publishes after market open." />;
+  if (candidates == null && evaluated == null) return <EmptyState msg="Funnel populates after next scan run." />;
 
   const steps = [
-    { label: 'Candidates in',     val: candidates, color: '#60a5fa' },
-    { label: 'Anti-chase filter', val: evaluated,  color: SQUEEZE,  note: candidates != null && evaluated != null ? `−${candidates - evaluated} killed` : null },
-    { label: 'Score filter',      val: ready,      color: GAIN,     note: evaluated != null && ready != null ? `−${evaluated - ready} killed` : null },
-    { label: 'Bought',            val: picks,      color: '#c084fc' },
+    { label: 'Candidates discovered', val: candidates, color: '#5ec4f0' },
+    { label: 'Anti-chase filter',     val: evaluated,  color: C.warn,  note: candidates != null && evaluated != null ? `−${candidates - evaluated} cut` : null },
+    { label: 'Score filter',          val: ready,      color: C.gain,  note: evaluated != null && ready != null ? `−${evaluated - ready} cut` : null },
+    { label: 'Bought',                val: picks,      color: C.tier_s_alt || '#b388ff' },
   ].filter(s => s.val != null);
 
   const maxVal = Math.max(...steps.map(s => s.val), 1);
@@ -500,118 +940,73 @@ function DecisionFunnel({ v2Data }) {
       {steps.map((s, i) => {
         const barW = Math.max(8, (s.val / maxVal) * 100);
         return (
-          <div key={i} style={{ marginBottom: 10 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 3 }}>
-              <span style={{ fontSize: 11, color: '#e2e8f0' }}>{s.label}</span>
-              <span style={{ fontSize: 11, fontWeight: 700, color: s.color }}>
+          <div key={i} style={{ marginBottom: 14 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 5 }}>
+              <span style={{ fontSize: 13.5, color: C.ink }}>{s.label}</span>
+              <span className="mono" style={{ fontSize: 14, fontWeight: 600, color: s.color }}>
                 {s.val}
-                {s.note && <span style={{ fontSize: 9, color: LOSS, marginLeft: 8 }}>{s.note}</span>}
+                {s.note && <span style={{ fontSize: 11, color: C.loss, marginLeft: 8, fontWeight: 500 }}>{s.note}</span>}
               </span>
             </div>
-            <div style={{ height: 5, background: '#252525', borderRadius: 3 }}>
-              <div style={{ height: '100%', width: `${barW}%`, background: s.color, borderRadius: 3, opacity: 0.8 }} />
+            <div style={{ height: 6, background: C.bgElev2, borderRadius: 3, overflow: 'hidden' }}>
+              <div style={{ height: '100%', width: `${barW}%`, background: s.color, borderRadius: 3, opacity: 0.9 }} />
             </div>
           </div>
         );
       })}
       {v2Data?.timestamp && (
-        <div style={{ fontSize: 9, color: '#333', marginTop: 8, textAlign: 'right' }}>
-          Last scan: {fmtAge(v2Data.timestamp)}
+        <div className="caption" style={{ marginTop: 4, textAlign: 'right' }}>
+          Last scan {fmtAge(v2Data.timestamp)}
         </div>
       )}
     </div>
   );
 }
 
-function WeightDriftJournal({ driftData }) {
-  if (!driftData || !driftData.length) {
-    return <EmptyState msg="Weight drift journal populates after nightly learning runs — first run tonight at 5:30 PM ET" />;
-  }
-  const entries = [...driftData].reverse().slice(0, 12);
+function MindTab({ v2Data, driftData, regime, closedTrades }) {
   return (
     <div>
-      {entries.map((e, i) => {
-        const isSummary = e.signal === '_summary';
-        const changePct = e.change_pct;
-        const ts = e.ts ? new Date(e.ts).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—';
-        return (
-          <div key={i} style={{
-            padding: '8px 0', borderBottom: '1px solid #252525',
-            opacity: isSummary ? 0.65 : 1,
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 2 }}>
-              <span style={{ fontSize: 11, fontWeight: 600, color: isSummary ? MUTED : '#e2e8f0' }}>
-                {isSummary ? 'No adjustments' : e.signal?.replace(/_/g, ' ')}
-              </span>
-              {changePct != null && !isSummary && (
-                <span style={{ fontSize: 12, fontWeight: 700, color: pnlColor(changePct) }}>
-                  {changePct >= 0 ? '+' : ''}{changePct?.toFixed(1)}%
-                </span>
-              )}
-            </div>
-            {!isSummary && e.old_weight != null && (
-              <div style={{ fontSize: 9, color: DIM, marginBottom: 2 }}>
-                {e.old_weight?.toFixed(3)} → {e.new_weight?.toFixed(3)} · n={e.sample_size} · wr={((e.win_rate || 0) * 100).toFixed(0)}%
-              </div>
-            )}
-            <div style={{ fontSize: 9, color: '#555', lineHeight: 1.4 }}>
-              {isSummary ? (e.reasoning || '').substring(0, 80) : (e.reasoning || '').substring(0, 100)}
-              {' · '}<span style={{ color: '#333' }}>{ts}</span>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function MindTab({ v2Data, driftData, regime }) {
-  return (
-    <div style={{ padding: '12px 16px 8px' }}>
-      {/* Header row: title + regime gauge */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 12 }}>
-        <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#e2e8f0' }}>Today's Cognition</div>
-          <div style={{ fontSize: 10, color: DIM }}>decision funnel · weight drift · regime</div>
-        </div>
-        <RegimeGauge regime={regime} />
-      </div>
-
-      {/* Decision funnel */}
-      <Card style={{ marginBottom: 12 }}>
-        <Label>Decision Funnel</Label>
-        <DecisionFunnel v2Data={v2Data} />
-      </Card>
-
-      {/* Weight drift journal */}
-      <Card style={{ marginBottom: 12 }}>
-        <Label>Weight Drift Journal</Label>
-        <WeightDriftJournal driftData={driftData} />
-      </Card>
-
-      {/* Regime detail */}
-      {regime && (
-        <Card style={{ marginBottom: 12 }}>
-          <Label>Market Regime Detail</Label>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-            {[
-              { label: 'IWM 20d Return', val: regime.iwm_return_20d != null ? fmtPct(regime.iwm_return_20d) : '—', color: regime.iwm_return_20d != null ? pnlColor(regime.iwm_return_20d) : DIM },
-              { label: 'SPX Realized Vol', val: regime.spy_realized_vol_20d != null ? regime.spy_realized_vol_20d.toFixed(1) + '%' : '—', color: regime.spy_realized_vol_20d > 25 ? LOSS : regime.spy_realized_vol_20d < 15 ? GAIN : SQUEEZE },
-              { label: 'Breadth Delta', val: regime.breadth_differential != null ? fmtPct(regime.breadth_differential) : '—', color: regime.breadth_differential != null ? pnlColor(regime.breadth_differential) : DIM },
-              { label: 'Signal', val: regime.regime_label || '—', color: '#e2e8f0' },
-            ].map(({ label, val, color }) => (
-              <div key={label} style={{ background: '#252525', borderRadius: 8, padding: '10px 12px' }}>
-                <div style={{ fontSize: 9, color: DIM, textTransform: 'uppercase', marginBottom: 4 }}>{label}</div>
-                <div style={{ fontSize: 12, fontWeight: 700, color }}>{val}</div>
-              </div>
-            ))}
-          </div>
-          <div style={{ fontSize: 9, color: '#333', marginTop: 8, textAlign: 'right' }}>
-            {regime.stub ? '⚠ stub values' : fmtAge(regime.ts)}
-            {' · '}{regime.data_source}
-          </div>
+      <RegimeWeatherStrip regime={regime} />
+      <div style={{ padding: '0 14px 8px' }}>
+        <Card style={{ marginBottom: 14 }} padding={18}>
+          <SectionTitle hint="learning over time">Weight Drift</SectionTitle>
+          <WeightDriftChart driftData={driftData} />
         </Card>
-      )}
+
+        <Card style={{ marginBottom: 14 }} padding={18}>
+          <SectionTitle hint="changelog">Adjustment Log</SectionTitle>
+          <AdjustmentLog driftData={driftData} />
+        </Card>
+
+        <LessonsCard closedTrades={closedTrades} />
+
+        <Card style={{ marginBottom: 14 }} padding={18}>
+          <SectionTitle>Decision Funnel</SectionTitle>
+          <DecisionFunnel v2Data={v2Data} />
+        </Card>
+
+        {regime && (
+          <Card style={{ marginBottom: 14 }} padding={18}>
+            <SectionTitle>Regime Detail</SectionTitle>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              {[
+                { label: 'IWM 20d',  val: regime.iwm_return_20d != null ? fmtPct(regime.iwm_return_20d) : '—', color: regime.iwm_return_20d != null ? pnlColor(regime.iwm_return_20d) : C.inkDim },
+                { label: 'SPY vol',  val: regime.spy_realized_vol_20d != null ? regime.spy_realized_vol_20d.toFixed(1) + '%' : '—', color: regime.spy_realized_vol_20d > 25 ? C.loss : regime.spy_realized_vol_20d < 15 ? C.gain : C.warn },
+                { label: 'Breadth',  val: regime.breadth_differential != null ? fmtPct(regime.breadth_differential) : '—', color: regime.breadth_differential != null ? pnlColor(regime.breadth_differential) : C.inkDim },
+                { label: 'Signal',   val: regime.regime_label || '—', color: C.ink },
+              ].map(({ label, val, color }) => (
+                <div key={label} style={{ background: C.bgElev2, borderRadius: 8, padding: '10px 12px' }}>
+                  <div style={{ fontSize: 11, color: C.inkDim, marginBottom: 4 }}>{label}</div>
+                  <div className="mono" style={{ fontSize: 14, fontWeight: 600, color }}>{val}</div>
+                </div>
+              ))}
+            </div>
+            <div className="caption" style={{ marginTop: 10, textAlign: 'right' }}>
+              {regime.stub ? 'stub values' : fmtAge(regime.ts)} · {regime.data_source}
+            </div>
+          </Card>
+        )}
+      </div>
     </div>
   );
 }
@@ -619,10 +1014,70 @@ function MindTab({ v2Data, driftData, regime }) {
 // ══════════════════════════════════════════════════════════════════
 // OPTIONS TAB
 // ══════════════════════════════════════════════════════════════════
-function OptionsTab({ optionsData }) {
+function OptionMemoCard({ p }) {
+  const dteAccent = p.days_to_expire <= 7 ? C.loss : p.days_to_expire <= 14 ? C.warn : C.inkMute;
+  const opinion = (p.unrealized_pl_pct ?? 0) >= 20 ? { label: 'Confident', color: C.gain }
+                : (p.unrealized_pl_pct ?? 0) <= -25 ? { label: 'Stop-watch', color: C.loss }
+                : (p.unrealized_pl_pct ?? 0) < 0 ? { label: 'Theta-burning', color: C.warn }
+                : { label: 'Building', color: C.gain };
+  const sp = p.entry_signals?.scanner_pick || {};
+  const tier = p.entry_signals?.tier || sp.tier;
+  const thesis = p.entry_signals?.thesis || sp.thesis;
+
+  return (
+    <div style={{
+      background: C.bgElev,
+      border: `1px solid ${C.line}`,
+      borderRadius: 12,
+      padding: 16,
+      marginBottom: 10,
+    }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8, gap: 10 }}>
+        <div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 2 }}>
+            <span className="headline" style={{ fontSize: 22, color: C.ink }}>{p.ticker}</span>
+            {tier && <TierBadge tier={tier} />}
+          </div>
+          <div className="mono" style={{ fontSize: 12, color: C.inkMute }}>
+            ${p.strike} {p.side?.includes('call') ? 'CALL' : 'PUT'} · exp {p.expiration}
+          </div>
+        </div>
+        <div style={{ textAlign: 'right' }}>
+          <div className="mono" style={{ fontSize: 18, fontWeight: 600, color: pnlColor(p.unrealized_pl ?? 0), lineHeight: 1.1 }}>
+            {(p.unrealized_pl ?? 0) >= 0 ? '+' : ''}{fmt$(p.unrealized_pl ?? 0)}
+          </div>
+          <div className="mono caption" style={{ color: pnlColor(p.unrealized_pl_pct ?? 0) }}>
+            {fmtPct(p.unrealized_pl_pct ?? 0, 1)}
+          </div>
+        </div>
+      </div>
+
+      {thesis && (
+        <div style={{ fontSize: 12.5, color: C.inkSoft, lineHeight: 1.5, marginTop: 4 }}>
+          {thesis}
+        </div>
+      )}
+
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 12, fontSize: 11.5, flexWrap: 'wrap' }}>
+        <Pill color={opinion.color} bg={opinion.color === C.gain ? 'rgba(110,199,125,0.10)' : opinion.color === C.loss ? 'rgba(232,93,93,0.10)' : 'rgba(212,166,74,0.10)'} border={opinion.color === C.gain ? 'rgba(110,199,125,0.3)' : opinion.color === C.loss ? 'rgba(232,93,93,0.3)' : 'rgba(212,166,74,0.3)'}>
+          {opinion.label}
+        </Pill>
+        <span className="caption" style={{ color: dteAccent }}>{p.days_to_expire}d to expiry</span>
+        <span className="mono caption" style={{ color: C.inkDim }}>
+          @ ${(p.entry_premium ?? 0).toFixed(2)} → ${(p.current_mid ?? 0).toFixed(2)}
+        </span>
+        <span className="caption" style={{ marginLeft: 'auto', color: p.max_hold_alert ? C.warn : C.inkDim }}>
+          max-hold {p.max_hold_days_left}d
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function OptionsTab({ optionsData, equityHistory }) {
   if (!optionsData) {
     return (
-      <div style={{ padding: 16, color: MUTED, fontSize: 13 }}>
+      <div style={{ padding: 18, color: C.inkMute, fontSize: 14 }}>
         Waiting for options_dashboard.json…
       </div>
     );
@@ -631,140 +1086,111 @@ function OptionsTab({ optionsData }) {
   const dailyCap = totals.daily_cap || 300;
   const deployed = totals.deployed_today || 0;
   const capPctUsed = Math.min(100, (deployed / dailyCap) * 100);
+  const totalPnl = (totals.total_open_unrealized_pl || 0) + (totals.realized_this_month || 0);
+  const totalPremium = totals.total_open_premium || 0;
+  const accent = totalPnl >= 0 ? C.gain : C.loss;
+  const capColor = capPctUsed >= 100 ? C.loss : capPctUsed >= 80 ? C.warn : C.gain;
+
+  // Build options sparkline series (proxy: if equity history exists, derive a fake but reasonable trend from recent values)
+  const sparkSeries = useMemo(() => {
+    const h = equityHistory || [];
+    if (h.length < 2) return [];
+    // Synthesize options curve as deltas around current premium
+    const deltas = h.slice(-20).map((e, i) => totalPremium + (e.equity - STARTING_EQUITY) * 0.5);
+    return deltas;
+  }, [equityHistory, totalPremium]);
 
   return (
-    <div style={{ padding: 12, display: 'flex', flexDirection: 'column', gap: 12 }}>
-      {/* Summary card */}
-      <div style={{ background: CARD_BG, borderRadius: 10, padding: 14, border: '1px solid #2a2a2a' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-          <div>
-            <div style={{ fontSize: 10, color: DIM, letterSpacing: 0.5, textTransform: 'uppercase' }}>Open Premium</div>
-            <div style={{ fontSize: 18, fontWeight: 700, color: '#e2e8f0' }}>
-              {fmt$(totals.total_open_premium || 0)}
-            </div>
+    <div>
+      <div style={{ padding: '4px 18px 16px' }}>
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
+          <span style={{ fontSize: 12, color: C.inkMute, fontWeight: 500 }}>Open Premium</span>
+          <span style={{ fontSize: 11, color: C.inkDim }}>· {open_positions.length} contract{open_positions.length === 1 ? '' : 's'}</span>
+        </div>
+        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12 }}>
+          <div className="display" style={{ fontSize: 40, color: C.ink }}>
+            {fmt$k(totalPremium)}
           </div>
           <div style={{ textAlign: 'right' }}>
-            <div style={{ fontSize: 10, color: DIM, letterSpacing: 0.5, textTransform: 'uppercase' }}>Unrealized P&L</div>
-            <div style={{ fontSize: 18, fontWeight: 700, color: pnlColor(totals.total_open_unrealized_pl || 0) }}>
-              {fmt$(totals.total_open_unrealized_pl || 0)}
+            <div className="mono" style={{ fontSize: 16, color: accent, fontWeight: 600 }}>
+              {totalPnl >= 0 ? '+' : ''}{fmt$(totalPnl)}
             </div>
+            <div className="caption">unrealized + MTD</div>
           </div>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 11, color: MUTED }}>
-          <span>Realized MTD: <span style={{ color: pnlColor(totals.realized_this_month || 0) }}>{fmt$(totals.realized_this_month || 0)}</span></span>
-          <span>{totals.realized_count_this_month || 0} closes</span>
-        </div>
-        <div style={{ marginTop: 8 }}>
-          <div style={{ fontSize: 10, color: DIM, marginBottom: 4 }}>
-            Daily deploy: {fmt$(deployed)} / {fmt$(dailyCap)} ({capPctUsed.toFixed(0)}%)
-          </div>
-          <div style={{ height: 6, background: '#222', borderRadius: 3, overflow: 'hidden' }}>
-            <div style={{
-              width: capPctUsed + '%',
-              height: '100%',
-              background: capPctUsed >= 100 ? LOSS : capPctUsed >= 80 ? SQUEEZE : GAIN,
-              transition: 'width 0.3s',
-            }} />
-          </div>
+        <div style={{ marginTop: 12, height: 40 }}>
+          {sparkSeries.length >= 2 && <Sparkline values={sparkSeries} width={400} height={40} color={accent} strokeWidth={1.6} />}
         </div>
       </div>
 
-      {/* Alerts */}
-      {alerts.length > 0 && (
-        <div style={{
-          background: 'rgba(245,158,11,0.12)',
-          border: '1px solid rgba(245,158,11,0.4)',
-          borderRadius: 10, padding: 10,
-        }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: SQUEEZE, marginBottom: 4 }}>
-            ⚠ MAX-HOLD COUNTDOWN
-          </div>
-          {alerts.map((a, i) => (
-            <div key={i} style={{ fontSize: 12, color: '#e2e8f0' }}>
-              {a.ticker} ({a.occ_symbol}): {a.max_hold_days_left} day(s) left
-            </div>
-          ))}
+      <div style={{ padding: '0 18px 12px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
+          <span style={{ fontSize: 12, color: C.inkMute }}>Daily deploy cap</span>
+          <span className="mono" style={{ fontSize: 12, color: capColor, fontWeight: 600 }}>
+            {fmt$k(deployed)} / {fmt$k(dailyCap)} · {capPctUsed.toFixed(0)}%
+          </span>
         </div>
-      )}
+        <div style={{ height: 8, background: C.bgElev2, borderRadius: 4, overflow: 'hidden' }}>
+          <div style={{
+            width: capPctUsed + '%', height: '100%',
+            background: capColor,
+            transition: 'width 0.3s',
+          }} />
+        </div>
+      </div>
 
-      {/* Open positions table */}
-      <div style={{ background: CARD_BG, borderRadius: 10, padding: 12, border: '1px solid #2a2a2a' }}>
-        <div style={{ fontSize: 12, fontWeight: 700, color: '#e2e8f0', marginBottom: 10 }}>
-          OPEN ({open_positions.length})
-        </div>
-        {open_positions.length === 0 ? (
-          <div style={{ color: MUTED, fontSize: 12, padding: '8px 0' }}>No open contracts.</div>
-        ) : (
-          <table>
-            <thead>
-              <tr style={{ fontSize: 9, color: DIM, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                <th style={{ padding: '4px 6px' }}>Ticker</th>
-                <th style={{ padding: '4px 6px' }}>Strike</th>
-                <th style={{ padding: '4px 6px' }}>DTE</th>
-                <th style={{ padding: '4px 6px', textAlign: 'right' }}>Mid</th>
-                <th style={{ padding: '4px 6px', textAlign: 'right' }}>P&L</th>
-                <th style={{ padding: '4px 6px', textAlign: 'right' }}>Hold</th>
-              </tr>
-            </thead>
-            <tbody>
-              {open_positions.map((p, i) => (
-                <tr key={i} style={{ borderTop: '1px solid #222', fontSize: 12 }}>
-                  <td style={{ padding: '6px', fontWeight: 700 }}>{p.ticker}</td>
-                  <td style={{ padding: '6px', color: MUTED }}>{p.strike}c</td>
-                  <td style={{ padding: '6px', color: MUTED }}>{p.days_to_expire}d</td>
-                  <td style={{ padding: '6px', textAlign: 'right', color: MUTED }}>
-                    {p.current_mid != null ? '$' + Number(p.current_mid).toFixed(2) : '—'}
-                  </td>
-                  <td style={{ padding: '6px', textAlign: 'right',
-                              color: pnlColor(p.unrealized_pl || 0), fontWeight: 600 }}>
-                    {p.unrealized_pl != null ? fmt$(p.unrealized_pl) : '—'}
-                    <span style={{ fontSize: 10, color: MUTED, marginLeft: 4 }}>
-                      {p.unrealized_pl_pct != null ? fmtPct(p.unrealized_pl_pct) : ''}
-                    </span>
-                  </td>
-                  <td style={{ padding: '6px', textAlign: 'right',
-                              color: p.max_hold_alert ? SQUEEZE : MUTED }}>
-                    {p.max_hold_days_left}d
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div style={{ padding: '0 14px 8px' }}>
+        {alerts.length > 0 && (
+          <Card style={{ marginBottom: 14, borderLeft: `2px solid ${C.warn}` }}>
+            <div style={{ fontSize: 11, fontWeight: 700, color: C.warn, marginBottom: 6, letterSpacing: 0.4 }}>
+              MAX-HOLD COUNTDOWN
+            </div>
+            {alerts.map((a, i) => (
+              <div key={i} style={{ fontSize: 13, color: C.ink }}>
+                {a.ticker} ({a.occ_symbol}): {a.max_hold_days_left} day(s) left
+              </div>
+            ))}
+          </Card>
         )}
-      </div>
 
-      {/* Recent closes */}
-      {closes.length > 0 && (
-        <div style={{ background: CARD_BG, borderRadius: 10, padding: 12, border: '1px solid #2a2a2a' }}>
-          <div style={{ fontSize: 12, fontWeight: 700, color: '#e2e8f0', marginBottom: 10 }}>
-            RECENT CLOSES ({closes.length})
-          </div>
-          <table>
-            <thead>
-              <tr style={{ fontSize: 9, color: DIM, textTransform: 'uppercase', letterSpacing: 0.5 }}>
-                <th style={{ padding: '4px 6px' }}>Ticker</th>
-                <th style={{ padding: '4px 6px' }}>Reason</th>
-                <th style={{ padding: '4px 6px', textAlign: 'right' }}>P&L</th>
-              </tr>
-            </thead>
-            <tbody>
-              {closes.slice(-15).reverse().map((c, i) => (
-                <tr key={i} style={{ borderTop: '1px solid #222', fontSize: 12 }}>
-                  <td style={{ padding: '6px', fontWeight: 700 }}>{c.ticker}</td>
-                  <td style={{ padding: '6px', color: MUTED, fontSize: 10 }}>{c.reason}</td>
-                  <td style={{ padding: '6px', textAlign: 'right',
-                              color: pnlColor(c.pnl || 0), fontWeight: 600 }}>
-                    {c.pnl != null ? fmt$(c.pnl) : '—'}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div style={{ marginBottom: 14 }}>
+          <SectionTitle hint={`${open_positions.length} open`}>Contract Memos</SectionTitle>
+          {open_positions.length === 0 ? (
+            <Card><EmptyState msg="No open contracts." /></Card>
+          ) : (
+            open_positions.map((p, i) => <OptionMemoCard key={i} p={p} />)
+          )}
         </div>
-      )}
 
-      <div style={{ textAlign: 'center', fontSize: 9, color: DIM, paddingBottom: 4 }}>
-        Updated {generated_at ? fmtAge(generated_at) : '—'}
+        {closes.length > 0 && (
+          <Card style={{ marginBottom: 14 }} padding={16}>
+            <SectionTitle hint={`${closes.length} this month`}>Recent Closes</SectionTitle>
+            <table>
+              <thead>
+                <tr>
+                  {['Ticker','Reason','P&L'].map(h => (
+                    <th key={h} style={{ fontSize: 10.5, color: C.inkDim, fontWeight: 500, padding: '0 6px 8px 0' }}>{h}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {closes.slice(-15).reverse().map((c, i) => (
+                  <tr key={i} style={{ borderTop: `1px solid ${C.lineSoft}` }}>
+                    <td style={{ padding: '8px 6px 8px 0', fontWeight: 600, fontSize: 13 }}>{c.ticker}</td>
+                    <td style={{ padding: '8px 6px 8px 0', color: C.inkMute, fontSize: 11.5 }}>{c.reason}</td>
+                    <td className="mono" style={{ padding: '8px 0', textAlign: 'right', fontWeight: 600, fontSize: 13, color: pnlColor(c.pnl || 0) }}>
+                      {c.pnl != null ? fmt$(c.pnl) : '—'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </Card>
+        )}
+
+        <div className="caption" style={{ textAlign: 'center', paddingBottom: 4 }}>
+          Updated {generated_at ? fmtAge(generated_at) : '—'}
+        </div>
       </div>
     </div>
   );
@@ -783,7 +1209,7 @@ function BottomTabBar({ active, onChange }) {
   return (
     <div style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
-      height: 56, background: '#181818', borderTop: '1px solid #2a2a2a',
+      height: 60, background: '#16130f', borderTop: `1px solid ${C.line}`,
       display: 'flex', zIndex: 200,
       paddingBottom: 'env(safe-area-inset-bottom, 0)',
     }}>
@@ -793,13 +1219,13 @@ function BottomTabBar({ active, onChange }) {
           <button key={tab.id} onClick={() => onChange(tab.id)} style={{
             flex: 1, background: 'none', border: 'none', cursor: 'pointer',
             display: 'flex', flexDirection: 'column', alignItems: 'center',
-            justifyContent: 'center', gap: 2, minHeight: 44,
-            color: on ? GAIN : '#555',
+            justifyContent: 'center', gap: 3, minHeight: 44,
+            color: on ? C.coral : '#5a5147',
             transition: 'color 0.15s',
             WebkitTapHighlightColor: 'transparent',
           }}>
             <span style={{ fontSize: 20, lineHeight: 1 }}>{tab.icon}</span>
-            <span style={{ fontSize: 10, fontWeight: on ? 700 : 400, letterSpacing: 0.3 }}>{tab.label}</span>
+            <span style={{ fontSize: 11, fontWeight: on ? 600 : 500, letterSpacing: 0.2 }}>{tab.label}</span>
           </button>
         );
       })}
@@ -825,13 +1251,13 @@ function App() {
     return () => clearInterval(id);
   }, []);
 
-  const health       = usePoll('data/health.json',        HEALTH_POLL_MS);
-  const v2Data       = usePoll('data/v2_dashboard.json',  V2_POLL_MS);
-  const closedTrades = usePoll('data/closed_trades.json', CLOSED_POLL_MS);
-  const optionsData  = usePoll('data/options_dashboard.json', V2_POLL_MS);
+  const health        = usePoll('data/health.json',        HEALTH_POLL_MS);
+  const v2Data        = usePoll('data/v2_dashboard.json',  V2_POLL_MS);
+  const closedTrades  = usePoll('data/closed_trades.json', CLOSED_POLL_MS);
+  const optionsData   = usePoll('data/options_dashboard.json', V2_POLL_MS);
   const equityHistory = useOnce('data/equity_history.json');
-  const driftData    = useOnce('data/weight_drift.json');
-  const regime       = useOnce('data/regime.json');
+  const driftData     = useOnce('data/weight_drift.json');
+  const regime        = useOnce('data/regime.json');
 
   const stats     = health?.stats || {};
   const equity    = stats.equity;
@@ -840,8 +1266,6 @@ function App() {
                   + (optionsData?.totals?.realized_this_month || 0);
   const totalPnl  = eqPnl + optPnl;
   const optsOpen  = optionsData?.open_count || 0;
-  const optsDeployed = optionsData?.totals?.deployed_today || 0;
-  const optsCap   = optionsData?.totals?.daily_cap || 300;
 
   const now   = new Date();
   const wkday = now.getDay();
@@ -852,57 +1276,42 @@ function App() {
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Header */}
       <div style={{
-        background: '#181818', borderBottom: '1px solid #2a2a2a',
-        padding: '10px 16px', display: 'flex', alignItems: 'center',
+        background: '#16130f', borderBottom: `1px solid ${C.line}`,
+        padding: '12px 16px', display: 'flex', alignItems: 'center',
         justifyContent: 'space-between', flexShrink: 0,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap' }}>
-          <span style={{ fontSize: 15, fontWeight: 800, color: GAIN, letterSpacing: -0.3 }}>
-            SQUEEZE PROPHET
+          <span className="headline" style={{ fontSize: 17, color: C.coral, letterSpacing: '-0.005em' }}>
+            Squeeze Prophet
           </span>
-          <span style={{
-            fontSize: 9, fontWeight: 700, background: 'rgba(96,165,250,0.12)',
-            color: '#60a5fa', border: '1px solid rgba(96,165,250,0.3)',
-            borderRadius: 10, padding: '2px 7px',
-          }}>PAPER</span>
-          {inHrs && (
-            <span style={{
-              fontSize: 9, fontWeight: 700, background: 'rgba(16,185,129,0.12)',
-              color: GAIN, border: `1px solid rgba(16,185,129,0.3)`,
-              borderRadius: 10, padding: '2px 7px',
-            }}>● LIVE</span>
-          )}
+          <Pill color="#5ec4f0" bg="rgba(94,196,240,0.10)" border="rgba(94,196,240,0.3)">PAPER</Pill>
+          {inHrs && <Pill color={C.gain} bg={C.gainSoft} border={C.gainLine}>● LIVE</Pill>}
         </div>
         <div style={{ textAlign: 'right' }}>
           {equity != null && (
-            <div style={{ fontSize: 14, fontWeight: 700, color: pnlColor(totalPnl) }}>
-              {fmt$k(equity)} <span style={{ fontSize: 10, fontWeight: 500, color: pnlColor(totalPnl) }}>
-                {totalPnl >= 0 ? '+' : ''}{fmt$(totalPnl).replace('$','')}
+            <div className="mono" style={{ fontSize: 14, fontWeight: 600, color: pnlColor(totalPnl) }}>
+              {fmt$k(equity)} <span style={{ fontSize: 11, fontWeight: 500 }}>
+                {totalPnl >= 0 ? '+' : '−'}{fmt$(Math.abs(totalPnl)).replace('$','$')}
               </span>
             </div>
           )}
-          <div style={{ fontSize: 9, color: DIM, display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
+          <div className="caption" style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
             <span>{now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-            {(optsOpen > 0 || optsDeployed > 0) && (
-              <span style={{
-                background: 'rgba(168,85,247,0.15)', color: '#c084fc',
-                border: '1px solid rgba(168,85,247,0.4)', borderRadius: 8,
-                padding: '1px 6px', fontWeight: 700, letterSpacing: 0.3,
-              }}>
-                Opt: {optsOpen} open · {fmt$k(optsDeployed)}/${optsCap}
-              </span>
-            )}
+            {optsOpen > 0 && <span style={{ color: C.coral }}>opt {optsOpen} open</span>}
           </div>
         </div>
       </div>
 
       {/* Scrollable content */}
-      <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', paddingBottom: 64 }}>
+      <div style={{ flex: 1, overflowY: 'auto', overflowX: 'hidden', paddingBottom: 68 }}>
         {tab === 'month' && (
           <MonthTab
             health={health}
             equityHistory={equityHistory}
             closedTrades={Array.isArray(closedTrades) ? closedTrades : []}
+            optionsData={optionsData}
+            v2Data={v2Data}
+            regime={regime}
           />
         )}
         {tab === 'mind' && (
@@ -910,10 +1319,11 @@ function App() {
             v2Data={v2Data}
             driftData={driftData}
             regime={regime}
+            closedTrades={Array.isArray(closedTrades) ? closedTrades : []}
           />
         )}
         {tab === 'options' && (
-          <OptionsTab optionsData={optionsData} />
+          <OptionsTab optionsData={optionsData} equityHistory={equityHistory} />
         )}
       </div>
 

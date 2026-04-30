@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-30T02:49:02.850265",
+  "timestamp": "2026-04-30T03:29:05.831347",
   "status": "OK",
   "stats": {
     "equity": 100326.47,
@@ -180,15 +180,15 @@
       "qty_available": "0.002804536",
       "avg_entry_price": "713.13",
       "side": "long",
-      "market_value": "1.996549",
+      "market_value": "1.997334",
       "cost_basis": "1.999999",
-      "unrealized_pl": "-0.00345",
-      "unrealized_plpc": "-0.00173",
-      "unrealized_intraday_pl": "0.000897",
-      "unrealized_intraday_plpc": "0.00045",
-      "current_price": "711.9",
+      "unrealized_pl": "-0.002665",
+      "unrealized_plpc": "-0.00133",
+      "unrealized_intraday_pl": "0.001682",
+      "unrealized_intraday_plpc": "0.00084",
+      "current_price": "712.18",
       "lastday_price": "711.58",
-      "change_today": "0.00045"
+      "change_today": "0.00084"
     }
   ]
 }
