@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-01T04:45:05.092110+00:00",
+  "generated_at": "2026-05-01T04:49:44.233454+00:00",
   "open_count": 1,
   "open_positions": [
     {
@@ -8,7 +8,7 @@
       "side": "long_call",
       "strike": 711.0,
       "expiration": "2026-06-05",
-      "days_to_expire": 36,
+      "days_to_expire": 35,
       "entry_premium": 16.23,
       "entry_cost": 1623.0,
       "current_mid": 19.79,
@@ -17,7 +17,7 @@
       "stop_loss_price": 8.115,
       "take_profit_price": 32.46,
       "max_hold_until": "2026-05-05",
-      "max_hold_days_left": 5,
+      "max_hold_days_left": 4,
       "max_hold_alert": false,
       "entry_timestamp": "2026-04-30T02:35:58.558271+00:00",
       "order_id": "ef7a3351-ac7a-4ff0-956f-f21a1abb5ec3",
@@ -46,9 +46,9 @@
     "total_open_unrealized_pl": 356.0,
     "realized_this_month": 0.0,
     "realized_count_this_month": 0,
-    "deployed_today": 1623.0,
+    "deployed_today": 0,
     "daily_cap": 300.0,
-    "daily_cap_remaining": 0
+    "daily_cap_remaining": 300.0
   },
   "alerts": [],
   "config": {
