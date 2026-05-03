@@ -1,9 +1,29 @@
 {
-  "timestamp": "2026-05-02T06:13:39.962743",
-  "candidates_discovered": 431,
+  "timestamp": "2026-05-03T06:13:46.785861",
+  "candidates_discovered": 428,
   "candidates_evaluated": 30,
   "ready_to_trade": 5,
   "top_picks": [
+    {
+      "symbol": "SKLZ",
+      "score": 67,
+      "raw_score": 41,
+      "conviction": "S",
+      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (15.5x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 15.5x volume [Raw: 41, Normalized: 67]",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "catalyst_quality": "none",
+      "has_catalyst": false,
+      "float_shares": 9770160,
+      "short_pct": 0.15529999,
+      "social_mentions": 2,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 15.507766281499382,
+      "sector": "communication services",
+      "industry": "electronic gaming & multimedia"
+    },
     {
       "symbol": "SGMO",
       "score": 46,
@@ -61,42 +81,24 @@
       "volume_acceleration": 3.1927356245463376,
       "sector": "healthcare",
       "industry": "biotechnology"
-    },
-    {
-      "symbol": "SNDX",
-      "score": 36,
-      "raw_score": 54,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (26.8% of float) | Volume building (2.4x) [Raw: 54, Normalized: 36]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 75037629,
-      "short_pct": 0.26770002,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.351933883765988,
-      "sector": "healthcare",
-      "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 33,
-    "INTC": 10,
+    "INTC": 9,
     "UAMY": 8,
-    "META": 7,
+    "NVDA": 7,
+    "MSFT": 6,
     "AAPL": 6,
-    "SNDK": 6,
-    "NVDA": 6,
+    "META": 6,
     "HNST": 6,
     "SOUN": 5,
     "AMZN": 5,
-    "MSFT": 5,
-    "TSLA": 5,
+    "GOOG": 5,
+    "SNDK": 5,
+    "AIXI": 4,
     "HCAI": 4,
-    "HOOD": 4,
-    "WLAC": 4
+    "HOOD": 4
   },
   "trade_candidates": [
     {
@@ -110,9 +112,9 @@
     },
     {
       "symbol": "SKLZ",
-      "score": 75.0,
-      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (57.2x vs 10d avg) | Today +28.6% \u2014 strong move | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 57.2x volume [Raw: 53, Normalized: 75]",
-      "times_seen": 1,
+      "score": 67.0,
+      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (15.5x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 15.5x volume [Raw: 41, Normalized: 67]",
+      "times_seen": 4,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "communication services"

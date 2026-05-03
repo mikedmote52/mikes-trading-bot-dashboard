@@ -1,6 +1,6 @@
 {
-  "built_at": "2026-05-01T17:27:31.001333",
-  "count": 353,
+  "built_at": "2026-05-02T17:27:36.246161",
+  "count": 354,
   "symbols": [
     "QS",
     "SVV",
@@ -327,6 +327,7 @@
     "CLPT",
     "NUVB",
     "WRAP",
+    "SDHC",
     "KLAR",
     "TTEC",
     "DBI",
@@ -1979,6 +1980,12 @@
     },
     {
       "symbol": "SDGR",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "SDHC",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
