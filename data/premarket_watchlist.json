@@ -1,6 +1,6 @@
 {
-  "built_at": "2026-05-02T17:27:36.246161",
-  "count": 354,
+  "built_at": "2026-05-03T17:27:30.829689",
+  "count": 353,
   "symbols": [
     "QS",
     "SVV",
@@ -314,7 +314,6 @@
     "AUR",
     "ALMU",
     "SAFX",
-    "LWLG",
     "MDWD",
     "BHVN",
     "AMC",
@@ -408,12 +407,6 @@
     },
     {
       "symbol": "FLGT",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "LWLG",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
