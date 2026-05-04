@@ -551,5 +551,30 @@
       "previous_close": null,
       "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (12.3x vs 10d avg) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.8M float + 44.0% SI + 12.3x volume [Raw: 20, Nor"
     }
+  },
+  {
+    "symbol": "HTCO",
+    "entry": 6.93,
+    "exit_price": 12.5,
+    "pnl_pct": 80.38,
+    "pnl_dollar": 55.7,
+    "reason": "Server-side trailing stop at $12.50",
+    "date": "2026-05-04",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 72.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 2875426.0,
+      "short_pct": 0.1807,
+      "volume_acceleration": null,
+      "sector": "industrials",
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": "Very low float (2.9M) | Elevated short interest (18.1% of float) | Explosive volume acceleration (13.3x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 2.9M float + 18.1% SI ",
+      "scanner_pick": null,
+      "regime_context": null
+    }
   }
 ]
