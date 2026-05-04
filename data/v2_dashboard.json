@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-03T06:13:46.785861",
-  "candidates_discovered": 428,
+  "timestamp": "2026-05-04T06:13:44.275920",
+  "candidates_discovered": 429,
   "candidates_evaluated": 30,
   "ready_to_trade": 5,
   "top_picks": [
@@ -81,24 +81,42 @@
       "volume_acceleration": 3.1927356245463376,
       "sector": "healthcare",
       "industry": "biotechnology"
+    },
+    {
+      "symbol": "SNDX",
+      "score": 36,
+      "raw_score": 54,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (26.7% of float) | Volume building (2.4x) [Raw: 54, Normalized: 36]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 75037629,
+      "short_pct": 0.2666,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 2.351933883765988,
+      "sector": "healthcare",
+      "industry": "biotechnology"
     }
   ],
   "social_trending": {
-    "RDDT": 33,
-    "INTC": 9,
-    "UAMY": 8,
-    "NVDA": 7,
-    "MSFT": 6,
-    "AAPL": 6,
-    "META": 6,
+    "RDDT": 35,
+    "INTC": 8,
+    "NVDA": 8,
+    "SOUN": 7,
+    "UAMY": 7,
+    "DXYZ": 6,
     "HNST": 6,
-    "SOUN": 5,
+    "BTIG": 5,
     "AMZN": 5,
-    "GOOG": 5,
-    "SNDK": 5,
-    "AIXI": 4,
+    "MSFT": 5,
+    "META": 5,
+    "NEWS": 4,
+    "PFAS": 4,
     "HCAI": 4,
-    "HOOD": 4
+    "PLTR": 4
   },
   "trade_candidates": [
     {
@@ -114,7 +132,7 @@
       "symbol": "SKLZ",
       "score": 67.0,
       "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (15.5x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 15.5x volume [Raw: 41, Normalized: 67]",
-      "times_seen": 4,
+      "times_seen": 7,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "communication services"
