@@ -576,5 +576,56 @@
       "scanner_pick": null,
       "regime_context": null
     }
+  },
+  {
+    "symbol": "SKLZ",
+    "entry": 8.085,
+    "exit_price": 6.99,
+    "pnl_pct": -13.54,
+    "pnl_dollar": -7.67,
+    "reason": "Server-side stop at $6.99",
+    "date": "2026-05-04",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 75.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 9770160.0,
+      "short_pct": 0.15529999,
+      "volume_acceleration": 0,
+      "sector": "communication services",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (57.2x vs 10d avg) | Today +28.6% \u2014 strong move | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 57.2x volum",
+      "scanner_pick": {
+        "symbol": "SKLZ",
+        "close": 8.085,
+        "composite_score": 75.0,
+        "tier": "A",
+        "reasoning": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (57.2x vs 10d avg) | Today +28.6% \u2014 strong move | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 57.2x volume [Raw: 53, Normalized: 75]",
+        "breakdown": {
+          "v2_score": 75.0,
+          "catalyst": 0
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 1,
+        "has_catalyst": false,
+        "float_shares": 9770160.0,
+        "short_pct": 0.15529999,
+        "volume_acceleration": 0,
+        "sector": "communication services",
+        "catalyst_type": null
+      },
+      "regime_context": {
+        "captured_at": "2026-05-01T06:13:36.038062",
+        "market_is_open": false,
+        "market_next_open": "2026-05-01T09:30:00-04:00",
+        "market_next_close": "2026-05-01T16:00:00-04:00"
+      }
+    }
   }
 ]

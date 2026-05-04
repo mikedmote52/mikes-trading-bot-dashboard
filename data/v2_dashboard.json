@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-05-04T08:59:46.122441",
-  "candidates_discovered": 451,
+  "timestamp": "2026-05-04T11:59:42.425483",
+  "candidates_discovered": 422,
   "candidates_evaluated": 30,
-  "ready_to_trade": 5,
+  "ready_to_trade": 6,
   "top_picks": [
     {
       "symbol": "SKLZ",
       "score": 67,
       "raw_score": 41,
       "conviction": "S",
-      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (13.6x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 13.6x volume [Raw: 41, Normalized: 67]",
+      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (14.2x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 14.2x volume [Raw: 41, Normalized: 67]",
       "risks": [
         "No catalyst identified"
       ],
@@ -20,16 +20,34 @@
       "short_pct": 0.15529999,
       "social_mentions": 2,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 13.637915463501004,
+      "volume_acceleration": 14.154230984040973,
       "sector": "communication services",
       "industry": "electronic gaming & multimedia"
     },
     {
+      "symbol": "CLNN",
+      "score": 65,
+      "raw_score": 98,
+      "conviction": "A",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (8.4M) | Elevated short interest (10.2% of float) | Explosive volume acceleration (83.6x vs 10d avg) | Today +24.1% \u2014 strong move [Raw: 98, Normalized: 65]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 8433032,
+      "short_pct": 0.1025,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 83.60643776824034,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
       "symbol": "CABA",
-      "score": 42,
-      "raw_score": 64,
+      "score": 49,
+      "raw_score": 74,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Volume building (2.8x) | Today +20.0% [Raw: 64, Normalized: 42]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Strong volume acceleration (4.7x) | Today +35.5% \u2014 strong move [Raw: 74, Normalized: 49]",
       "risks": [
         "Near 52-week high \u2014 limited upside without new catalyst"
       ],
@@ -40,65 +58,27 @@
       "short_pct": 0.20549999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.8412136705684214,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
-    {
-      "symbol": "ANVS",
-      "score": 40,
-      "raw_score": 60,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (24.4M) | Elevated short interest (15.0% of float) | Near 52-week low \u2014 turnaround potential [Raw: 60, Normalized: 40]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 24406792,
-      "short_pct": 0.1499,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.4413172683044882,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
-    {
-      "symbol": "CMPX",
-      "score": 36,
-      "raw_score": 54,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (17.3% of float) | Volume building (3.0x) | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
-      "risks": [
-        "Large float (119M) limits squeeze potential"
-      ],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 118829210,
-      "short_pct": 0.173,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.9694719246438464,
+      "volume_acceleration": 4.6868422288649345,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 35,
+    "NVDA": 9,
     "SOUN": 8,
-    "INTC": 8,
-    "NVDA": 8,
     "UAMY": 7,
     "DXYZ": 6,
+    "MSFT": 6,
     "HNST": 6,
     "BTIG": 5,
     "AMZN": 5,
-    "MSFT": 5,
     "META": 5,
+    "SNDK": 5,
+    "INTC": 5,
     "NEWS": 4,
     "PFAS": 4,
-    "HCAI": 4,
-    "PLTR": 4
+    "HCAI": 4
   },
   "trade_candidates": [
     {
@@ -113,11 +93,20 @@
     {
       "symbol": "SKLZ",
       "score": 67.0,
-      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (13.6x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 13.6x volume [Raw: 41, Normalized: 67]",
-      "times_seen": 9,
+      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (14.2x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 14.2x volume [Raw: 41, Normalized: 67]",
+      "times_seen": 10,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "communication services"
+    },
+    {
+      "symbol": "CLNN",
+      "score": 65.0,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (8.4M) | Elevated short interest (10.2% of float) | Explosive volume acceleration (83.6x vs 10d avg) | Today +24.1% \u2014 strong move [Raw: 98, Normalized: 65]",
+      "times_seen": 2,
+      "has_catalyst": 1,
+      "catalyst_type": "biotech_potential",
+      "sector": "consumer defensive"
     }
   ]
 }
