@@ -1,75 +1,15 @@
 {
-  "timestamp": "2026-05-05T06:13:46.830685",
-  "candidates_discovered": 446,
+  "timestamp": "2026-05-05T06:31:47.029984",
+  "candidates_discovered": 413,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
-    {
-      "symbol": "SKLZ",
-      "score": 67,
-      "raw_score": 41,
-      "conviction": "S",
-      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (14.3x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 14.3x volume [Raw: 41, Normalized: 67]",
-      "risks": [
-        "No catalyst identified"
-      ],
-      "catalyst_type": null,
-      "catalyst_quality": "none",
-      "has_catalyst": false,
-      "float_shares": 9770160,
-      "short_pct": 0.15529999,
-      "social_mentions": 2,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 14.307273656316472,
-      "sector": "communication services",
-      "industry": "electronic gaming & multimedia"
-    },
-    {
-      "symbol": "CABA",
-      "score": 56,
-      "raw_score": 84,
-      "conviction": "A",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Explosive volume acceleration (5.3x vs 10d avg) | Today +30.3% \u2014 strong move [Raw: 84, Normalized: 56]",
-      "risks": [
-        "Near 52-week high \u2014 limited upside without new catalyst"
-      ],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 91169928,
-      "short_pct": 0.20549999,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.324670967655357,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
-    {
-      "symbol": "CMPX",
-      "score": 39,
-      "raw_score": 59,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (17.3% of float) | Strong volume acceleration (3.7x) | Near 52-week low \u2014 turnaround potential [Raw: 59, Normalized: 39]",
-      "risks": [
-        "Large float (119M) limits squeeze potential"
-      ],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 118829210,
-      "short_pct": 0.173,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.7341778419477567,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
     {
       "symbol": "ABCL",
       "score": 36,
       "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.4x) [Raw: 54, Normalized: 36]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.1x) [Raw: 54, Normalized: 36]",
       "risks": [
         "Large float (206M) limits squeeze potential"
       ],
@@ -80,7 +20,7 @@
       "short_pct": 0.2025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.444482534097426,
+      "volume_acceleration": 2.1213532031960813,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -111,15 +51,6 @@
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
-    },
-    {
-      "symbol": "SKLZ",
-      "score": 67.0,
-      "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (14.3x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + 14.3x volume [Raw: 41, Normalized: 67]",
-      "times_seen": 13,
-      "has_catalyst": 0,
-      "catalyst_type": null,
-      "sector": "communication services"
     },
     {
       "symbol": "CABA",

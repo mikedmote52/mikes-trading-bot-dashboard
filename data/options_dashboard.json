@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-05T13:13:48.481364+00:00",
+  "generated_at": "2026-05-05T13:31:49.080371+00:00",
   "open_count": 1,
   "open_positions": [
     {
@@ -11,9 +11,9 @@
       "days_to_expire": 31,
       "entry_premium": 16.23,
       "entry_cost": 1623.0,
-      "current_mid": 19.295,
-      "unrealized_pl": 306.5,
-      "unrealized_pl_pct": 18.88,
+      "current_mid": 21.09,
+      "unrealized_pl": 486.0,
+      "unrealized_pl_pct": 29.94,
       "stop_loss_price": 8.115,
       "take_profit_price": 32.46,
       "max_hold_until": "2026-05-05",
@@ -43,7 +43,7 @@
   "closes": [],
   "totals": {
     "total_open_premium": 1623.0,
-    "total_open_unrealized_pl": 306.5,
+    "total_open_unrealized_pl": 486.0,
     "realized_this_month": 0.0,
     "realized_count_this_month": 0,
     "deployed_today": 0,
