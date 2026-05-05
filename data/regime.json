@@ -1,11 +1,10 @@
 {
-  "ts": "2026-05-05T19:14:16.052878",
-  "regime": "yellow",
-  "regime_label": "Neutral \u2014 live data unavailable",
-  "iwm_return_20d": null,
-  "spy_realized_vol_20d": null,
-  "breadth_differential": null,
-  "data_source": "stub",
-  "stub": true,
-  "stub_reason": "No module named 'yfinance'"
+  "ts": "2026-05-05T13:33:13.882425",
+  "regime": "green",
+  "regime_label": "Favorable \u2014 momentum + low vol",
+  "iwm_return_20d": 8.48,
+  "spy_realized_vol_20d": 11.9,
+  "breadth_differential": 2.14,
+  "data_source": "yfinance",
+  "stub": false
 }
