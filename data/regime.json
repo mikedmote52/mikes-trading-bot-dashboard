@@ -1,9 +1,9 @@
 {
-  "ts": "2026-05-04T13:33:08.330496",
+  "ts": "2026-05-05T06:13:49.587717",
   "regime": "green",
   "regime_label": "Favorable \u2014 momentum + low vol",
   "iwm_return_20d": 9.87,
-  "spy_realized_vol_20d": 14.6,
+  "spy_realized_vol_20d": 11.9,
   "breadth_differential": 0.56,
   "data_source": "yfinance",
   "stub": false
