@@ -627,5 +627,56 @@
         "market_next_close": "2026-05-01T16:00:00-04:00"
       }
     }
+  },
+  {
+    "symbol": "CLNN",
+    "entry": 7.65,
+    "exit_price": 6.76,
+    "pnl_pct": -11.63,
+    "pnl_dollar": -8.01,
+    "reason": "Server-side stop at $6.76",
+    "date": "2026-05-05",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 65.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 8433032.0,
+      "short_pct": 0.1025,
+      "volume_acceleration": 0,
+      "sector": "consumer defensive",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (8.4M) | Elevated short interest (10.2% of float) | Explosive volume acceleration (83.6x vs 10d avg) | Today +24.1% \u2014 strong move [Raw: 98, Normalized",
+      "scanner_pick": {
+        "symbol": "CLNN",
+        "close": 7.65,
+        "composite_score": 65.0,
+        "tier": "A",
+        "reasoning": "Biotech \u2014 catalyst-driven sector | Very low float (8.4M) | Elevated short interest (10.2% of float) | Explosive volume acceleration (83.6x vs 10d avg) | Today +24.1% \u2014 strong move [Raw: 98, Normalized: 65]",
+        "breakdown": {
+          "v2_score": 65.0,
+          "catalyst": 1
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 2,
+        "has_catalyst": true,
+        "float_shares": 8433032.0,
+        "short_pct": 0.1025,
+        "volume_acceleration": 0,
+        "sector": "consumer defensive",
+        "catalyst_type": "biotech_potential"
+      },
+      "regime_context": {
+        "captured_at": "2026-05-04T11:59:50.373319",
+        "market_is_open": true,
+        "market_next_open": "2026-05-05T09:30:00-04:00",
+        "market_next_close": "2026-05-04T16:00:00-04:00"
+      }
+    }
   }
 ]

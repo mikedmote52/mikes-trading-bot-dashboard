@@ -1,15 +1,35 @@
 {
-  "timestamp": "2026-05-05T06:31:47.029984",
-  "candidates_discovered": 413,
+  "timestamp": "2026-05-05T08:59:41.483466",
+  "candidates_discovered": 461,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
+    {
+      "symbol": "CABA",
+      "score": 46,
+      "raw_score": 69,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Explosive volume acceleration (5.9x vs 10d avg) [Raw: 69, Normalized: 46]",
+      "risks": [
+        "Near 52-week high \u2014 limited upside without new catalyst"
+      ],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 91169928,
+      "short_pct": 0.20549999,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 5.898842893136199,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
     {
       "symbol": "ABCL",
       "score": 36,
       "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.1x) [Raw: 54, Normalized: 36]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.8x) [Raw: 54, Normalized: 36]",
       "risks": [
         "Large float (206M) limits squeeze potential"
       ],
@@ -20,15 +40,35 @@
       "short_pct": 0.2025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.1213532031960813,
+      "volume_acceleration": 2.7828715142577476,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "BHVN",
+      "score": 36,
+      "raw_score": 54,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
+      "risks": [
+        "Large float (124M) limits squeeze potential"
+      ],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 123856435,
+      "short_pct": 0.2025,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.0655319987449972,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 33,
-    "SOUN": 9,
-    "NVDA": 7,
+    "SOUN": 8,
+    "NVDA": 8,
     "DXYZ": 6,
     "UAMY": 6,
     "HNST": 6,
@@ -38,9 +78,9 @@
     "MSFT": 5,
     "META": 5,
     "INTC": 5,
-    "OTCQB": 4,
     "WHAT": 4,
-    "WLAC": 4
+    "WLAC": 4,
+    "GOOG": 4
   },
   "trade_candidates": [
     {
@@ -48,15 +88,6 @@
       "score": 80.0,
       "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.5M) | Explosive volume acceleration (2342.1x vs 10d avg) | Social attention (5 mentions)",
       "times_seen": 6,
-      "has_catalyst": 1,
-      "catalyst_type": "biotech_potential",
-      "sector": "healthcare"
-    },
-    {
-      "symbol": "CABA",
-      "score": 56.0,
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Explosive volume acceleration (5.3x vs 10d avg) | Today +30.3% \u2014 strong move [Raw: 84, Normalized: 56]",
-      "times_seen": 5,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
