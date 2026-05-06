@@ -1,16 +1,18 @@
 {
-  "timestamp": "2026-05-06T06:13:36.378034",
-  "candidates_discovered": 442,
+  "timestamp": "2026-05-06T06:31:38.596858",
+  "candidates_discovered": 428,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
     {
       "symbol": "AVTX",
-      "score": 46,
-      "raw_score": 70,
+      "score": 50,
+      "raw_score": 75,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (20.2M) | Very high short interest (23.1% of float) | Volume building (2.3x) [Raw: 70, Normalized: 46]",
-      "risks": [],
+      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (20.2M) | Very high short interest (23.1% of float) | Strong volume acceleration (4.0x) [Raw: 75, Normalized: 50]",
+      "risks": [
+        "Near 52-week high \u2014 limited upside without new catalyst"
+      ],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
@@ -18,7 +20,7 @@
       "short_pct": 0.2307,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.2748832369382668,
+      "volume_acceleration": 3.9872048657325623,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -27,7 +29,7 @@
       "score": 46,
       "raw_score": 69,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Explosive volume acceleration (6.6x vs 10d avg) [Raw: 69, Normalized: 46]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Explosive volume acceleration (6.5x vs 10d avg) [Raw: 69, Normalized: 46]",
       "risks": [
         "Near 52-week high \u2014 limited upside without new catalyst"
       ],
@@ -38,16 +40,16 @@
       "short_pct": 0.20549999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 6.594888466170811,
+      "volume_acceleration": 6.489829268865472,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
     {
       "symbol": "ABCL",
-      "score": 39,
-      "raw_score": 59,
+      "score": 36,
+      "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Strong volume acceleration (3.2x) [Raw: 59, Normalized: 39]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.6x) [Raw: 54, Normalized: 36]",
       "risks": [
         "Large float (206M) limits squeeze potential"
       ],
@@ -58,7 +60,7 @@
       "short_pct": 0.2025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.2347709661979485,
+      "volume_acceleration": 2.560228904440966,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -67,7 +69,7 @@
       "score": 36,
       "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (24.0% of float) | Volume building (2.5x) [Raw: 54, Normalized: 36]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (24.0% of float) | Volume building (2.2x) [Raw: 54, Normalized: 36]",
       "risks": [
         "Large float (237M) limits squeeze potential"
       ],
@@ -78,7 +80,7 @@
       "short_pct": 0.23979999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.521368731563422,
+      "volume_acceleration": 2.230304778761062,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
