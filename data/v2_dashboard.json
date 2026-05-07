@@ -1,26 +1,26 @@
 {
-  "timestamp": "2026-05-07T08:59:38.350326",
-  "candidates_discovered": 459,
+  "timestamp": "2026-05-07T11:59:31.032843",
+  "candidates_discovered": 438,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
     {
-      "symbol": "CABA",
+      "symbol": "ABCL",
       "score": 39,
       "raw_score": 59,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Strong volume acceleration (3.3x) [Raw: 59, Normalized: 39]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Strong volume acceleration (3.1x) [Raw: 59, Normalized: 39]",
       "risks": [
-        "Near 52-week high \u2014 limited upside without new catalyst"
+        "Large float (206M) limits squeeze potential"
       ],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 91169928,
-      "short_pct": 0.20549999,
+      "float_shares": 205894476,
+      "short_pct": 0.2025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.29064043449267,
+      "volume_acceleration": 3.090609580363251,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -38,7 +38,7 @@
       "short_pct": 0.21290001,
       "social_mentions": 2,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.6193028847595234,
+      "volume_acceleration": 0.7259862207911353,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -47,7 +47,7 @@
       "score": 36,
       "raw_score": 54,
       "conviction": "B",
-      "thesis": "Very low float (9.1M) | Very high short interest (36.9% of float) | Strong volume acceleration (3.2x) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
+      "thesis": "Very low float (9.1M) | Very high short interest (36.9% of float) | Strong volume acceleration (3.5x) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
       "risks": [
         "No catalyst identified"
       ],
@@ -58,29 +58,9 @@
       "short_pct": 0.3685,
       "social_mentions": 3,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 3.206403338369667,
+      "volume_acceleration": 3.4642468283089913,
       "sector": "consumer defensive",
       "industry": "packaged foods"
-    },
-    {
-      "symbol": "ABCL",
-      "score": 36,
-      "raw_score": 54,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.7x) [Raw: 54, Normalized: 36]",
-      "risks": [
-        "Large float (206M) limits squeeze potential"
-      ],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 205894476,
-      "short_pct": 0.2025,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.6562441559703216,
-      "sector": "healthcare",
-      "industry": "biotechnology"
     }
   ],
   "social_trending": {
@@ -90,15 +70,15 @@
     "MSFT": 6,
     "INTC": 6,
     "HNST": 6,
-    "AMZN": 5,
     "GOOG": 5,
     "UAMY": 5,
     "NVDA": 5,
     "SOUN": 5,
     "WHAT": 4,
     "BTIG": 4,
-    "SNDK": 4,
-    "WLAC": 4
+    "AMZN": 4,
+    "WLAC": 4,
+    "HOOD": 4
   },
   "trade_candidates": [
     {
