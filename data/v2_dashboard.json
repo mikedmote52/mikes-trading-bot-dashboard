@@ -1,15 +1,35 @@
 {
-  "timestamp": "2026-05-07T11:59:31.032843",
-  "candidates_discovered": 438,
+  "timestamp": "2026-05-08T06:13:46.255055",
+  "candidates_discovered": 458,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
+    {
+      "symbol": "LFVN",
+      "score": 39,
+      "raw_score": 59,
+      "conviction": "B",
+      "thesis": "Very low float (8.9M) | Very high short interest (36.9% of float) | Strong volume acceleration (3.4x) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 59, Normalized: 39]",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "catalyst_quality": "none",
+      "has_catalyst": false,
+      "float_shares": 8937048,
+      "short_pct": 0.3685,
+      "social_mentions": 5,
+      "reddit_sentiment": 1.0,
+      "volume_acceleration": 3.43861753403967,
+      "sector": "consumer defensive",
+      "industry": "packaged foods"
+    },
     {
       "symbol": "ABCL",
       "score": 39,
       "raw_score": 59,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Strong volume acceleration (3.1x) [Raw: 59, Normalized: 39]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Strong volume acceleration (3.3x) [Raw: 59, Normalized: 39]",
       "risks": [
         "Large float (206M) limits squeeze potential"
       ],
@@ -20,7 +40,27 @@
       "short_pct": 0.2025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.090609580363251,
+      "volume_acceleration": 3.3100114579622693,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "CABA",
+      "score": 39,
+      "raw_score": 59,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Strong volume acceleration (3.9x) [Raw: 59, Normalized: 39]",
+      "risks": [
+        "Near 52-week high \u2014 limited upside without new catalyst"
+      ],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 97563189,
+      "short_pct": 0.20549999,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 3.9351414749579092,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -38,47 +78,27 @@
       "short_pct": 0.21290001,
       "social_mentions": 2,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.7259862207911353,
+      "volume_acceleration": 0.8896368282030656,
       "sector": "healthcare",
       "industry": "biotechnology"
-    },
-    {
-      "symbol": "LFVN",
-      "score": 36,
-      "raw_score": 54,
-      "conviction": "B",
-      "thesis": "Very low float (9.1M) | Very high short interest (36.9% of float) | Strong volume acceleration (3.5x) | Emerging social interest with positive sentiment | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
-      "risks": [
-        "No catalyst identified"
-      ],
-      "catalyst_type": null,
-      "catalyst_quality": "none",
-      "has_catalyst": false,
-      "float_shares": 9062816,
-      "short_pct": 0.3685,
-      "social_mentions": 3,
-      "reddit_sentiment": 1.0,
-      "volume_acceleration": 3.4642468283089913,
-      "sector": "consumer defensive",
-      "industry": "packaged foods"
     }
   ],
   "social_trending": {
-    "RDDT": 32,
+    "RDDT": 31,
     "DXYZ": 7,
-    "META": 6,
-    "MSFT": 6,
-    "INTC": 6,
+    "INTC": 7,
+    "NVDA": 6,
     "HNST": 6,
-    "GOOG": 5,
-    "UAMY": 5,
-    "NVDA": 5,
-    "SOUN": 5,
+    "SOUN": 6,
+    "LFVN": 5,
+    "META": 5,
+    "AMZN": 5,
+    "MSFT": 5,
     "WHAT": 4,
     "BTIG": 4,
-    "AMZN": 4,
+    "GOOG": 4,
     "WLAC": 4,
-    "HOOD": 4
+    "SNDK": 4
   },
   "trade_candidates": [
     {
