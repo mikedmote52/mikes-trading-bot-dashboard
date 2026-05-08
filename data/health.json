@@ -1,13 +1,13 @@
 {
-  "timestamp": "2026-05-08T00:57:10.088035",
+  "timestamp": "2026-05-08T01:26:14.308504",
   "status": "OK",
   "stats": {
-    "equity": 100774.17,
+    "equity": 100774.18,
     "cash": 100289.74,
-    "total_pnl": 774.17,
+    "total_pnl": 774.18,
     "total_pnl_pct": 0.77,
     "num_positions": 8,
-    "day_pnl": -14.55
+    "day_pnl": -14.54
   },
   "positions": [
     {
@@ -324,15 +324,15 @@
       "qty_available": "0.002804536",
       "avg_entry_price": "713.13",
       "side": "long",
-      "market_value": "2.054238",
+      "market_value": "2.056314",
       "cost_basis": "1.999999",
-      "unrealized_pl": "0.054239",
-      "unrealized_plpc": "0.02712",
-      "unrealized_intraday_pl": "-0.003815",
-      "unrealized_intraday_plpc": "-0.00185",
-      "current_price": "732.47",
+      "unrealized_pl": "0.056315",
+      "unrealized_plpc": "0.02816",
+      "unrealized_intraday_pl": "-0.001739",
+      "unrealized_intraday_plpc": "-0.00084",
+      "current_price": "733.21",
       "lastday_price": "733.83",
-      "change_today": "-0.00185",
+      "change_today": "-0.00084",
       "entry_signals": {
         "tier": null,
         "composite_score": 0.0,

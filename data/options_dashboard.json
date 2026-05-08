@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-08T01:11:55.283710+00:00",
+  "generated_at": "2026-05-08T01:26:14.576559+00:00",
   "open_count": 1,
   "open_positions": [
     {
@@ -8,7 +8,7 @@
       "side": "long_call",
       "strike": 711.0,
       "expiration": "2026-06-05",
-      "days_to_expire": 29,
+      "days_to_expire": 28,
       "entry_premium": 16.23,
       "entry_cost": 1623.0,
       "current_mid": 28.21,
@@ -17,7 +17,7 @@
       "stop_loss_price": 8.115,
       "take_profit_price": 32.46,
       "max_hold_until": "2026-05-05",
-      "max_hold_days_left": -2,
+      "max_hold_days_left": -3,
       "max_hold_alert": true,
       "entry_timestamp": "2026-04-30T02:35:58.558271+00:00",
       "order_id": "ef7a3351-ac7a-4ff0-956f-f21a1abb5ec3",
@@ -54,7 +54,7 @@
     {
       "ticker": "SPY",
       "occ_symbol": "SPY260605C00711000",
-      "max_hold_days_left": -2
+      "max_hold_days_left": -3
     }
   ],
   "config": {
