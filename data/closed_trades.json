@@ -678,5 +678,30 @@
         "market_next_close": "2026-05-04T16:00:00-04:00"
       }
     }
+  },
+  {
+    "symbol": "LFVN",
+    "entry": 4.98,
+    "exit_price": 4.65,
+    "pnl_pct": -6.63,
+    "pnl_dollar": -3.96,
+    "reason": "Server-side stop at $4.65",
+    "date": "2026-05-08",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 78.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 8937048.0,
+      "short_pct": 0.3685,
+      "volume_acceleration": null,
+      "sector": "consumer defensive",
+      "gap_pct": null,
+      "rvol": null,
+      "previous_close": null,
+      "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (5.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 8.4M float + 36.4% SI ",
+      "scanner_pick": null,
+      "regime_context": null
+    }
   }
 ]
