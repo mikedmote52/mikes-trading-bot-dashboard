@@ -1,33 +1,15 @@
 {
-  "timestamp": "2026-05-08T08:59:40.158754",
-  "candidates_discovered": 450,
+  "timestamp": "2026-05-08T11:59:34.384832",
+  "candidates_discovered": 430,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
-    {
-      "symbol": "ARCT",
-      "score": 40,
-      "raw_score": 60,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (26.2M) | Very high short interest (33.2% of float) [Raw: 60, Normalized: 40]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 26153203,
-      "short_pct": 0.33200002,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.2546886695562867,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
     {
       "symbol": "LFVN",
       "score": 39,
       "raw_score": 59,
       "conviction": "B",
-      "thesis": "Very low float (8.9M) | Very high short interest (36.9% of float) | Strong volume acceleration (3.2x) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 59, Normalized: 39]",
+      "thesis": "Very low float (8.9M) | Very high short interest (36.9% of float) | Strong volume acceleration (3.4x) | Social attention (5 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 59, Normalized: 39]",
       "risks": [
         "No catalyst identified"
       ],
@@ -38,7 +20,7 @@
       "short_pct": 0.3685,
       "social_mentions": 5,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 3.2295550965105173,
+      "volume_acceleration": 3.369834077430532,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -47,7 +29,7 @@
       "score": 36,
       "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.3x) [Raw: 54, Normalized: 36]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.8x) [Raw: 54, Normalized: 36]",
       "risks": [
         "Large float (206M) limits squeeze potential"
       ],
@@ -58,27 +40,27 @@
       "short_pct": 0.2025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.338417766032267,
+      "volume_acceleration": 2.772486276324643,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
-    "RDDT": 31,
+    "RDDT": 29,
+    "NVDA": 10,
     "DXYZ": 6,
-    "NVDA": 6,
+    "RKLB": 6,
     "HNST": 6,
     "SOUN": 6,
     "LFVN": 5,
-    "AMZN": 5,
-    "MSFT": 5,
+    "AAPL": 5,
     "WHAT": 4,
     "NRED": 4,
     "BTIG": 4,
-    "GOOG": 4,
-    "META": 4,
-    "WLAC": 4,
-    "SNDK": 4
+    "AMZN": 4,
+    "SNDK": 4,
+    "UAMY": 4,
+    "INTC": 4
   },
   "trade_candidates": [
     {
