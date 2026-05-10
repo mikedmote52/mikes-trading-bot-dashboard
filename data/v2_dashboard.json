@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-09T06:13:41.371985",
-  "candidates_discovered": 442,
+  "timestamp": "2026-05-10T06:13:32.829106",
+  "candidates_discovered": 441,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
@@ -49,12 +49,12 @@
       "conviction": "B",
       "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.8x) [Raw: 54, Normalized: 36]",
       "risks": [
-        "Large float (233M) limits squeeze potential"
+        "Large float (203M) limits squeeze potential"
       ],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 233418417,
+      "float_shares": 203144811,
       "short_pct": 0.2025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
@@ -66,19 +66,19 @@
   "social_trending": {
     "RDDT": 27,
     "INTC": 13,
-    "RKLB": 10,
+    "RKLB": 8,
+    "SNDK": 7,
     "NVDA": 7,
     "LFVN": 6,
     "WHAT": 5,
     "DXYZ": 5,
-    "SNDK": 5,
     "HNST": 5,
     "SOUN": 5,
-    "HIMX": 4,
+    "DRAM": 5,
     "NRED": 4,
+    "GAAP": 4,
     "SMCI": 4,
-    "BTIG": 4,
-    "META": 4
+    "BTIG": 4
   },
   "trade_candidates": [
     {

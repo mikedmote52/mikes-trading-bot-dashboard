@@ -1,6 +1,6 @@
 {
-  "built_at": "2026-05-08T17:27:32.255776",
-  "count": 368,
+  "built_at": "2026-05-09T17:27:44.251213",
+  "count": 367,
   "symbols": [
     "PTCT",
     "CLSK",
@@ -63,7 +63,6 @@
     "ALMU",
     "HURA",
     "GRPN",
-    "LFMD",
     "TSSI",
     "SVV",
     "OPFI",
@@ -108,7 +107,6 @@
     "NXXT",
     "RNA",
     "QURE",
-    "CABA",
     "KPTI",
     "LVWR",
     "GALT",
@@ -149,7 +147,9 @@
     "EVGO",
     "VITL",
     "ABCL",
+    "ALT",
     "PBI",
+    "AIRS",
     "NVTS",
     "OCGN",
     "QS",
@@ -312,7 +312,6 @@
     "ENVX",
     "SDHC",
     "LMRI",
-    "WT",
     "CRMT",
     "UMAC",
     "DFDV",
@@ -931,6 +930,12 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "AIRS",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "AISP",
       "float_shares": 0,
       "short_pct": 0,
@@ -938,6 +943,12 @@
     },
     {
       "symbol": "ALLO",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "ALT",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1082,12 +1093,6 @@
     },
     {
       "symbol": "BYND",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "CABA",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1592,12 +1597,6 @@
     },
     {
       "symbol": "LENZ",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "LFMD",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2366,12 +2365,6 @@
     },
     {
       "symbol": "WRAP",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "WT",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"

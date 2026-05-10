@@ -258,5 +258,25 @@
     "sample_size": 29,
     "win_rate": 0.276,
     "reasoning": "Impact: -0.182, Win rate: 27.6%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-05-09T14:27:04.278951",
+    "signal": "float_shares",
+    "old_weight": 0.06710886400000003,
+    "new_weight": 0.05368709120000003,
+    "change_pct": -20.0,
+    "sample_size": 29,
+    "win_rate": 0.276,
+    "reasoning": "Impact: -19022436.065, Win rate: 27.6%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-05-09T14:27:04.278951",
+    "signal": "has_catalyst",
+    "old_weight": 0.40826103031349986,
+    "new_weight": 0.40083810248961804,
+    "change_pct": -1.82,
+    "sample_size": 29,
+    "win_rate": 0.276,
+    "reasoning": "Impact: -0.182, Win rate: 27.6%, Capped at \u00b120.0%"
   }
 ]
