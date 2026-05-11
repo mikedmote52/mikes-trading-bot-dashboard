@@ -1,44 +1,46 @@
 {
-  "timestamp": "2026-05-11T06:31:40.220479",
-  "candidates_discovered": 412,
+  "timestamp": "2026-05-11T08:59:44.255598",
+  "candidates_discovered": 465,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
     {
-      "symbol": "ARCT",
-      "score": 40,
-      "raw_score": 60,
+      "symbol": "ABCL",
+      "score": 36,
+      "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (26.2M) | Very high short interest (33.2% of float) [Raw: 60, Normalized: 40]",
-      "risks": [],
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.0x) [Raw: 54, Normalized: 36]",
+      "risks": [
+        "Large float (204M) limits squeeze potential"
+      ],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 26153203,
-      "short_pct": 0.33200002,
+      "float_shares": 203832985,
+      "short_pct": 0.2025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.4463221908819939,
+      "volume_acceleration": 2.001657144650073,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 27,
-    "INTC": 8,
     "NVDA": 7,
-    "LFVN": 6,
     "NRED": 5,
     "DXYZ": 5,
     "RKLB": 5,
     "HNST": 5,
+    "LFVN": 5,
     "SOUN": 5,
-    "SMCI": 4,
     "BTIG": 4,
-    "SNDK": 4,
+    "MSFT": 4,
     "UAMY": 4,
+    "INTC": 4,
     "SOC": 4,
-    "TSMC": 4
+    "TSMC": 4,
+    "SMCI": 3
   },
   "trade_candidates": [
     {
