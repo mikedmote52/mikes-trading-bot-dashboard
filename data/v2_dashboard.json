@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-11T06:13:32.386992",
-  "candidates_discovered": 433,
+  "timestamp": "2026-05-11T06:31:40.220479",
+  "candidates_discovered": 412,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
@@ -18,67 +18,27 @@
       "short_pct": 0.33200002,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.743735493344702,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
-    {
-      "symbol": "LFVN",
-      "score": 39,
-      "raw_score": 59,
-      "conviction": "B",
-      "thesis": "Very low float (8.9M) | Very high short interest (36.9% of float) | Strong volume acceleration (3.9x) | Social attention (6 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 59, Normalized: 39]",
-      "risks": [
-        "No catalyst identified"
-      ],
-      "catalyst_type": null,
-      "catalyst_quality": "none",
-      "has_catalyst": false,
-      "float_shares": 8881917,
-      "short_pct": 0.3685,
-      "social_mentions": 6,
-      "reddit_sentiment": 1.0,
-      "volume_acceleration": 3.886724386724387,
-      "sector": "consumer defensive",
-      "industry": "packaged foods"
-    },
-    {
-      "symbol": "ABCL",
-      "score": 36,
-      "raw_score": 54,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.2% of float) | Volume building (2.8x) [Raw: 54, Normalized: 36]",
-      "risks": [
-        "Large float (204M) limits squeeze potential"
-      ],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 203832985,
-      "short_pct": 0.2025,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.8070357131860844,
+      "volume_acceleration": 1.4463221908819939,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 27,
+    "INTC": 8,
+    "NVDA": 7,
     "LFVN": 6,
-    "INTC": 6,
-    "NVDA": 6,
     "NRED": 5,
     "DXYZ": 5,
     "RKLB": 5,
     "HNST": 5,
     "SOUN": 5,
+    "SMCI": 4,
     "BTIG": 4,
     "SNDK": 4,
     "UAMY": 4,
     "SOC": 4,
-    "TSMC": 4,
-    "RXT": 3
+    "TSMC": 4
   },
   "trade_candidates": [
     {
