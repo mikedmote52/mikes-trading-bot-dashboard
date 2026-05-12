@@ -82,7 +82,12 @@
 const { useState, useEffect, useId, useRef, useMemo } = React;
 
 // ── Constants ───────────────────────────────────────────────────
-const STARTING_EQUITY = 100000;
+// Default starting equity ($100K paper). Code that reads this should prefer
+// health.json.starting_equity when present so the figure stays correct after
+// any deposit/withdrawal (UI audit 2026-05-12: this used to be silently
+// hardcoded and would have drifted the moment Mike funded real capital).
+const STARTING_EQUITY_DEFAULT = 100000;
+const STARTING_EQUITY = 100000;  // kept for back-compat with existing refs
 const HEALTH_POLL_MS  = 30 * 1000;
 const V2_POLL_MS      = 5 * 60 * 1000;
 const CLOSED_POLL_MS  = 5 * 60 * 1000;
@@ -578,12 +583,18 @@ function ScoreBreakdown({ es }) {
   );
 }
 
-function PositionMemoCard({ pos }) {
+function PositionMemoCard({ pos, reflection, symbolMemory }) {
   const plPct = parseFloat(pos.unrealized_plpc) * 100;
   const plDollar = parseFloat(pos.unrealized_pl);
   const intraday = parseFloat(pos.unrealized_intraday_plpc) * 100;
   const es = pos.entry_signals || {};
   const tier = es.tier || (es.scanner_pick && es.scanner_pick.tier) || null;
+
+  // Daily reflection verdict for this position (rule-based thesis check)
+  const reflRow = (reflection?.positions || []).find(r => r.symbol === pos.symbol);
+  // Per-symbol historical memory (n trades, win rate, scoring modifier)
+  const memBlob = symbolMemory?.symbols?.[pos.symbol];
+  const memSummary = memBlob?.summary;
   const thesis = es.thesis
     || (es.scanner_pick && es.scanner_pick.reasoning)
     || (es.scanner_pick && es.scanner_pick.thesis)
@@ -652,6 +663,77 @@ function PositionMemoCard({ pos }) {
           Today {fmtPct(intraday, 2)}
         </span>
       </div>
+
+      {/* Daily reflection verdict — written by scripts/daily_reflection.py
+          at EOD. Tells the user what the bot thinks of this position right
+          now: is the thesis intact, weakening, or invalidated. */}
+      {reflRow && (
+        <div style={{
+          marginTop: 12, paddingTop: 12,
+          borderTop: `1px dashed ${C.lineSoft}`,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+            <span style={{
+              fontSize: 10, fontWeight: 700, letterSpacing: 0.5,
+              padding: '2px 6px', borderRadius: 4,
+              background: reflRow.verdict === 'thesis_intact' ? 'rgba(110,199,125,0.18)'
+                        : reflRow.verdict === 'thesis_weakening' ? 'rgba(212,166,74,0.18)'
+                        : 'rgba(232,93,93,0.18)',
+              color: reflRow.verdict === 'thesis_intact' ? C.gain
+                   : reflRow.verdict === 'thesis_weakening' ? C.warn
+                   : C.loss,
+            }}>
+              {reflRow.verdict === 'thesis_intact' ? 'THESIS INTACT'
+               : reflRow.verdict === 'thesis_weakening' ? 'THESIS WEAKENING'
+               : 'THESIS INVALIDATED'}
+            </span>
+            <span style={{ fontSize: 11, color: C.ink, fontWeight: 600 }}>
+              {reflRow.recommendation}
+            </span>
+            {reflRow.days_held != null && (
+              <span style={{ fontSize: 10.5, color: C.inkDim, marginLeft: 'auto' }}>
+                held {reflRow.days_held}d
+                {reflRow.peak_pnl_pct != null && ` · peak ${reflRow.peak_pnl_pct.toFixed(1)}%`}
+              </span>
+            )}
+          </div>
+          {(reflRow.reasons || []).slice(0, 3).map((r, i) => (
+            <div key={i} style={{ fontSize: 11.5, color: C.inkSoft, lineHeight: 1.45, paddingLeft: 8 }}>
+              · {r}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Per-symbol memory — track record for this ticker across all prior
+          trades. Shows up only if we've traded the symbol >= 2x; below
+          that the sample is too thin for an opinion. */}
+      {memSummary && memSummary.n >= 2 && (
+        <div style={{
+          marginTop: 10, paddingTop: 10,
+          borderTop: `1px dashed ${C.lineSoft}`,
+          fontSize: 11, color: C.inkDim,
+          display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap',
+        }}>
+          <span style={{ fontWeight: 700, color: C.inkSoft, letterSpacing: 0.4 }}>HISTORY</span>
+          <span>{memSummary.n} prior trades</span>
+          <span>·</span>
+          <span>{(memSummary.hit_rate * 100).toFixed(0)}% WR</span>
+          <span>·</span>
+          <span className="mono" style={{ color: pnlColor(memSummary.avg_pnl) }}>
+            {memSummary.avg_pnl >= 0 ? '+' : ''}{memSummary.avg_pnl.toFixed(1)}% avg
+          </span>
+          {memSummary.score_modifier && memSummary.score_modifier !== 0 && (
+            <span style={{
+              marginLeft: 'auto',
+              fontWeight: 700,
+              color: memSummary.score_modifier > 0 ? C.gain : C.loss,
+            }}>
+              memory: {memSummary.score_modifier > 0 ? '+' : ''}{memSummary.score_modifier} pts
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -728,14 +810,28 @@ function BotJournal({ v2Data, positions, closedTrades, regime }) {
 // ══════════════════════════════════════════════════════════════════
 // MONTH TAB
 // ══════════════════════════════════════════════════════════════════
-function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, regime }) {
+function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, regime, reflection, symbolMemory }) {
   const stats = health?.stats || {};
   const positions = health?.positions || [];
   const equity = stats.equity || STARTING_EQUITY;
 
-  const sortedPositions = useMemo(() => [...positions].sort((a, b) =>
+  // Split real positions from dust (sub-$5 market value, typically fractional
+  // residue from a manual close that left 0.0028 SPY shares behind). Dust
+  // gets a small footnote rather than a full Position Memo card. UI audit
+  // 2026-05-12 flagged the SPY $2 fractional residue rendering as if it were
+  // a real position.
+  const DUST_THRESHOLD_USD = 5;
+  const realPositions = useMemo(
+    () => positions.filter(p => Math.abs(parseFloat(p.market_value) || 0) >= DUST_THRESHOLD_USD),
+    [positions],
+  );
+  const dustPositions = useMemo(
+    () => positions.filter(p => Math.abs(parseFloat(p.market_value) || 0) < DUST_THRESHOLD_USD),
+    [positions],
+  );
+  const sortedPositions = useMemo(() => [...realPositions].sort((a, b) =>
     parseFloat(b.unrealized_plpc) - parseFloat(a.unrealized_plpc)
-  ), [positions]);
+  ), [realPositions]);
 
   return (
     <div>
@@ -749,11 +845,33 @@ function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, re
         <AttentionQueue positions={positions} v2Data={v2Data} optionsData={optionsData} />
 
         <div style={{ marginBottom: 14 }}>
-          <SectionTitle hint={`${positions.length} open`}>Position Memos</SectionTitle>
-          {positions.length === 0 ? (
+          <SectionTitle hint={`${realPositions.length} open${dustPositions.length ? ` · ${dustPositions.length} dust` : ''}`}>Position Memos</SectionTitle>
+          {realPositions.length === 0 ? (
             <Card><EmptyState msg="No open positions — bot waiting for next entry trigger." /></Card>
           ) : (
-            sortedPositions.map(pos => <PositionMemoCard key={pos.symbol} pos={pos} />)
+            sortedPositions.map(pos => (
+              <PositionMemoCard
+                key={pos.symbol}
+                pos={pos}
+                reflection={reflection}
+                symbolMemory={symbolMemory}
+              />
+            ))
+          )}
+          {dustPositions.length > 0 && (
+            <div style={{
+              marginTop: 4, padding: '8px 12px',
+              background: 'transparent',
+              border: `1px dashed ${C.lineSoft}`,
+              borderRadius: 8,
+              fontSize: 11, color: C.inkDim, lineHeight: 1.5,
+            }}>
+              <span style={{ fontWeight: 700, color: C.inkSoft, letterSpacing: 0.4 }}>DUST · </span>
+              {dustPositions.map(p => `${p.symbol} (${parseFloat(p.qty).toFixed(4)} sh, $${parseFloat(p.market_value).toFixed(2)})`).join(' · ')}
+              <span style={{ marginLeft: 6, fontStyle: 'italic' }}>
+                — fractional residue from manual closes; safe to ignore.
+              </span>
+            </div>
           )}
         </div>
 
@@ -1237,7 +1355,7 @@ function OptionsTab({ optionsData, equityHistory }) {
       {/* ── Bot status: is the daemon actually running entry/monitor passes? ── */}
       <div style={{ padding: '0 18px 12px' }}>
         <div style={{
-          background: C.bgElev1, border: `1px solid ${C.lineSoft}`,
+          background: C.bgElev, border: `1px solid ${C.lineSoft}`,
           borderRadius: 8, padding: '10px 12px',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           flexWrap: 'wrap', gap: 8,
@@ -1458,6 +1576,11 @@ function App() {
   const equityHistory = useOnce('data/equity_history.json');
   const driftData     = useOnce('data/weight_drift.json');
   const regime        = useOnce('data/regime.json');
+  // Daily reflection (per-position thesis re-check). Polls at HEALTH_POLL_MS
+  // so it stays in sync with health.json. Written by run_bot.py:eod cycle.
+  const reflection    = usePoll('data/reflection_latest.json', HEALTH_POLL_MS);
+  // Per-symbol historical track record (n trades, win rate, score modifier).
+  const symbolMemory  = useOnce('data/symbol_memory.json');
 
   const stats     = health?.stats || {};
   const equity    = stats.equity;
@@ -1529,6 +1652,8 @@ function App() {
             optionsData={optionsData}
             v2Data={v2Data}
             regime={regime}
+            reflection={reflection}
+            symbolMemory={symbolMemory}
           />
         )}
         {tab === 'mind' && (

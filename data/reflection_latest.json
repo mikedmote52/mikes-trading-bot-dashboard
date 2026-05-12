@@ -1,0 +1,139 @@
+{
+  "date": "2026-05-12",
+  "generated_at": "2026-05-12T22:15:57.431809+00:00",
+  "regime": "unknown",
+  "summary": {
+    "n_positions": 7,
+    "thesis_intact": 6,
+    "thesis_weakening": 1,
+    "thesis_invalidated": 0,
+    "recommended_exits": []
+  },
+  "positions": [
+    {
+      "symbol": "CYCN",
+      "entry_price": 2.91,
+      "current_price": 3.15,
+      "qty": 34.0,
+      "market_value": 107.1,
+      "unrealized_pl": 8.16,
+      "pnl_pct": 8.25,
+      "peak_pnl_pct": 16.16,
+      "drawdown_from_peak": -7.91,
+      "days_held": 29,
+      "verdict": "thesis_intact",
+      "reasons": [
+        "position +8.2%, on plan",
+        "holding near peak (high-water mark 16%)"
+      ],
+      "recommendation": "HOLD \u2014 thesis on plan"
+    },
+    {
+      "symbol": "IYT",
+      "entry_price": 75.85,
+      "current_price": 79.5,
+      "qty": 1.0,
+      "market_value": 79.5,
+      "unrealized_pl": 3.65,
+      "pnl_pct": 4.81,
+      "peak_pnl_pct": 9.55,
+      "drawdown_from_peak": -4.74,
+      "days_held": null,
+      "verdict": "thesis_intact",
+      "reasons": [
+        "position +4.8%, on plan",
+        "holding near peak (high-water mark 10%)"
+      ],
+      "recommendation": "HOLD \u2014 thesis on plan"
+    },
+    {
+      "symbol": "CMPX",
+      "entry_price": 1.79,
+      "current_price": 1.86,
+      "qty": 27.0,
+      "market_value": 50.22,
+      "unrealized_pl": 1.89,
+      "pnl_pct": 3.91,
+      "peak_pnl_pct": 12.29,
+      "drawdown_from_peak": -8.38,
+      "days_held": 11,
+      "verdict": "thesis_intact",
+      "reasons": [
+        "position +3.9%, on plan",
+        "holding near peak (high-water mark 12%)"
+      ],
+      "recommendation": "HOLD \u2014 thesis on plan"
+    },
+    {
+      "symbol": "SPY",
+      "entry_price": 713.13,
+      "current_price": 737.74,
+      "qty": 0.002804536,
+      "market_value": 2.069018,
+      "unrealized_pl": 0.069019,
+      "pnl_pct": 3.45,
+      "peak_pnl_pct": 3.86,
+      "drawdown_from_peak": -0.41,
+      "days_held": null,
+      "verdict": "thesis_intact",
+      "reasons": [
+        "position +3.5%, on plan",
+        "holding near peak (high-water mark 4%)"
+      ],
+      "recommendation": "HOLD \u2014 thesis on plan"
+    },
+    {
+      "symbol": "APLS",
+      "entry_price": 40.4,
+      "current_price": 41.06,
+      "qty": 2.0,
+      "market_value": 82.12,
+      "unrealized_pl": 1.32,
+      "pnl_pct": 1.63,
+      "peak_pnl_pct": 1.78,
+      "drawdown_from_peak": -0.15,
+      "days_held": null,
+      "verdict": "thesis_intact",
+      "reasons": [
+        "position +1.6%, on plan",
+        "holding near peak (high-water mark 2%)"
+      ],
+      "recommendation": "HOLD \u2014 thesis on plan"
+    },
+    {
+      "symbol": "CABA",
+      "entry_price": 3.78,
+      "current_price": 3.69,
+      "qty": 12.0,
+      "market_value": 44.28,
+      "unrealized_pl": -1.08,
+      "pnl_pct": -2.38,
+      "peak_pnl_pct": 10.05,
+      "drawdown_from_peak": -12.43,
+      "days_held": 7,
+      "verdict": "thesis_weakening",
+      "reasons": [
+        "held 7 days, only +-2.4% \u2014 losing momentum"
+      ],
+      "recommendation": "TIGHTEN \u2014 consider raising stop or taking partial profits"
+    },
+    {
+      "symbol": "MPLX",
+      "entry_price": 56.04,
+      "current_price": 54.6,
+      "qty": 1.0,
+      "market_value": 54.6,
+      "unrealized_pl": -1.44,
+      "pnl_pct": -2.57,
+      "peak_pnl_pct": 2.62,
+      "drawdown_from_peak": -5.19,
+      "days_held": null,
+      "verdict": "thesis_intact",
+      "reasons": [
+        "position -2.6%, within normal noise band",
+        "holding near peak (high-water mark 3%)"
+      ],
+      "recommendation": "HOLD \u2014 thesis on plan"
+    }
+  ]
+}
