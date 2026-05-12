@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-11T20:33:13.667027+00:00",
+  "generated_at": "2026-05-12T09:11:12.311323+00:00",
   "open_count": 1,
   "open_positions": [
     {
@@ -8,7 +8,7 @@
       "side": "long_call",
       "strike": 711.0,
       "expiration": "2026-06-05",
-      "days_to_expire": 25,
+      "days_to_expire": 24,
       "entry_premium": 16.23,
       "entry_cost": 1623.0,
       "current_mid": 34.035,
@@ -17,7 +17,7 @@
       "stop_loss_price": 8.115,
       "take_profit_price": 32.46,
       "max_hold_until": "2026-05-05",
-      "max_hold_days_left": -6,
+      "max_hold_days_left": -7,
       "max_hold_alert": true,
       "entry_timestamp": "2026-04-30T02:35:58.558271+00:00",
       "order_id": "ef7a3351-ac7a-4ff0-956f-f21a1abb5ec3",
@@ -54,15 +54,92 @@
     {
       "ticker": "SPY",
       "occ_symbol": "SPY260605C00711000",
-      "max_hold_days_left": -6
+      "max_hold_days_left": -7
     }
   ],
+  "pick_log_recent": [
+    {
+      "ts": "2026-05-12T08:40:19.936923+00:00",
+      "ticker": "SPY",
+      "occ_symbol": "SPY260612C00738000",
+      "outcome": "rejected_by_gates",
+      "gate_failures": [
+        "liquidity: open interest 247 < 500"
+      ],
+      "gates_evaluated": [
+        "liquidity",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "iv_at_entry": null,
+      "spot": 738.29,
+      "strike": "738",
+      "expiration": "2026-06-12",
+      "bid": 15.47,
+      "ask": 15.54,
+      "mid": 15.5,
+      "pick_meta": {
+        "tier": "S",
+        "score": 95.0,
+        "thesis": "manual smoke test: SPY"
+      }
+    },
+    {
+      "ts": "2026-05-12T08:59:36.184141+00:00",
+      "ticker": "AAPL",
+      "occ_symbol": "AAPL260612C00295000",
+      "outcome": "dry_run",
+      "iv_at_entry": null,
+      "gates_evaluated": [
+        "liquidity",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "spot": 292.66,
+      "strike": "295",
+      "expiration": "2026-06-12",
+      "bid": 7.8,
+      "ask": 7.85,
+      "mid": 7.82,
+      "cost": 782.0,
+      "pick_meta": {
+        "tier": "S",
+        "score": 95.0,
+        "thesis": "manual smoke test: AAPL"
+      }
+    }
+  ],
+  "picks_today_count": 2,
+  "outcomes_summary": {
+    "n_closed": 0,
+    "wins": 0,
+    "losses": 0,
+    "win_rate": null,
+    "by_tier": {},
+    "by_failure_class": {},
+    "realized_pnl_total": 0.0
+  },
+  "bot_state": {
+    "options_bot_enabled": true,
+    "conviction_floor": "A",
+    "last_entry_pass_at": null,
+    "last_entry_pass_result": null,
+    "last_monitor_pass_at": null,
+    "last_monitor_pass_closes": null,
+    "last_publish_at": "2026-05-12T09:11:12.311331+00:00"
+  },
   "config": {
     "stop_loss_pct": -50.0,
     "take_profit_pct": 100.0,
-    "max_hold_days": 5,
+    "max_hold_days": 21,
     "per_contract_budget": 50.0,
+    "daily_cap": 300.0,
     "min_dte": 30,
-    "max_dte": 45
+    "max_dte": 45,
+    "conviction_floor": "A"
   }
 }

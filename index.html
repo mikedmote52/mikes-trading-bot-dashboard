@@ -1139,7 +1139,18 @@ function OptionsTab({ optionsData, equityHistory }) {
       </div>
     );
   }
-  const { open_positions = [], closes = [], totals = {}, alerts = [], generated_at } = optionsData;
+  const {
+    open_positions = [],
+    closes = [],
+    totals = {},
+    alerts = [],
+    generated_at,
+    pick_log_recent = [],
+    picks_today_count = 0,
+    outcomes_summary = {},
+    bot_state = {},
+    config = {},
+  } = optionsData;
   const dailyCap = totals.daily_cap || 300;
   const deployed = totals.deployed_today || 0;
   const capPctUsed = Math.min(100, (deployed / dailyCap) * 100);
@@ -1148,14 +1159,40 @@ function OptionsTab({ optionsData, equityHistory }) {
   const accent = totalPnl >= 0 ? C.gain : C.loss;
   const capColor = capPctUsed >= 100 ? C.loss : capPctUsed >= 80 ? C.warn : C.gain;
 
-  // Build options sparkline series (proxy: if equity history exists, derive a fake but reasonable trend from recent values)
-  const sparkSeries = useMemo(() => {
-    const h = equityHistory || [];
-    if (h.length < 2) return [];
-    // Synthesize options curve as deltas around current premium
-    const deltas = h.slice(-20).map((e, i) => totalPremium + (e.equity - STARTING_EQUITY) * 0.5);
-    return deltas;
-  }, [equityHistory, totalPremium]);
+  // Real data-freshness — drives the pill at the top of the tab. Same
+  // pattern as the home header: green <15m, amber <60m, red ≥60m during
+  // market hours, muted otherwise. Compares actual generated_at against
+  // viewer-local now.
+  const dataAgeMins = generated_at
+    ? Math.max(0, Math.round((Date.now() - new Date(generated_at).getTime()) / 60000))
+    : null;
+  const wkday = new Date().getDay();
+  const hour  = new Date().getHours();
+  const inHrs = wkday >= 1 && wkday <= 5 && hour >= 4 && hour < 18;
+  const freshLabel = dataAgeMins == null
+    ? 'no data'
+    : dataAgeMins < 1 ? 'updated just now'
+    : dataAgeMins < 60 ? `updated ${dataAgeMins}m ago`
+    : dataAgeMins < 60 * 24 ? `updated ${Math.round(dataAgeMins / 60)}h ago`
+    : `updated ${Math.round(dataAgeMins / 60 / 24)}d ago`;
+  const freshColor = dataAgeMins == null
+    ? C.loss
+    : inHrs
+      ? (dataAgeMins >= 60 ? C.loss : dataAgeMins >= 15 ? C.warn : C.gain)
+      : (dataAgeMins >= 60 * 24 ? C.loss : dataAgeMins >= 60 * 6 ? C.warn : C.inkDim);
+
+  // Bot health — when did the daemon last fire each pass?
+  const fmtRelTime = (iso) => {
+    if (!iso) return '—';
+    const ms = Date.now() - new Date(iso).getTime();
+    if (ms < 0) return 'in the future?';
+    const m = Math.round(ms / 60000);
+    if (m < 1) return 'just now';
+    if (m < 60) return `${m}m ago`;
+    const h = Math.round(m / 60);
+    if (h < 24) return `${h}h ago`;
+    return `${Math.round(h / 24)}d ago`;
+  };
 
   return (
     <div>
@@ -1163,6 +1200,7 @@ function OptionsTab({ optionsData, equityHistory }) {
         <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
           <span style={{ fontSize: 12, color: C.inkMute, fontWeight: 500 }}>Open Premium</span>
           <span style={{ fontSize: 11, color: C.inkDim }}>· {open_positions.length} contract{open_positions.length === 1 ? '' : 's'}</span>
+          <span style={{ fontSize: 11, color: freshColor, fontWeight: 600, marginLeft: 'auto' }}>{freshLabel}</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12 }}>
           <div className="display" style={{ fontSize: 40, color: C.ink }}>
@@ -1175,9 +1213,9 @@ function OptionsTab({ optionsData, equityHistory }) {
             <div className="caption">unrealized + MTD</div>
           </div>
         </div>
-        <div style={{ marginTop: 12, height: 40 }}>
-          {sparkSeries.length >= 2 && <Sparkline values={sparkSeries} width={400} height={40} color={accent} strokeWidth={1.6} />}
-        </div>
+        {/* The sparkline used to render here as a synthesized curve derived from
+            equity history × 0.5 — fake data. Removed; will return when daily
+            options-equity snapshots accumulate into a real series. */}
       </div>
 
       <div style={{ padding: '0 18px 12px' }}>
@@ -1195,6 +1233,111 @@ function OptionsTab({ optionsData, equityHistory }) {
           }} />
         </div>
       </div>
+
+      {/* ── Bot status: is the daemon actually running entry/monitor passes? ── */}
+      <div style={{ padding: '0 18px 12px' }}>
+        <div style={{
+          background: C.bgElev1, border: `1px solid ${C.lineSoft}`,
+          borderRadius: 8, padding: '10px 12px',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          flexWrap: 'wrap', gap: 8,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{
+              width: 8, height: 8, borderRadius: '50%',
+              background: bot_state.options_bot_enabled ? C.gain : C.inkDim,
+              boxShadow: bot_state.options_bot_enabled ? `0 0 6px ${C.gain}` : 'none',
+            }} />
+            <span style={{ fontSize: 12, fontWeight: 600, color: C.ink }}>
+              {bot_state.options_bot_enabled ? 'Strategy A · LIVE (paper)' : 'Strategy A · DISABLED'}
+            </span>
+          </div>
+          <span style={{ fontSize: 11, color: C.inkDim }}>
+            floor {bot_state.conviction_floor || '?'} · {config.max_hold_days || 21}-DTE max · ${config.per_contract_budget || 50}/contract
+          </span>
+        </div>
+        <div style={{ display: 'flex', gap: 16, fontSize: 11, color: C.inkDim, marginTop: 6, flexWrap: 'wrap' }}>
+          <span>entry pass: <span style={{ color: C.ink, fontWeight: 600 }}>{fmtRelTime(bot_state.last_entry_pass_at)}</span></span>
+          <span>monitor: <span style={{ color: C.ink, fontWeight: 600 }}>{fmtRelTime(bot_state.last_monitor_pass_at)}</span></span>
+          <span>today: <span style={{ color: C.ink, fontWeight: 600 }}>{picks_today_count} pick{picks_today_count === 1 ? '' : 's'} seen</span></span>
+        </div>
+      </div>
+
+      {/* ── Outcomes summary: appears once any positions have closed ── */}
+      {outcomes_summary.n_closed > 0 && (
+        <div style={{ padding: '0 14px 12px' }}>
+          <Card padding={14}>
+            <SectionTitle hint={`${outcomes_summary.n_closed} closed`}>Performance</SectionTitle>
+            <div style={{ display: 'flex', gap: 18, flexWrap: 'wrap', alignItems: 'baseline', marginTop: 4 }}>
+              <span style={{ fontSize: 13 }}>
+                Win rate:&nbsp;
+                <span className="mono" style={{ color: outcomes_summary.win_rate != null && outcomes_summary.win_rate >= 0.5 ? C.gain : C.warn, fontWeight: 700 }}>
+                  {outcomes_summary.win_rate != null ? (outcomes_summary.win_rate * 100).toFixed(0) + '%' : '—'}
+                </span>
+                <span style={{ color: C.inkDim, marginLeft: 4 }}>({outcomes_summary.wins}W / {outcomes_summary.losses}L)</span>
+              </span>
+              <span style={{ fontSize: 13 }}>
+                Realized:&nbsp;
+                <span className="mono" style={{ color: pnlColor(outcomes_summary.realized_pnl_total), fontWeight: 700 }}>
+                  {outcomes_summary.realized_pnl_total >= 0 ? '+' : ''}{fmt$(outcomes_summary.realized_pnl_total)}
+                </span>
+              </span>
+            </div>
+            {Object.keys(outcomes_summary.by_failure_class || {}).length > 0 && (
+              <div style={{ fontSize: 11, color: C.inkDim, marginTop: 8, lineHeight: 1.5 }}>
+                Loss buckets: {Object.entries(outcomes_summary.by_failure_class).map(([k, v]) => `${k} (${v})`).join(' · ')}
+              </div>
+            )}
+          </Card>
+        </div>
+      )}
+
+      {/* ── Pick activity: what the bot considered, accepted, rejected ── */}
+      {pick_log_recent.length > 0 && (
+        <div style={{ padding: '0 14px 12px' }}>
+          <Card padding={14}>
+            <SectionTitle hint={`last ${Math.min(pick_log_recent.length, 8)}`}>Pick Activity</SectionTitle>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              {pick_log_recent.slice().reverse().slice(0, 8).map((p, i) => {
+                const ts = p.ts ? new Date(p.ts) : null;
+                const tsLabel = ts ? `${String(ts.getHours()).padStart(2,'0')}:${String(ts.getMinutes()).padStart(2,'0')}` : '—';
+                const outcome = p.outcome || 'unknown';
+                const accentBar = outcome === 'submitted' ? C.gain
+                                : outcome === 'rejected_by_gates' ? C.loss
+                                : outcome === 'dry_run' ? C.inkDim
+                                : C.warn;
+                const label = outcome === 'submitted' ? 'OPENED'
+                            : outcome === 'rejected_by_gates' ? 'REJECTED'
+                            : outcome === 'dry_run' ? 'DRY-RUN'
+                            : outcome.toUpperCase();
+                const reasons = (p.gate_failures || []).join(' · ');
+                return (
+                  <div key={i} style={{
+                    display: 'flex', gap: 10, alignItems: 'flex-start',
+                    paddingBottom: i === Math.min(pick_log_recent.length, 8) - 1 ? 0 : 8,
+                    borderBottom: i === Math.min(pick_log_recent.length, 8) - 1 ? 'none' : `1px solid ${C.lineSoft}`,
+                  }}>
+                    <span style={{ width: 3, alignSelf: 'stretch', borderRadius: 2, background: accentBar, flexShrink: 0 }} />
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
+                        <span style={{ fontSize: 13, fontWeight: 700, color: C.ink }}>{p.ticker || '?'}</span>
+                        <span className="mono" style={{ fontSize: 10.5, color: C.inkDim, letterSpacing: 0.4 }}>
+                          {tsLabel} · {label}
+                        </span>
+                      </div>
+                      <div style={{ fontSize: 11.5, color: C.inkMute, lineHeight: 1.4, marginTop: 2 }}>
+                        {outcome === 'rejected_by_gates' ? reasons || 'gate failure'
+                         : outcome === 'submitted' ? `bought 1 @ \$${p.entry_premium || p.mid || '?'} · cost \$${p.entry_cost || ''}`
+                         : `mid \$${p.mid || '?'} · ${p.occ_symbol || ''}`}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+        </div>
+      )}
 
       <div style={{ padding: '0 14px 8px' }}>
         {alerts.length > 0 && (
