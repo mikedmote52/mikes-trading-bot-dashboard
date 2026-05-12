@@ -82,12 +82,16 @@
 const { useState, useEffect, useId, useRef, useMemo } = React;
 
 // ── Constants ───────────────────────────────────────────────────
-// Default starting equity ($100K paper). Code that reads this should prefer
-// health.json.starting_equity when present so the figure stays correct after
-// any deposit/withdrawal (UI audit 2026-05-12: this used to be silently
-// hardcoded and would have drifted the moment Mike funded real capital).
+// Default starting equity ($100K paper). All references below should call
+// startingEquity(health) so the figure tracks health.json.starting_equity
+// when present (post-2026-05-12 health_snapshot.py emits this field). The
+// raw constant remains as a defensive fallback for components that haven't
+// been threaded yet.
 const STARTING_EQUITY_DEFAULT = 100000;
-const STARTING_EQUITY = 100000;  // kept for back-compat with existing refs
+const STARTING_EQUITY = 100000;  // fallback only — prefer startingEquity(health)
+const startingEquity = (health) =>
+  (health && health.stats && Number(health.stats.starting_equity))
+  || STARTING_EQUITY_DEFAULT;
 const HEALTH_POLL_MS  = 30 * 1000;
 const V2_POLL_MS      = 5 * 60 * 1000;
 const CLOSED_POLL_MS  = 5 * 60 * 1000;
@@ -374,11 +378,14 @@ function RegimeWeatherStrip({ regime }) {
 // ══════════════════════════════════════════════════════════════════
 // HERO COMBINED P&L
 // ══════════════════════════════════════════════════════════════════
-function HeroPnL({ equity, equityHistory, optionsTotals }) {
+function HeroPnL({ equity, equityHistory, optionsTotals, startingEquity: startEq }) {
+  // startingEquity now flows in as a prop so the hero number stays correct
+  // if Mike funds real capital and the publisher emits a different baseline.
+  const baseEquity = Number(startEq) || STARTING_EQUITY_DEFAULT;
   const optsPnl = (optionsTotals?.total_open_unrealized_pl || 0) + (optionsTotals?.realized_this_month || 0);
-  const eqPnl = (equity || STARTING_EQUITY) - STARTING_EQUITY;
+  const eqPnl = (equity || baseEquity) - baseEquity;
   const totalPnl = eqPnl + optsPnl;
-  const totalPct = (totalPnl / STARTING_EQUITY) * 100;
+  const totalPct = (totalPnl / baseEquity) * 100;
 
   // Build last 20 trading day values for the sparkline window
   const series = useMemo(() => {
@@ -813,7 +820,8 @@ function BotJournal({ v2Data, positions, closedTrades, regime }) {
 function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, regime, reflection, symbolMemory }) {
   const stats = health?.stats || {};
   const positions = health?.positions || [];
-  const equity = stats.equity || STARTING_EQUITY;
+  const startEq = startingEquity(health);
+  const equity = stats.equity || startEq;
 
   // Split real positions from dust (sub-$5 market value, typically fractional
   // residue from a manual close that left 0.0028 SPY shares behind). Dust
@@ -840,6 +848,7 @@ function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, re
         equity={equity}
         equityHistory={equityHistory}
         optionsTotals={optionsData?.totals}
+        startingEquity={startEq}
       />
       <div style={{ padding: '0 14px 8px' }}>
         <AttentionQueue positions={positions} v2Data={v2Data} optionsData={optionsData} />
@@ -1138,11 +1147,123 @@ function DecisionFunnel({ v2Data }) {
   );
 }
 
-function MindTab({ v2Data, driftData, regime, closedTrades }) {
+function SignalEdgeCard({ learningEval }) {
+  // Reads data/learning_eval_report.json (fixed 2026-05-12 to source from
+  // closed_trades.json). For each signal flag, shows the "edge" — the win-
+  // rate gap between trades where the signal fired vs where it didn't.
+  // This is the bot's self-measurement: which signals are actually pulling
+  // their weight in the scoring. Currently a giant blind spot on the
+  // dashboard until tonight.
+  if (!learningEval) {
+    return (
+      <Card style={{ marginBottom: 14 }} padding={18}>
+        <SectionTitle hint="per-signal edge">Signal Edge</SectionTitle>
+        <div style={{ fontSize: 13, color: C.inkDim }}>
+          Waiting for learning_eval_report.json …
+        </div>
+      </Card>
+    );
+  }
+  const bySignal = learningEval.by_signal || {};
+  // Order by absolute edge magnitude descending (most opinionated first)
+  const rows = Object.entries(bySignal)
+    .map(([name, blob]) => ({ name, ...blob }))
+    .sort((a, b) => Math.abs(b.edge || 0) - Math.abs(a.edge || 0));
+
+  return (
+    <Card style={{ marginBottom: 14 }} padding={18}>
+      <SectionTitle hint={`${learningEval.total_trades || 0} trades analyzed`}>Signal Edge</SectionTitle>
+      <div style={{ fontSize: 12, color: C.inkDim, marginBottom: 12, lineHeight: 1.5 }}>
+        Win-rate gap when each signal fired vs didn't. Positive edge = signal predicts wins.
+        Below n≥3 (the per-bucket minimum) the verdict reads "insufficient data."
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {rows.map(r => {
+          const edge = r.edge;
+          const verdict = r.verdict || '';
+          const insufficient = (verdict || '').startsWith('insufficient');
+          const accent = insufficient ? C.inkDim
+            : verdict.startsWith('strong_positive') ? C.gain
+            : verdict.startsWith('positive') ? C.gain
+            : verdict.startsWith('neutral') ? C.warn
+            : verdict.startsWith('negative') ? C.loss
+            : verdict.startsWith('strong_negative') ? C.loss
+            : C.inkDim;
+          const friendly = (r.name || '').replace(/^has_/, '').replace(/_/g, ' ');
+          return (
+            <div key={r.name} style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              padding: '8px 0',
+              borderBottom: `1px solid ${C.lineSoft}`,
+            }}>
+              <span style={{
+                width: 4, alignSelf: 'stretch', borderRadius: 2,
+                background: accent, flexShrink: 0,
+              }} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 13.5, fontWeight: 600, color: C.ink, textTransform: 'capitalize' }}>
+                  {friendly}
+                </div>
+                <div style={{ fontSize: 11, color: C.inkDim, marginTop: 2 }}>
+                  fired n={r.fired?.n ?? 0} · WR {r.fired?.win_rate != null ? (r.fired.win_rate * 100).toFixed(0) + '%' : '—'}
+                  {'  ·  '}
+                  not fired n={r.not_fired?.n ?? 0} · WR {r.not_fired?.win_rate != null ? (r.not_fired.win_rate * 100).toFixed(0) + '%' : '—'}
+                </div>
+              </div>
+              <div style={{ textAlign: 'right', minWidth: 80 }}>
+                <div className="mono" style={{ fontSize: 14, fontWeight: 700, color: accent }}>
+                  {edge != null ? (edge >= 0 ? '+' : '') + (edge * 100).toFixed(1) + ' pts' : '—'}
+                </div>
+                <div style={{ fontSize: 10, color: C.inkDim, textTransform: 'uppercase', letterSpacing: 0.4 }}>
+                  {insufficient ? `n<${(r.fired?.n ?? 0) >= (r.not_fired?.n ?? 0) ? r.not_fired?.n ?? 0 : r.fired?.n ?? 0 + 3}` : (verdict || '').replace('_', ' ')}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      {/* Score-bucket breakdown — same data source, different cut */}
+      {learningEval.by_score_bucket && (
+        <div style={{ marginTop: 14, paddingTop: 14, borderTop: `1px solid ${C.line}` }}>
+          <div style={{ fontSize: 11.5, fontWeight: 700, color: C.inkSoft, letterSpacing: 0.5, marginBottom: 8 }}>
+            BY SCORE BUCKET
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(85px, 1fr))', gap: 6 }}>
+            {Object.entries(learningEval.by_score_bucket)
+              .sort(([a], [b]) => a.localeCompare(b))
+              .map(([bucket, stats]) => {
+                const wr = stats.win_rate;
+                const color = wr == null ? C.inkDim : wr >= 0.4 ? C.gain : wr >= 0.3 ? C.warn : C.loss;
+                return (
+                  <div key={bucket} style={{
+                    background: C.bgElev,
+                    border: `1px solid ${C.lineSoft}`,
+                    borderRadius: 6, padding: '8px 10px',
+                  }}>
+                    <div style={{ fontSize: 10.5, color: C.inkDim, letterSpacing: 0.3 }}>{bucket}</div>
+                    <div className="mono" style={{ fontSize: 13, fontWeight: 700, color }}>
+                      {wr != null ? (wr * 100).toFixed(0) + '%' : '—'}
+                    </div>
+                    <div className="caption" style={{ fontSize: 10, color: C.inkDim }}>
+                      n={stats.n}
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
+      )}
+    </Card>
+  );
+}
+
+function MindTab({ v2Data, driftData, regime, closedTrades, learningEval }) {
   return (
     <div>
       <RegimeWeatherStrip regime={regime} />
       <div style={{ padding: '0 14px 8px' }}>
+        <SignalEdgeCard learningEval={learningEval} />
+
         <Card style={{ marginBottom: 14 }} padding={18}>
           <SectionTitle hint="learning over time">Weight Drift</SectionTitle>
           <WeightDriftChart driftData={driftData} />
@@ -1581,6 +1702,9 @@ function App() {
   const reflection    = usePoll('data/reflection_latest.json', HEALTH_POLL_MS);
   // Per-symbol historical track record (n trades, win rate, score modifier).
   const symbolMemory  = useOnce('data/symbol_memory.json');
+  // Per-signal edge measurement from learning_eval.py (fixed 2026-05-12 to
+  // read closed_trades.json so it produces real numbers instead of zeros).
+  const learningEval  = useOnce('data/learning_eval_report.json');
 
   const stats     = health?.stats || {};
   const equity    = stats.equity;
@@ -1662,6 +1786,7 @@ function App() {
             driftData={driftData}
             regime={regime}
             closedTrades={Array.isArray(closedTrades) ? closedTrades : []}
+            learningEval={learningEval}
           />
         )}
         {tab === 'options' && (
