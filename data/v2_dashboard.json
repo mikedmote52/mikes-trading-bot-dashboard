@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-05-12T08:59:36.733585",
-  "candidates_discovered": 426,
+  "timestamp": "2026-05-12T11:59:30.464842",
+  "candidates_discovered": 427,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
     {
       "symbol": "ATYR",
-      "score": 43,
-      "raw_score": 65,
+      "score": 53,
+      "raw_score": 80,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (23.3% of float) | Volume building (2.1x) | Near 52-week low \u2014 turnaround potential [Raw: 65, Normalized: 43]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (23.3% of float) | Explosive volume acceleration (5.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 80, Normalized: 53]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -18,7 +18,43 @@
       "short_pct": 0.2332,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.065143756368749,
+      "volume_acceleration": 5.127362080307506,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "LENZ",
+      "score": 50,
+      "raw_score": 75,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (18.5M) | Very high short interest (56.3% of float) | Near 52-week low \u2014 turnaround potential [Raw: 75, Normalized: 50]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 18481220,
+      "short_pct": 0.5633,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.4139601476402517,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "KLRS",
+      "score": 43,
+      "raw_score": 65,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (6.4M) | Elevated short interest (10.7% of float) [Raw: 65, Normalized: 43]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 6353891,
+      "short_pct": 0.1071,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.248456547016241,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -26,9 +62,11 @@
   "social_trending": {
     "RDDT": 30,
     "LFVN": 8,
+    "NRED": 5,
     "DXYZ": 5,
     "HNST": 5,
-    "TSMC": 4,
+    "NREDF": 4,
+    "OTCQB": 4,
     "BTIG": 4,
     "META": 4,
     "MSFT": 4,
@@ -36,9 +74,7 @@
     "INTC": 4,
     "NVDA": 4,
     "SOC": 4,
-    "SOUN": 4,
-    "NRED": 3,
-    "SMCI": 3
+    "SOUN": 4
   },
   "trade_candidates": [
     {
