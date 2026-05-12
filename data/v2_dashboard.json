@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-05-12T13:58:59.909333",
-  "candidates_discovered": 431,
+  "timestamp": "2026-05-12T16:59:18.996645",
+  "candidates_discovered": 432,
   "candidates_evaluated": 30,
   "ready_to_trade": 7,
   "top_picks": [
     {
       "symbol": "ATYR",
-      "score": 53,
-      "raw_score": 80,
+      "score": 52,
+      "raw_score": 79,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (23.3% of float) | Explosive volume acceleration (6.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 80, Normalized: 53]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (23.3% of float) | Explosive volume acceleration (6.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 79, Normalized: 52]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -18,16 +18,16 @@
       "short_pct": 0.2332,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 6.026870638616224,
+      "volume_acceleration": 6.063119515351642,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
     {
       "symbol": "KLRS",
-      "score": 44,
-      "raw_score": 67,
+      "score": 46,
+      "raw_score": 70,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (6.4M) | Elevated short interest (10.7% of float) [Raw: 67, Normalized: 44]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (6.4M) | Elevated short interest (10.7% of float) [Raw: 70, Normalized: 46]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -42,10 +42,10 @@
     },
     {
       "symbol": "HTCO",
-      "score": 38,
-      "raw_score": 58,
+      "score": 40,
+      "raw_score": 61,
       "conviction": "B",
-      "thesis": "Very low float (2.9M) | Moderate short interest (9.8%) | Explosive volume acceleration (14.6x vs 10d avg) | Today +60.0% \u2014 confirmed breakout [Raw: 58, Normalized: 38]",
+      "thesis": "Very low float (2.9M) | Moderate short interest (9.8%) | Explosive volume acceleration (14.7x vs 10d avg) | Today +60.0% \u2014 confirmed breakout [Raw: 61, Normalized: 40]",
       "risks": [
         "No catalyst identified"
       ],
@@ -56,16 +56,36 @@
       "short_pct": 0.0983,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 14.618251921883207,
+      "volume_acceleration": 14.674440147065845,
       "sector": "industrials",
       "industry": "marine shipping"
     },
     {
-      "symbol": "CGEM",
-      "score": 36,
-      "raw_score": 54,
+      "symbol": "LFVN",
+      "score": 37,
+      "raw_score": 56,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (44.3M) | Very high short interest (20.3% of float) [Raw: 54, Normalized: 36]",
+      "thesis": "Very low float (8.9M) | Very high short interest (38.6% of float) | Social attention (8 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 56, Normalized: 37]",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "catalyst_quality": "none",
+      "has_catalyst": false,
+      "float_shares": 8881917,
+      "short_pct": 0.38639998,
+      "social_mentions": 8,
+      "reddit_sentiment": 1.0,
+      "volume_acceleration": 0.8833066464408114,
+      "sector": "consumer defensive",
+      "industry": "packaged foods"
+    },
+    {
+      "symbol": "CGEM",
+      "score": 37,
+      "raw_score": 56,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (44.3M) | Very high short interest (20.3% of float) [Raw: 56, Normalized: 37]",
       "risks": [
         "Near 52-week high \u2014 limited upside without new catalyst"
       ],
@@ -84,19 +104,19 @@
   "social_trending": {
     "RDDT": 30,
     "LFVN": 8,
+    "OTCQB": 5,
     "NRED": 5,
     "DXYZ": 5,
     "NVDA": 5,
     "HNST": 5,
     "NREDF": 4,
-    "OTCQB": 4,
     "BTIG": 4,
+    "MSFT": 4,
     "META": 4,
     "UAMY": 4,
     "ASTS": 4,
     "SOC": 4,
-    "QS": 4,
-    "SOUN": 4
+    "QS": 4
   },
   "trade_candidates": [
     {

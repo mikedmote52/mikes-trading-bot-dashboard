@@ -1,0 +1,624 @@
+{
+  "generated_at": "2026-05-12T22:16:36.423399+00:00",
+  "n_symbols": 21,
+  "symbols": {
+    "BDRX": {
+      "trades": [
+        {
+          "date": "2026-04-02",
+          "pnl_pct": -15.1,
+          "pnl_dollar": -6.95,
+          "exit_reason": "Hard stop: -15.1% <= -15.0%",
+          "score_at_entry": 84.0,
+          "tier_at_entry": "C",
+          "thesis": "elevated vol (7.9x) | squeeze pressure | \u26a0 chase risk"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -15.1,
+        "best_pnl": -15.1,
+        "worst_pnl": -15.1,
+        "last_traded": "2026-04-02",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "AGPU": {
+      "trades": [
+        {
+          "date": "2026-04-06",
+          "pnl_pct": 20.5,
+          "pnl_dollar": 18.53,
+          "exit_reason": "Trailing stop: -11.6% from peak $4.40 (was +36.3%)",
+          "score_at_entry": 85.0,
+          "tier_at_entry": "C",
+          "thesis": "elevated vol (5.9x) | squeeze pressure"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 1,
+        "losses": 0,
+        "hit_rate": 1.0,
+        "avg_pnl": 20.5,
+        "best_pnl": 20.5,
+        "worst_pnl": 20.5,
+        "last_traded": "2026-04-06",
+        "recent_streak": "all_wins",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "CYCN": {
+      "trades": [
+        {
+          "date": "2026-04-06",
+          "pnl_pct": -5.7,
+          "pnl_dollar": -4.08,
+          "exit_reason": "Trailing stop: -30.7% from peak $6.49 (was +36.0%)",
+          "score_at_entry": 80.0,
+          "tier_at_entry": "S",
+          "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.5M) | Explosive volume acceleration (2342.1x vs 10d avg) | Social attention (5 mentions)"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -5.7,
+        "best_pnl": -5.7,
+        "worst_pnl": -5.7,
+        "last_traded": "2026-04-06",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "FCUV": {
+      "trades": [
+        {
+          "date": "2026-04-06",
+          "pnl_pct": -18.11,
+          "pnl_dollar": -16.94,
+          "exit_reason": "Hard stop: -18.1% <= -10.0%",
+          "score_at_entry": 69.0,
+          "tier_at_entry": "C",
+          "thesis": "intel caution | elevated vol (5.5x) | squeeze pressure | chase risk"
+        },
+        {
+          "date": "2026-04-07",
+          "pnl_pct": -39.67,
+          "pnl_dollar": -37.04,
+          "exit_reason": "Reconciled fill (market) at $4.02",
+          "score_at_entry": 69.0,
+          "tier_at_entry": "C",
+          "thesis": "intel caution | elevated vol (5.5x) | squeeze pressure | chase risk"
+        }
+      ],
+      "summary": {
+        "n": 2,
+        "wins": 0,
+        "losses": 2,
+        "hit_rate": 0.0,
+        "avg_pnl": -28.89,
+        "best_pnl": -18.11,
+        "worst_pnl": -39.67,
+        "last_traded": "2026-04-07",
+        "recent_streak": "all_losses",
+        "score_modifier": -10.0,
+        "modifier_reason": "3 recent losses in a row (2 total trades on this symbol)"
+      }
+    },
+    "JELD": {
+      "trades": [
+        {
+          "date": "2026-04-06",
+          "pnl_pct": -12.1,
+          "pnl_dollar": -12.15,
+          "exit_reason": "Hard stop: -12.1% <= -10.0%",
+          "score_at_entry": null,
+          "tier_at_entry": null,
+          "thesis": ""
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -12.1,
+        "best_pnl": -12.1,
+        "worst_pnl": -12.1,
+        "last_traded": "2026-04-06",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "BCG": {
+      "trades": [
+        {
+          "date": "2026-04-10",
+          "pnl_pct": -13.95,
+          "pnl_dollar": -12.6,
+          "exit_reason": "Hard stop: -14.0% <= -10.0%",
+          "score_at_entry": 80.0,
+          "tier_at_entry": "C",
+          "thesis": "explosive vol (40.6x) | squeeze pressure | \u26a0 chase risk | \u26a0 pump risk"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -13.95,
+        "best_pnl": -13.95,
+        "worst_pnl": -13.95,
+        "last_traded": "2026-04-10",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "PFSA": {
+      "trades": [
+        {
+          "date": "2026-04-10",
+          "pnl_pct": -42.08,
+          "pnl_dollar": -42.35,
+          "exit_reason": "Hard stop: -42.1% <= -10.0%",
+          "score_at_entry": 60.0,
+          "tier_at_entry": "C",
+          "thesis": "intel caution | explosive vol (10.7x) | squeeze pressure | chase risk"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -42.08,
+        "best_pnl": -42.08,
+        "worst_pnl": -42.08,
+        "last_traded": "2026-04-10",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "COCP": {
+      "trades": [
+        {
+          "date": "2026-04-10",
+          "pnl_pct": -10.6,
+          "pnl_dollar": -10.56,
+          "exit_reason": "Hard stop: -10.6% <= -10.0%",
+          "score_at_entry": 55.0,
+          "tier_at_entry": "C",
+          "thesis": "explosive vol (59.8x) | squeeze pressure | chase risk | pump risk"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -10.6,
+        "best_pnl": -10.6,
+        "worst_pnl": -10.6,
+        "last_traded": "2026-04-10",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "VSA": {
+      "trades": [
+        {
+          "date": "2026-04-13",
+          "pnl_pct": -8.9,
+          "pnl_dollar": -8.84,
+          "exit_reason": "Reconciled fill (market) at $0.65",
+          "score_at_entry": 75.0,
+          "tier_at_entry": "C",
+          "thesis": "elevated vol (5.7x) | squeeze pressure"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -8.9,
+        "best_pnl": -8.9,
+        "worst_pnl": -8.9,
+        "last_traded": "2026-04-13",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "SPCE": {
+      "trades": [
+        {
+          "date": "2026-03-31",
+          "pnl_pct": -5.42,
+          "pnl_dollar": -6.22,
+          "exit_reason": "Reconciled fill (market) at $2.41",
+          "score_at_entry": 30.0,
+          "tier_at_entry": null,
+          "thesis": "Very high short interest (22.4% of float) | Strong volume acceleration (4.9x) | Near 52-week low \u2014 turnaround potential [Raw: 45, Normalized: 30]"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -5.42,
+        "best_pnl": -5.42,
+        "worst_pnl": -5.42,
+        "last_traded": "2026-03-31",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "METU": {
+      "trades": [
+        {
+          "date": "2026-03-31",
+          "pnl_pct": -8.84,
+          "pnl_dollar": -10.19,
+          "exit_reason": "Reconciled fill (market) at $21.01",
+          "score_at_entry": null,
+          "tier_at_entry": null,
+          "thesis": ""
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -8.84,
+        "best_pnl": -8.84,
+        "worst_pnl": -8.84,
+        "last_traded": "2026-03-31",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "SKLZ": {
+      "trades": [
+        {
+          "date": "2026-04-29",
+          "pnl_pct": -3.59,
+          "pnl_dollar": -2.31,
+          "exit_reason": "Server-side stop at $5.64",
+          "score_at_entry": 65.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (51.9x vs 10d avg) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + "
+        },
+        {
+          "date": "2026-04-27",
+          "pnl_pct": 26.77,
+          "pnl_dollar": 12.53,
+          "exit_reason": "Server-side stop at $7.42",
+          "score_at_entry": 65.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (51.9x vs 10d avg) | SQUEEZE TRIFECTA: 9.8M float + 15.5% SI + "
+        },
+        {
+          "date": "2026-05-04",
+          "pnl_pct": -13.54,
+          "pnl_dollar": -7.67,
+          "exit_reason": "Server-side stop at $6.99",
+          "score_at_entry": 75.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (9.8M) | Elevated short interest (15.5% of float) | Explosive volume acceleration (57.2x vs 10d avg) | Today +28.6% \u2014 strong move | SQUEEZE TRIFE"
+        }
+      ],
+      "summary": {
+        "n": 3,
+        "wins": 1,
+        "losses": 2,
+        "hit_rate": 0.333,
+        "avg_pnl": 3.21,
+        "best_pnl": 26.77,
+        "worst_pnl": -13.54,
+        "last_traded": "2026-05-04",
+        "recent_streak": "last_loss",
+        "score_modifier": -3.0,
+        "modifier_reason": "last trade lost (3.2% avg)"
+      }
+    },
+    "ROLR": {
+      "trades": [
+        {
+          "date": "2026-04-29",
+          "pnl_pct": -3.0,
+          "pnl_dollar": -1.89,
+          "exit_reason": "Server-side stop at $8.74",
+          "score_at_entry": 72.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (4.6M) | Very high short interest (29.2% of float) | Explosive volume acceleration (13.6x vs 10d avg) | SQUEEZE TRIFECTA: 4.6M float + 29.2% SI +"
+        },
+        {
+          "date": "2026-04-27",
+          "pnl_pct": 14.69,
+          "pnl_dollar": 7.94,
+          "exit_reason": "Server-side stop at $10.33",
+          "score_at_entry": 72.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (4.6M) | Very high short interest (29.2% of float) | Explosive volume acceleration (25.5x vs 10d avg) | SQUEEZE TRIFECTA: 4.6M float + 29.2% SI +"
+        }
+      ],
+      "summary": {
+        "n": 2,
+        "wins": 1,
+        "losses": 1,
+        "hit_rate": 0.5,
+        "avg_pnl": 5.84,
+        "best_pnl": 14.69,
+        "worst_pnl": -3.0,
+        "last_traded": "2026-04-29",
+        "recent_streak": "last_loss",
+        "score_modifier": -3.0,
+        "modifier_reason": "last trade lost (5.8% avg)"
+      }
+    },
+    "MAXN": {
+      "trades": [
+        {
+          "date": "2026-04-29",
+          "pnl_pct": -3.08,
+          "pnl_dollar": -0.03,
+          "exit_reason": "Reconciled fill (market) at $1.10",
+          "score_at_entry": null,
+          "tier_at_entry": null,
+          "thesis": ""
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -3.08,
+        "best_pnl": -3.08,
+        "worst_pnl": -3.08,
+        "last_traded": "2026-04-29",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "HTCO": {
+      "trades": [
+        {
+          "date": "2026-04-29",
+          "pnl_pct": 1.86,
+          "pnl_dollar": 0.52,
+          "exit_reason": "Reconciled fill (market) at $7.11",
+          "score_at_entry": 72.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (2.9M) | Elevated short interest (18.1% of float) | Explosive volume acceleration (13.3x vs 10d avg) | Near 52-week low \u2014 turnaround potential | "
+        },
+        {
+          "date": "2026-05-04",
+          "pnl_pct": 80.38,
+          "pnl_dollar": 55.7,
+          "exit_reason": "Server-side trailing stop at $12.50",
+          "score_at_entry": 72.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (2.9M) | Elevated short interest (18.1% of float) | Explosive volume acceleration (13.3x vs 10d avg) | Near 52-week low \u2014 turnaround potential | "
+        }
+      ],
+      "summary": {
+        "n": 2,
+        "wins": 2,
+        "losses": 0,
+        "hit_rate": 1.0,
+        "avg_pnl": 41.12,
+        "best_pnl": 80.38,
+        "worst_pnl": 1.86,
+        "last_traded": "2026-05-04",
+        "recent_streak": "all_wins",
+        "score_modifier": 3.0,
+        "modifier_reason": "recent winning streak (2 trades on this symbol)"
+      }
+    },
+    "CMPX": {
+      "trades": [
+        {
+          "date": "2026-04-29",
+          "pnl_pct": -9.09,
+          "pnl_dollar": -4.42,
+          "exit_reason": "Server-side stop at $1.70",
+          "score_at_entry": 57.0,
+          "tier_at_entry": "B",
+          "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Explosive volume acceleration (20.4x vs 10d avg) | High absolute volume convictio"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -9.09,
+        "best_pnl": -9.09,
+        "worst_pnl": -9.09,
+        "last_traded": "2026-04-29",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "BIRD": {
+      "trades": [
+        {
+          "date": "2026-04-24",
+          "pnl_pct": 8.57,
+          "pnl_dollar": 2.9,
+          "exit_reason": "Server-side stop at $7.35",
+          "score_at_entry": 51.0,
+          "tier_at_entry": "B",
+          "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (28.6x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRI"
+        },
+        {
+          "date": "2026-04-21",
+          "pnl_pct": 28.09,
+          "pnl_dollar": 9.51,
+          "exit_reason": "Server-side stop at $8.67",
+          "score_at_entry": 51.0,
+          "tier_at_entry": "B",
+          "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (27.7x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRI"
+        },
+        {
+          "date": "2026-04-30",
+          "pnl_pct": -10.06,
+          "pnl_dollar": -4.83,
+          "exit_reason": "Server-side stop at $6.17",
+          "score_at_entry": 51.0,
+          "tier_at_entry": "B",
+          "thesis": "Very low float (5.7M) | Elevated short interest (19.9% of float) | Explosive volume acceleration (28.6x vs 10d avg) | Social emerging (2 mentions) | SQUEEZE TRI"
+        }
+      ],
+      "summary": {
+        "n": 3,
+        "wins": 2,
+        "losses": 1,
+        "hit_rate": 0.667,
+        "avg_pnl": 8.87,
+        "best_pnl": 28.09,
+        "worst_pnl": -10.06,
+        "last_traded": "2026-04-30",
+        "recent_streak": "last_loss",
+        "score_modifier": -3.0,
+        "modifier_reason": "last trade lost (8.9% avg)"
+      }
+    },
+    "FLWS": {
+      "trades": [
+        {
+          "date": "2026-04-20",
+          "pnl_pct": 17.98,
+          "pnl_dollar": 13.7,
+          "exit_reason": "Server-side stop at $4.50",
+          "score_at_entry": 81.0,
+          "tier_at_entry": "S",
+          "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (5.5x vs 10d avg) | Today +27.5% \u2014 strong move | Emerging soci"
+        },
+        {
+          "date": "2026-04-30",
+          "pnl_pct": -10.26,
+          "pnl_dollar": -4.68,
+          "exit_reason": "Server-side stop at $3.41",
+          "score_at_entry": 53.0,
+          "tier_at_entry": "B",
+          "thesis": "Very low float (8.8M) | Very high short interest (44.0% of float) | Explosive volume acceleration (12.3x vs 10d avg) | Emerging social interest with positive se"
+        }
+      ],
+      "summary": {
+        "n": 2,
+        "wins": 1,
+        "losses": 1,
+        "hit_rate": 0.5,
+        "avg_pnl": 3.86,
+        "best_pnl": 17.98,
+        "worst_pnl": -10.26,
+        "last_traded": "2026-04-30",
+        "recent_streak": "last_loss",
+        "score_modifier": -3.0,
+        "modifier_reason": "last trade lost (3.9% avg)"
+      }
+    },
+    "FRMM": {
+      "trades": [
+        {
+          "date": "2026-04-20",
+          "pnl_pct": -14.25,
+          "pnl_dollar": -9.28,
+          "exit_reason": "Reconciled fill (market) at $3.49",
+          "score_at_entry": 69.0,
+          "tier_at_entry": "A",
+          "thesis": "Low float (14.1M) | Elevated short interest (17.2% of float) | Explosive volume acceleration (54.9x vs 10d avg) | Today +81.0% \u2014 confirmed breakout | SQUEEZE TR"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -14.25,
+        "best_pnl": -14.25,
+        "worst_pnl": -14.25,
+        "last_traded": "2026-04-20",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "CLNN": {
+      "trades": [
+        {
+          "date": "2026-05-05",
+          "pnl_pct": -11.63,
+          "pnl_dollar": -8.01,
+          "exit_reason": "Server-side stop at $6.76",
+          "score_at_entry": 65.0,
+          "tier_at_entry": "A",
+          "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (8.4M) | Elevated short interest (10.2% of float) | Explosive volume acceleration (83.6x vs 10d avg) | Today +"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -11.63,
+        "best_pnl": -11.63,
+        "worst_pnl": -11.63,
+        "last_traded": "2026-05-05",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "LFVN": {
+      "trades": [
+        {
+          "date": "2026-05-08",
+          "pnl_pct": -6.63,
+          "pnl_dollar": -3.96,
+          "exit_reason": "Server-side stop at $4.65",
+          "score_at_entry": 78.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (5.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential | "
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -6.63,
+        "best_pnl": -6.63,
+        "worst_pnl": -6.63,
+        "last_traded": "2026-05-08",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    }
+  }
+}
