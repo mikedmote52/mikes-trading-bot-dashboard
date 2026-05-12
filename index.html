@@ -375,10 +375,24 @@ function HeroPnL({ equity, equityHistory, optionsTotals }) {
   const totalPnl = eqPnl + optsPnl;
   const totalPct = (totalPnl / STARTING_EQUITY) * 100;
 
-  // Build last 20 trading day values
+  // Build last 20 trading day values for the sparkline window
   const series = useMemo(() => {
     const h = equityHistory || [];
     return h.slice(-20).map(e => e.equity || 0);
+  }, [equityHistory]);
+
+  // Honest day count: days elapsed since the first equity snapshot, not the
+  // 20-day slice-window length. Previously the footer rendered "{series.length}
+  // days" which read as "since inception" but was actually capped at 20.
+  const daysSinceInception = useMemo(() => {
+    const h = equityHistory || [];
+    if (h.length === 0) return 0;
+    const first = h[0]?.date;
+    if (!first) return h.length;
+    const start = new Date(first);
+    const today = new Date();
+    const days = Math.max(1, Math.round((today - start) / 86400000));
+    return days;
   }, [equityHistory]);
 
   const accent = totalPnl >= 0 ? C.gain : C.loss;
@@ -408,7 +422,7 @@ function HeroPnL({ equity, equityHistory, optionsTotals }) {
       <div style={{ display: 'flex', gap: 16, marginTop: 8, fontSize: 11, color: C.inkDim }}>
         <span>Equity: <span className="mono" style={{ color: pnlColor(eqPnl) }}>{eqPnl >= 0 ? '+' : ''}{fmt$(eqPnl)}</span></span>
         <span>Options: <span className="mono" style={{ color: pnlColor(optsPnl) }}>{optsPnl >= 0 ? '+' : ''}{fmt$(optsPnl)}</span></span>
-        <span style={{ marginLeft: 'auto' }}>{series.length} day{series.length === 1 ? '' : 's'}</span>
+        <span style={{ marginLeft: 'auto' }}>{daysSinceInception} day{daysSinceInception === 1 ? '' : 's'}</span>
       </div>
     </div>
   );
@@ -417,7 +431,7 @@ function HeroPnL({ equity, equityHistory, optionsTotals }) {
 // ══════════════════════════════════════════════════════════════════
 // ATTENTION QUEUE
 // ══════════════════════════════════════════════════════════════════
-function buildAttentionItems(positions, v2Data) {
+function buildAttentionItems(positions, v2Data, optionsData) {
   const items = [];
   for (const p of positions || []) {
     const plPct = parseFloat(p.unrealized_plpc) * 100;
@@ -443,6 +457,40 @@ function buildAttentionItems(positions, v2Data) {
       });
     }
   }
+  // Options alerts — previously these only surfaced on the Options tab,
+  // so a fired max-hold alert or expiring contract could sit unseen on the
+  // home screen while the Attention Queue claimed "All quiet."
+  for (const a of (optionsData?.alerts || [])) {
+    const d = a.max_hold_days_left;
+    if (typeof d === 'number') {
+      if (d < 0) {
+        items.push({
+          priority: 1,
+          symbol: a.ticker || 'OPT',
+          title: `${a.ticker || 'Options'} past max hold by ${Math.abs(d)} day${Math.abs(d) === 1 ? '' : 's'}`,
+          body: `Exit triggered for ${a.occ_symbol || 'contract'}. Bot should be closing; verify on Options tab.`,
+          accent: C.loss,
+        });
+      } else if (d <= 2) {
+        items.push({
+          priority: 2,
+          symbol: a.ticker || 'OPT',
+          title: `${a.ticker || 'Options'} max hold in ${d} day${d === 1 ? '' : 's'}`,
+          body: `Approaching exit window for ${a.occ_symbol || 'contract'}.`,
+          accent: C.warn,
+        });
+      }
+    } else if (a.kind || a.message) {
+      // Generic alert shape — surface as-is so we never silently swallow one.
+      items.push({
+        priority: 2,
+        symbol: a.ticker || 'OPT',
+        title: `${a.ticker || 'Options'} alert: ${a.kind || 'check'}`,
+        body: a.message || `Open Options tab for details on ${a.occ_symbol || 'this contract'}.`,
+        accent: C.warn,
+      });
+    }
+  }
   // Scanner picks the bot wanted but couldn't size
   const picks = (v2Data?.top_picks || []).slice(0, 3);
   const heldSymbols = new Set((positions || []).map(p => p.symbol));
@@ -459,11 +507,11 @@ function buildAttentionItems(positions, v2Data) {
     }
   }
   items.sort((a, b) => a.priority - b.priority);
-  return items.slice(0, 3);
+  return items.slice(0, 4);
 }
 
-function AttentionQueue({ positions, v2Data }) {
-  const items = buildAttentionItems(positions, v2Data);
+function AttentionQueue({ positions, v2Data, optionsData }) {
+  const items = buildAttentionItems(positions, v2Data, optionsData);
   return (
     <Card style={{ marginBottom: 14 }} padding={16}>
       <SectionTitle>Attention Queue</SectionTitle>
@@ -698,7 +746,7 @@ function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, re
         optionsTotals={optionsData?.totals}
       />
       <div style={{ padding: '0 14px 8px' }}>
-        <AttentionQueue positions={positions} v2Data={v2Data} />
+        <AttentionQueue positions={positions} v2Data={v2Data} optionsData={optionsData} />
 
         <div style={{ marginBottom: 14 }}>
           <SectionTitle hint={`${positions.length} open`}>Position Memos</SectionTitle>
@@ -1281,6 +1329,23 @@ function App() {
   const hour  = now.getHours();
   const inHrs = wkday >= 1 && wkday <= 5 && hour >= 4 && hour < 18;
 
+  // Data freshness — read the actual data timestamp instead of the viewer's
+  // wall clock. The previous header lied by showing the user's local time as
+  // if it were the data's "as of" time.
+  const dataTs = health?.timestamp ? new Date(health.timestamp) : null;
+  const dataMins = dataTs ? Math.max(0, Math.round((now - dataTs) / 60000)) : null;
+  const freshLabel = dataMins == null
+    ? 'no data'
+    : dataMins < 1 ? 'updated just now'
+    : dataMins < 60 ? `updated ${dataMins}m ago`
+    : dataMins < 60 * 24 ? `updated ${Math.round(dataMins / 60)}h ago`
+    : `updated ${Math.round(dataMins / 60 / 24)}d ago`;
+  const freshColor = dataMins == null
+    ? C.loss
+    : inHrs
+      ? (dataMins >= 60 ? C.loss : dataMins >= 15 ? C.warn : C.gain)
+      : (dataMins >= 60 * 24 ? C.loss : dataMins >= 60 * 6 ? C.warn : 'var(--ink-dim)');
+
   return (
     <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       {/* Header */}
@@ -1304,9 +1369,9 @@ function App() {
               </span>
             </div>
           )}
-          <div className="caption" style={{ display: 'flex', gap: 6, justifyContent: 'flex-end' }}>
-            <span>{now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-            {optsOpen > 0 && <span style={{ color: C.coral }}>opt {optsOpen} open</span>}
+          <div className="caption" style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', alignItems: 'center' }}>
+            <span style={{ color: freshColor, fontWeight: 600 }}>{freshLabel}</span>
+            {optsOpen > 0 && <span style={{ color: C.coral }}>· opt {optsOpen} open</span>}
           </div>
         </div>
       </div>
