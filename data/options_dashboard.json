@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-12T13:31:38.016477+00:00",
+  "generated_at": "2026-05-12T13:33:15.501755+00:00",
   "open_count": 0,
   "open_positions": [],
   "closes": [
@@ -100,11 +100,14 @@
   "bot_state": {
     "options_bot_enabled": true,
     "conviction_floor": "A",
-    "last_entry_pass_at": null,
-    "last_entry_pass_result": null,
-    "last_monitor_pass_at": null,
-    "last_monitor_pass_closes": null,
-    "last_publish_at": "2026-05-12T13:31:38.016639+00:00"
+    "last_entry_pass_at": "2026-05-12T13:33:14.725935+00:00",
+    "last_entry_pass_result": {
+      "positions_opened": 0,
+      "symbols": []
+    },
+    "last_monitor_pass_at": "2026-05-12T13:31:42.309141+00:00",
+    "last_monitor_pass_closes": 0,
+    "last_publish_at": "2026-05-12T13:33:15.501900+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
