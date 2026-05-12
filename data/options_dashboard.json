@@ -1,62 +1,29 @@
 {
-  "generated_at": "2026-05-12T09:11:12.311323+00:00",
-  "open_count": 1,
-  "open_positions": [
+  "generated_at": "2026-05-12T09:28:34.583200+00:00",
+  "open_count": 0,
+  "open_positions": [],
+  "closes": [
     {
-      "ticker": "SPY",
       "occ_symbol": "SPY260605C00711000",
-      "side": "long_call",
-      "strike": 711.0,
-      "expiration": "2026-06-05",
-      "days_to_expire": 24,
+      "ticker": "SPY",
+      "reason": "manual_reconcile_not_in_alpaca",
       "entry_premium": 16.23,
-      "entry_cost": 1623.0,
-      "current_mid": 34.035,
-      "unrealized_pl": 1780.5,
-      "unrealized_pl_pct": 109.7,
-      "stop_loss_price": 8.115,
-      "take_profit_price": 32.46,
-      "max_hold_until": "2026-05-05",
-      "max_hold_days_left": -7,
-      "max_hold_alert": true,
-      "entry_timestamp": "2026-04-30T02:35:58.558271+00:00",
-      "order_id": "ef7a3351-ac7a-4ff0-956f-f21a1abb5ec3",
-      "entry_signals": {
-        "tier": "S",
-        "composite_score": 95.0,
-        "thesis": "manual smoke test: SPY",
-        "has_catalyst": null,
-        "catalyst_type": null,
-        "float_shares": null,
-        "short_pct": null,
-        "sector": null,
-        "volume_acceleration": null,
-        "scanner_pick": {
-          "symbol": "SPY",
-          "tier": "S",
-          "score": 95.0,
-          "thesis": "manual smoke test: SPY"
-        }
-      }
+      "exit_premium": null,
+      "pnl": null,
+      "pnl_pct": null,
+      "exit_timestamp": "2026-05-12T09:28:34.481005+00:00"
     }
   ],
-  "closes": [],
   "totals": {
-    "total_open_premium": 1623.0,
-    "total_open_unrealized_pl": 1780.5,
+    "total_open_premium": 0.0,
+    "total_open_unrealized_pl": 0.0,
     "realized_this_month": 0.0,
     "realized_count_this_month": 0,
     "deployed_today": 0,
     "daily_cap": 300.0,
     "daily_cap_remaining": 300.0
   },
-  "alerts": [
-    {
-      "ticker": "SPY",
-      "occ_symbol": "SPY260605C00711000",
-      "max_hold_days_left": -7
-    }
-  ],
+  "alerts": [],
   "pick_log_recent": [
     {
       "ts": "2026-05-12T08:40:19.936923+00:00",
@@ -115,11 +82,18 @@
   ],
   "picks_today_count": 2,
   "outcomes_summary": {
-    "n_closed": 0,
+    "n_closed": 1,
     "wins": 0,
     "losses": 0,
     "win_rate": null,
-    "by_tier": {},
+    "by_tier": {
+      "S": {
+        "n": 1,
+        "wins": 0,
+        "pnl": 0.0,
+        "win_rate": null
+      }
+    },
     "by_failure_class": {},
     "realized_pnl_total": 0.0
   },
@@ -130,7 +104,7 @@
     "last_entry_pass_result": null,
     "last_monitor_pass_at": null,
     "last_monitor_pass_closes": null,
-    "last_publish_at": "2026-05-12T09:11:12.311331+00:00"
+    "last_publish_at": "2026-05-12T09:28:34.583313+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
