@@ -1,45 +1,7 @@
 {
-  "generated_at": "2026-05-13T13:33:29.427491+00:00",
-  "open_count": 1,
-  "open_positions": [
-    {
-      "ticker": "TLT",
-      "occ_symbol": "TLT260527C00085000",
-      "side": "long_call",
-      "strike": 85.0,
-      "expiration": "2026-05-27",
-      "days_to_expire": 14,
-      "entry_premium": 0.62,
-      "entry_cost": 62.0,
-      "current_mid": 0.615,
-      "unrealized_pl": -0.5,
-      "unrealized_pl_pct": -0.81,
-      "stop_loss_price": 0.31,
-      "take_profit_price": 1.24,
-      "max_hold_until": "2026-06-03",
-      "max_hold_days_left": 21,
-      "max_hold_alert": false,
-      "entry_timestamp": "2026-05-13T13:33:22.764267+00:00",
-      "order_id": "54325e81-515a-4377-a35f-77679058fb64",
-      "entry_signals": {
-        "tier": "L",
-        "composite_score": null,
-        "thesis": "liquid-universe candidate (TLT)",
-        "has_catalyst": null,
-        "catalyst_type": null,
-        "float_shares": null,
-        "short_pct": null,
-        "sector": null,
-        "volume_acceleration": null,
-        "scanner_pick": {
-          "symbol": "TLT",
-          "tier": "L",
-          "score": 0,
-          "thesis": "liquid-universe candidate (TLT)"
-        }
-      }
-    }
-  ],
+  "generated_at": "2026-05-13T13:35:05.509708+00:00",
+  "open_count": 0,
+  "open_positions": [],
   "closes": [
     {
       "occ_symbol": "SPY260605C00711000",
@@ -50,16 +12,26 @@
       "pnl": null,
       "pnl_pct": null,
       "exit_timestamp": "2026-05-12T09:28:34.481005+00:00"
+    },
+    {
+      "occ_symbol": "TLT260527C00085000",
+      "ticker": "TLT",
+      "reason": "dte_hard_exit_<= 14d (dte=14)",
+      "entry_premium": 0.62,
+      "exit_premium": 0.605,
+      "pnl": -1.5,
+      "pnl_pct": -2.42,
+      "exit_timestamp": "2026-05-13T13:35:04.713629+00:00"
     }
   ],
   "totals": {
-    "total_open_premium": 62.0,
-    "total_open_unrealized_pl": -0.5,
-    "realized_this_month": 0.0,
-    "realized_count_this_month": 0,
-    "deployed_today": 62.0,
+    "total_open_premium": 0.0,
+    "total_open_unrealized_pl": 0.0,
+    "realized_this_month": -1.5,
+    "realized_count_this_month": 1,
+    "deployed_today": 0,
     "daily_cap": 300.0,
-    "daily_cap_remaining": 238.0
+    "daily_cap_remaining": 300.0
   },
   "alerts": [],
   "pick_log_recent": [
@@ -151,20 +123,26 @@
   ],
   "picks_today_count": 1,
   "outcomes_summary": {
-    "n_closed": 1,
+    "n_closed": 2,
     "wins": 0,
-    "losses": 0,
-    "win_rate": null,
+    "losses": 1,
+    "win_rate": 0.0,
     "by_tier": {
       "S": {
         "n": 1,
         "wins": 0,
         "pnl": 0.0,
         "win_rate": null
+      },
+      "L": {
+        "n": 1,
+        "wins": 0,
+        "pnl": -1.5,
+        "win_rate": null
       }
     },
     "by_failure_class": {},
-    "realized_pnl_total": 0.0
+    "realized_pnl_total": -1.5
   },
   "bot_state": {
     "options_bot_enabled": true,
@@ -176,9 +154,9 @@
         "TLT"
       ]
     },
-    "last_monitor_pass_at": "2026-05-13T13:32:24.894514+00:00",
-    "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-05-13T13:33:29.427519+00:00"
+    "last_monitor_pass_at": "2026-05-13T13:35:04.715673+00:00",
+    "last_monitor_pass_closes": 1,
+    "last_publish_at": "2026-05-13T13:35:05.509862+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
