@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-13T02:46:56.117083",
-  "candidates_discovered": 398,
+  "timestamp": "2026-05-13T02:50:55.849049",
+  "candidates_discovered": 582,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
@@ -57,6 +57,26 @@
       "volume_acceleration": 1.3480364577472712,
       "sector": "healthcare",
       "industry": "biotechnology"
+    },
+    {
+      "symbol": "HTCO",
+      "score": 43,
+      "raw_score": 61,
+      "conviction": "B",
+      "thesis": "Very low float (2.9M) | Moderate short interest (9.8%) | Explosive volume acceleration (14.8x vs 10d avg) | Today +60.0% \u2014 confirmed breakout | Symbol memory: +3 (recent winning streak (2 trades on this symbol)) [Raw: 61, Normalized: 43]",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "catalyst_quality": "none",
+      "has_catalyst": false,
+      "float_shares": 2852535,
+      "short_pct": 0.0983,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 14.752423244043355,
+      "sector": "industrials",
+      "industry": "marine shipping"
     },
     {
       "symbol": "LXRX",
@@ -128,8 +148,8 @@
     "NBIS": 5,
     "HNST": 5,
     "BTIG": 4,
-    "MSFT": 4,
     "META": 4,
+    "MSFT": 4,
     "UAMY": 4,
     "ASTS": 4,
     "SOC": 4,
