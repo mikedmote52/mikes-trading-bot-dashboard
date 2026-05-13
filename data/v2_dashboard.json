@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-05-12T16:59:18.996645",
-  "candidates_discovered": 432,
-  "candidates_evaluated": 30,
+  "timestamp": "2026-05-13T02:46:56.117083",
+  "candidates_discovered": 398,
+  "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
     {
@@ -18,7 +18,25 @@
       "short_pct": 0.2332,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 6.063119515351642,
+      "volume_acceleration": 6.091942162085467,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "LENZ",
+      "score": 52,
+      "raw_score": 78,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (18.5M) | Very high short interest (56.3% of float) | Near 52-week low \u2014 turnaround potential [Raw: 78, Normalized: 52]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 18481220,
+      "short_pct": 0.5633,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.6290779489739176,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -36,36 +54,37 @@
       "short_pct": 0.1071,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.34810397209407,
+      "volume_acceleration": 1.3480364577472712,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
     {
-      "symbol": "HTCO",
-      "score": 40,
-      "raw_score": 61,
+      "symbol": "LXRX",
+      "score": 39,
+      "raw_score": 59,
       "conviction": "B",
-      "thesis": "Very low float (2.9M) | Moderate short interest (9.8%) | Explosive volume acceleration (14.7x vs 10d avg) | Today +60.0% \u2014 confirmed breakout [Raw: 61, Normalized: 40]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (11.0% of float) | Explosive volume acceleration (5.1x vs 10d avg) [Raw: 59, Normalized: 39]",
       "risks": [
-        "No catalyst identified"
+        "Near 52-week high \u2014 limited upside without new catalyst",
+        "Large float (418M) limits squeeze potential"
       ],
-      "catalyst_type": null,
+      "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
-      "has_catalyst": false,
-      "float_shares": 2852535,
-      "short_pct": 0.0983,
+      "has_catalyst": true,
+      "float_shares": 417795687,
+      "short_pct": 0.1102,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 14.674440147065845,
-      "sector": "industrials",
-      "industry": "marine shipping"
+      "volume_acceleration": 5.062598376177495,
+      "sector": "healthcare",
+      "industry": "biotechnology"
     },
     {
       "symbol": "LFVN",
       "score": 37,
       "raw_score": 56,
       "conviction": "B",
-      "thesis": "Very low float (8.9M) | Very high short interest (38.6% of float) | Social attention (8 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 56, Normalized: 37]",
+      "thesis": "Very low float (8.9M) | Very high short interest (38.6% of float) | Social attention (9 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 56, Normalized: 37]",
       "risks": [
         "No catalyst identified"
       ],
@@ -74,9 +93,9 @@
       "has_catalyst": false,
       "float_shares": 8881917,
       "short_pct": 0.38639998,
-      "social_mentions": 8,
+      "social_mentions": 9,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 0.8833066464408114,
+      "volume_acceleration": 0.883476599808978,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -96,27 +115,27 @@
       "short_pct": 0.2031,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.4426625841669207,
+      "volume_acceleration": 1.584185393517877,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 30,
-    "LFVN": 8,
-    "OTCQB": 5,
-    "NRED": 5,
+    "LFVN": 9,
+    "NVDA": 8,
     "DXYZ": 5,
-    "NVDA": 5,
+    "NBIS": 5,
     "HNST": 5,
-    "NREDF": 4,
     "BTIG": 4,
     "MSFT": 4,
     "META": 4,
     "UAMY": 4,
     "ASTS": 4,
     "SOC": 4,
-    "QS": 4
+    "QS": 4,
+    "OTCQB": 3,
+    "NRED": 3
   },
   "trade_candidates": [
     {
