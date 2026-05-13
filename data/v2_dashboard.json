@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-13T06:14:20.330223",
-  "candidates_discovered": 581,
+  "timestamp": "2026-05-13T06:32:18.856375",
+  "candidates_discovered": 580,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
@@ -9,7 +9,7 @@
       "score": 52,
       "raw_score": 79,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (23.3% of float) | Explosive volume acceleration (6.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 79, Normalized: 52]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (23.3% of float) | Explosive volume acceleration (6.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 79, Normalized: 52]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -18,7 +18,7 @@
       "short_pct": 0.2332,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 6.091942162085467,
+      "volume_acceleration": 6.011567582906601,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -36,7 +36,7 @@
       "short_pct": 0.5633,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.6290779489739176,
+      "volume_acceleration": 1.3594921910916709,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -63,7 +63,7 @@
       "score": 43,
       "raw_score": 61,
       "conviction": "B",
-      "thesis": "Very low float (2.9M) | Moderate short interest (9.8%) | Explosive volume acceleration (14.8x vs 10d avg) | Today +60.0% \u2014 confirmed breakout | Symbol memory: +3 (recent winning streak (2 trades on this symbol)) [Raw: 61, Normalized: 43]",
+      "thesis": "Very low float (2.9M) | Moderate short interest (9.8%) | Explosive volume acceleration (15.0x vs 10d avg) | Today +60.0% \u2014 confirmed breakout | Symbol memory: +3 (recent winning streak (2 trades on this symbol)) [Raw: 61, Normalized: 43]",
       "risks": [
         "No catalyst identified"
       ],
@@ -74,30 +74,9 @@
       "short_pct": 0.0983,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 14.752423244043355,
+      "volume_acceleration": 14.970360024829299,
       "sector": "industrials",
       "industry": "marine shipping"
-    },
-    {
-      "symbol": "LXRX",
-      "score": 39,
-      "raw_score": 59,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (11.0% of float) | Explosive volume acceleration (5.1x vs 10d avg) [Raw: 59, Normalized: 39]",
-      "risks": [
-        "Near 52-week high \u2014 limited upside without new catalyst",
-        "Large float (418M) limits squeeze potential"
-      ],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 417795687,
-      "short_pct": 0.1102,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.062598376177495,
-      "sector": "healthcare",
-      "industry": "biotechnology"
     },
     {
       "symbol": "LFVN",
@@ -115,7 +94,7 @@
       "short_pct": 0.38639998,
       "social_mentions": 9,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 0.883476599808978,
+      "volume_acceleration": 0.48611719759537053,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -135,14 +114,14 @@
       "short_pct": 0.2031,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.584185393517877,
+      "volume_acceleration": 1.3138786518514414,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 29,
-    "NVDA": 10,
+    "NVDA": 9,
     "LFVN": 9,
     "NBIS": 7,
     "DXYZ": 5,
