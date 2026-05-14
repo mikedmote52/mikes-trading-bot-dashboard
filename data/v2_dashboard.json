@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-13T14:00:00.305989",
+  "timestamp": "2026-05-13T17:00:03.363068",
   "candidates_discovered": 586,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
@@ -20,16 +20,16 @@
       "short_pct": 0.38639998,
       "social_mentions": 10,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 0.617051337881647,
+      "volume_acceleration": 0.6170731117240044,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
     {
       "symbol": "ABEO",
-      "score": 36,
-      "raw_score": 55,
+      "score": 37,
+      "raw_score": 56,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (39.4M) | Very high short interest (31.1% of float) [Raw: 55, Normalized: 36]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (39.4M) | Very high short interest (31.1% of float) [Raw: 56, Normalized: 37]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -41,24 +41,62 @@
       "volume_acceleration": 1.9659800841802688,
       "sector": "healthcare",
       "industry": "biotechnology"
+    },
+    {
+      "symbol": "CAI",
+      "score": 36,
+      "raw_score": 54,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (11.1% of float) | Volume building (2.9x) | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 96546765,
+      "short_pct": 0.1105,
+      "social_mentions": 0,
+      "reddit_sentiment": 1.0,
+      "volume_acceleration": 2.92553912828455,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "HUMA",
+      "score": 36,
+      "raw_score": 54,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.3% of float) | Volume building (2.8x) [Raw: 54, Normalized: 36]",
+      "risks": [
+        "Large float (191M) limits squeeze potential"
+      ],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 190860946,
+      "short_pct": 0.2028,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 2.7773444929750197,
+      "sector": "healthcare",
+      "industry": "biotechnology"
     }
   ],
   "social_trending": {
-    "RDDT": 28,
+    "RDDT": 27,
+    "NVDA": 10,
     "LFVN": 10,
-    "NBIS": 9,
-    "NVDA": 9,
-    "RKLB": 8,
-    "DXYZ": 5,
+    "NBIS": 8,
+    "RKLB": 7,
     "AMZN": 5,
     "HNST": 5,
     "OTCQB": 4,
     "ASTS": 4,
     "DYOR": 4,
     "PLUG": 4,
-    "BTIG": 4,
-    "PLTR": 4,
-    "UAMY": 4
+    "DXYZ": 4,
+    "UAMY": 4,
+    "SOC": 4,
+    "SOUN": 4
   },
   "trade_candidates": [
     {
