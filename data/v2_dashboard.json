@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-14T06:14:39.478696",
-  "candidates_discovered": 588,
+  "timestamp": "2026-05-14T06:32:35.357790",
+  "candidates_discovered": 597,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
@@ -20,7 +20,7 @@
       "short_pct": 0.38639998,
       "social_mentions": 11,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 0.6170464992500121,
+      "volume_acceleration": 0.4070389993709779,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -38,7 +38,7 @@
       "short_pct": 0.31120002,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.9665332101426958,
+      "volume_acceleration": 1.5606331998768093,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -47,7 +47,7 @@
       "score": 36,
       "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (11.1% of float) | Volume building (2.9x) | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (11.1% of float) | Volume building (2.2x) | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -56,7 +56,7 @@
       "short_pct": 0.1105,
       "social_mentions": 0,
       "reddit_sentiment": 1.0,
-      "volume_acceleration": 2.9224418791294124,
+      "volume_acceleration": 2.2210451995783282,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -65,7 +65,7 @@
       "score": 36,
       "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.3% of float) | Volume building (2.8x) [Raw: 54, Normalized: 36]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.3% of float) | Volume building (2.3x) [Raw: 54, Normalized: 36]",
       "risks": [
         "Large float (170M) limits squeeze potential"
       ],
@@ -76,7 +76,7 @@
       "short_pct": 0.2028,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.782580631279988,
+      "volume_acceleration": 2.263972932848506,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -88,15 +88,15 @@
     "RKLB": 8,
     "NBIS": 6,
     "ASTS": 5,
+    "MSFT": 5,
     "AMZN": 5,
     "HNST": 5,
+    "DYOR": 4,
     "IBKR": 4,
     "GAAP": 4,
     "PLTR": 4,
     "DXYZ": 4,
-    "MSFT": 4,
-    "UAMY": 4,
-    "SOC": 4
+    "UAMY": 4
   },
   "trade_candidates": [
     {
