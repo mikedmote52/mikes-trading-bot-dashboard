@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-14T13:33:28.082687+00:00",
+  "generated_at": "2026-05-15T21:10:59.119167+00:00",
   "open_count": 0,
   "open_positions": [],
   "closes": [
@@ -150,7 +150,7 @@
       }
     }
   ],
-  "picks_today_count": 1,
+  "picks_today_count": 0,
   "outcomes_summary": {
     "n_closed": 2,
     "wins": 0,
@@ -181,9 +181,9 @@
       "positions_opened": 0,
       "symbols": []
     },
-    "last_monitor_pass_at": "2026-05-14T13:32:40.620523+00:00",
+    "last_monitor_pass_at": "2026-05-14T15:37:12.518593+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-05-14T13:33:28.082808+00:00"
+    "last_publish_at": "2026-05-15T21:10:59.119360+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,

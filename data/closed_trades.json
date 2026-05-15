@@ -703,5 +703,56 @@
       "scanner_pick": null,
       "regime_context": null
     }
+  },
+  {
+    "symbol": "CABA",
+    "entry": 3.82,
+    "exit_price": 3.4,
+    "pnl_pct": -10.99,
+    "pnl_dollar": -5.04,
+    "reason": "Server-side stop at $3.40",
+    "date": "2026-05-14",
+    "entry_signals": {
+      "tier": "B",
+      "composite_score": 56.0,
+      "has_catalyst": true,
+      "catalyst_type": "biotech_potential",
+      "float_shares": 97563189.0,
+      "short_pct": 0.20549999,
+      "volume_acceleration": 0,
+      "sector": "healthcare",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Explosive volume acceleration (5.3x vs 10d avg) | Today +30.3% \u2014 strong move [Raw: 84, Normalized: 56]",
+      "scanner_pick": {
+        "symbol": "CABA",
+        "close": 3.82,
+        "composite_score": 56.0,
+        "tier": "B",
+        "reasoning": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Explosive volume acceleration (5.3x vs 10d avg) | Today +30.3% \u2014 strong move [Raw: 84, Normalized: 56]",
+        "breakdown": {
+          "v2_score": 56.0,
+          "catalyst": 1
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 5,
+        "has_catalyst": true,
+        "float_shares": 91169928.0,
+        "short_pct": 0.20549999,
+        "volume_acceleration": 0,
+        "sector": "healthcare",
+        "catalyst_type": "biotech_potential"
+      },
+      "regime_context": {
+        "captured_at": "2026-05-05T06:13:57.032123",
+        "market_is_open": false,
+        "market_next_open": "2026-05-05T09:30:00-04:00",
+        "market_next_close": "2026-05-05T16:00:00-04:00"
+      }
+    }
   }
 ]
