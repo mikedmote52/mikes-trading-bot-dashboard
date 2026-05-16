@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-05-16T06:14:18.345180",
+  "timestamp": "2026-05-16T13:59:58.738552",
   "candidates_discovered": 541,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
     {
       "symbol": "RGNX",
-      "score": 54,
-      "raw_score": 81,
+      "score": 53,
+      "raw_score": 80,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (43.1M) | Elevated short interest (13.9% of float) | Explosive volume acceleration (9.8x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 81, Normalized: 54]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (43.1M) | Elevated short interest (13.9% of float) | Explosive volume acceleration (9.8x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 80, Normalized: 53]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -24,10 +24,10 @@
     },
     {
       "symbol": "AARD",
-      "score": 45,
-      "raw_score": 68,
+      "score": 46,
+      "raw_score": 69,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.9M) | Moderate short interest (8.8%) | Volume building (2.4x) | Near 52-week low \u2014 turnaround potential [Raw: 68, Normalized: 45]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.9M) | Moderate short interest (8.8%) | Volume building (2.4x) | Near 52-week low \u2014 turnaround potential [Raw: 69, Normalized: 46]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -42,10 +42,10 @@
     },
     {
       "symbol": "CRMD",
-      "score": 42,
-      "raw_score": 64,
+      "score": 40,
+      "raw_score": 61,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (21.0% of float) | Volume building (2.7x) | Near 52-week low \u2014 turnaround potential [Raw: 64, Normalized: 42]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (21.0% of float) | Volume building (2.7x) | Near 52-week low \u2014 turnaround potential [Raw: 61, Normalized: 40]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -78,10 +78,10 @@
     },
     {
       "symbol": "LFVN",
-      "score": 37,
-      "raw_score": 56,
+      "score": 36,
+      "raw_score": 54,
       "conviction": "B",
-      "thesis": "Very low float (8.9M) | Very high short interest (38.6% of float) | Social attention (9 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 56, Normalized: 37]",
+      "thesis": "Very low float (8.9M) | Very high short interest (38.6% of float) | Social attention (9 mentions, bullish sentiment) | Near 52-week low \u2014 turnaround potential [Raw: 54, Normalized: 36]",
       "risks": [
         "No catalyst identified"
       ],
@@ -95,42 +95,24 @@
       "volume_acceleration": 0.4162199509208301,
       "sector": "consumer defensive",
       "industry": "packaged foods"
-    },
-    {
-      "symbol": "OMER",
-      "score": 36,
-      "raw_score": 54,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Volume building (2.4x) [Raw: 54, Normalized: 36]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 69793726,
-      "short_pct": 0.22690001,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.3898115639012714,
-      "sector": "healthcare",
-      "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 26,
-    "NVDA": 10,
     "LFVN": 9,
+    "NVDA": 8,
+    "INTC": 6,
     "MSFT": 6,
-    "RKLB": 6,
-    "ONDS": 5,
-    "INTC": 5,
+    "POET": 5,
+    "DXYZ": 5,
+    "RKLB": 5,
     "HNST": 5,
-    "UMAC": 4,
-    "DXYZ": 4,
     "GOOG": 4,
     "AMZN": 4,
     "UAMY": 4,
-    "NBIS": 4,
-    "POET": 4
+    "SOC": 4,
+    "GRPN": 4,
+    "SEGG": 3
   },
   "trade_candidates": [
     {
