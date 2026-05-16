@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-15T16:59:58.052022",
-  "candidates_discovered": 540,
+  "timestamp": "2026-05-16T06:14:18.345180",
+  "candidates_discovered": 541,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
@@ -9,16 +9,16 @@
       "score": 54,
       "raw_score": 81,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (43.0M) | Elevated short interest (13.9% of float) | Explosive volume acceleration (9.7x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 81, Normalized: 54]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (43.1M) | Elevated short interest (13.9% of float) | Explosive volume acceleration (9.8x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 81, Normalized: 54]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 43001607,
+      "float_shares": 43068771,
       "short_pct": 0.13949999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 9.749166948003104,
+      "volume_acceleration": 9.752779307853137,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -36,7 +36,7 @@
       "short_pct": 0.0876,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.428105892629174,
+      "volume_acceleration": 2.4280499003337144,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -50,11 +50,11 @@
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 68044999,
+      "float_shares": 67529819,
       "short_pct": 0.20959999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.71007620244712,
+      "volume_acceleration": 2.7116352757101425,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -72,7 +72,7 @@
       "short_pct": 0.1408,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.0504132463735523,
+      "volume_acceleration": 1.0512481727201168,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -110,27 +110,27 @@
       "short_pct": 0.22690001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.389695582994727,
+      "volume_acceleration": 2.3898115639012714,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 26,
+    "NVDA": 10,
     "LFVN": 9,
-    "NVDA": 8,
-    "POET": 5,
+    "MSFT": 6,
+    "RKLB": 6,
+    "ONDS": 5,
+    "INTC": 5,
     "HNST": 5,
-    "ONDS": 4,
     "UMAC": 4,
-    "INTC": 4,
     "DXYZ": 4,
-    "MSFT": 4,
+    "GOOG": 4,
     "AMZN": 4,
     "UAMY": 4,
-    "RKLB": 4,
     "NBIS": 4,
-    "SOC": 4
+    "POET": 4
   },
   "trade_candidates": [
     {
