@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-13T19:58:13.746382+00:00",
-  "n_symbols": 21,
+  "generated_at": "2026-05-16T19:58:11.155557+00:00",
+  "n_symbols": 22,
   "symbols": {
     "BDRX": {
       "trades": [
@@ -615,6 +615,32 @@
         "best_pnl": -6.63,
         "worst_pnl": -6.63,
         "last_traded": "2026-05-08",
+        "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "CABA": {
+      "trades": [
+        {
+          "date": "2026-05-14",
+          "pnl_pct": -10.99,
+          "pnl_dollar": -5.04,
+          "exit_reason": "Server-side stop at $3.40",
+          "score_at_entry": 56.0,
+          "tier_at_entry": "B",
+          "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Explosive volume acceleration (5.3x vs 10d avg) | Today +30.3% \u2014 strong move [Raw"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -10.99,
+        "best_pnl": -10.99,
+        "worst_pnl": -10.99,
+        "last_traded": "2026-05-14",
         "recent_streak": "all_losses",
         "score_modifier": 0.0,
         "modifier_reason": "n<2 history, no modifier"
