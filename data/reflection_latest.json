@@ -1,6 +1,6 @@
 {
-  "date": "2026-05-16",
-  "generated_at": "2026-05-16T19:58:11.150551+00:00",
+  "date": "2026-05-17",
+  "generated_at": "2026-05-17T19:58:13.550772+00:00",
   "regime": "unknown",
   "summary": {
     "n_positions": 6,
@@ -22,7 +22,7 @@
       "pnl_pct": 7.22,
       "peak_pnl_pct": 16.16,
       "drawdown_from_peak": -8.94,
-      "days_held": 33,
+      "days_held": 34,
       "verdict": "thesis_intact",
       "reasons": [
         "position +7.2%, on plan",
@@ -58,10 +58,10 @@
       "pnl_pct": 3.91,
       "peak_pnl_pct": 12.29,
       "drawdown_from_peak": -8.38,
-      "days_held": 15,
+      "days_held": 16,
       "verdict": "thesis_invalidated",
       "reasons": [
-        "held 15 days with no breakout \u2014 catalyst window likely closed"
+        "held 16 days with no breakout \u2014 catalyst window likely closed"
       ],
       "recommendation": "EXIT \u2014 manual close recommended before next session"
     },
