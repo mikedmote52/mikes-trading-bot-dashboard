@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-05-15T17:27:40.872699",
+  "built_at": "2026-05-16T17:27:49.727718",
   "count": 467,
   "symbols": [
     "ASST",
@@ -103,6 +103,7 @@
     "UAA",
     "PDYN",
     "NXDR",
+    "KVYO",
     "ORGO",
     "WW",
     "FRMM",
@@ -154,6 +155,7 @@
     "CERT",
     "MBC",
     "SKYH",
+    "CTEV",
     "KEEL",
     "DFDV",
     "AHMA",
@@ -231,7 +233,6 @@
     "CDZI",
     "ZVRA",
     "QS",
-    "ZSQR",
     "NUVB",
     "INO",
     "BCRX",
@@ -240,7 +241,6 @@
     "HPP",
     "KPTI",
     "KSS",
-    "GPRO",
     "RC",
     "DNUT",
     "CRML",
@@ -280,7 +280,6 @@
     "HUMA",
     "SLS",
     "TNDM",
-    "ALLO",
     "PURR",
     "AIRS",
     "KURA",
@@ -308,7 +307,6 @@
     "LDI",
     "REPL",
     "CRNC",
-    "TMC",
     "PLAY",
     "LIXT",
     "APPN",
@@ -356,6 +354,7 @@
     "CXM",
     "RIVN",
     "GPGI",
+    "JFB",
     "NMAX",
     "TSSI",
     "DNA",
@@ -410,6 +409,7 @@
     "IMRX",
     "BDTX",
     "IOVA",
+    "KMTS",
     "OMER",
     "INV",
     "SES",
@@ -509,6 +509,12 @@
     },
     {
       "symbol": "CRVS",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_short_squeeze"
+    },
+    {
+      "symbol": "CTEV",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -748,12 +754,6 @@
       "source": "finviz_short_squeeze"
     },
     {
-      "symbol": "ZSQR",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
       "symbol": "BCAR",
       "float_shares": 0,
       "short_pct": 0,
@@ -899,12 +899,6 @@
     },
     {
       "symbol": "AISP",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "ALLO",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1450,12 +1444,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "GPRO",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "GRND",
       "float_shares": 0,
       "short_pct": 0,
@@ -1570,7 +1558,19 @@
       "source": "finviz_pre_catalyst"
     },
     {
+      "symbol": "JFB",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
       "symbol": "KEEL",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "KMTS",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1595,6 +1595,12 @@
     },
     {
       "symbol": "KURA",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "KVYO",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2243,12 +2249,6 @@
     },
     {
       "symbol": "TLRY",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "TMC",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
