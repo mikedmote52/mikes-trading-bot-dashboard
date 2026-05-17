@@ -398,5 +398,15 @@
     "sample_size": 30,
     "win_rate": 0.267,
     "reasoning": "Impact: -0.250, Win rate: 26.7%, Capped at \u00b120.0%"
+  },
+  {
+    "ts": "2026-05-17T14:27:03.036759",
+    "signal": "has_catalyst",
+    "old_weight": 0.4581855371900826,
+    "new_weight": 0.4467308987603305,
+    "change_pct": -2.5,
+    "sample_size": 30,
+    "win_rate": 0.267,
+    "reasoning": "Impact: -0.250, Win rate: 26.7%, Capped at \u00b120.0%"
   }
 ]
