@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-17T16:59:53.097400",
-  "candidates_discovered": 541,
+  "timestamp": "2026-05-18T06:14:11.469981",
+  "candidates_discovered": 542,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
@@ -14,7 +14,7 @@
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 10863905,
+      "float_shares": 10910374,
       "short_pct": 0.0876,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
@@ -32,7 +32,7 @@
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 67531388,
+      "float_shares": 66550739,
       "short_pct": 0.20959999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
@@ -78,21 +78,21 @@
     }
   ],
   "social_trending": {
-    "RDDT": 26,
+    "RDDT": 25,
     "LFVN": 9,
-    "POET": 7,
-    "NVDA": 7,
+    "NVDA": 8,
+    "POET": 6,
+    "DXYZ": 5,
     "AMZN": 5,
     "RKLB": 5,
     "HNST": 5,
-    "DXYZ": 4,
+    "EDGAR": 4,
     "MSFT": 4,
-    "GOOG": 4,
     "UAMY": 4,
     "INTC": 4,
     "SOC": 4,
     "GRPN": 4,
-    "PLUG": 4
+    "CBRS": 4
   },
   "trade_candidates": [
     {
