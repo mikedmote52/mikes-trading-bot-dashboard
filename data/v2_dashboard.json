@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-18T06:14:11.469981",
-  "candidates_discovered": 542,
+  "timestamp": "2026-05-18T06:32:21.468996",
+  "candidates_discovered": 540,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
@@ -18,7 +18,7 @@
       "short_pct": 0.0876,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.4280499003337144,
+      "volume_acceleration": 2.3799662265888855,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -27,7 +27,7 @@
       "score": 42,
       "raw_score": 64,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (21.0% of float) | Volume building (2.7x) | Near 52-week low \u2014 turnaround potential [Raw: 64, Normalized: 42]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (21.0% of float) | Volume building (2.5x) | Near 52-week low \u2014 turnaround potential [Raw: 64, Normalized: 42]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -36,7 +36,7 @@
       "short_pct": 0.20959999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.7116352757101425,
+      "volume_acceleration": 2.549873008461386,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -54,25 +54,7 @@
       "short_pct": 0.1408,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.0512481727201168,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
-    {
-      "symbol": "OMER",
-      "score": 36,
-      "raw_score": 54,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Volume building (2.4x) [Raw: 54, Normalized: 36]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 69800964,
-      "short_pct": 0.22690001,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.3898115639012714,
+      "volume_acceleration": 0.9649229926221649,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -80,7 +62,7 @@
   "social_trending": {
     "RDDT": 25,
     "LFVN": 9,
-    "NVDA": 8,
+    "NVDA": 7,
     "POET": 6,
     "DXYZ": 5,
     "AMZN": 5,
