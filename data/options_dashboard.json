@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T13:32:24.902177+00:00",
+  "generated_at": "2026-05-19T13:33:31.608585+00:00",
   "open_count": 0,
   "open_positions": [],
   "closes": [
@@ -177,9 +177,38 @@
         "score": null,
         "thesis": "liquid-universe candidate (TLT)"
       }
+    },
+    {
+      "ts": "2026-05-19T13:33:21.965504+00:00",
+      "ticker": "TLT",
+      "track": "liquid",
+      "occ_symbol": "TLT260603C00083000",
+      "outcome": "rejected_by_gates",
+      "gate_failures": [
+        "liquidity: spread 7.5% > 3% (track=liquid bid=0.77 ask=0.83 mid=0.8)"
+      ],
+      "gates_evaluated": [
+        "liquidity(liquid)",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "iv_at_entry": null,
+      "spot": 82.975,
+      "strike": "83",
+      "expiration": "2026-06-03",
+      "bid": 0.77,
+      "ask": 0.83,
+      "mid": 0.8,
+      "pick_meta": {
+        "tier": "L",
+        "score": null,
+        "thesis": "liquid-universe candidate (TLT)"
+      }
     }
   ],
-  "picks_today_count": 0,
+  "picks_today_count": 1,
   "outcomes_summary": {
     "n_closed": 2,
     "wins": 0,
@@ -205,14 +234,14 @@
   "bot_state": {
     "options_bot_enabled": true,
     "conviction_floor": "A",
-    "last_entry_pass_at": "2026-05-18T13:33:26.403344+00:00",
+    "last_entry_pass_at": "2026-05-19T13:33:30.832307+00:00",
     "last_entry_pass_result": {
       "positions_opened": 0,
       "symbols": []
     },
-    "last_monitor_pass_at": "2026-05-18T19:59:07.411332+00:00",
+    "last_monitor_pass_at": "2026-05-19T13:32:29.252615+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-05-19T13:32:24.902329+00:00"
+    "last_publish_at": "2026-05-19T13:33:31.608710+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
