@@ -1,15 +1,15 @@
 {
-  "timestamp": "2026-05-19T13:59:45.802478",
-  "candidates_discovered": 528,
+  "timestamp": "2026-05-19T16:59:49.875118",
+  "candidates_discovered": 526,
   "candidates_evaluated": 50,
   "ready_to_trade": 7,
   "top_picks": [
     {
       "symbol": "CRDF",
-      "score": 45,
-      "raw_score": 68,
+      "score": 46,
+      "raw_score": 69,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (27.5% of float) | Strong volume acceleration (3.1x) | Near 52-week low \u2014 turnaround potential [Raw: 68, Normalized: 45]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (27.5% of float) | Strong volume acceleration (3.1x) | Near 52-week low \u2014 turnaround potential [Raw: 69, Normalized: 46]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -41,6 +41,24 @@
       "industry": "biotechnology"
     },
     {
+      "symbol": "CRVS",
+      "score": 36,
+      "raw_score": 54,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (24.9% of float) | Volume building (2.2x) [Raw: 54, Normalized: 36]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 72786989,
+      "short_pct": 0.2485,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 2.181524251401447,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
       "symbol": "JANX",
       "score": 36,
       "raw_score": 54,
@@ -60,10 +78,10 @@
     },
     {
       "symbol": "KALV",
-      "score": 35,
-      "raw_score": 53,
+      "score": 36,
+      "raw_score": 54,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (33.3M) | Very high short interest (31.9% of float) [Raw: 53, Normalized: 35]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (33.3M) | Very high short interest (31.9% of float) [Raw: 54, Normalized: 36]",
       "risks": [
         "Near 52-week high \u2014 limited upside without new catalyst"
       ],
@@ -77,18 +95,36 @@
       "volume_acceleration": 0.6448157865226928,
       "sector": "healthcare",
       "industry": "biotechnology"
+    },
+    {
+      "symbol": "ABEO",
+      "score": 36,
+      "raw_score": 54,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (36.3M) | Very high short interest (31.1% of float) [Raw: 54, Normalized: 36]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 36335544,
+      "short_pct": 0.31120002,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.781313298617092,
+      "sector": "healthcare",
+      "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 25,
-    "NVDA": 8,
+    "NVDA": 9,
     "LFVN": 7,
     "GRPN": 6,
     "WHAT": 5,
-    "EDGAR": 5,
     "HNST": 5,
     "PART": 4,
     "QUCY": 4,
+    "EDGAR": 4,
     "DXYZ": 4,
     "AMZN": 4,
     "META": 4,
