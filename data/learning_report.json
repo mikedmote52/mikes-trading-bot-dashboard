@@ -1,0 +1,80 @@
+{
+  "timestamp": "2026-05-19T13:33:06.677320",
+  "trades_analyzed": 20,
+  "win_rate": 35.0,
+  "avg_win_pct": 25.48,
+  "avg_loss_pct": -8.49,
+  "v2_adjustments_applied": 6,
+  "changes": [
+    {
+      "factor": "low_float",
+      "old": 1.0,
+      "new": 1.159,
+      "factor_win_rate": 46.2,
+      "sample_size": 13,
+      "adjustment_pct": 15.9
+    },
+    {
+      "factor": "high_short",
+      "old": 1.0,
+      "new": 0.908,
+      "factor_win_rate": 28.6,
+      "sample_size": 14,
+      "adjustment_pct": -9.2
+    },
+    {
+      "factor": "social",
+      "old": 1.0,
+      "new": 1.135,
+      "factor_win_rate": 44.4,
+      "sample_size": 9,
+      "adjustment_pct": 13.5
+    },
+    {
+      "factor": "volume",
+      "old": 1.0,
+      "new": 1.095,
+      "factor_win_rate": 41.7,
+      "sample_size": 12,
+      "adjustment_pct": 9.5
+    },
+    {
+      "factor": "price_sweet_spot",
+      "old": 1.0,
+      "new": 1.071,
+      "factor_win_rate": 40.0,
+      "sample_size": 15,
+      "adjustment_pct": 7.1
+    },
+    {
+      "factor": "no_catalyst_penalty",
+      "old": 1.0,
+      "new": 1.1,
+      "reason": "Low win rate (35%) \u2014 increasing no-catalyst penalty"
+    }
+  ],
+  "winners": [
+    "HTCO",
+    "ROLR",
+    "SKLZ",
+    "BIRD",
+    "BIRD",
+    "FLWS",
+    "HTCO"
+  ],
+  "losers": [
+    "SPCE",
+    "METU",
+    "SKLZ",
+    "ROLR",
+    "MAXN",
+    "CMPX",
+    "FRMM",
+    "BIRD",
+    "FLWS",
+    "SKLZ",
+    "CLNN",
+    "LFVN",
+    "CABA"
+  ]
+}
