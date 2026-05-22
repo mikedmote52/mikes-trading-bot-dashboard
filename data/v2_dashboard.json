@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-21T16:59:54.936481",
-  "candidates_discovered": 556,
+  "timestamp": "2026-05-22T06:14:21.590827",
+  "candidates_discovered": 555,
   "candidates_evaluated": 50,
   "ready_to_trade": 9,
   "top_picks": [
@@ -18,25 +18,27 @@
       "short_pct": 0.13949999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.080677063300581,
+      "volume_acceleration": 4.08108675128501,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
     {
-      "symbol": "INDP",
-      "score": 40,
-      "raw_score": 60,
+      "symbol": "AKTX",
+      "score": 43,
+      "raw_score": 65,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Elevated short interest (11.2% of float) | Strong volume acceleration (4.9x) | Near 52-week low \u2014 turnaround potential [Raw: 60, Normalized: 40]",
-      "risks": [],
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate short interest (5.1%) | Explosive volume acceleration (32.0x vs 10d avg) | Today +49.9% \u2014 strong move [Raw: 65, Normalized: 43]",
+      "risks": [
+        "Large float (40756M) limits squeeze potential"
+      ],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 0,
-      "short_pct": 0.1116,
+      "float_shares": 40756489504,
+      "short_pct": 0.0514,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.871712568522555,
+      "volume_acceleration": 32.0437636761488,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -56,7 +58,7 @@
       "short_pct": 0.311,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.9109317790541285,
+      "volume_acceleration": 3.915070399570093,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -74,27 +76,7 @@
       "short_pct": 0.0951,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.201862530451139,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
-    {
-      "symbol": "AKTX",
-      "score": 36,
-      "raw_score": 55,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate short interest (5.1%) | Strong volume acceleration (4.0x) | Today +49.9% \u2014 strong move [Raw: 55, Normalized: 36]",
-      "risks": [
-        "Large float (40756M) limits squeeze potential"
-      ],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 40756489504,
-      "short_pct": 0.0514,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.999927060539752,
+      "volume_acceleration": 2.2027609033067113,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -108,31 +90,31 @@
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
       "has_catalyst": true,
-      "float_shares": 5161929,
+      "float_shares": 5173802,
       "short_pct": 0.099700004,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.5302083835413955,
+      "volume_acceleration": 1.534037049533266,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 25,
-    "NVDA": 10,
+    "NVDA": 11,
     "WHAT": 6,
-    "AMZN": 6,
     "LFVN": 6,
+    "NXXT": 5,
     "GAAP": 5,
     "META": 5,
+    "AMZN": 5,
     "HNST": 5,
-    "EDGAR": 4,
-    "DYOR": 4,
+    "YEARS": 4,
     "IBKR": 4,
-    "NBIS": 4,
     "SMCI": 4,
     "DXYZ": 4,
-    "MSFT": 4
+    "MSFT": 4,
+    "UAMY": 4
   },
   "trade_candidates": [
     {
