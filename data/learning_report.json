@@ -1,68 +1,16 @@
 {
-  "timestamp": "2026-05-20T13:33:10.532023",
+  "timestamp": "2026-05-22T13:33:09.716876",
   "trades_analyzed": 20,
+  "effective_sample_size": 20,
+  "min_effective_samples_required": 100,
   "win_rate": 40.0,
+  "setup_win_rate": 40.0,
   "avg_win_pct": 23.11,
   "avg_loss_pct": -8.75,
-  "v2_adjustments_applied": 7,
-  "changes": [
-    {
-      "factor": "catalyst",
-      "old": 0.975,
-      "new": 0.894,
-      "factor_win_rate": 33.3,
-      "sample_size": 3,
-      "adjustment_pct": -8.3
-    },
-    {
-      "factor": "low_float",
-      "old": 1.0,
-      "new": 1.125,
-      "factor_win_rate": 50.0,
-      "sample_size": 14,
-      "adjustment_pct": 12.5
-    },
-    {
-      "factor": "high_short",
-      "old": 1.0,
-      "new": 0.885,
-      "factor_win_rate": 30.8,
-      "sample_size": 13,
-      "adjustment_pct": -11.5
-    },
-    {
-      "factor": "social",
-      "old": 1.0,
-      "new": 1.125,
-      "factor_win_rate": 50.0,
-      "sample_size": 10,
-      "adjustment_pct": 12.5
-    },
-    {
-      "factor": "volume",
-      "old": 1.0,
-      "new": 1.077,
-      "factor_win_rate": 46.2,
-      "sample_size": 13,
-      "adjustment_pct": 7.7
-    },
-    {
-      "factor": "biotech",
-      "old": 1.0,
-      "new": 0.917,
-      "factor_win_rate": 33.3,
-      "sample_size": 3,
-      "adjustment_pct": -8.3
-    },
-    {
-      "factor": "price_sweet_spot",
-      "old": 1.0,
-      "new": 1.083,
-      "factor_win_rate": 46.7,
-      "sample_size": 15,
-      "adjustment_pct": 8.3
-    }
-  ],
+  "learner_skipped": true,
+  "skip_reason": "effective_n=20 < MIN_EFFECTIVE_SAMPLES_FOR_LEARN=100",
+  "v2_adjustments_applied": 0,
+  "changes": [],
   "winners": [
     "HTCO",
     "ROLR",

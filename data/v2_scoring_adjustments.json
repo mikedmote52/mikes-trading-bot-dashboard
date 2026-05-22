@@ -1,19 +1,21 @@
 {
-  "version": 2,
-  "multipliers": {},
-  "_detail": {},
-  "_meta": {
-    "ts": "2026-05-20T14:27:14.943997",
-    "trades_analyzed": 31,
-    "win_rate": 0.29,
-    "calibration_score": 0.379,
-    "key_findings": [
-      "Win rate: 29.0%",
-      "Effective setups: 30 (raw 31)",
-      "SKIP: effective_n=30 < MIN_EFFECTIVE_SAMPLES_FOR_LEARN=100",
-      "No weight adjustments this cycle (sample-size gate held)."
-    ],
-    "applied": false,
-    "source": "nightly_learner"
+  "version": 1,
+  "multipliers": {
+    "catalyst": 1.0,
+    "low_float": 1.0,
+    "high_short": 1.0,
+    "social": 1.0,
+    "volume": 1.0,
+    "biotech": 1.0,
+    "price_sweet_spot": 1.0,
+    "no_catalyst_penalty": 1.0
+  },
+  "history": [],
+  "last_updated": "2026-05-22T13:33:09.715754",
+  "last_stats": {
+    "win_rate": 40.0,
+    "avg_win_pct": 23.11,
+    "avg_loss_pct": -8.75,
+    "trades_analyzed": 20
   }
 }
