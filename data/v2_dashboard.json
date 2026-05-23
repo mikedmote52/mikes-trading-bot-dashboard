@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-22T16:59:53.110112",
-  "candidates_discovered": 551,
+  "timestamp": "2026-05-23T06:14:23.864557",
+  "candidates_discovered": 547,
   "candidates_evaluated": 50,
   "ready_to_trade": 9,
   "top_picks": [
@@ -18,7 +18,7 @@
       "short_pct": 0.15609999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.2936748177355,
+      "volume_acceleration": 2.294911917770273,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -36,7 +36,7 @@
       "short_pct": 0.1438,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.4537782630453573,
+      "volume_acceleration": 2.455757244893317,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -54,7 +54,7 @@
       "short_pct": 0.1935,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.858439269462804,
+      "volume_acceleration": 4.87096176416085,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -74,7 +74,7 @@
       "short_pct": 0.0031,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.2224611708482676,
+      "volume_acceleration": 3.225806451612903,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -92,27 +92,27 @@
       "short_pct": 0.0642,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.3746180230745244,
+      "volume_acceleration": 2.3760523854069224,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
   ],
   "social_trending": {
-    "RDDT": 25,
-    "NVDA": 9,
+    "RDDT": 26,
+    "NVDA": 12,
     "RKLB": 8,
-    "ASTS": 6,
     "NXXT": 5,
     "DXYZ": 5,
+    "GOOG": 5,
+    "META": 5,
     "HNST": 5,
     "GRPN": 5,
     "LFVN": 5,
     "MSFT": 4,
-    "META": 4,
     "AMZN": 4,
     "UAMY": 4,
     "SOC": 4,
-    "DYOR": 3
+    "SMCI": 3
   },
   "trade_candidates": [
     {
