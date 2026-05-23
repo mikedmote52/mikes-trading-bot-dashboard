@@ -1,14 +1,14 @@
 {
-  "date": "2026-05-22",
-  "generated_at": "2026-05-22T23:59:57.506995+00:00",
+  "date": "2026-05-23",
+  "generated_at": "2026-05-23T20:59:58.594291+00:00",
   "n_winners": 10,
   "n_caught_and_traded": 0,
   "n_on_watchlist_not_taken": 1,
   "n_missed_entirely": 9,
   "rows": [
     {
-      "ts": "2026-05-22T23:59:57.499776+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.588111+00:00",
+      "date": "2026-05-23",
       "symbol": "AKTX",
       "move_pct": 255.45,
       "scanner_evaluated": false,
@@ -20,8 +20,8 @@
       "miss_reason": "on_watchlist_but_not_taken"
     },
     {
-      "ts": "2026-05-22T23:59:57.500618+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.588458+00:00",
+      "date": "2026-05-23",
       "symbol": "PCLA",
       "move_pct": 194.22,
       "scanner_evaluated": false,
@@ -33,8 +33,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-22T23:59:57.501129+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.588779+00:00",
+      "date": "2026-05-23",
       "symbol": "RYOJ",
       "move_pct": 148.76,
       "scanner_evaluated": false,
@@ -46,8 +46,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-22T23:59:57.501414+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.589084+00:00",
+      "date": "2026-05-23",
       "symbol": "QTEX",
       "move_pct": 140.01,
       "scanner_evaluated": false,
@@ -59,8 +59,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-22T23:59:57.501797+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.589357+00:00",
+      "date": "2026-05-23",
       "symbol": "BIYA",
       "move_pct": 110.53,
       "scanner_evaluated": false,
@@ -72,8 +72,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-22T23:59:57.502144+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.589582+00:00",
+      "date": "2026-05-23",
       "symbol": "NIVFW",
       "move_pct": 90,
       "scanner_evaluated": false,
@@ -85,8 +85,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-22T23:59:57.502412+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.589809+00:00",
+      "date": "2026-05-23",
       "symbol": "LFS",
       "move_pct": 89.33,
       "scanner_evaluated": false,
@@ -98,8 +98,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-22T23:59:57.502672+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.590068+00:00",
+      "date": "2026-05-23",
       "symbol": "QTEXW",
       "move_pct": 65.81,
       "scanner_evaluated": false,
@@ -111,8 +111,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-22T23:59:57.502925+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.590296+00:00",
+      "date": "2026-05-23",
       "symbol": "VCIG",
       "move_pct": 64.79,
       "scanner_evaluated": false,
@@ -124,8 +124,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-22T23:59:57.503133+00:00",
-      "date": "2026-05-22",
+      "ts": "2026-05-23T20:59:58.590551+00:00",
+      "date": "2026-05-23",
       "symbol": "NOEMR",
       "move_pct": 53.73,
       "scanner_evaluated": false,
