@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-23T16:59:57.168557",
-  "candidates_discovered": 549,
+  "timestamp": "2026-05-24T06:14:14.171127",
+  "candidates_discovered": 547,
   "candidates_evaluated": 50,
   "ready_to_trade": 9,
   "top_picks": [
@@ -98,21 +98,21 @@
     }
   ],
   "social_trending": {
-    "RDDT": 25,
-    "NVDA": 13,
+    "RDDT": 26,
+    "NVDA": 14,
+    "RKLB": 7,
     "NXXT": 5,
+    "GOOG": 5,
+    "ASTS": 5,
     "HNST": 5,
     "GRPN": 5,
-    "LFVN": 5,
     "DXYZ": 4,
-    "GOOG": 4,
     "META": 4,
     "UAMY": 4,
-    "ASTS": 4,
+    "NBIS": 4,
     "SOC": 4,
-    "SMCI": 3,
-    "BTIG": 3,
-    "PLTR": 3
+    "LFVN": 4,
+    "SMCI": 3
   },
   "trade_candidates": [
     {
