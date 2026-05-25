@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-25T13:32:16.313664+00:00",
+  "generated_at": "2026-05-25T13:33:21.554587+00:00",
   "open_count": 0,
   "open_positions": [],
   "closes": [
@@ -293,9 +293,38 @@
         "score": null,
         "thesis": "liquid-universe candidate (TLT)"
       }
+    },
+    {
+      "ts": "2026-05-25T13:33:08.545816+00:00",
+      "ticker": "NFLX",
+      "track": "liquid",
+      "occ_symbol": "NFLX260612C00089000",
+      "outcome": "rejected_by_gates",
+      "gate_failures": [
+        "liquidity: spread 11.3% > 3% (track=liquid bid=2.34 ask=2.62 mid=2.48)"
+      ],
+      "gates_evaluated": [
+        "liquidity(liquid)",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "iv_at_entry": null,
+      "spot": 88.595,
+      "strike": "89",
+      "expiration": "2026-06-12",
+      "bid": 2.34,
+      "ask": 2.62,
+      "mid": 2.48,
+      "pick_meta": {
+        "tier": "L",
+        "score": null,
+        "thesis": "liquid-universe candidate (NFLX)"
+      }
     }
   ],
-  "picks_today_count": 0,
+  "picks_today_count": 1,
   "outcomes_summary": {
     "n_closed": 2,
     "wins": 0,
@@ -321,14 +350,14 @@
   "bot_state": {
     "options_bot_enabled": true,
     "conviction_floor": "A",
-    "last_entry_pass_at": "2026-05-22T13:33:18.330052+00:00",
+    "last_entry_pass_at": "2026-05-25T13:33:20.669345+00:00",
     "last_entry_pass_result": {
       "positions_opened": 0,
       "symbols": []
     },
-    "last_monitor_pass_at": "2026-05-22T19:55:58.194384+00:00",
+    "last_monitor_pass_at": "2026-05-25T13:32:21.020975+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-05-25T13:32:16.313782+00:00"
+    "last_publish_at": "2026-05-25T13:33:21.554779+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
