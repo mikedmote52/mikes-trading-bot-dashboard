@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-05-24T16:59:39.157616",
-  "candidates_discovered": 549,
+  "timestamp": "2026-05-25T06:14:13.075589",
+  "candidates_discovered": 547,
   "candidates_evaluated": 50,
   "ready_to_trade": 9,
   "top_picks": [
@@ -99,7 +99,7 @@
   ],
   "social_trending": {
     "RDDT": 27,
-    "NVDA": 16,
+    "NVDA": 15,
     "MSFT": 7,
     "RKLB": 7,
     "ASTS": 7,
@@ -110,9 +110,9 @@
     "HNST": 5,
     "GRPN": 5,
     "DXYZ": 4,
-    "GOOG": 4,
     "META": 4,
-    "UAMY": 4
+    "UAMY": 4,
+    "TSLA": 4
   },
   "trade_candidates": [
     {
