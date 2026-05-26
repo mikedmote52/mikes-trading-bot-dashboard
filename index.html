@@ -239,7 +239,7 @@ function TierBadge({ tier, sm }) {
 function EmptyState({ msg, sub }) {
   return (
     <div style={{ padding: '20px 4px', color: C.inkDim, fontSize: 13, lineHeight: 1.6 }}>
-      <div style={{ color: C.inkMute }}>{msg || 'Insufficient data — first signals coming after Monday.'}</div>
+      <div style={{ color: C.inkMute }}>{msg || 'No data yet.'}</div>
       {sub && <div style={{ fontSize: 11, color: C.inkFaint, marginTop: 4 }}>{sub}</div>}
     </div>
   );
@@ -318,13 +318,13 @@ function LineChart({ data, targetData, height = 100, valueKey = 'equity', color 
 // REGIME WEATHER STRIP — plain language sentence
 // ══════════════════════════════════════════════════════════════════
 function regimeNarrative(regime) {
-  if (!regime) return { headline: 'Regime data loading…', sub: '', tone: 'neutral' };
+  if (!regime) return { headline: 'Regime loading.', sub: '', tone: 'neutral' };
   const tone = regime.regime === 'green' ? 'green' : regime.regime === 'red' ? 'red' : 'neutral';
   if (regime.stub) {
     const reason = (regime.stub_reason || '').replace(/^No module named.*/, 'live feed offline');
     return {
-      headline: 'Regime read is using stub values right now.',
-      sub: `${reason}. Bot is operating without macro confirmation; expect more conservative sizing until live feed returns.`,
+      headline: 'Regime feed offline. Operating on stub values.',
+      sub: reason || '',
       tone: 'neutral',
     };
   }
@@ -337,9 +337,9 @@ function regimeNarrative(regime) {
   if (breadth != null) parts.push(`breadth ${breadth >= 0 ? 'wide' : 'narrow'}`);
   const stat = parts.join(', ');
   let read = '';
-  if (regime.regime === 'green') read = 'Squeeze setups have historically outperformed in this regime. Bot has the wind at its back.';
-  else if (regime.regime === 'red') read = 'Squeeze setups historically underperform in this regime. Bot is in headwind — expect tighter stops and smaller wins.';
-  else read = 'Mixed signals. Bot is flat-footed; sizing should stay conservative until breadth confirms.';
+  if (regime.regime === 'green') read = 'Squeeze setups outperform here historically.';
+  else if (regime.regime === 'red') read = 'Squeeze setups underperform here historically.';
+  else read = 'Mixed signal.';
   return {
     headline: `${stat ? stat + '. ' : ''}${read}`,
     sub: regime.regime_label ? regime.regime_label : '',
@@ -443,8 +443,22 @@ function HeroPnL({ equity, equityHistory, optionsTotals, startingEquity: startEq
 // ══════════════════════════════════════════════════════════════════
 // ATTENTION QUEUE
 // ══════════════════════════════════════════════════════════════════
-function buildAttentionItems(positions, v2Data, optionsData) {
+function buildAttentionItems(positions, v2Data, optionsData, missed) {
   const items = [];
+  // Missed-opportunity surfacing (added 2026-05-26). If today's tracker shows
+  // winners the bot didn't catch, that's the "anything weird I should look
+  // at?" line. Worth one slot at priority 2.
+  if (missed && missed.n_winners > 0 && (missed.n_caught_and_traded || 0) === 0) {
+    items.push({
+      priority: 2,
+      symbol: 'SCAN',
+      title: `${missed.n_winners} winners moved today, none caught`,
+      body: missed.n_on_watchlist_not_taken > 0
+        ? `${missed.n_on_watchlist_not_taken} were on watchlist but not taken. Worth reviewing entry gates.`
+        : `All ${missed.n_missed_entirely || missed.n_winners} were missed entirely. Scanner cast a narrow net today.`,
+      accent: C.warn,
+    });
+  }
   for (const p of positions || []) {
     const plPct = parseFloat(p.unrealized_plpc) * 100;
     const tier = (p.entry_signals && p.entry_signals.tier) || null;
@@ -463,7 +477,7 @@ function buildAttentionItems(positions, v2Data, optionsData) {
       items.push({
         priority: 2,
         symbol: p.symbol,
-        title: `${p.symbol} up ${plPct.toFixed(1)}% — consider trim`,
+        title: `${p.symbol} up ${plPct.toFixed(1)}%, consider trim`,
         body: `Position has run; tier ${tier || '—'}. Bot will hold to target unless stop moves.`,
         accent: C.gain,
       });
@@ -511,7 +525,7 @@ function buildAttentionItems(positions, v2Data, optionsData) {
       items.push({
         priority: 3,
         symbol: pk.symbol,
-        title: `${pk.symbol} scanned at ${pk.score} — not in book`,
+        title: `${pk.symbol} scanned at ${pk.score}, not in book`,
         body: `Tier ${pk.conviction || '—'}. ${(pk.thesis || '').split('|')[0].trim()}`,
         accent: C.coral,
       });
@@ -522,14 +536,14 @@ function buildAttentionItems(positions, v2Data, optionsData) {
   return items.slice(0, 4);
 }
 
-function AttentionQueue({ positions, v2Data, optionsData }) {
-  const items = buildAttentionItems(positions, v2Data, optionsData);
+function AttentionQueue({ positions, v2Data, optionsData, missed }) {
+  const items = buildAttentionItems(positions, v2Data, optionsData, missed);
   return (
     <Card style={{ marginBottom: 14 }} padding={16}>
-      <SectionTitle>Attention Queue</SectionTitle>
+      <SectionTitle>Attention</SectionTitle>
       {items.length === 0 ? (
         <div style={{ fontSize: 13, color: C.inkMute, padding: '4px 0' }}>
-          All quiet. No positions in stop range, no oversized winners, no missed picks.
+          All quiet. Nothing in stop range, no oversized winners, no missed picks.
         </div>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -649,7 +663,7 @@ function PositionMemoCard({ pos, reflection, symbolMemory }) {
         </div>
       ) : isLikelyHedge ? (
         <div style={{ fontSize: 12, color: C.inkDim, fontStyle: 'italic', marginTop: 4 }}>
-          Hedge / market exposure — not a scanner pick.
+          Hedge or market exposure. Not a scanner pick.
         </div>
       ) : (
         <div style={{ fontSize: 12, color: C.inkDim, fontStyle: 'italic', marginTop: 4 }}>
@@ -657,7 +671,9 @@ function PositionMemoCard({ pos, reflection, symbolMemory }) {
         </div>
       )}
 
-      <ScoreBreakdown es={es} />
+      {/* ScoreBreakdown bars cut 2026-05-26: per-symbol scoring math is internal state,
+          not actionable at a glance. Component still defined upstream in case a debug
+          view wants to render it. */}
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 12, fontSize: 11.5 }}>
         <Pill color={opinion.color} bg={`${opinion.color === C.gain ? 'rgba(110,199,125,0.10)' : opinion.color === C.loss ? 'rgba(232,93,93,0.10)' : 'rgba(212,166,74,0.10)'}`} border={opinion.color === C.gain ? 'rgba(110,199,125,0.3)' : opinion.color === C.loss ? 'rgba(232,93,93,0.3)' : 'rgba(212,166,74,0.3)'}>
@@ -671,46 +687,76 @@ function PositionMemoCard({ pos, reflection, symbolMemory }) {
         </span>
       </div>
 
-      {/* Daily reflection verdict — written by scripts/daily_reflection.py
-          at EOD. Tells the user what the bot thinks of this position right
-          now: is the thesis intact, weakening, or invalidated. */}
-      {reflRow && (
-        <div style={{
-          marginTop: 12, paddingTop: 12,
-          borderTop: `1px dashed ${C.lineSoft}`,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-            <span style={{
-              fontSize: 10, fontWeight: 700, letterSpacing: 0.5,
-              padding: '2px 6px', borderRadius: 4,
-              background: reflRow.verdict === 'thesis_intact' ? 'rgba(110,199,125,0.18)'
-                        : reflRow.verdict === 'thesis_weakening' ? 'rgba(212,166,74,0.18)'
-                        : 'rgba(232,93,93,0.18)',
-              color: reflRow.verdict === 'thesis_intact' ? C.gain
-                   : reflRow.verdict === 'thesis_weakening' ? C.warn
-                   : C.loss,
+      {/* Daily reflection verdict. Collapsed to a one-line footer when the
+          verdict is intact AND the recommendation is HOLD/TRAIL (the boring
+          case for ~all positions). Full block only appears when the bot has
+          something non-routine to say. */}
+      {reflRow && (() => {
+        const isBoring =
+          reflRow.verdict === 'thesis_intact'
+          && /^(HOLD|TRAIL)/i.test(reflRow.recommendation || '');
+        if (isBoring) {
+          return (
+            <div style={{
+              marginTop: 10, paddingTop: 8,
+              borderTop: `1px dashed ${C.lineSoft}`,
+              display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap',
+              fontSize: 11, color: C.inkDim,
             }}>
-              {reflRow.verdict === 'thesis_intact' ? 'THESIS INTACT'
-               : reflRow.verdict === 'thesis_weakening' ? 'THESIS WEAKENING'
-               : 'THESIS INVALIDATED'}
-            </span>
-            <span style={{ fontSize: 11, color: C.ink, fontWeight: 600 }}>
-              {reflRow.recommendation}
-            </span>
-            {reflRow.days_held != null && (
-              <span style={{ fontSize: 10.5, color: C.inkDim, marginLeft: 'auto' }}>
-                held {reflRow.days_held}d
-                {reflRow.peak_pnl_pct != null && ` · peak ${reflRow.peak_pnl_pct.toFixed(1)}%`}
+              <span style={{
+                fontSize: 10, fontWeight: 700, letterSpacing: 0.4,
+                padding: '1px 6px', borderRadius: 4,
+                background: 'rgba(110,199,125,0.10)', color: C.gain,
+              }}>
+                {(reflRow.recommendation || 'HOLD').split(/[.,]/)[0].trim()}
               </span>
-            )}
-          </div>
-          {(reflRow.reasons || []).slice(0, 3).map((r, i) => (
-            <div key={i} style={{ fontSize: 11.5, color: C.inkSoft, lineHeight: 1.45, paddingLeft: 8 }}>
-              · {r}
+              {reflRow.days_held != null && (
+                <span>held {reflRow.days_held}d</span>
+              )}
+              {reflRow.peak_pnl_pct != null && (
+                <span>· peak {reflRow.peak_pnl_pct.toFixed(1)}%</span>
+              )}
             </div>
-          ))}
-        </div>
-      )}
+          );
+        }
+        return (
+          <div style={{
+            marginTop: 12, paddingTop: 12,
+            borderTop: `1px dashed ${C.lineSoft}`,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
+              <span style={{
+                fontSize: 10, fontWeight: 700, letterSpacing: 0.5,
+                padding: '2px 6px', borderRadius: 4,
+                background: reflRow.verdict === 'thesis_intact' ? 'rgba(110,199,125,0.18)'
+                          : reflRow.verdict === 'thesis_weakening' ? 'rgba(212,166,74,0.18)'
+                          : 'rgba(232,93,93,0.18)',
+                color: reflRow.verdict === 'thesis_intact' ? C.gain
+                     : reflRow.verdict === 'thesis_weakening' ? C.warn
+                     : C.loss,
+              }}>
+                {reflRow.verdict === 'thesis_intact' ? 'THESIS INTACT'
+                 : reflRow.verdict === 'thesis_weakening' ? 'THESIS WEAKENING'
+                 : 'THESIS INVALIDATED'}
+              </span>
+              <span style={{ fontSize: 11, color: C.ink, fontWeight: 600 }}>
+                {reflRow.recommendation}
+              </span>
+              {reflRow.days_held != null && (
+                <span style={{ fontSize: 10.5, color: C.inkDim, marginLeft: 'auto' }}>
+                  held {reflRow.days_held}d
+                  {reflRow.peak_pnl_pct != null && ` · peak ${reflRow.peak_pnl_pct.toFixed(1)}%`}
+                </span>
+              )}
+            </div>
+            {(reflRow.reasons || []).slice(0, 3).map((r, i) => (
+              <div key={i} style={{ fontSize: 11.5, color: C.inkSoft, lineHeight: 1.45, paddingLeft: 8 }}>
+                · {r}
+              </div>
+            ))}
+          </div>
+        );
+      })()}
 
       {/* Per-symbol memory — track record for this ticker across all prior
           trades. Shows up only if we've traded the symbol >= 2x; below
@@ -771,28 +817,28 @@ function buildJournalEntry(v2Data, positions, closedTrades, regime) {
   const heldSet = new Set((positions || []).map(p => p.symbol));
   const tomorrowWatch = (v2Data.top_picks || []).find(p => !heldSet.has(p.symbol));
 
-  let para1 = `Today I scanned ${candidates ?? '—'} candidates, ran ${evaluated ?? '—'} through anti-chase, and surfaced ${ready ?? 0} as ready-to-trade. `;
+  let para1 = `Scanned ${candidates ?? '—'} candidates, ${evaluated ?? '—'} survived anti-chase, ${ready ?? 0} ready to trade. `;
   para1 += todayCloses.length > 0
-    ? `Closed ${todayCloses.length} position${todayCloses.length === 1 ? '' : 's'} — ${wins.length} green, ${losses.length} red. `
+    ? `Closed ${todayCloses.length} (${wins.length} green, ${losses.length} red). `
     : `No closes today. `;
   if (topRunner && topRunnerPct >= 5) {
-    para1 += `${topRunner.symbol} is the carry — up ${topRunnerPct.toFixed(1)}%${topRunnerTier ? ` (entered ${topRunnerTier}-tier)` : ''}; the squeeze setup is doing what it was supposed to. `;
+    para1 += `${topRunner.symbol} leading at +${topRunnerPct.toFixed(1)}%${topRunnerTier ? `, ${topRunnerTier}-tier entry` : ''}. `;
   } else if (topRunner && topRunnerPct < -5) {
-    para1 += `${topRunner.symbol} is the drag at ${topRunnerPct.toFixed(1)}%; watching the tape for a stop-out trigger. `;
+    para1 += `${topRunner.symbol} worst at ${topRunnerPct.toFixed(1)}%, watch for stop. `;
   }
 
   let para2 = '';
   if (regime?.regime === 'red') {
-    para2 += `Regime is red. I'm reading more setups but sizing smaller — historical data says my edge compresses here. `;
+    para2 += `Regime red. Sizing down. `;
   } else if (regime?.regime === 'green') {
-    para2 += `Regime is green and I have wind. If breadth holds, I'll lean into A-tier picks tomorrow. `;
+    para2 += `Regime green. `;
   } else if (regime?.stub) {
-    para2 += `Regime feed is offline so I'm operating without macro confirmation; staying conservative until it returns. `;
+    para2 += `Regime feed offline. `;
   }
   if (tomorrowWatch) {
-    para2 += `Tomorrow I'm watching ${tomorrowWatch.symbol} (score ${tomorrowWatch.score}, ${tomorrowWatch.conviction}-tier) for a follow-through entry.`;
+    para2 += `Watching ${tomorrowWatch.symbol} tomorrow (score ${tomorrowWatch.score}, ${tomorrowWatch.conviction}-tier).`;
   } else {
-    para2 += `Tomorrow's watchlist depends on the next scan — first cut runs at 6:30 AM ET.`;
+    para2 += `Next scan at 6:30 ET.`;
   }
   return [para1.trim(), para2.trim()];
 }
@@ -817,7 +863,7 @@ function BotJournal({ v2Data, positions, closedTrades, regime }) {
 // ══════════════════════════════════════════════════════════════════
 // MONTH TAB
 // ══════════════════════════════════════════════════════════════════
-function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, regime, reflection, symbolMemory }) {
+function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, regime, reflection, symbolMemory, missed }) {
   const stats = health?.stats || {};
   const positions = health?.positions || [];
   const startEq = startingEquity(health);
@@ -843,20 +889,25 @@ function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, re
 
   return (
     <div>
-      <RegimeWeatherStrip regime={regime} />
       <HeroPnL
         equity={equity}
         equityHistory={equityHistory}
         optionsTotals={optionsData?.totals}
         startingEquity={startEq}
       />
+      <RegimeWeatherStrip regime={regime} />
       <div style={{ padding: '0 14px 8px' }}>
-        <AttentionQueue positions={positions} v2Data={v2Data} optionsData={optionsData} />
+        <AttentionQueue
+          positions={positions}
+          v2Data={v2Data}
+          optionsData={optionsData}
+          missed={missed}
+        />
 
         <div style={{ marginBottom: 14 }}>
           <SectionTitle hint={`${realPositions.length} open${dustPositions.length ? ` · ${dustPositions.length} dust` : ''}`}>Position Memos</SectionTitle>
           {realPositions.length === 0 ? (
-            <Card><EmptyState msg="No open positions — bot waiting for next entry trigger." /></Card>
+            <Card><EmptyState msg="No open positions. Bot waiting for next entry trigger." /></Card>
           ) : (
             sortedPositions.map(pos => (
               <PositionMemoCard
@@ -878,7 +929,7 @@ function MonthTab({ health, equityHistory, closedTrades, optionsData, v2Data, re
               <span style={{ fontWeight: 700, color: C.inkSoft, letterSpacing: 0.4 }}>DUST · </span>
               {dustPositions.map(p => `${p.symbol} (${parseFloat(p.qty).toFixed(4)} sh, $${parseFloat(p.market_value).toFixed(2)})`).join(' · ')}
               <span style={{ marginLeft: 6, fontStyle: 'italic' }}>
-                — fractional residue from manual closes; safe to ignore.
+                fractional residue from manual closes. Safe to ignore.
               </span>
             </div>
           )}
@@ -1018,9 +1069,43 @@ function AdjustmentLog({ driftData }) {
 }
 
 function buildLessons(closedTrades) {
+  // Sample-size gating per audit 2026-05-26: cohort and tier lessons need
+  // n>=20 per bucket to be worth showing. Below that they're noise. The
+  // stop-out RISK lesson stays at n>=3 because it surfaces a real problem
+  // (entry filter too loose) even with thin data.
   if (!closedTrades || closedTrades.length < 4) return [];
   const lessons = [];
-  // Tier S vs A with catalyst comparison
+  // Stop-out frequency. This is the only one that matters at low N.
+  const stopOuts = closedTrades.filter(t => (t.reason || '').toLowerCase().includes('stop'));
+  if (stopOuts.length >= 3) {
+    const pct = stopOuts.length / closedTrades.length * 100;
+    if (pct >= 30) {
+      lessons.push({
+        tag: 'risk',
+        body: `${stopOuts.length} of last ${closedTrades.length} closes were hard stops (${pct.toFixed(0)}%). Entry filter likely too loose.`
+      });
+    }
+  }
+  // Tier comparison, only at n>=20 per bucket.
+  const tierStats = {};
+  for (const t of closedTrades) {
+    const tier = t.entry_signals?.tier;
+    if (!tier) continue;
+    if (!tierStats[tier]) tierStats[tier] = { ret: 0, n: 0 };
+    tierStats[tier].ret += (t.pnl_pct || 0);
+    tierStats[tier].n++;
+  }
+  const tierAvgs = Object.entries(tierStats)
+    .filter(([, s]) => s.n >= 20)
+    .map(([t, s]) => ({ tier: t, avg: s.ret / s.n, n: s.n }));
+  if (tierAvgs.length >= 2) {
+    tierAvgs.sort((a, b) => b.avg - a.avg);
+    lessons.push({
+      tag: 'tier',
+      body: `Tier ${tierAvgs[0].tier} leading at ${tierAvgs[0].avg.toFixed(1)}% avg (n=${tierAvgs[0].n}). Tier ${tierAvgs[tierAvgs.length-1].tier} trailing at ${tierAvgs[tierAvgs.length-1].avg.toFixed(1)}% (n=${tierAvgs[tierAvgs.length-1].n}).`
+    });
+  }
+  // Cohort lesson stays gated at n>=20 per cell too.
   const groups = {};
   for (const t of closedTrades) {
     const tier = t.entry_signals?.tier;
@@ -1032,71 +1117,43 @@ function buildLessons(closedTrades) {
     groups[key].n++;
     if ((t.pnl_pct || 0) > 0) groups[key].wins++;
   }
-  // S no-cat vs A-cat
   if (groups['S|nocat'] && groups['A|cat']
-      && groups['S|nocat'].n >= 2 && groups['A|cat'].n >= 2) {
+      && groups['S|nocat'].n >= 20 && groups['A|cat'].n >= 20) {
     const sAvg = groups['S|nocat'].ret / groups['S|nocat'].n;
     const aAvg = groups['A|cat'].ret / groups['A|cat'].n;
     const delta = aAvg - sAvg;
     if (Math.abs(delta) >= 1) {
       lessons.push({
         tag: 'cohort',
-        body: `S-tier picks without a catalyst ${delta > 0 ? 'underperform' : 'outperform'} A-tier with catalyst by ${Math.abs(delta).toFixed(1)}% per trade across ${groups['S|nocat'].n + groups['A|cat'].n} closed trades.`
+        body: `S-tier no-catalyst ${delta > 0 ? 'underperforms' : 'outperforms'} A-tier catalyst by ${Math.abs(delta).toFixed(1)}% per trade.`
       });
     }
-  }
-  // Best-performing tier
-  const tierStats = {};
-  for (const t of closedTrades) {
-    const tier = t.entry_signals?.tier;
-    if (!tier) continue;
-    if (!tierStats[tier]) tierStats[tier] = { ret: 0, n: 0 };
-    tierStats[tier].ret += (t.pnl_pct || 0);
-    tierStats[tier].n++;
-  }
-  const tierAvgs = Object.entries(tierStats)
-    .filter(([_, s]) => s.n >= 2)
-    .map(([t, s]) => ({ tier: t, avg: s.ret / s.n, n: s.n }));
-  if (tierAvgs.length >= 2) {
-    tierAvgs.sort((a, b) => b.avg - a.avg);
-    lessons.push({
-      tag: 'tier',
-      body: `Tier ${tierAvgs[0].tier} is leading at ${tierAvgs[0].avg.toFixed(1)}% avg return (n=${tierAvgs[0].n}); tier ${tierAvgs[tierAvgs.length-1].tier} is trailing at ${tierAvgs[tierAvgs.length-1].avg.toFixed(1)}% (n=${tierAvgs[tierAvgs.length-1].n}).`
-    });
-  }
-  // Stop-out frequency
-  const stopOuts = closedTrades.filter(t => (t.reason || '').toLowerCase().includes('stop'));
-  if (stopOuts.length >= 3) {
-    lessons.push({
-      tag: 'risk',
-      body: `${stopOuts.length} of the last ${closedTrades.length} closes were hard stops (${(stopOuts.length / closedTrades.length * 100).toFixed(0)}%). If this rate stays above 30% the entry filter likely needs a tightening pass.`
-    });
   }
   return lessons.slice(0, 4);
 }
 
 function LessonsCard({ closedTrades }) {
   const lessons = buildLessons(closedTrades);
+  // Empty placeholder removed 2026-05-26. If buildLessons gates out everything
+  // (low N), don't render a card at all — silence is more honest than a
+  // placeholder explaining why there's no content.
+  if (lessons.length === 0) return null;
   return (
     <Card style={{ marginBottom: 14 }} padding={18}>
-      <SectionTitle hint={`${closedTrades?.length || 0} closed trades`}>Lessons Learned</SectionTitle>
-      {lessons.length === 0 ? (
-        <EmptyState msg="No lessons computed — accumulating data. Cohort patterns surface once entry_signals are populated across a few dozen closes." />
-      ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-          {lessons.map((l, i) => (
-            <div key={i} style={{
-              background: C.bgElev2, borderRadius: 10, padding: '12px 14px',
-              borderLeft: `2px solid ${C.coral}`,
-            }}>
-              <div style={{ fontSize: 10, color: C.coral, fontWeight: 700, letterSpacing: 0.5, marginBottom: 4, textTransform: 'uppercase' }}>
-                {l.tag}
-              </div>
-              <div style={{ fontSize: 13.5, color: C.inkSoft, lineHeight: 1.55 }}>{l.body}</div>
+      <SectionTitle hint={`${closedTrades?.length || 0} closes`}>Lessons</SectionTitle>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+        {lessons.map((l, i) => (
+          <div key={i} style={{
+            background: C.bgElev2, borderRadius: 10, padding: '12px 14px',
+            borderLeft: `2px solid ${l.tag === 'risk' ? C.loss : C.coral}`,
+          }}>
+            <div style={{ fontSize: 10, color: l.tag === 'risk' ? C.loss : C.coral, fontWeight: 700, letterSpacing: 0.5, marginBottom: 4, textTransform: 'uppercase' }}>
+              {l.tag}
             </div>
-          ))}
-        </div>
-      )}
+            <div style={{ fontSize: 13.5, color: C.inkSoft, lineHeight: 1.55 }}>{l.body}</div>
+          </div>
+        ))}
+      </div>
     </Card>
   );
 }
@@ -1107,7 +1164,7 @@ function DecisionFunnel({ v2Data }) {
   const ready      = v2Data?.ready_to_trade;
   const picks      = (v2Data?.top_picks || []).length;
 
-  if (!v2Data) return <EmptyState msg="Funnel pending — first scan publishes after market open." />;
+  if (!v2Data) return <EmptyState msg="Funnel pending. First scan publishes after market open." />;
   if (candidates == null && evaluated == null) return <EmptyState msg="Funnel populates after next scan run." />;
 
   const steps = [
@@ -1165,17 +1222,32 @@ function SignalEdgeCard({ learningEval }) {
     );
   }
   const bySignal = learningEval.by_signal || {};
-  // Order by absolute edge magnitude descending (most opinionated first)
+  // Order by absolute edge magnitude descending. Hide insufficient-data rows
+  // entirely (per dashboard audit 2026-05-26: don't show empty placeholders
+  // when the sample-size gate has held).
   const rows = Object.entries(bySignal)
     .map(([name, blob]) => ({ name, ...blob }))
+    .filter(r => !(r.verdict || '').startsWith('insufficient'))
     .sort((a, b) => Math.abs(b.edge || 0) - Math.abs(a.edge || 0));
+  const hiddenCount = Object.keys(bySignal).length - rows.length;
+
+  if (rows.length === 0) {
+    return (
+      <Card style={{ marginBottom: 14 }} padding={18}>
+        <SectionTitle hint={`${learningEval.total_trades || 0} trades`}>Signal Edge</SectionTitle>
+        <div style={{ fontSize: 13, color: C.inkDim }}>
+          No signal has enough fires yet to measure edge. Hidden: {hiddenCount}.
+        </div>
+      </Card>
+    );
+  }
 
   return (
     <Card style={{ marginBottom: 14 }} padding={18}>
-      <SectionTitle hint={`${learningEval.total_trades || 0} trades analyzed`}>Signal Edge</SectionTitle>
+      <SectionTitle hint={`${learningEval.total_trades || 0} trades`}>Signal Edge</SectionTitle>
       <div style={{ fontSize: 12, color: C.inkDim, marginBottom: 12, lineHeight: 1.5 }}>
-        Win-rate gap when each signal fired vs didn't. Positive edge = signal predicts wins.
-        Below n≥3 (the per-bucket minimum) the verdict reads "insufficient data."
+        Win-rate gap when each signal fired vs didn't. Positive edge means the signal predicts wins.
+        {hiddenCount > 0 && ` ${hiddenCount} signal${hiddenCount === 1 ? '' : 's'} hidden for insufficient sample.`}
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
         {rows.map(r => {
@@ -1257,51 +1329,72 @@ function SignalEdgeCard({ learningEval }) {
   );
 }
 
-function MindTab({ v2Data, driftData, regime, closedTrades, learningEval }) {
+function MindTab({ v2Data, driftData, regime, closedTrades, learningEval, learningReport }) {
+  // Learner gating: when the daily learner is skipped (effective_n below threshold)
+  // the WeightDrift/AdjustmentLog data is stale by definition. Replace with a single
+  // honest line instead of pretending the charts mean anything.
+  const learnerSkipped = !!learningReport?.learner_skipped;
+  const lastDriftEntry = (driftData || [])
+    .filter(d => d && d.signal && d.signal !== '_summary')
+    .slice(-1)[0];
+  const lastDriftAgeDays = lastDriftEntry?.ts
+    ? Math.floor((Date.now() - new Date(lastDriftEntry.ts).getTime()) / 86400000)
+    : null;
+  const driftIsStale = learnerSkipped || (lastDriftAgeDays != null && lastDriftAgeDays > 7);
+
   return (
     <div>
-      <RegimeWeatherStrip regime={regime} />
-      <div style={{ padding: '0 14px 8px' }}>
+      <div style={{ padding: '14px 14px 8px' }}>
         <SignalEdgeCard learningEval={learningEval} />
 
-        <Card style={{ marginBottom: 14 }} padding={18}>
-          <SectionTitle hint="learning over time">Weight Drift</SectionTitle>
-          <WeightDriftChart driftData={driftData} />
-        </Card>
+        {driftIsStale ? (
+          <Card style={{ marginBottom: 14 }} padding={14}>
+            <div style={{ fontSize: 12, color: C.inkMute, lineHeight: 1.5 }}>
+              <span style={{ fontWeight: 700, color: C.inkSoft, letterSpacing: 0.3 }}>LEARNER GATED. </span>
+              {learnerSkipped ? (
+                <>
+                  effective n={learningReport?.effective_sample_size ?? '?'} below threshold of {learningReport?.min_effective_samples_required ?? '?'}.
+                  No weight adjustments will fire until the sample grows.
+                </>
+              ) : (
+                <>Last weight change was {lastDriftAgeDays}d ago. Nothing to chart this week.</>
+              )}
+            </div>
+          </Card>
+        ) : (
+          <>
+            <Card style={{ marginBottom: 14 }} padding={18}>
+              <SectionTitle hint="learning over time">Weight Drift</SectionTitle>
+              <WeightDriftChart driftData={driftData} />
+            </Card>
 
-        <Card style={{ marginBottom: 14 }} padding={18}>
-          <SectionTitle hint="changelog">Adjustment Log</SectionTitle>
-          <AdjustmentLog driftData={driftData} />
-        </Card>
+            <Card style={{ marginBottom: 14 }} padding={18}>
+              <SectionTitle hint="changelog">Adjustment Log</SectionTitle>
+              <AdjustmentLog driftData={driftData} />
+            </Card>
+          </>
+        )}
 
         <LessonsCard closedTrades={closedTrades} />
 
-        <Card style={{ marginBottom: 14 }} padding={18}>
-          <SectionTitle>Decision Funnel</SectionTitle>
-          <DecisionFunnel v2Data={v2Data} />
-        </Card>
-
-        {regime && (
-          <Card style={{ marginBottom: 14 }} padding={18}>
-            <SectionTitle>Regime Detail</SectionTitle>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-              {[
-                { label: 'IWM 20d',  val: regime.iwm_return_20d != null ? fmtPct(regime.iwm_return_20d) : '—', color: regime.iwm_return_20d != null ? pnlColor(regime.iwm_return_20d) : C.inkDim },
-                { label: 'SPY vol',  val: regime.spy_realized_vol_20d != null ? regime.spy_realized_vol_20d.toFixed(1) + '%' : '—', color: regime.spy_realized_vol_20d > 25 ? C.loss : regime.spy_realized_vol_20d < 15 ? C.gain : C.warn },
-                { label: 'Breadth',  val: regime.breadth_differential != null ? fmtPct(regime.breadth_differential) : '—', color: regime.breadth_differential != null ? pnlColor(regime.breadth_differential) : C.inkDim },
-                { label: 'Signal',   val: regime.regime_label || '—', color: C.ink },
-              ].map(({ label, val, color }) => (
-                <div key={label} style={{ background: C.bgElev2, borderRadius: 8, padding: '10px 12px' }}>
-                  <div style={{ fontSize: 11, color: C.inkDim, marginBottom: 4 }}>{label}</div>
-                  <div className="mono" style={{ fontSize: 14, fontWeight: 600, color }}>{val}</div>
-                </div>
-              ))}
-            </div>
-            <div className="caption" style={{ marginTop: 10, textAlign: 'right' }}>
-              {regime.stub ? 'stub values' : fmtAge(regime.ts)} · {regime.data_source}
-            </div>
-          </Card>
-        )}
+        <details style={{
+          marginBottom: 14,
+          background: C.bgElev,
+          border: `1px solid ${C.line}`,
+          borderRadius: 14,
+          padding: 14,
+        }}>
+          <summary style={{
+            cursor: 'pointer', fontSize: 13, color: C.inkSoft, fontWeight: 600,
+            listStyle: 'none', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+          }}>
+            <span>Scanner internals</span>
+            <span style={{ fontSize: 11, color: C.inkDim, fontWeight: 500 }}>tap to expand</span>
+          </summary>
+          <div style={{ marginTop: 12 }}>
+            <DecisionFunnel v2Data={v2Data} />
+          </div>
+        </details>
       </div>
     </div>
   );
@@ -1433,29 +1526,48 @@ function OptionsTab({ optionsData, equityHistory }) {
     return `${Math.round(h / 24)}d ago`;
   };
 
+  const optionsEmpty = open_positions.length === 0 && totalPremium === 0;
+
   return (
     <div>
-      <div style={{ padding: '4px 18px 16px' }}>
-        <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
-          <span style={{ fontSize: 12, color: C.inkMute, fontWeight: 500 }}>Open Premium</span>
-          <span style={{ fontSize: 11, color: C.inkDim }}>· {open_positions.length} contract{open_positions.length === 1 ? '' : 's'}</span>
-          <span style={{ fontSize: 11, color: freshColor, fontWeight: 600, marginLeft: 'auto' }}>{freshLabel}</span>
-        </div>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12 }}>
-          <div className="display" style={{ fontSize: 40, color: C.ink }}>
-            {fmt$k(totalPremium)}
+      {optionsEmpty ? (
+        <div style={{
+          padding: '14px 18px 12px',
+          display: 'flex', alignItems: 'baseline', justifyContent: 'space-between',
+          gap: 12, flexWrap: 'wrap',
+        }}>
+          <div style={{ fontSize: 14, color: C.ink, fontWeight: 600 }}>
+            $0 deployed · 0 contracts open
           </div>
-          <div style={{ textAlign: 'right' }}>
-            <div className="mono" style={{ fontSize: 16, color: accent, fontWeight: 600 }}>
-              {totalPnl >= 0 ? '+' : ''}{fmt$(totalPnl)}
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 10, fontSize: 12 }}>
+            {totalPnl !== 0 && (
+              <span className="mono" style={{ color: accent, fontWeight: 600 }}>
+                MTD {totalPnl >= 0 ? '+' : ''}{fmt$(totalPnl)}
+              </span>
+            )}
+            <span style={{ color: freshColor, fontWeight: 600 }}>{freshLabel}</span>
+          </div>
+        </div>
+      ) : (
+        <div style={{ padding: '4px 18px 16px' }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4 }}>
+            <span style={{ fontSize: 12, color: C.inkMute, fontWeight: 500 }}>Open Premium</span>
+            <span style={{ fontSize: 11, color: C.inkDim }}>· {open_positions.length} contract{open_positions.length === 1 ? '' : 's'}</span>
+            <span style={{ fontSize: 11, color: freshColor, fontWeight: 600, marginLeft: 'auto' }}>{freshLabel}</span>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12 }}>
+            <div className="display" style={{ fontSize: 40, color: C.ink }}>
+              {fmt$k(totalPremium)}
             </div>
-            <div className="caption">unrealized + MTD</div>
+            <div style={{ textAlign: 'right' }}>
+              <div className="mono" style={{ fontSize: 16, color: accent, fontWeight: 600 }}>
+                {totalPnl >= 0 ? '+' : ''}{fmt$(totalPnl)}
+              </div>
+              <div className="caption">unrealized + MTD</div>
+            </div>
           </div>
         </div>
-        {/* The sparkline used to render here as a synthesized curve derived from
-            equity history × 0.5 — fake data. Removed; will return when daily
-            options-equity snapshots accumulate into a real series. */}
-      </div>
+      )}
 
       <div style={{ padding: '0 18px 12px' }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
@@ -1592,14 +1704,12 @@ function OptionsTab({ optionsData, equityHistory }) {
           </Card>
         )}
 
-        <div style={{ marginBottom: 14 }}>
-          <SectionTitle hint={`${open_positions.length} open`}>Contract Memos</SectionTitle>
-          {open_positions.length === 0 ? (
-            <Card><EmptyState msg="No open contracts." /></Card>
-          ) : (
-            open_positions.map((p, i) => <OptionMemoCard key={i} p={p} />)
-          )}
-        </div>
+        {open_positions.length > 0 && (
+          <div style={{ marginBottom: 14 }}>
+            <SectionTitle hint={`${open_positions.length} open`}>Contract Memos</SectionTitle>
+            {open_positions.map((p, i) => <OptionMemoCard key={i} p={p} />)}
+          </div>
+        )}
 
         {closes.length > 0 && (
           <Card style={{ marginBottom: 14 }} padding={16}>
@@ -1644,7 +1754,8 @@ const TABS = [
   { id: 'options', label: 'Options', icon: '⊕' },
 ];
 
-function BottomTabBar({ active, onChange }) {
+function BottomTabBar({ active, onChange, optionsVisible = true }) {
+  const visibleTabs = TABS.filter(t => t.id !== 'options' || optionsVisible);
   return (
     <div style={{
       position: 'fixed', bottom: 0, left: 0, right: 0,
@@ -1652,7 +1763,7 @@ function BottomTabBar({ active, onChange }) {
       display: 'flex', zIndex: 200,
       paddingBottom: 'env(safe-area-inset-bottom, 0)',
     }}>
-      {TABS.map(tab => {
+      {visibleTabs.map(tab => {
         const on = active === tab.id;
         return (
           <button key={tab.id} onClick={() => onChange(tab.id)} style={{
@@ -1705,6 +1816,11 @@ function App() {
   // Per-signal edge measurement from learning_eval.py (fixed 2026-05-12 to
   // read closed_trades.json so it produces real numbers instead of zeros).
   const learningEval  = useOnce('data/learning_eval_report.json');
+  // Daily learner report (whether weights actually moved, or whether the
+  // sample-size gate held). Drives MindTab learner-gated banner.
+  const learningReport = useOnce('data/learning_report.json');
+  // Today's missed-opportunity tracker (winners the scanner didn't catch).
+  const missed         = useOnce('data/missed_opportunities_today.json');
 
   const stats     = health?.stats || {};
   const equity    = stats.equity;
@@ -1713,6 +1829,12 @@ function App() {
                   + (optionsData?.totals?.realized_this_month || 0);
   const totalPnl  = eqPnl + optPnl;
   const optsOpen  = optionsData?.open_count || 0;
+  // Hide the Options tab entirely when there's no signal there: no open
+  // contracts, no closes, no recent pick activity. Per audit 2026-05-26.
+  const optionsTabVisible = !optionsData
+    || optsOpen > 0
+    || (optionsData.closes || []).length > 0
+    || (optionsData.pick_log_recent || []).length > 0;
 
   const now   = new Date();
   const wkday = now.getDay();
@@ -1778,6 +1900,7 @@ function App() {
             regime={regime}
             reflection={reflection}
             symbolMemory={symbolMemory}
+            missed={missed}
           />
         )}
         {tab === 'mind' && (
@@ -1787,14 +1910,15 @@ function App() {
             regime={regime}
             closedTrades={Array.isArray(closedTrades) ? closedTrades : []}
             learningEval={learningEval}
+            learningReport={learningReport}
           />
         )}
-        {tab === 'options' && (
+        {tab === 'options' && optionsTabVisible && (
           <OptionsTab optionsData={optionsData} equityHistory={equityHistory} />
         )}
       </div>
 
-      <BottomTabBar active={tab} onChange={setTab} />
+      <BottomTabBar active={tab} onChange={setTab} optionsVisible={optionsTabVisible} />
     </div>
   );
 }
