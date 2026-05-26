@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-25T13:59:54.178891",
+  "timestamp": "2026-05-25T17:00:00.175864",
   "candidates_discovered": 551,
   "candidates_evaluated": 50,
   "ready_to_trade": 9,
@@ -99,7 +99,7 @@
   ],
   "social_trending": {
     "RDDT": 28,
-    "NVDA": 14,
+    "NVDA": 15,
     "MSFT": 7,
     "AMZN": 6,
     "RKLB": 6,

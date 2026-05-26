@@ -460,5 +460,13 @@
     "sample_size": 31,
     "win_rate": 0.29,
     "adjustments_made": 0
+  },
+  {
+    "ts": "2026-05-25T14:27:03.038725",
+    "signal": "_summary",
+    "reasoning": "insufficient data or no meaningful adjustments \u2014 win_rate=29.0%, n=31",
+    "sample_size": 31,
+    "win_rate": 0.29,
+    "adjustments_made": 0
   }
 ]
