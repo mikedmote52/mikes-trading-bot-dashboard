@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T13:32:26.776710+00:00",
+  "generated_at": "2026-05-26T13:33:46.462004+00:00",
   "open_count": 0,
   "open_positions": [],
   "closes": [
@@ -322,9 +322,67 @@
         "score": null,
         "thesis": "liquid-universe candidate (NFLX)"
       }
+    },
+    {
+      "ts": "2026-05-26T13:33:05.883396+00:00",
+      "ticker": "NFLX",
+      "track": "liquid",
+      "occ_symbol": "NFLX260612C00088000",
+      "outcome": "rejected_by_gates",
+      "gate_failures": [
+        "liquidity: spread 14.1% > 3% (track=liquid bid=2.38 ask=2.74 mid=2.56)"
+      ],
+      "gates_evaluated": [
+        "liquidity(liquid)",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "iv_at_entry": null,
+      "spot": 88.14,
+      "strike": "88",
+      "expiration": "2026-06-12",
+      "bid": 2.38,
+      "ask": 2.74,
+      "mid": 2.56,
+      "pick_meta": {
+        "tier": "L",
+        "score": null,
+        "thesis": "liquid-universe candidate (NFLX)"
+      }
+    },
+    {
+      "ts": "2026-05-26T13:33:45.750472+00:00",
+      "ticker": "TLT",
+      "track": "liquid",
+      "occ_symbol": "TLT260610C00085000",
+      "outcome": "rejected_by_gates",
+      "gate_failures": [
+        "liquidity: spread 13.5% > 3% (track=liquid bid=0.69 ask=0.79 mid=0.74)"
+      ],
+      "gates_evaluated": [
+        "liquidity(liquid)",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "iv_at_entry": null,
+      "spot": 85.32,
+      "strike": "85",
+      "expiration": "2026-06-10",
+      "bid": 0.69,
+      "ask": 0.79,
+      "mid": 0.74,
+      "pick_meta": {
+        "tier": "L",
+        "score": null,
+        "thesis": "liquid-universe candidate (TLT)"
+      }
     }
   ],
-  "picks_today_count": 0,
+  "picks_today_count": 2,
   "outcomes_summary": {
     "n_closed": 2,
     "wins": 0,
@@ -350,14 +408,14 @@
   "bot_state": {
     "options_bot_enabled": true,
     "conviction_floor": "A",
-    "last_entry_pass_at": "2026-05-25T13:33:20.669345+00:00",
+    "last_entry_pass_at": "2026-05-26T13:33:45.751539+00:00",
     "last_entry_pass_result": {
       "positions_opened": 0,
       "symbols": []
     },
-    "last_monitor_pass_at": "2026-05-25T20:00:52.184567+00:00",
+    "last_monitor_pass_at": "2026-05-26T13:32:32.353561+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-05-26T13:32:26.776893+00:00"
+    "last_publish_at": "2026-05-26T13:33:46.462149+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
