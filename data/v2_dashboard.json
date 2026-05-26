@@ -1,9 +1,29 @@
 {
-  "timestamp": "2026-05-26T14:00:02.299659",
-  "candidates_discovered": 568,
+  "timestamp": "2026-05-26T16:59:54.459930",
+  "candidates_discovered": 569,
   "candidates_evaluated": 50,
-  "ready_to_trade": 9,
+  "ready_to_trade": 10,
   "top_picks": [
+    {
+      "symbol": "MNTS",
+      "score": 83,
+      "raw_score": 65,
+      "conviction": "S",
+      "thesis": "Very low float (9.2M) | Elevated short interest (18.6% of float) | Explosive volume acceleration (17.3x vs 10d avg) | Today +109.8% \u2014 confirmed breakout | SQUEEZE TRIFECTA: 9.2M float + 18.6% SI + 17.3x volume [Raw: 65, Normalized: 83]",
+      "risks": [
+        "No catalyst identified"
+      ],
+      "catalyst_type": null,
+      "catalyst_quality": "none",
+      "has_catalyst": false,
+      "float_shares": 9240470,
+      "short_pct": 0.1859,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 17.3270879507108,
+      "sector": "industrials",
+      "industry": "aerospace & defense"
+    },
     {
       "symbol": "BDTX",
       "score": 54,
@@ -157,22 +177,31 @@
   ],
   "social_trending": {
     "RDDT": 25,
-    "RKLB": 9,
     "NVDA": 8,
+    "MSFT": 6,
+    "RKLB": 6,
     "GRPN": 6,
     "OTCQB": 5,
+    "PLTR": 5,
     "SNDK": 5,
+    "ASTS": 5,
     "HNST": 5,
     "SMCI": 4,
-    "PLTR": 4,
     "DXYZ": 4,
-    "MSFT": 4,
-    "UAMY": 4,
-    "NXXT": 4,
-    "ASTS": 4,
-    "POET": 4
+    "GOOG": 4,
+    "AMZN": 4,
+    "META": 4
   },
   "trade_candidates": [
+    {
+      "symbol": "MNTS",
+      "score": 83.0,
+      "thesis": "Very low float (9.2M) | Elevated short interest (18.6% of float) | Explosive volume acceleration (17.3x vs 10d avg) | Today +109.8% \u2014 confirmed breakout | SQUEEZE TRIFECTA: 9.2M float + 18.6% SI + 17.3x volume [Raw: 65, Normalized: 83]",
+      "times_seen": 1,
+      "has_catalyst": 0,
+      "catalyst_type": null,
+      "sector": "industrials"
+    },
     {
       "symbol": "CYCN",
       "score": 80.0,
