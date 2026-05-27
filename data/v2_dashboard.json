@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-27T13:59:55.749565",
+  "timestamp": "2026-05-27T16:59:54.965478",
   "candidates_discovered": 581,
   "candidates_evaluated": 50,
   "ready_to_trade": 10,
@@ -74,7 +74,7 @@
       "short_pct": 0.1025,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 7.89942315899216,
+      "volume_acceleration": 7.902339728993565,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -97,6 +97,26 @@
       "industry": "biotechnology"
     },
     {
+      "symbol": "RXRX",
+      "score": 38,
+      "raw_score": 57,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (34.2% of float) | Social emerging (2 mentions) | Near 52-week low \u2014 turnaround potential [Raw: 57, Normalized: 38]",
+      "risks": [
+        "Large float (513M) limits squeeze potential"
+      ],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 512794560,
+      "short_pct": 0.3422,
+      "social_mentions": 2,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 1.824215105557489,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
       "symbol": "OMER",
       "score": 36,
       "raw_score": 55,
@@ -113,42 +133,24 @@
       "volume_acceleration": 2.5323276961603267,
       "sector": "healthcare",
       "industry": "biotechnology"
-    },
-    {
-      "symbol": "DTIL",
-      "score": 36,
-      "raw_score": 55,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (20.0M) | Moderate short interest (5.6%) | Volume building (2.6x) [Raw: 55, Normalized: 36]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 20005256,
-      "short_pct": 0.0563,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.6222129497815523,
-      "sector": "healthcare",
-      "industry": "biotechnology"
     }
   ],
   "social_trending": {
     "RDDT": 24,
     "GRPN": 9,
-    "DRAM": 7,
     "LFVN": 7,
-    "NVDA": 7,
+    "MSFT": 7,
     "GOOG": 6,
-    "META": 6,
-    "MRVL": 6,
-    "MU": 6,
-    "MSFT": 5,
-    "TSLA": 5,
-    "AVGO": 5,
+    "STOCK": 5,
+    "OTCQB": 5,
+    "GAAP": 5,
+    "META": 5,
+    "NVDA": 5,
+    "MRVL": 5,
     "HNST": 5,
-    "OTCQB": 4,
-    "GAAP": 4
+    "TODAY": 4,
+    "SMCI": 4,
+    "DXYZ": 4
   },
   "trade_candidates": [
     {
@@ -164,7 +166,7 @@
       "symbol": "MNTS",
       "score": 70.0,
       "thesis": "Very low float (9.2M) | Elevated short interest (18.6% of float) | Explosive volume acceleration (18.3x vs 10d avg) | SQUEEZE TRIFECTA: 9.2M float + 18.6% SI + 18.3x volume [Raw: 45, Normalized: 70]",
-      "times_seen": 5,
+      "times_seen": 6,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "industrials"

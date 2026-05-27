@@ -12,18 +12,23 @@
   },
   "_detail": {},
   "_meta": {
-    "ts": "2026-05-26T21:30:00.000000",
+    "ts": "2026-05-27T14:27:15.715024",
     "trades_analyzed": 31,
     "win_rate": 0.29,
     "calibration_score": 0.379,
     "key_findings": [
-      "RESTORED to 1.0 baseline 2026-05-26 21:30 PT after NightlyLearner wrote empty multipliers map.",
-      "Effective setups: 30 (raw 31), gate held at MIN=100.",
-      "Bug: NightlyLearner should preserve previous multipliers when gate holds, not write empty {}.",
-      "Follow-up: fix NightlyLearner to merge with current_adj rather than overwrite when gate skips."
+      "Win rate: 29.0%",
+      "Effective setups: 30 (raw 31)",
+      "SKIP: effective_n=30 < MIN_EFFECTIVE_SAMPLES_FOR_LEARN=100",
+      "No weight adjustments this cycle (sample-size gate held)."
     ],
     "applied": false,
-    "source": "manual_restore_after_empty_write_2026_05_26"
+    "source": "nightly_learner",
+    "learner_skipped": true,
+    "skip_reason": "effective_n=30 < MIN_EFFECTIVE_SAMPLES_FOR_LEARN=100",
+    "effective_sample_size": 30,
+    "min_effective_samples_required": 100,
+    "preserved_from_prior_run": true
   },
   "last_updated": "2026-05-27T13:33:03.019750",
   "last_stats": {
