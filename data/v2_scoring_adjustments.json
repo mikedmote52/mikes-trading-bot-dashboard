@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "multipliers": {
     "catalyst": 1.0,
     "low_float": 1.0,
@@ -24,5 +24,13 @@
     ],
     "applied": false,
     "source": "manual_restore_after_empty_write_2026_05_26"
-  }
+  },
+  "last_updated": "2026-05-27T13:33:03.019750",
+  "last_stats": {
+    "win_rate": 40.0,
+    "avg_win_pct": 23.11,
+    "avg_loss_pct": -8.75,
+    "trades_analyzed": 20
+  },
+  "history": []
 }
