@@ -779,5 +779,56 @@
       "scanner_pick": null,
       "regime_context": null
     }
+  },
+  {
+    "symbol": "CMPX",
+    "entry": 1.78,
+    "exit_price": 2.22,
+    "pnl_pct": 24.72,
+    "pnl_dollar": 11.88,
+    "reason": "Server-side trailing stop at $2.22",
+    "date": "2026-05-28",
+    "entry_signals": {
+      "tier": "B",
+      "composite_score": 52.0,
+      "has_catalyst": true,
+      "catalyst_type": "biotech_potential",
+      "float_shares": 118829210.0,
+      "short_pct": 0.173,
+      "volume_acceleration": 0,
+      "sector": "healthcare",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Explosive volume acceleration (9.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 79, Normalized: 52]",
+      "scanner_pick": {
+        "symbol": "CMPX",
+        "close": 1.78,
+        "composite_score": 52.0,
+        "tier": "B",
+        "reasoning": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.7% of float) | Explosive volume acceleration (9.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 79, Normalized: 52]",
+        "breakdown": {
+          "v2_score": 52.0,
+          "catalyst": 1
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 11,
+        "has_catalyst": true,
+        "float_shares": 118868829.0,
+        "short_pct": 0.22709998,
+        "volume_acceleration": 0,
+        "sector": "healthcare",
+        "catalyst_type": "biotech_potential"
+      },
+      "regime_context": {
+        "captured_at": "2026-05-01T06:13:46.666103",
+        "market_is_open": false,
+        "market_next_open": "2026-05-01T09:30:00-04:00",
+        "market_next_close": "2026-05-01T16:00:00-04:00"
+      }
+    }
   }
 ]
