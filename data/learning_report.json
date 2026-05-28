@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-05-27T13:33:03.020755",
+  "timestamp": "2026-05-28T13:33:07.343290",
   "trades_analyzed": 20,
   "effective_sample_size": 20,
   "min_effective_samples_required": 100,
-  "win_rate": 40.0,
-  "setup_win_rate": 40.0,
-  "avg_win_pct": 23.11,
-  "avg_loss_pct": -8.75,
+  "win_rate": 45.0,
+  "setup_win_rate": 45.0,
+  "avg_win_pct": 23.29,
+  "avg_loss_pct": -8.74,
   "learner_skipped": true,
   "skip_reason": "effective_n=20 < MIN_EFFECTIVE_SAMPLES_FOR_LEARN=100",
   "v2_adjustments_applied": 0,
@@ -19,10 +19,10 @@
     "BIRD",
     "FLWS",
     "HTCO",
-    "CYCN"
+    "CYCN",
+    "CMPX"
   ],
   "losers": [
-    "METU",
     "SKLZ",
     "ROLR",
     "MAXN",
