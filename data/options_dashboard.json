@@ -1,7 +1,45 @@
 {
-  "generated_at": "2026-05-28T13:32:19.890293+00:00",
-  "open_count": 0,
-  "open_positions": [],
+  "generated_at": "2026-05-28T13:35:17.276024+00:00",
+  "open_count": 1,
+  "open_positions": [
+    {
+      "ticker": "TLT",
+      "occ_symbol": "TLT260612C00085000",
+      "side": "long_call",
+      "strike": 85.0,
+      "expiration": "2026-06-12",
+      "days_to_expire": 15,
+      "entry_premium": 0.81,
+      "entry_cost": 81.0,
+      "current_mid": 0.81,
+      "unrealized_pl": 0.0,
+      "unrealized_pl_pct": 0.0,
+      "stop_loss_price": 0.405,
+      "take_profit_price": 1.62,
+      "max_hold_until": "2026-06-18",
+      "max_hold_days_left": 21,
+      "max_hold_alert": false,
+      "entry_timestamp": "2026-05-28T13:33:59.333949+00:00",
+      "order_id": "36bac575-8c28-40fa-b279-dccfb3389648",
+      "entry_signals": {
+        "tier": "L",
+        "composite_score": null,
+        "thesis": "liquid-universe candidate (TLT)",
+        "has_catalyst": null,
+        "catalyst_type": null,
+        "float_shares": null,
+        "short_pct": null,
+        "sector": null,
+        "volume_acceleration": null,
+        "scanner_pick": {
+          "symbol": "TLT",
+          "tier": "L",
+          "score": 0,
+          "thesis": "liquid-universe candidate (TLT)"
+        }
+      }
+    }
+  ],
   "closes": [
     {
       "occ_symbol": "SPY260605C00711000",
@@ -25,13 +63,13 @@
     }
   ],
   "totals": {
-    "total_open_premium": 0.0,
+    "total_open_premium": 81.0,
     "total_open_unrealized_pl": 0.0,
     "realized_this_month": -1.5,
     "realized_count_this_month": 1,
-    "deployed_today": 0,
+    "deployed_today": 81.0,
     "daily_cap": 300.0,
-    "daily_cap_remaining": 300.0
+    "daily_cap_remaining": 219.0
   },
   "alerts": [],
   "pick_log_recent": [
@@ -446,9 +484,77 @@
         "score": null,
         "thesis": "liquid-universe candidate (TLT)"
       }
+    },
+    {
+      "ts": "2026-05-28T13:33:17.791153+00:00",
+      "ticker": "NFLX",
+      "track": "liquid",
+      "occ_symbol": "NFLX260612C00088000",
+      "outcome": "rejected_by_gates",
+      "gate_failures": [
+        "liquidity: spread 6.4% > 3% (track=liquid bid=1.51 ask=1.61 mid=1.56)"
+      ],
+      "gates_evaluated": [
+        "liquidity(liquid)",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "iv_at_entry": 0.3109,
+      "delta_at_entry": 0.4767,
+      "theta_at_entry": -0.0743,
+      "vega_at_entry": 0.0727,
+      "gamma_at_entry": 0.07273,
+      "spot": 86.4,
+      "strike": "88",
+      "expiration": "2026-06-12",
+      "bid": 1.51,
+      "ask": 1.61,
+      "mid": 1.56,
+      "pick_meta": {
+        "tier": "L",
+        "score": null,
+        "thesis": "liquid-universe candidate (NFLX)"
+      }
+    },
+    {
+      "ts": "2026-05-28T13:33:59.333949+00:00",
+      "ticker": "TLT",
+      "track": "liquid",
+      "occ_symbol": "TLT260612C00085000",
+      "outcome": "submitted",
+      "fill_status": "filled",
+      "entry_premium": 0.81,
+      "entry_cost": 81.0,
+      "max_hold_until": "2026-06-18",
+      "stop_loss_price": 0.405,
+      "take_profit_price": 1.62,
+      "iv_at_entry": 0.0985,
+      "delta_at_entry": 0.5386,
+      "theta_at_entry": -0.0175,
+      "vega_at_entry": 0.0701,
+      "gamma_at_entry": 0.23336,
+      "spot_at_entry": 85.36,
+      "vix_at_entry": 16.40999984741211,
+      "gates_passed": [
+        "liquidity(liquid)",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "pick_meta": {
+        "tier": "L",
+        "score": null,
+        "thesis": "liquid-universe candidate (TLT)",
+        "has_catalyst": null,
+        "catalyst_type": null,
+        "sector": null
+      }
     }
   ],
-  "picks_today_count": 0,
+  "picks_today_count": 2,
   "outcomes_summary": {
     "n_closed": 2,
     "wins": 0,
@@ -474,14 +580,16 @@
   "bot_state": {
     "options_bot_enabled": true,
     "conviction_floor": "A",
-    "last_entry_pass_at": "2026-05-27T13:35:47.561743+00:00",
+    "last_entry_pass_at": "2026-05-28T13:35:16.045173+00:00",
     "last_entry_pass_result": {
-      "positions_opened": 0,
-      "symbols": []
+      "positions_opened": 1,
+      "symbols": [
+        "TLT"
+      ]
     },
-    "last_monitor_pass_at": "2026-05-27T19:59:15.435649+00:00",
+    "last_monitor_pass_at": "2026-05-28T13:32:23.938079+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-05-28T13:32:19.890429+00:00"
+    "last_publish_at": "2026-05-28T13:35:17.276041+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
