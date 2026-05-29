@@ -932,5 +932,56 @@
         "market_next_close": "2026-05-27T16:00:00-04:00"
       }
     }
+  },
+  {
+    "symbol": "PLCE",
+    "entry": 4.74,
+    "exit_price": 4.07,
+    "pnl_pct": -14.14,
+    "pnl_dollar": -10.05,
+    "reason": "Server-side stop at $4.07",
+    "date": "2026-05-29",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 76.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 7653325.0,
+      "short_pct": 0.33009997,
+      "volume_acceleration": 0,
+      "sector": "consumer cyclical",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (11.4x vs 10d avg) | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 11.4x volume [Raw: 55, Normalized: 76]",
+      "scanner_pick": {
+        "symbol": "PLCE",
+        "close": 4.74,
+        "composite_score": 76.0,
+        "tier": "A",
+        "reasoning": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (11.4x vs 10d avg) | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 11.4x volume [Raw: 55, Normalized: 76]",
+        "breakdown": {
+          "v2_score": 76.0,
+          "catalyst": 0
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 26,
+        "has_catalyst": false,
+        "float_shares": 7653325.0,
+        "short_pct": 0.33009997,
+        "volume_acceleration": 0,
+        "sector": "consumer cyclical",
+        "catalyst_type": null
+      },
+      "regime_context": {
+        "captured_at": "2026-05-29T09:00:26.709188",
+        "market_is_open": true,
+        "market_next_open": "2026-06-01T09:30:00-04:00",
+        "market_next_close": "2026-05-29T16:00:00-04:00"
+      }
+    }
   }
 ]
