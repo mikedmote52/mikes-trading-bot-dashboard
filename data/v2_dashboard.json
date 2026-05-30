@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-30T13:59:49.401205",
+  "timestamp": "2026-05-30T16:59:55.206871",
   "candidates_discovered": 577,
   "candidates_evaluated": 50,
   "ready_to_trade": 12,
@@ -191,7 +191,7 @@
       "symbol": "PLCE",
       "score": 76.0,
       "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (16.4x vs 10d avg) | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 16.4x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 28,
+      "times_seen": 29,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
