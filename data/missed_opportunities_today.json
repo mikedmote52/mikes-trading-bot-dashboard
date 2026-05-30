@@ -1,14 +1,14 @@
 {
-  "date": "2026-05-29",
-  "generated_at": "2026-05-29T21:00:04.825821+00:00",
+  "date": "2026-05-30",
+  "generated_at": "2026-05-30T20:59:53.428739+00:00",
   "n_winners": 10,
   "n_caught_and_traded": 0,
   "n_on_watchlist_not_taken": 1,
   "n_missed_entirely": 9,
   "rows": [
     {
-      "ts": "2026-05-29T21:00:04.820233+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.422506+00:00",
+      "date": "2026-05-30",
       "symbol": "QH",
       "move_pct": 8123.4,
       "scanner_evaluated": false,
@@ -20,8 +20,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-29T21:00:04.820712+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.422969+00:00",
+      "date": "2026-05-30",
       "symbol": "DEVS",
       "move_pct": 140,
       "scanner_evaluated": false,
@@ -33,8 +33,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-29T21:00:04.820929+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.423425+00:00",
+      "date": "2026-05-30",
       "symbol": "HUBC",
       "move_pct": 137.36,
       "scanner_evaluated": false,
@@ -46,8 +46,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-29T21:00:04.821171+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.423769+00:00",
+      "date": "2026-05-30",
       "symbol": "PCTTU",
       "move_pct": 137.26,
       "scanner_evaluated": false,
@@ -59,8 +59,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-29T21:00:04.821382+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.424045+00:00",
+      "date": "2026-05-30",
       "symbol": "STG",
       "move_pct": 125.74,
       "scanner_evaluated": false,
@@ -72,8 +72,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-29T21:00:04.821604+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.424253+00:00",
+      "date": "2026-05-30",
       "symbol": "PRFX",
       "move_pct": 118.98,
       "scanner_evaluated": false,
@@ -85,8 +85,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-29T21:00:04.821861+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.424441+00:00",
+      "date": "2026-05-30",
       "symbol": "MYND",
       "move_pct": 114.5,
       "scanner_evaluated": false,
@@ -98,8 +98,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-29T21:00:04.822140+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.424669+00:00",
+      "date": "2026-05-30",
       "symbol": "AACPW",
       "move_pct": 99.83,
       "scanner_evaluated": false,
@@ -111,8 +111,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-05-29T21:00:04.822378+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.424896+00:00",
+      "date": "2026-05-30",
       "symbol": "REPL",
       "move_pct": 85.68,
       "scanner_evaluated": false,
@@ -124,8 +124,8 @@
       "miss_reason": "on_watchlist_but_not_taken"
     },
     {
-      "ts": "2026-05-29T21:00:04.822616+00:00",
-      "date": "2026-05-29",
+      "ts": "2026-05-30T20:59:53.425094+00:00",
+      "date": "2026-05-30",
       "symbol": "HUBCZ",
       "move_pct": 78.86,
       "scanner_evaluated": false,
