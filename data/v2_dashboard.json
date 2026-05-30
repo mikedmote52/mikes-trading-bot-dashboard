@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-05-29T13:59:59.081775",
+  "timestamp": "2026-05-30T13:59:49.401205",
   "candidates_discovered": 577,
   "candidates_evaluated": 50,
   "ready_to_trade": 12,
@@ -9,7 +9,7 @@
       "score": 76,
       "raw_score": 55,
       "conviction": "S",
-      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (16.2x vs 10d avg) | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 16.2x volume [Raw: 55, Normalized: 76]",
+      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (16.4x vs 10d avg) | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 16.4x volume [Raw: 55, Normalized: 76]",
       "risks": [
         "No catalyst identified"
       ],
@@ -20,7 +20,7 @@
       "short_pct": 0.33009997,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 16.228590069811442,
+      "volume_acceleration": 16.38187512233314,
       "sector": "consumer cyclical",
       "industry": "apparel manufacturing"
     },
@@ -38,7 +38,7 @@
       "short_pct": 0.5135,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.2690539195715855,
+      "volume_acceleration": 2.2796581171180432,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -47,7 +47,7 @@
       "score": 46,
       "raw_score": 70,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (49.4M) | Very high short interest (20.2% of float) | Strong volume acceleration (3.8x) [Raw: 70, Normalized: 46]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (49.4M) | Very high short interest (20.2% of float) | Strong volume acceleration (3.9x) [Raw: 70, Normalized: 46]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -56,7 +56,7 @@
       "short_pct": 0.2015,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.828977688876766,
+      "volume_acceleration": 3.8531516924024998,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -74,7 +74,27 @@
       "short_pct": 0.2514,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.6018523883400164,
+      "volume_acceleration": 1.6064110235381928,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "BHVN",
+      "score": 36,
+      "raw_score": 55,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (20.5% of float) | Volume building (2.3x) [Raw: 55, Normalized: 36]",
+      "risks": [
+        "Large float (124M) limits squeeze potential"
+      ],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 123999020,
+      "short_pct": 0.205,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 2.3405913271358307,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -94,7 +114,7 @@
       "short_pct": 0.20040001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.2378780600374881,
+      "volume_acceleration": 1.2603414118009049,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -112,7 +132,7 @@
       "short_pct": 0.2672,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.9635844343069297,
+      "volume_acceleration": 1.9737543693346762,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -121,7 +141,7 @@
       "score": 36,
       "raw_score": 55,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.8% of float) | Volume building (2.5x) [Raw: 55, Normalized: 36]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very high short interest (22.8% of float) | Volume building (2.6x) [Raw: 55, Normalized: 36]",
       "risks": [],
       "catalyst_type": "biotech_potential",
       "catalyst_quality": "none",
@@ -130,7 +150,7 @@
       "short_pct": 0.2284,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.502361844729137,
+      "volume_acceleration": 2.6413815689211844,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -151,7 +171,7 @@
       "short_pct": 0.3081,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.2441788112651175,
+      "volume_acceleration": 2.2456417081058384,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -170,8 +190,8 @@
     {
       "symbol": "PLCE",
       "score": 76.0,
-      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (16.2x vs 10d avg) | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 16.2x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 27,
+      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (16.4x vs 10d avg) | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 16.4x volume [Raw: 55, Normalized: 76]",
+      "times_seen": 28,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
