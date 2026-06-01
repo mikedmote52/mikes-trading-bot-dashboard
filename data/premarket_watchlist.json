@@ -1,6 +1,6 @@
 {
-  "built_at": "2026-05-30T17:27:47.505054",
-  "count": 528,
+  "built_at": "2026-05-31T17:27:49.195586",
+  "count": 529,
   "symbols": [
     "CPRI",
     "DNUT",
@@ -151,6 +151,7 @@
     "CING",
     "MLTX",
     "FDMT",
+    "NEGG",
     "HCMA",
     "BYRN",
     "THM",
@@ -1932,6 +1933,12 @@
     },
     {
       "symbol": "NCLH",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "NEGG",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
