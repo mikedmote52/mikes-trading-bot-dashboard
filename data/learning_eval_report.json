@@ -1,20 +1,20 @@
 {
-  "generated_at": "2026-06-02T20:33:13.432931Z",
-  "total_trades": 221,
+  "generated_at": "2026-06-03T20:33:11.490867Z",
+  "total_trades": 223,
   "overall": {
-    "n": 221,
-    "win_rate": 0.339,
-    "avg_return": -1.59,
-    "avg_win": 5.57,
+    "n": 223,
+    "win_rate": 0.345,
+    "avg_return": -1.53,
+    "avg_win": 5.56,
     "avg_loss": -5.27
   },
   "by_signal": {
     "has_float_squeeze": {
       "fired": {
-        "n": 20,
-        "win_rate": 0.5,
-        "avg_return": 4.8,
-        "avg_win": 18.88,
+        "n": 22,
+        "win_rate": 0.545,
+        "avg_return": 4.82,
+        "avg_win": 16.57,
         "avg_loss": -9.28
       },
       "not_fired": {
@@ -24,15 +24,15 @@
         "avg_win": 3.52,
         "avg_loss": -4.98
       },
-      "edge": 0.177,
+      "edge": 0.222,
       "verdict": "strong_positive"
     },
     "has_short_squeeze": {
       "fired": {
-        "n": 21,
-        "win_rate": 0.429,
-        "avg_return": 4.48,
-        "avg_win": 22.95,
+        "n": 23,
+        "win_rate": 0.478,
+        "avg_return": 4.53,
+        "avg_win": 19.7,
         "avg_loss": -9.38
       },
       "not_fired": {
@@ -42,7 +42,7 @@
         "avg_win": 3.2,
         "avg_loss": -4.91
       },
-      "edge": 0.099,
+      "edge": 0.148,
       "verdict": "positive"
     },
     "has_volume_spike": {
@@ -54,10 +54,10 @@
         "avg_loss": null
       },
       "not_fired": {
-        "n": 221,
-        "win_rate": 0.339,
-        "avg_return": -1.59,
-        "avg_win": 5.57,
+        "n": 223,
+        "win_rate": 0.345,
+        "avg_return": -1.53,
+        "avg_win": 5.56,
         "avg_loss": -5.27
       },
       "edge": null,
@@ -72,13 +72,13 @@
         "avg_loss": -8.59
       },
       "not_fired": {
-        "n": 215,
-        "win_rate": 0.335,
-        "avg_return": -1.67,
+        "n": 217,
+        "win_rate": 0.341,
+        "avg_return": -1.6,
         "avg_win": 5.36,
         "avg_loss": -5.21
       },
-      "edge": 0.165,
+      "edge": 0.159,
       "verdict": "strong_positive"
     },
     "has_social_buzz": {
@@ -90,13 +90,13 @@
         "avg_loss": -7.88
       },
       "not_fired": {
-        "n": 215,
-        "win_rate": 0.33,
-        "avg_return": -1.77,
+        "n": 217,
+        "win_rate": 0.336,
+        "avg_return": -1.7,
         "avg_win": 5.27,
         "avg_loss": -5.24
       },
-      "edge": 0.337,
+      "edge": 0.331,
       "verdict": "strong_positive"
     },
     "has_biotech": {
@@ -108,13 +108,13 @@
         "avg_loss": -9.35
       },
       "not_fired": {
-        "n": 214,
-        "win_rate": 0.336,
-        "avg_return": -1.62,
+        "n": 216,
+        "win_rate": 0.343,
+        "avg_return": -1.56,
         "avg_win": 5.36,
         "avg_loss": -5.16
       },
-      "edge": 0.093,
+      "edge": 0.086,
       "verdict": "positive"
     }
   },
@@ -134,17 +134,17 @@
       "avg_loss": -21.56
     },
     "70-80": {
-      "n": 8,
-      "win_rate": 0.375,
-      "avg_return": 6.34,
-      "avg_win": 32.31,
+      "n": 9,
+      "win_rate": 0.444,
+      "avg_return": 5.66,
+      "avg_win": 24.29,
       "avg_loss": -9.24
     },
     "80-90": {
-      "n": 8,
-      "win_rate": 0.625,
-      "avg_return": 1.77,
-      "avg_win": 9.78,
+      "n": 9,
+      "win_rate": 0.667,
+      "avg_return": 2.67,
+      "avg_win": 9.8,
       "avg_loss": -11.58
     },
     "<50": {
@@ -157,10 +157,10 @@
   },
   "by_tier": {
     "A": {
-      "n": 11,
-      "win_rate": 0.364,
-      "avg_return": 5.17,
-      "avg_win": 30.92,
+      "n": 12,
+      "win_rate": 0.417,
+      "avg_return": 4.76,
+      "avg_win": 24.79,
       "avg_loss": -9.54
     },
     "B": {
@@ -178,10 +178,10 @@
       "avg_loss": -21.2
     },
     "S": {
-      "n": 5,
-      "win_rate": 0.8,
-      "avg_return": 4.54,
-      "avg_win": 7.1,
+      "n": 6,
+      "win_rate": 0.833,
+      "avg_return": 5.43,
+      "avg_win": 7.66,
       "avg_loss": -5.7
     },
     "unknown": {
@@ -201,35 +201,35 @@
       "avg_loss": -14.48
     },
     "trailing_stop": {
-      "n": 4,
-      "win_rate": 0.75,
-      "avg_return": 29.97,
-      "avg_win": 41.87,
+      "n": 5,
+      "win_rate": 0.8,
+      "avg_return": 25.96,
+      "avg_win": 33.87,
       "avg_loss": -5.7
     },
     "other": {
-      "n": 196,
-      "win_rate": 0.367,
-      "avg_return": -0.86,
-      "avg_win": 4.06,
+      "n": 197,
+      "win_rate": 0.371,
+      "avg_return": -0.85,
+      "avg_win": 4.01,
       "avg_loss": -3.71
     }
   },
   "by_rvol_band": {
     "<2x": {
-      "n": 221,
-      "win_rate": 0.339,
-      "avg_return": -1.59,
-      "avg_win": 5.57,
+      "n": 223,
+      "win_rate": 0.345,
+      "avg_return": -1.53,
+      "avg_win": 5.56,
       "avg_loss": -5.27
     }
   },
   "by_signal_combo": {
     "has_float_squeeze + has_short_squeeze": {
-      "n": 13,
-      "win_rate": 0.462,
-      "avg_return": 6.14,
-      "avg_win": 24.2,
+      "n": 15,
+      "win_rate": 0.533,
+      "avg_return": 5.99,
+      "avg_win": 19.41,
       "avg_loss": -9.34
     },
     "has_biotech + has_catalyst + has_float_squeeze + has_social_buzz": {
