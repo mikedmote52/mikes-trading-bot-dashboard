@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-02T16:59:55.099890",
+  "timestamp": "2026-06-03T06:14:11.626453",
   "candidates_discovered": 569,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
@@ -9,7 +9,7 @@
       "score": 83,
       "raw_score": 65,
       "conviction": "S",
-      "thesis": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (7.2x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 4.2M float + 24.8% SI + 7.2x volume [Raw: 65, Normalized: 83]",
+      "thesis": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (7.3x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 4.2M float + 24.8% SI + 7.3x volume [Raw: 65, Normalized: 83]",
       "risks": [
         "No catalyst identified"
       ],
@@ -20,7 +20,7 @@
       "short_pct": 0.2481,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 7.167529692187565,
+      "volume_acceleration": 7.262976205153495,
       "sector": "consumer cyclical",
       "industry": "auto & truck dealerships"
     },
@@ -29,7 +29,7 @@
       "score": 83,
       "raw_score": 65,
       "conviction": "S",
-      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (19.9x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 19.9x volume [Raw: 65, Normalized: 83]",
+      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (20.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 20.0x volume [Raw: 65, Normalized: 83]",
       "risks": [
         "No catalyst identified"
       ],
@@ -40,7 +40,7 @@
       "short_pct": 0.33009997,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 19.925560319461958,
+      "volume_acceleration": 19.965363598150486,
       "sector": "consumer cyclical",
       "industry": "apparel manufacturing"
     },
@@ -60,7 +60,7 @@
       "short_pct": 0.35990003,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.157987458214381,
+      "volume_acceleration": 5.163970426762316,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -78,7 +78,7 @@
       "short_pct": 0.1425,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.594951928293943,
+      "volume_acceleration": 5.597152592399679,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -96,7 +96,7 @@
       "short_pct": 0.1184,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 21.210419589412645,
+      "volume_acceleration": 21.215511597456043,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -105,7 +105,7 @@
       "score": 50,
       "raw_score": 75,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (13.9M) | Explosive volume acceleration (393.4x vs 10d avg) | Today +33.3% \u2014 strong move [Raw: 75, Normalized: 50]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (13.9M) | Explosive volume acceleration (393.6x vs 10d avg) | Today +33.3% \u2014 strong move [Raw: 75, Normalized: 50]",
       "risks": [
         "Low short interest \u2014 no squeeze pressure"
       ],
@@ -116,7 +116,7 @@
       "short_pct": 0.00029999999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 393.3986677676851,
+      "volume_acceleration": 393.5849160473438,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -134,7 +134,7 @@
       "short_pct": 0.2699,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.476167651533578,
+      "volume_acceleration": 4.4793082561894,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -154,7 +154,7 @@
       "short_pct": 0.2672,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.0567422552707306,
+      "volume_acceleration": 3.065322611512619,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -174,7 +174,7 @@
       "short_pct": 0.2211,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.4695777030915496,
+      "volume_acceleration": 3.5321182753619853,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -194,7 +194,7 @@
       "short_pct": 0.19639999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.040406310500483,
+      "volume_acceleration": 2.040863574096821,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -213,8 +213,8 @@
     {
       "symbol": "PLCE",
       "score": 83.0,
-      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (19.9x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 19.9x volume [Raw: 65, Normalized: 83]",
-      "times_seen": 39,
+      "thesis": "Very low float (7.7M) | Very high short interest (33.0% of float) | Explosive volume acceleration (20.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 7.7M float + 33.0% SI + 20.0x volume [Raw: 65, Normalized: 83]",
+      "times_seen": 40,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -222,8 +222,8 @@
     {
       "symbol": "CRMT",
       "score": 83.0,
-      "thesis": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (7.2x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 4.2M float + 24.8% SI + 7.2x volume [Raw: 65, Normalized: 83]",
-      "times_seen": 6,
+      "thesis": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (7.3x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 4.2M float + 24.8% SI + 7.3x volume [Raw: 65, Normalized: 83]",
+      "times_seen": 7,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -241,7 +241,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (5.2x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 5.2x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 135,
+      "times_seen": 136,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
@@ -259,7 +259,7 @@
       "symbol": "CING",
       "score": 60.0,
       "thesis": "Biotech \u2014 catalyst-driven sector | Low float (12.9M) | Elevated short interest (14.2% of float) | Explosive volume acceleration (5.6x vs 10d avg) | Near 52-week low \u2014 turnaround potential [Raw: 90, Normalized: 60]",
-      "times_seen": 8,
+      "times_seen": 9,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
