@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-02T19:58:04.939288+00:00",
-  "n_symbols": 24,
+  "generated_at": "2026-06-03T19:58:02.908183+00:00",
+  "n_symbols": 25,
   "symbols": {
     "BDRX": {
       "trades": [
@@ -631,20 +631,29 @@
           "score_at_entry": 78.0,
           "tier_at_entry": "A",
           "thesis": "Very low float (8.4M) | Very high short interest (36.4% of float) | Explosive volume acceleration (5.1x vs 10d avg) | Near 52-week low \u2014 turnaround potential | "
+        },
+        {
+          "date": "2026-06-03",
+          "pnl_pct": 0.23,
+          "pnl_dollar": 0.14,
+          "exit_reason": "Reconciled fill (limit) at $8.62",
+          "score_at_entry": 76.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (5.2x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + "
         }
       ],
       "summary": {
-        "n": 1,
-        "wins": 0,
+        "n": 2,
+        "wins": 1,
         "losses": 1,
-        "hit_rate": 0.0,
-        "avg_pnl": -6.63,
-        "best_pnl": -6.63,
+        "hit_rate": 0.5,
+        "avg_pnl": -3.2,
+        "best_pnl": 0.23,
         "worst_pnl": -6.63,
-        "last_traded": "2026-05-08",
-        "recent_streak": "all_losses",
+        "last_traded": "2026-06-03",
+        "recent_streak": "last_win",
         "score_modifier": 0.0,
-        "modifier_reason": "n<2 history, no modifier"
+        "modifier_reason": "mixed history (2 trades, 50% WR, -3.2% avg)"
       }
     },
     "CABA": {
@@ -721,6 +730,32 @@
         "worst_pnl": -14.14,
         "last_traded": "2026-05-29",
         "recent_streak": "all_losses",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "CRMT": {
+      "trades": [
+        {
+          "date": "2026-06-03",
+          "pnl_pct": 9.88,
+          "pnl_dollar": 9.48,
+          "exit_reason": "Server-side trailing stop at $7.53",
+          "score_at_entry": 83.0,
+          "tier_at_entry": "S",
+          "thesis": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (5.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential | "
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 1,
+        "losses": 0,
+        "hit_rate": 1.0,
+        "avg_pnl": 9.88,
+        "best_pnl": 9.88,
+        "worst_pnl": 9.88,
+        "last_traded": "2026-06-03",
+        "recent_streak": "all_wins",
         "score_modifier": 0.0,
         "modifier_reason": "n<2 history, no modifier"
       }
