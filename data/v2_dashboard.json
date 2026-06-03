@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-03T13:59:59.059673",
+  "timestamp": "2026-06-03T16:59:40.771401",
   "candidates_discovered": 565,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
@@ -20,7 +20,7 @@
       "short_pct": 0.35990003,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.702979284093405,
+      "volume_acceleration": 5.708109460020008,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.607619047619048,
+      "volume_acceleration": 5.611238095238095,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -229,7 +229,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (5.7x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 5.7x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 139,
+      "times_seen": 140,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
