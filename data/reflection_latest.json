@@ -1,6 +1,6 @@
 {
-  "date": "2026-06-03",
-  "generated_at": "2026-06-03T19:58:02.902525+00:00",
+  "date": "2026-06-04",
+  "generated_at": "2026-06-04T19:58:04.745203+00:00",
   "regime": "unknown",
   "summary": {
     "n_positions": 4,
@@ -13,17 +13,17 @@
     {
       "symbol": "IYT",
       "entry_price": 75.85,
-      "current_price": 83.69,
+      "current_price": 84.32,
       "qty": 1.0,
-      "market_value": 83.69,
-      "unrealized_pl": 7.84,
-      "pnl_pct": 10.34,
+      "market_value": 84.32,
+      "unrealized_pl": 8.47,
+      "pnl_pct": 11.17,
       "peak_pnl_pct": 12.02,
-      "drawdown_from_peak": -1.69,
+      "drawdown_from_peak": -0.86,
       "days_held": null,
       "verdict": "thesis_intact",
       "reasons": [
-        "position +10.3%, thesis playing out",
+        "position +11.2%, thesis playing out",
         "holding near peak (high-water mark 12%)"
       ],
       "recommendation": "HOLD \u2014 thesis on plan"
@@ -31,17 +31,17 @@
     {
       "symbol": "SPY",
       "entry_price": 713.13,
-      "current_price": 754.54,
+      "current_price": 757.22,
       "qty": 0.002804536,
-      "market_value": 2.116135,
-      "unrealized_pl": 0.116136,
-      "pnl_pct": 5.81,
+      "market_value": 2.123651,
+      "unrealized_pl": 0.123652,
+      "pnl_pct": 6.18,
       "peak_pnl_pct": 6.62,
-      "drawdown_from_peak": -0.81,
+      "drawdown_from_peak": -0.44,
       "days_held": null,
       "verdict": "thesis_intact",
       "reasons": [
-        "position +5.8%, on plan",
+        "position +6.2%, on plan",
         "holding near peak (high-water mark 7%)"
       ],
       "recommendation": "HOLD \u2014 thesis on plan"
@@ -67,17 +67,17 @@
     {
       "symbol": "MPLX",
       "entry_price": 56.04,
-      "current_price": 55.36,
+      "current_price": 56.347,
       "qty": 1.0,
-      "market_value": 55.36,
-      "unrealized_pl": -0.68,
-      "pnl_pct": -1.21,
+      "market_value": 56.347,
+      "unrealized_pl": 0.307,
+      "pnl_pct": 0.55,
       "peak_pnl_pct": 2.62,
-      "drawdown_from_peak": -3.84,
+      "drawdown_from_peak": -2.08,
       "days_held": null,
       "verdict": "thesis_intact",
       "reasons": [
-        "position -1.2%, within normal noise band",
+        "position +0.5%, on plan",
         "holding near peak (high-water mark 3%)"
       ],
       "recommendation": "HOLD \u2014 thesis on plan"
