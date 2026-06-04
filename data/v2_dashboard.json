@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-03T16:59:40.771401",
-  "candidates_discovered": 565,
+  "timestamp": "2026-06-04T06:14:21.516808",
+  "candidates_discovered": 564,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
   "top_picks": [
@@ -20,7 +20,7 @@
       "short_pct": 0.35990003,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.708109460020008,
+      "volume_acceleration": 5.710294512358783,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -38,7 +38,7 @@
       "short_pct": 0.2699,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.305447530201791,
+      "volume_acceleration": 5.308551887939792,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -56,7 +56,7 @@
       "short_pct": 0.1184,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 24.26791935559297,
+      "volume_acceleration": 24.27206088664422,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.611238095238095,
+      "volume_acceleration": 5.612698412698413,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -96,7 +96,25 @@
       "short_pct": 0.2672,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.111129282378008,
+      "volume_acceleration": 4.1123355452018,
+      "sector": "healthcare",
+      "industry": "biotechnology"
+    },
+    {
+      "symbol": "LYEL",
+      "score": 46,
+      "raw_score": 70,
+      "conviction": "B",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.4M) | Moderate short interest (6.8%) | Strong volume acceleration (3.5x) | Near 52-week low \u2014 turnaround potential [Raw: 70, Normalized: 46]",
+      "risks": [],
+      "catalyst_type": "biotech_potential",
+      "catalyst_quality": "none",
+      "has_catalyst": true,
+      "float_shares": 10389736,
+      "short_pct": 0.067600004,
+      "social_mentions": 0,
+      "reddit_sentiment": 0.0,
+      "volume_acceleration": 3.481443649982976,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -105,7 +123,7 @@
       "score": 43,
       "raw_score": 65,
       "conviction": "B",
-      "thesis": "Very low float (6.0M) | Elevated short interest (11.9% of float) | Explosive volume acceleration (29.1x vs 10d avg) | Today +234.5% \u2014 confirmed breakout [Raw: 65, Normalized: 43]",
+      "thesis": "Very low float (6.0M) | Elevated short interest (11.9% of float) | Explosive volume acceleration (30.2x vs 10d avg) | Today +234.5% \u2014 confirmed breakout [Raw: 65, Normalized: 43]",
       "risks": [
         "Near 52-week high \u2014 limited upside without new catalyst",
         "No catalyst identified"
@@ -117,7 +135,7 @@
       "short_pct": 0.119399995,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 29.06464050017367,
+      "volume_acceleration": 30.249725020261664,
       "sector": "industrials",
       "industry": "farm & heavy construction machinery"
     },
@@ -135,25 +153,7 @@
       "short_pct": 0.16950001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.341467938526762,
-      "sector": "healthcare",
-      "industry": "biotechnology"
-    },
-    {
-      "symbol": "LYEL",
-      "score": 40,
-      "raw_score": 60,
-      "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.4M) | Moderate short interest (6.8%) | Strong volume acceleration (3.5x) [Raw: 60, Normalized: 40]",
-      "risks": [],
-      "catalyst_type": "biotech_potential",
-      "catalyst_quality": "none",
-      "has_catalyst": true,
-      "float_shares": 10389736,
-      "short_pct": 0.067600004,
-      "social_mentions": 0,
-      "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.480575417092271,
+      "volume_acceleration": 1.343402225755167,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -171,7 +171,7 @@
       "short_pct": 0.22799999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.738015328024711,
+      "volume_acceleration": 3.7434645542888303,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -191,7 +191,7 @@
       "short_pct": 0.052600004,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 15.87232629799302,
+      "volume_acceleration": 15.88023560209424,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -229,7 +229,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (5.7x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 5.7x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 140,
+      "times_seen": 141,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
