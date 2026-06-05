@@ -1,6 +1,6 @@
 {
   "date": "2026-06-05",
-  "generated_at": "2026-06-05T19:58:03.265912+00:00",
+  "generated_at": "2026-06-05T19:58:10.724617+00:00",
   "regime": "unknown",
   "summary": {
     "n_positions": 4,
@@ -31,10 +31,10 @@
     {
       "symbol": "SPY",
       "entry_price": 713.13,
-      "current_price": 738.16,
+      "current_price": 738.13,
       "qty": 0.002804536,
-      "market_value": 2.070196,
-      "unrealized_pl": 0.070197,
+      "market_value": 2.070112,
+      "unrealized_pl": 0.070113,
       "pnl_pct": 3.51,
       "peak_pnl_pct": 6.62,
       "drawdown_from_peak": -3.11,
@@ -67,17 +67,17 @@
     {
       "symbol": "MPLX",
       "entry_price": 56.04,
-      "current_price": 56.57,
+      "current_price": 56.59,
       "qty": 1.0,
-      "market_value": 56.57,
-      "unrealized_pl": 0.53,
-      "pnl_pct": 0.95,
+      "market_value": 56.59,
+      "unrealized_pl": 0.55,
+      "pnl_pct": 0.98,
       "peak_pnl_pct": 2.62,
-      "drawdown_from_peak": -1.68,
+      "drawdown_from_peak": -1.64,
       "days_held": null,
       "verdict": "thesis_intact",
       "reasons": [
-        "position +0.9%, on plan",
+        "position +1.0%, on plan",
         "holding near peak (high-water mark 3%)"
       ],
       "recommendation": "HOLD \u2014 thesis on plan"
