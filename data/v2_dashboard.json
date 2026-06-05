@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-05T06:31:54.144611",
+  "timestamp": "2026-06-05T06:32:18.070702",
   "candidates_discovered": 594,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
@@ -18,7 +18,7 @@
       "short_pct": 0.1184,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 23.211421021194955,
+      "volume_acceleration": 23.221470675185675,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -36,7 +36,7 @@
       "short_pct": 0.2945,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.017323767683689,
+      "volume_acceleration": 3.0179033493208656,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -56,7 +56,7 @@
       "short_pct": 0.0005,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.905646704949412,
+      "volume_acceleration": 2.9174642238629116,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.1318,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.5971133316252455,
+      "volume_acceleration": 0.597151763600649,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -94,7 +94,7 @@
       "short_pct": 0.0743,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.6278112061179728,
+      "volume_acceleration": 1.6278874461921014,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -177,7 +177,7 @@
       "symbol": "INDP",
       "score": 50.0,
       "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.2M) | Volume building (2.9x) | Today +114.9% \u2014 confirmed breakout [Raw: 75, Normalized: 50]",
-      "times_seen": 11,
+      "times_seen": 12,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
