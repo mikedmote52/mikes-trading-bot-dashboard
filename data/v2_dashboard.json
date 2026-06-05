@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-05T06:14:09.310814",
+  "timestamp": "2026-06-05T06:14:12.540452",
   "candidates_discovered": 597,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
@@ -152,7 +152,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (7.4x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 7.4x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 147,
+      "times_seen": 148,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
@@ -170,7 +170,7 @@
       "symbol": "INDP",
       "score": 60.0,
       "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.2M) | Explosive volume acceleration (189.5x vs 10d avg) | Today +114.9% \u2014 confirmed breakout [Raw: 90, Normalized: 60]",
-      "times_seen": 9,
+      "times_seen": 10,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
