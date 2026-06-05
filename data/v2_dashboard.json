@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-05T13:59:29.270994",
+  "timestamp": "2026-06-05T14:00:14.531675",
   "candidates_discovered": 533,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
@@ -112,7 +112,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (5.5x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 5.5x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 153,
+      "times_seen": 154,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
