@@ -12,10 +12,10 @@
   },
   "_detail": {},
   "_meta": {
-    "ts": "2026-06-05T14:27:06.862528",
+    "ts": "2026-06-06T14:27:09.787362",
     "trades_analyzed": 37,
     "win_rate": 0.378,
-    "calibration_score": 0.377,
+    "calibration_score": 0.376,
     "key_findings": [
       "Win rate: 37.8%",
       "Effective setups: 36 (raw 37)",
