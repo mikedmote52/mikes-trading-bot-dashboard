@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-05T16:59:54.638443",
+  "timestamp": "2026-06-06T06:14:00.618062",
   "candidates_discovered": 534,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
@@ -20,7 +20,7 @@
       "short_pct": 0.35990003,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 5.530682499700132,
+      "volume_acceleration": 5.549158370317061,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -38,7 +38,7 @@
       "short_pct": 0.1184,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 8.820435108961817,
+      "volume_acceleration": 8.839688926624584,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -56,7 +56,7 @@
       "short_pct": 0.2699,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.4712735643800623,
+      "volume_acceleration": 2.471364803975239,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -74,7 +74,7 @@
       "short_pct": 0.2725,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.5455301199885335,
+      "volume_acceleration": 0.5471832043354219,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -112,7 +112,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (5.5x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 5.5x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 156,
+      "times_seen": 157,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
