@@ -1,14 +1,14 @@
 {
-  "date": "2026-06-05",
-  "generated_at": "2026-06-05T23:59:57.838519+00:00",
+  "date": "2026-06-06",
+  "generated_at": "2026-06-06T20:59:46.112396+00:00",
   "n_winners": 10,
   "n_caught_and_traded": 0,
   "n_on_watchlist_not_taken": 0,
   "n_missed_entirely": 10,
   "rows": [
     {
-      "ts": "2026-06-05T23:59:57.834711+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.100903+00:00",
+      "date": "2026-06-06",
       "symbol": "SCAG",
       "move_pct": 194.58,
       "scanner_evaluated": false,
@@ -20,8 +20,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.835009+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.101484+00:00",
+      "date": "2026-06-06",
       "symbol": "SPHL",
       "move_pct": 123.94,
       "scanner_evaluated": false,
@@ -33,8 +33,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.835264+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.101900+00:00",
+      "date": "2026-06-06",
       "symbol": "NOTV",
       "move_pct": 91.8,
       "scanner_evaluated": false,
@@ -46,8 +46,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.835503+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.102281+00:00",
+      "date": "2026-06-06",
       "symbol": "RMSGW",
       "move_pct": 75.43,
       "scanner_evaluated": false,
@@ -59,8 +59,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.835734+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.102941+00:00",
+      "date": "2026-06-06",
       "symbol": "RMSG",
       "move_pct": 66.36,
       "scanner_evaluated": false,
@@ -72,8 +72,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.835966+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.103360+00:00",
+      "date": "2026-06-06",
       "symbol": "BNCWZ",
       "move_pct": 62.5,
       "scanner_evaluated": false,
@@ -85,8 +85,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.836168+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.103765+00:00",
+      "date": "2026-06-06",
       "symbol": "SCAGW",
       "move_pct": 59.33,
       "scanner_evaluated": false,
@@ -98,8 +98,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.836348+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.104243+00:00",
+      "date": "2026-06-06",
       "symbol": "STI",
       "move_pct": 57.29,
       "scanner_evaluated": false,
@@ -111,8 +111,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.836577+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.106178+00:00",
+      "date": "2026-06-06",
       "symbol": "FGMCU",
       "move_pct": 50.04,
       "scanner_evaluated": false,
@@ -124,8 +124,8 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-05T23:59:57.836765+00:00",
-      "date": "2026-06-05",
+      "ts": "2026-06-06T20:59:46.107592+00:00",
+      "date": "2026-06-06",
       "symbol": "WTGUR",
       "move_pct": 50,
       "scanner_evaluated": false,
