@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-06T16:59:44.357074",
-  "candidates_discovered": 534,
+  "timestamp": "2026-06-07T06:14:06.449011",
+  "candidates_discovered": 535,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
   "top_picks": [
@@ -16,7 +16,7 @@
       "catalyst_type": null,
       "catalyst_quality": "none",
       "has_catalyst": false,
-      "float_shares": 8937174,
+      "float_shares": 8947141,
       "short_pct": 0.35990003,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
@@ -112,7 +112,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (5.5x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 5.5x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 160,
+      "times_seen": 161,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
