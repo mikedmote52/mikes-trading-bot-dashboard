@@ -1,5 +1,5 @@
 {
-  "built_at": "2026-06-06T17:27:42.264934",
+  "built_at": "2026-06-07T17:27:53.978175",
   "count": 481,
   "symbols": [
     "GTM",
@@ -180,8 +180,8 @@
     "ULCC",
     "F",
     "SKLZ",
+    "BZFD",
     "DV",
-    "ONDS",
     "TDAY",
     "AMPL",
     "ANVS",
@@ -937,6 +937,12 @@
     },
     {
       "symbol": "BYRN",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "BZFD",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -1741,12 +1747,6 @@
     },
     {
       "symbol": "OMER",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "ONDS",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
