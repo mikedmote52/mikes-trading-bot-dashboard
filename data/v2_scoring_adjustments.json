@@ -1,5 +1,5 @@
 {
-  "version": 16,
+  "version": 17,
   "multipliers": {
     "catalyst": 1.0,
     "low_float": 1.0,
@@ -30,11 +30,11 @@
     "min_effective_samples_required": 100,
     "preserved_from_prior_run": true
   },
-  "last_updated": "2026-06-07T13:33:07.332177",
+  "last_updated": "2026-06-08T13:33:13.875604",
   "last_stats": {
-    "win_rate": 60.0,
-    "avg_win_pct": 18.48,
-    "avg_loss_pct": -11.44,
+    "win_rate": 55.0,
+    "avg_win_pct": 16.43,
+    "avg_loss_pct": -12.28,
     "trades_analyzed": 20
   },
   "history": []
