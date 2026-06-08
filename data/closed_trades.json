@@ -1085,5 +1085,56 @@
         "market_next_close": "2026-06-03T16:00:00-04:00"
       }
     }
+  },
+  {
+    "symbol": "CYCN",
+    "entry": 2.985,
+    "exit_price": 3.0,
+    "pnl_pct": 0.5,
+    "pnl_dollar": 0.42,
+    "reason": "Reconciled fill (limit) at $3.00",
+    "date": "2026-06-08",
+    "entry_signals": {
+      "tier": "S",
+      "composite_score": 80.0,
+      "has_catalyst": true,
+      "catalyst_type": "biotech_potential",
+      "float_shares": 3493264.0,
+      "short_pct": 0.026600001,
+      "volume_acceleration": 0,
+      "sector": "healthcare",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.5M) | Explosive volume acceleration (2342.1x vs 10d avg) | Social attention (5 mentions)",
+      "scanner_pick": {
+        "symbol": "CYCN",
+        "close": 2.985,
+        "composite_score": 80.0,
+        "tier": "S",
+        "reasoning": "Biotech \u2014 catalyst-driven sector | Very low float (3.5M) | Explosive volume acceleration (2342.1x vs 10d avg) | Social attention (5 mentions)",
+        "breakdown": {
+          "v2_score": 80.0,
+          "catalyst": 1
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 6,
+        "has_catalyst": true,
+        "float_shares": 3493264.0,
+        "short_pct": 0.026600001,
+        "volume_acceleration": 0,
+        "sector": "healthcare",
+        "catalyst_type": "biotech_potential"
+      },
+      "regime_context": {
+        "captured_at": "2026-06-06T06:14:18.022717",
+        "market_is_open": false,
+        "market_next_open": "2026-06-08T09:30:00-04:00",
+        "market_next_close": "2026-06-08T16:00:00-04:00"
+      }
+    }
   }
 ]
