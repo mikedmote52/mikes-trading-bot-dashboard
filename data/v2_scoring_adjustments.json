@@ -1,5 +1,5 @@
 {
-  "version": 17,
+  "version": 18,
   "multipliers": {
     "catalyst": 1.0,
     "low_float": 1.0,
@@ -30,7 +30,7 @@
     "min_effective_samples_required": 100,
     "preserved_from_prior_run": true
   },
-  "last_updated": "2026-06-08T13:33:13.875604",
+  "last_updated": "2026-06-09T13:33:02.333112",
   "last_stats": {
     "win_rate": 55.0,
     "avg_win_pct": 16.43,
