@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-08T16:59:51.239064",
-  "candidates_discovered": 536,
+  "timestamp": "2026-06-09T06:14:07.265150",
+  "candidates_discovered": 535,
   "candidates_evaluated": 50,
   "ready_to_trade": 16,
   "top_picks": [
@@ -20,7 +20,7 @@
       "short_pct": 0.35990003,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 13.70528994358169,
+      "volume_acceleration": 13.71982783691037,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -38,7 +38,7 @@
       "short_pct": 0.1184,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 8.067032556152018,
+      "volume_acceleration": 8.068931442459204,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -58,7 +58,7 @@
       "short_pct": 0.2228,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.91692390056208,
+      "volume_acceleration": 2.916211552257906,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.1822,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 6.870473705680389,
+      "volume_acceleration": 6.866919355021473,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -94,7 +94,7 @@
       "short_pct": 0.18129998,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.189530767647664,
+      "volume_acceleration": 1.1895451739040954,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -112,7 +112,7 @@
       "short_pct": 0.051599998,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.4861855635346077,
+      "volume_acceleration": 2.486261420720812,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -130,7 +130,7 @@
       "short_pct": 0.2725,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 0.59211232964142,
+      "volume_acceleration": 0.5921071407259811,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -168,7 +168,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (13.7x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 13.7x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 168,
+      "times_seen": 169,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"

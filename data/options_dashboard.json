@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T05:16:55.609061+00:00",
+  "generated_at": "2026-06-09T13:14:08.710698+00:00",
   "open_count": 1,
   "open_positions": [
     {
@@ -8,7 +8,7 @@
       "side": "long_call",
       "strike": 85.0,
       "expiration": "2026-06-12",
-      "days_to_expire": 4,
+      "days_to_expire": 3,
       "entry_premium": 0.81,
       "entry_cost": 81.0,
       "current_mid": 0.245,
@@ -17,7 +17,7 @@
       "stop_loss_price": 0.405,
       "take_profit_price": 1.62,
       "max_hold_until": "2026-06-18",
-      "max_hold_days_left": 10,
+      "max_hold_days_left": 9,
       "max_hold_alert": false,
       "entry_timestamp": "2026-05-28T13:33:59.333949+00:00",
       "order_id": "36bac575-8c28-40fa-b279-dccfb3389648",
@@ -587,7 +587,7 @@
     },
     "last_monitor_pass_at": "2026-06-08T19:57:32.814420+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-06-09T05:16:55.609121+00:00"
+    "last_publish_at": "2026-06-09T13:14:08.710730+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
