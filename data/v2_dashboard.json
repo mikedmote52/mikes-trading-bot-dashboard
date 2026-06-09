@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-09T13:59:47.030447",
-  "candidates_discovered": 513,
+  "timestamp": "2026-06-09T16:59:40.839527",
+  "candidates_discovered": 505,
   "candidates_evaluated": 50,
   "ready_to_trade": 17,
   "top_picks": [
@@ -38,7 +38,7 @@
       "short_pct": 0.35990003,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 9.702102599895307,
+      "volume_acceleration": 9.710533356598615,
       "sector": "consumer defensive",
       "industry": "packaged foods"
     },
@@ -112,7 +112,7 @@
       "short_pct": 0.051599998,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.872633536742973,
+      "volume_acceleration": 3.872777946349303,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -143,7 +143,7 @@
       "symbol": "RNAC",
       "score": 100.0,
       "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.6M) | Elevated short interest (17.0% of float) | Explosive volume acceleration (8.9x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 10.6M float + 17.0% SI + 8.9x volume [Raw: 90, Normalized: 100]",
-      "times_seen": 2,
+      "times_seen": 3,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
@@ -179,7 +179,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (9.7x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + 9.7x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 171,
+      "times_seen": 172,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
