@@ -1187,5 +1187,56 @@
         "market_next_close": "2026-06-08T16:00:00-04:00"
       }
     }
+  },
+  {
+    "symbol": "RNAC",
+    "entry": 6.745,
+    "exit_price": 7.49,
+    "pnl_pct": 11.05,
+    "pnl_dollar": 8.94,
+    "reason": "Server-side trailing stop at $7.49",
+    "date": "2026-06-10",
+    "entry_signals": {
+      "tier": "S",
+      "composite_score": 100.0,
+      "has_catalyst": true,
+      "catalyst_type": "biotech_potential",
+      "float_shares": 10630819.0,
+      "short_pct": 0.17629999,
+      "volume_acceleration": 0,
+      "sector": "healthcare",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.6M) | Elevated short interest (17.0% of float) | Explosive volume acceleration (7.7x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TR",
+      "scanner_pick": {
+        "symbol": "RNAC",
+        "close": 6.745,
+        "composite_score": 100.0,
+        "tier": "S",
+        "reasoning": "Biotech \u2014 catalyst-driven sector | Low float (10.6M) | Elevated short interest (17.0% of float) | Explosive volume acceleration (7.7x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 10.6M float + 17.0% SI + 7.7x volume [Raw: 90, Normalized: 100]",
+        "breakdown": {
+          "v2_score": 100.0,
+          "catalyst": 1
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 1,
+        "has_catalyst": true,
+        "float_shares": 10630819.0,
+        "short_pct": 0.17040001,
+        "volume_acceleration": 0,
+        "sector": "healthcare",
+        "catalyst_type": "biotech_potential"
+      },
+      "regime_context": {
+        "captured_at": "2026-06-09T09:00:19.213082",
+        "market_is_open": true,
+        "market_next_open": "2026-06-10T09:30:00-04:00",
+        "market_next_close": "2026-06-09T16:00:00-04:00"
+      }
+    }
   }
 ]
