@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-10T13:59:40.615798",
+  "timestamp": "2026-06-10T16:59:48.460972",
   "candidates_discovered": 509,
   "candidates_evaluated": 50,
   "ready_to_trade": 18,
@@ -67,7 +67,7 @@
       "score": 46,
       "raw_score": 70,
       "conviction": "B",
-      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (49.0M) | Elevated short interest (11.1% of float) | Explosive volume acceleration (39.6x vs 10d avg) [Raw: 70, Normalized: 46]",
+      "thesis": "Biotech \u2014 catalyst-driven sector | Moderate float (49.0M) | Elevated short interest (11.1% of float) | Explosive volume acceleration (40.6x vs 10d avg) [Raw: 70, Normalized: 46]",
       "risks": [
         "Near 52-week high \u2014 limited upside without new catalyst"
       ],
@@ -78,7 +78,7 @@
       "short_pct": 0.111499995,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 39.62558380511236,
+      "volume_acceleration": 40.62250334534225,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -145,7 +145,7 @@
       "symbol": "RNAC",
       "score": 100.0,
       "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.6M) | Elevated short interest (17.6% of float) | Explosive volume acceleration (9.5x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 10.6M float + 17.6% SI + 9.5x volume [Raw: 90, Normalized: 100]",
-      "times_seen": 6,
+      "times_seen": 7,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
@@ -181,7 +181,7 @@
       "symbol": "LAKE",
       "score": 76.0,
       "thesis": "Very low float (9.3M) | Very high short interest (21.3% of float) | Explosive volume acceleration (5.6x vs 10d avg) | SQUEEZE TRIFECTA: 9.3M float + 21.3% SI + 5.6x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 10,
+      "times_seen": 11,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -190,7 +190,7 @@
       "symbol": "LFVN",
       "score": 76.0,
       "thesis": "Very low float (8.9M) | Very high short interest (35.5% of float) | Explosive volume acceleration (9.8x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 35.5% SI + 9.8x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 175,
+      "times_seen": 176,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer defensive"
