@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-09T19:58:06.974250+00:00",
-  "n_symbols": 25,
+  "generated_at": "2026-06-10T19:58:04.359414+00:00",
+  "n_symbols": 26,
   "symbols": {
     "BDRX": {
       "trades": [
@@ -773,6 +773,32 @@
         "best_pnl": 9.88,
         "worst_pnl": 9.88,
         "last_traded": "2026-06-03",
+        "recent_streak": "all_wins",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "RNAC": {
+      "trades": [
+        {
+          "date": "2026-06-10",
+          "pnl_pct": 11.05,
+          "pnl_dollar": 8.94,
+          "exit_reason": "Server-side trailing stop at $7.49",
+          "score_at_entry": 100.0,
+          "tier_at_entry": "S",
+          "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.6M) | Elevated short interest (17.0% of float) | Explosive volume acceleration (7.7x vs 10d avg) | Near 52-week"
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 1,
+        "losses": 0,
+        "hit_rate": 1.0,
+        "avg_pnl": 11.05,
+        "best_pnl": 11.05,
+        "worst_pnl": 11.05,
+        "last_traded": "2026-06-10",
         "recent_streak": "all_wins",
         "score_modifier": 0.0,
         "modifier_reason": "n<2 history, no modifier"
