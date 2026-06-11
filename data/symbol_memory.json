@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-06-10T19:58:04.359414+00:00",
-  "n_symbols": 26,
+  "generated_at": "2026-06-11T19:58:02.842782+00:00",
+  "n_symbols": 27,
   "symbols": {
     "BDRX": {
       "trades": [
@@ -649,20 +649,29 @@
           "score_at_entry": 76.0,
           "tier_at_entry": "A",
           "thesis": "Very low float (8.9M) | Very high short interest (36.0% of float) | Explosive volume acceleration (5.2x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 36.0% SI + "
+        },
+        {
+          "date": "2026-06-11",
+          "pnl_pct": -2.26,
+          "pnl_dollar": -1.42,
+          "exit_reason": "Server-side stop at $10.25",
+          "score_at_entry": 76.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (8.9M) | Very high short interest (35.5% of float) | Explosive volume acceleration (9.8x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 35.5% SI + "
         }
       ],
       "summary": {
-        "n": 2,
+        "n": 3,
         "wins": 1,
-        "losses": 1,
-        "hit_rate": 0.5,
-        "avg_pnl": -3.2,
+        "losses": 2,
+        "hit_rate": 0.333,
+        "avg_pnl": -2.89,
         "best_pnl": 0.23,
         "worst_pnl": -6.63,
-        "last_traded": "2026-06-03",
-        "recent_streak": "last_win",
-        "score_modifier": 0.0,
-        "modifier_reason": "mixed history (2 trades, 50% WR, -3.2% avg)"
+        "last_traded": "2026-06-11",
+        "recent_streak": "last_loss",
+        "score_modifier": -3.0,
+        "modifier_reason": "last trade lost (-2.9% avg)"
       }
     },
     "CABA": {
@@ -762,20 +771,29 @@
           "score_at_entry": 83.0,
           "tier_at_entry": "S",
           "thesis": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (5.0x vs 10d avg) | Near 52-week low \u2014 turnaround potential | "
+        },
+        {
+          "date": "2026-06-11",
+          "pnl_pct": -7.39,
+          "pnl_dollar": -6.25,
+          "exit_reason": "Server-side stop at $2.61",
+          "score_at_entry": 83.0,
+          "tier_at_entry": "S",
+          "thesis": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (7.5x vs 10d avg) | Near 52-week low \u2014 turnaround potential | "
         }
       ],
       "summary": {
-        "n": 1,
+        "n": 2,
         "wins": 1,
-        "losses": 0,
-        "hit_rate": 1.0,
-        "avg_pnl": 9.88,
+        "losses": 1,
+        "hit_rate": 0.5,
+        "avg_pnl": 1.25,
         "best_pnl": 9.88,
-        "worst_pnl": 9.88,
-        "last_traded": "2026-06-03",
-        "recent_streak": "all_wins",
-        "score_modifier": 0.0,
-        "modifier_reason": "n<2 history, no modifier"
+        "worst_pnl": -7.39,
+        "last_traded": "2026-06-11",
+        "recent_streak": "last_loss",
+        "score_modifier": -3.0,
+        "modifier_reason": "last trade lost (1.2% avg)"
       }
     },
     "RNAC": {
@@ -800,6 +818,32 @@
         "worst_pnl": 11.05,
         "last_traded": "2026-06-10",
         "recent_streak": "all_wins",
+        "score_modifier": 0.0,
+        "modifier_reason": "n<2 history, no modifier"
+      }
+    },
+    "LAKE": {
+      "trades": [
+        {
+          "date": "2026-06-11",
+          "pnl_pct": -1.82,
+          "pnl_dollar": -1.0,
+          "exit_reason": "Server-side stop at $10.76",
+          "score_at_entry": 76.0,
+          "tier_at_entry": "A",
+          "thesis": "Very low float (8.6M) | Very high short interest (21.3% of float) | Explosive volume acceleration (6.1x vs 10d avg) | SQUEEZE TRIFECTA: 8.6M float + 21.3% SI + "
+        }
+      ],
+      "summary": {
+        "n": 1,
+        "wins": 0,
+        "losses": 1,
+        "hit_rate": 0.0,
+        "avg_pnl": -1.82,
+        "best_pnl": -1.82,
+        "worst_pnl": -1.82,
+        "last_traded": "2026-06-11",
+        "recent_streak": "all_losses",
         "score_modifier": 0.0,
         "modifier_reason": "n<2 history, no modifier"
       }
