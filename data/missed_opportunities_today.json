@@ -1,16 +1,16 @@
 {
-  "date": "2026-06-10",
-  "generated_at": "2026-06-10T23:59:52.484026+00:00",
+  "date": "2026-06-11",
+  "generated_at": "2026-06-11T20:59:43.397618+00:00",
   "n_winners": 10,
   "n_caught_and_traded": 0,
   "n_on_watchlist_not_taken": 0,
   "n_missed_entirely": 10,
   "rows": [
     {
-      "ts": "2026-06-10T23:59:52.477249+00:00",
-      "date": "2026-06-10",
-      "symbol": "CPOP",
-      "move_pct": 322.22,
+      "ts": "2026-06-11T20:59:43.393409+00:00",
+      "date": "2026-06-11",
+      "symbol": "SPKLW",
+      "move_pct": 437.14,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -20,10 +20,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.477946+00:00",
-      "date": "2026-06-10",
-      "symbol": "DSY",
-      "move_pct": 291.3,
+      "ts": "2026-06-11T20:59:43.393676+00:00",
+      "date": "2026-06-11",
+      "symbol": "GELS",
+      "move_pct": 197.38,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -33,10 +33,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.478388+00:00",
-      "date": "2026-06-10",
-      "symbol": "VSME",
-      "move_pct": 148.97,
+      "ts": "2026-06-11T20:59:43.393903+00:00",
+      "date": "2026-06-11",
+      "symbol": "QH",
+      "move_pct": 128,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -46,10 +46,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.478827+00:00",
-      "date": "2026-06-10",
-      "symbol": "GIPRW",
-      "move_pct": 138.65,
+      "ts": "2026-06-11T20:59:43.394098+00:00",
+      "date": "2026-06-11",
+      "symbol": "GLXG",
+      "move_pct": 113.09,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -59,10 +59,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.479375+00:00",
-      "date": "2026-06-10",
-      "symbol": "DSYWW",
-      "move_pct": 125,
+      "ts": "2026-06-11T20:59:43.394280+00:00",
+      "date": "2026-06-11",
+      "symbol": "PPCB",
+      "move_pct": 80,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -72,10 +72,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.479884+00:00",
-      "date": "2026-06-10",
-      "symbol": "CHOW",
-      "move_pct": 109.24,
+      "ts": "2026-06-11T20:59:43.394460+00:00",
+      "date": "2026-06-11",
+      "symbol": "PINC",
+      "move_pct": 77.6,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -85,10 +85,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.480230+00:00",
-      "date": "2026-06-10",
-      "symbol": "SDOT",
-      "move_pct": 108.22,
+      "ts": "2026-06-11T20:59:43.394648+00:00",
+      "date": "2026-06-11",
+      "symbol": "EDHL",
+      "move_pct": 70.86,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -98,10 +98,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.480501+00:00",
-      "date": "2026-06-10",
-      "symbol": "SBFMW",
-      "move_pct": 98.8,
+      "ts": "2026-06-11T20:59:43.394820+00:00",
+      "date": "2026-06-11",
+      "symbol": "VELL",
+      "move_pct": 68.66,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -111,10 +111,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.480863+00:00",
-      "date": "2026-06-10",
-      "symbol": "IVDAW",
-      "move_pct": 84.03,
+      "ts": "2026-06-11T20:59:43.394979+00:00",
+      "date": "2026-06-11",
+      "symbol": "CDTTW",
+      "move_pct": 65.69,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
@@ -124,10 +124,10 @@
       "miss_reason": "not_found_by_scanner"
     },
     {
-      "ts": "2026-06-10T23:59:52.481239+00:00",
-      "date": "2026-06-10",
-      "symbol": "HXHX",
-      "move_pct": 73.26,
+      "ts": "2026-06-11T20:59:43.395128+00:00",
+      "date": "2026-06-11",
+      "symbol": "ASBPW",
+      "move_pct": 58.94,
       "scanner_evaluated": false,
       "scanner_score": null,
       "scanner_tier": null,
