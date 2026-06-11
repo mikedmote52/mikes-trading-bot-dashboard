@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-11T13:59:39.130489",
-  "candidates_discovered": 521,
+  "timestamp": "2026-06-11T16:59:46.003822",
+  "candidates_discovered": 517,
   "candidates_evaluated": 50,
   "ready_to_trade": 18,
   "top_picks": [
@@ -58,7 +58,7 @@
       "short_pct": 0.0002,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 20.35992216809452,
+      "volume_acceleration": 20.430880788398007,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -76,7 +76,7 @@
       "short_pct": 0.1066,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.0438467898172488,
+      "volume_acceleration": 2.0441256678883004,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -134,7 +134,7 @@
       "short_pct": 0.18010001,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.937241661551054,
+      "volume_acceleration": 1.9400294941540894,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -188,7 +188,7 @@
       "short_pct": 0.1066,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 1.1654214538893288,
+      "volume_acceleration": 1.1661510373207244,
       "sector": "healthcare",
       "industry": "biotechnology"
     }
@@ -199,7 +199,7 @@
       "symbol": "RNAC",
       "score": 93.0,
       "thesis": "Biotech \u2014 catalyst-driven sector | Low float (10.6M) | Elevated short interest (17.6% of float) | Explosive volume acceleration (9.7x vs 10d avg) | SQUEEZE TRIFECTA: 10.6M float + 17.6% SI + 9.7x volume [Raw: 80, Normalized: 93]",
-      "times_seen": 9,
+      "times_seen": 10,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
@@ -235,7 +235,7 @@
       "symbol": "LAKE",
       "score": 76.0,
       "thesis": "Very low float (8.6M) | Very high short interest (21.3% of float) | Explosive volume acceleration (6.9x vs 10d avg) | SQUEEZE TRIFECTA: 8.6M float + 21.3% SI + 6.9x volume [Raw: 55, Normalized: 76]",
-      "times_seen": 13,
+      "times_seen": 14,
       "has_catalyst": 0,
       "catalyst_type": null,
       "sector": "consumer cyclical"
@@ -271,7 +271,7 @@
       "symbol": "INDP",
       "score": 56.0,
       "thesis": "Biotech \u2014 catalyst-driven sector | Very low float (3.2M) | Explosive volume acceleration (20.4x vs 10d avg) | Today +45.7% \u2014 strong move [Raw: 85, Normalized: 56]",
-      "times_seen": 15,
+      "times_seen": 16,
       "has_catalyst": 1,
       "catalyst_type": "biotech_potential",
       "sector": "healthcare"
