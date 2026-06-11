@@ -1238,5 +1238,158 @@
         "market_next_close": "2026-06-09T16:00:00-04:00"
       }
     }
+  },
+  {
+    "symbol": "LFVN",
+    "entry": 10.485,
+    "exit_price": 10.248333,
+    "pnl_pct": -2.26,
+    "pnl_dollar": -1.42,
+    "reason": "Server-side stop at $10.25",
+    "date": "2026-06-11",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 76.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 8947141.0,
+      "short_pct": 0.3552,
+      "volume_acceleration": 0,
+      "sector": "consumer defensive",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Very low float (8.9M) | Very high short interest (35.5% of float) | Explosive volume acceleration (9.8x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 35.5% SI + 9.8x volume [Raw: 55, Normalized: 76]",
+      "scanner_pick": {
+        "symbol": "LFVN",
+        "close": 10.485,
+        "composite_score": 76.0,
+        "tier": "A",
+        "reasoning": "Very low float (8.9M) | Very high short interest (35.5% of float) | Explosive volume acceleration (9.8x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 35.5% SI + 9.8x volume [Raw: 55, Normalized: 76]",
+        "breakdown": {
+          "v2_score": 76.0,
+          "catalyst": 0
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 176,
+        "has_catalyst": false,
+        "float_shares": 8947141.0,
+        "short_pct": 0.3552,
+        "volume_acceleration": 0,
+        "sector": "consumer defensive",
+        "catalyst_type": null
+      },
+      "regime_context": {
+        "captured_at": "2026-06-11T09:00:47.713970",
+        "market_is_open": true,
+        "market_next_open": "2026-06-12T09:30:00-04:00",
+        "market_next_close": "2026-06-11T16:00:00-04:00"
+      }
+    }
+  },
+  {
+    "symbol": "LAKE",
+    "entry": 10.96,
+    "exit_price": 10.76,
+    "pnl_pct": -1.82,
+    "pnl_dollar": -1.0,
+    "reason": "Server-side stop at $10.76",
+    "date": "2026-06-11",
+    "entry_signals": {
+      "tier": "A",
+      "composite_score": 76.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 8589923.0,
+      "short_pct": 0.2131,
+      "volume_acceleration": 0,
+      "sector": "consumer cyclical",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Very low float (8.6M) | Very high short interest (21.3% of float) | Explosive volume acceleration (6.1x vs 10d avg) | SQUEEZE TRIFECTA: 8.6M float + 21.3% SI + 6.1x volume [Raw: 55, Normalized: 76]",
+      "scanner_pick": {
+        "symbol": "LAKE",
+        "close": 10.96,
+        "composite_score": 76.0,
+        "tier": "A",
+        "reasoning": "Very low float (8.6M) | Very high short interest (21.3% of float) | Explosive volume acceleration (6.1x vs 10d avg) | SQUEEZE TRIFECTA: 8.6M float + 21.3% SI + 6.1x volume [Raw: 55, Normalized: 76]",
+        "breakdown": {
+          "v2_score": 76.0,
+          "catalyst": 0
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 12,
+        "has_catalyst": false,
+        "float_shares": 8589923.0,
+        "short_pct": 0.2131,
+        "volume_acceleration": 0,
+        "sector": "consumer cyclical",
+        "catalyst_type": null
+      },
+      "regime_context": {
+        "captured_at": "2026-06-11T09:00:36.631195",
+        "market_is_open": true,
+        "market_next_open": "2026-06-12T09:30:00-04:00",
+        "market_next_close": "2026-06-11T16:00:00-04:00"
+      }
+    }
+  },
+  {
+    "symbol": "CRMT",
+    "entry": 2.82,
+    "exit_price": 2.611667,
+    "pnl_pct": -7.39,
+    "pnl_dollar": -6.25,
+    "reason": "Server-side stop at $2.61",
+    "date": "2026-06-11",
+    "entry_signals": {
+      "tier": "S",
+      "composite_score": 83.0,
+      "has_catalyst": false,
+      "catalyst_type": null,
+      "float_shares": 4197387.0,
+      "short_pct": 0.2481,
+      "volume_acceleration": 0,
+      "sector": "consumer cyclical",
+      "gap_pct": null,
+      "rvol": 0,
+      "previous_close": null,
+      "thesis": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (7.5x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 4.2M float + 24.8% SI ",
+      "scanner_pick": {
+        "symbol": "CRMT",
+        "close": 2.82,
+        "composite_score": 83.0,
+        "tier": "S",
+        "reasoning": "Very low float (4.2M) | Very high short interest (24.8% of float) | Explosive volume acceleration (7.5x vs 10d avg) | Near 52-week low \u2014 turnaround potential | SQUEEZE TRIFECTA: 4.2M float + 24.8% SI + 7.5x volume [Raw: 65, Normalized: 83]",
+        "breakdown": {
+          "v2_score": 83.0,
+          "catalyst": 0
+        },
+        "penalty_breakdown": {},
+        "pct_change": 0,
+        "rvol": 0,
+        "volume": 0,
+        "times_seen": 9,
+        "has_catalyst": false,
+        "float_shares": 4197387.0,
+        "short_pct": 0.2481,
+        "volume_acceleration": 0,
+        "sector": "consumer cyclical",
+        "catalyst_type": null
+      },
+      "regime_context": {
+        "captured_at": "2026-06-11T09:00:25.835350",
+        "market_is_open": true,
+        "market_next_open": "2026-06-12T09:30:00-04:00",
+        "market_next_close": "2026-06-11T16:00:00-04:00"
+      }
+    }
   }
 ]
