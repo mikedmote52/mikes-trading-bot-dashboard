@@ -1,10 +1,10 @@
 {
-  "ts": "2026-06-12T11:30:08.608099",
+  "ts": "2026-06-12T12:58:12.251820",
   "regime": "green",
   "regime_label": "Favorable \u2014 momentum + low vol",
-  "iwm_return_20d": 5.77,
+  "iwm_return_20d": 5.49,
   "spy_realized_vol_20d": 12.8,
-  "breadth_differential": 3.06,
+  "breadth_differential": 2.77,
   "data_source": "yfinance",
   "stub": false
 }
