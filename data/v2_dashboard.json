@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-12T13:59:49.669872",
+  "timestamp": "2026-06-12T16:59:37.239290",
   "candidates_discovered": 538,
   "candidates_evaluated": 50,
   "ready_to_trade": 18,
@@ -18,7 +18,7 @@
       "short_pct": 0.17629999,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 3.963940122961775,
+      "volume_acceleration": 3.9706146032529355,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -58,7 +58,7 @@
       "short_pct": 0.0229,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 4.28957423580786,
+      "volume_acceleration": 4.302789907811742,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -78,7 +78,7 @@
       "short_pct": 0.26790002,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.542271954221324,
+      "volume_acceleration": 2.5478022578780872,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
@@ -134,7 +134,7 @@
       "short_pct": 0.2346,
       "social_mentions": 0,
       "reddit_sentiment": 0.0,
-      "volume_acceleration": 2.5790855355527906,
+      "volume_acceleration": 2.623823742498963,
       "sector": "healthcare",
       "industry": "biotechnology"
     },
