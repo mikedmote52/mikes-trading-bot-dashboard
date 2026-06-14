@@ -1,6 +1,6 @@
 {
-  "built_at": "2026-06-12T17:27:52.373338",
-  "count": 479,
+  "built_at": "2026-06-13T17:27:38.035313",
+  "count": 477,
   "symbols": [
     "MASK",
     "AAPG",
@@ -223,10 +223,9 @@
     "CERT",
     "EIKN",
     "RR",
-    "GOSS",
+    "SOC",
     "TOYO",
     "DBVT",
-    "SOC",
     "KT",
     "ACDC",
     "ABCL",
@@ -338,7 +337,6 @@
     "PLUG",
     "SKIN",
     "DXC",
-    "KRRO",
     "CLM",
     "AKTS",
     "SKLZ",
@@ -458,9 +456,9 @@
     "SNDX",
     "SERV",
     "CGEM",
+    "SFIX",
     "FNKO",
     "GPRK",
-    "SFIX",
     "MBX",
     "HUMA",
     "NXDR",
@@ -491,12 +489,6 @@
     },
     {
       "symbol": "AMPG",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_short_squeeze"
-    },
-    {
-      "symbol": "ARTV",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_short_squeeze"
@@ -635,6 +627,12 @@
     },
     {
       "symbol": "AKTS",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_biotech"
+    },
+    {
+      "symbol": "ARTV",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_biotech"
@@ -1294,12 +1292,6 @@
       "source": "finviz_pre_catalyst"
     },
     {
-      "symbol": "GOSS",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
       "symbol": "GPGI",
       "float_shares": 0,
       "short_pct": 0,
@@ -1451,12 +1443,6 @@
     },
     {
       "symbol": "KPTI",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_pre_catalyst"
-    },
-    {
-      "symbol": "KRRO",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -2069,6 +2055,12 @@
     },
     {
       "symbol": "SERV",
+      "float_shares": 0,
+      "short_pct": 0,
+      "source": "finviz_pre_catalyst"
+    },
+    {
+      "symbol": "SFIX",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_pre_catalyst"
@@ -3017,12 +3009,6 @@
     },
     {
       "symbol": "SENS",
-      "float_shares": 0,
-      "short_pct": 0,
-      "source": "finviz_consolidation"
-    },
-    {
-      "symbol": "SFIX",
       "float_shares": 0,
       "short_pct": 0,
       "source": "finviz_consolidation"
