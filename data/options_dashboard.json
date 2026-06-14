@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T23:59:55.640748+00:00",
+  "generated_at": "2026-06-13T23:59:59.430937+00:00",
   "open_count": 1,
   "open_positions": [
     {
@@ -587,7 +587,7 @@
     },
     "last_monitor_pass_at": "2026-06-12T20:00:03.151677+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-06-13T23:59:55.640797+00:00"
+    "last_publish_at": "2026-06-13T23:59:59.430966+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
