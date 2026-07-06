@@ -1,8 +1,8 @@
 {
-  "ts": "2026-07-06T12:19:07.452863",
+  "ts": "2026-07-06T12:19:15.347792",
   "regime": "yellow",
   "regime_label": "Neutral \u2014 mixed signals",
-  "iwm_return_20d": 6.5,
+  "iwm_return_20d": 6.51,
   "spy_realized_vol_20d": 18.3,
   "breadth_differential": -1.4,
   "data_source": "yfinance",
