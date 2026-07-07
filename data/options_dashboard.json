@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T19:19:52.153484+00:00",
+  "generated_at": "2026-07-07T19:58:05.635896+00:00",
   "open_count": 0,
   "open_positions": [],
   "closes": [
@@ -590,9 +590,9 @@
       "positions_opened": 0,
       "symbols": []
     },
-    "last_monitor_pass_at": "2026-07-07T19:17:05.101091+00:00",
+    "last_monitor_pass_at": "2026-07-07T19:57:48.150722+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-07-07T19:19:52.153616+00:00"
+    "last_publish_at": "2026-07-07T19:58:05.636231+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
