@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T13:32:15.330600+00:00",
+  "generated_at": "2026-07-07T13:34:27.806259+00:00",
   "open_count": 0,
   "open_positions": [],
   "closes": [
@@ -524,9 +524,42 @@
         "catalyst_type": null,
         "sector": null
       }
+    },
+    {
+      "ts": "2026-07-07T13:33:08.336287+00:00",
+      "ticker": "LFVN",
+      "track": "squeeze",
+      "occ_symbol": "LFVN260717C00007500",
+      "outcome": "rejected_by_gates",
+      "gate_failures": [
+        "liquidity: spread 75.0% > 10% (track=squeeze bid=0.12 ask=0.27 mid=0.2)"
+      ],
+      "gates_evaluated": [
+        "liquidity(squeeze)",
+        "vol_regime",
+        "correlation",
+        "iv_rank"
+      ],
+      "iv_rank_warning": null,
+      "iv_at_entry": 1.2835,
+      "delta_at_entry": 0.3272,
+      "theta_at_entry": -0.0314,
+      "vega_at_entry": 0.0038,
+      "gamma_at_entry": 0.18899,
+      "spot": 6.2,
+      "strike": "7.5",
+      "expiration": "2026-07-17",
+      "bid": 0.12,
+      "ask": 0.27,
+      "mid": 0.2,
+      "pick_meta": {
+        "tier": "A",
+        "score": 76.0,
+        "thesis": "Very low float (8.9M) | Very high short interest (35.5% of float) | Explosive volume acceleration (9.8x vs 10d avg) | SQUEEZE TRIFECTA: 8.9M float + 35.5% SI + 9.8x volume [Raw: 55, Normalized: 76]"
+      }
     }
   ],
-  "picks_today_count": 0,
+  "picks_today_count": 1,
   "outcomes_summary": {
     "n_closed": 3,
     "wins": 0,
@@ -552,14 +585,14 @@
   "bot_state": {
     "options_bot_enabled": true,
     "conviction_floor": "A",
-    "last_entry_pass_at": "2026-06-12T13:34:57.700342+00:00",
+    "last_entry_pass_at": "2026-07-07T13:34:27.100589+00:00",
     "last_entry_pass_result": {
       "positions_opened": 0,
       "symbols": []
     },
-    "last_monitor_pass_at": "2026-07-06T20:00:52.508566+00:00",
+    "last_monitor_pass_at": "2026-07-07T13:32:19.013200+00:00",
     "last_monitor_pass_closes": 0,
-    "last_publish_at": "2026-07-07T13:32:15.330753+00:00"
+    "last_publish_at": "2026-07-07T13:34:27.806395+00:00"
   },
   "config": {
     "stop_loss_pct": -50.0,
