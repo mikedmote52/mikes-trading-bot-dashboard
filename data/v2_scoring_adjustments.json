@@ -1,12 +1,12 @@
 {
-  "version": 26,
+  "version": 27,
   "multipliers": {
-    "catalyst": 1.0,
+    "catalyst": 1.2,
     "low_float": 1.0,
-    "high_short": 1.0,
-    "social": 1.0,
-    "volume": 1.0,
-    "biotech": 1.0,
+    "high_short": 0.847,
+    "social": 1.056,
+    "volume": 1.056,
+    "biotech": 1.2,
     "price_sweet_spot": 1.0,
     "no_catalyst_penalty": 1.0
   },
@@ -30,12 +30,64 @@
     "min_effective_samples_required": 100,
     "preserved_from_prior_run": true
   },
-  "last_updated": "2026-07-06T13:33:05.264748",
+  "last_updated": "2026-07-07T13:33:14.131175",
   "last_stats": {
     "win_rate": 45.0,
     "avg_win_pct": 15.24,
     "avg_loss_pct": -9.79,
     "trades_analyzed": 20
   },
-  "history": []
+  "history": [
+    {
+      "timestamp": "2026-07-07T13:33:14.131193",
+      "changes": [
+        {
+          "factor": "catalyst",
+          "old": 1.0,
+          "new": 1.2,
+          "factor_win_rate": 83.3,
+          "sample_size": 6,
+          "adjustment_pct": 20.0
+        },
+        {
+          "factor": "high_short",
+          "old": 1.0,
+          "new": 0.847,
+          "factor_win_rate": 31.2,
+          "sample_size": 16,
+          "adjustment_pct": -15.3
+        },
+        {
+          "factor": "social",
+          "old": 1.0,
+          "new": 1.056,
+          "factor_win_rate": 50.0,
+          "sample_size": 6,
+          "adjustment_pct": 5.6
+        },
+        {
+          "factor": "volume",
+          "old": 1.0,
+          "new": 1.056,
+          "factor_win_rate": 50.0,
+          "sample_size": 16,
+          "adjustment_pct": 5.6
+        },
+        {
+          "factor": "biotech",
+          "old": 1.0,
+          "new": 1.2,
+          "factor_win_rate": 83.3,
+          "sample_size": 6,
+          "adjustment_pct": 20.0
+        }
+      ],
+      "stats": {
+        "win_rate": 45.0,
+        "avg_win_pct": 15.24,
+        "avg_loss_pct": -9.79,
+        "trades_analyzed": 20
+      }
+    }
+  ]
 }

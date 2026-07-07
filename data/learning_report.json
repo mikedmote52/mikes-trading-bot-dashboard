@@ -1,16 +1,57 @@
 {
-  "timestamp": "2026-07-06T13:33:05.265304",
+  "timestamp": "2026-07-07T13:33:14.153282",
   "trades_analyzed": 20,
   "effective_sample_size": 20,
-  "min_effective_samples_required": 100,
+  "min_effective_samples_required": 20,
   "win_rate": 45.0,
   "setup_win_rate": 45.0,
   "avg_win_pct": 15.24,
   "avg_loss_pct": -9.79,
-  "learner_skipped": true,
-  "skip_reason": "effective_n=20 < MIN_EFFECTIVE_SAMPLES_FOR_LEARN=100",
-  "v2_adjustments_applied": 0,
-  "changes": [],
+  "learner_skipped": false,
+  "skip_reason": null,
+  "v2_adjustments_applied": 5,
+  "changes": [
+    {
+      "factor": "catalyst",
+      "old": 1.0,
+      "new": 1.2,
+      "factor_win_rate": 83.3,
+      "sample_size": 6,
+      "adjustment_pct": 20.0
+    },
+    {
+      "factor": "high_short",
+      "old": 1.0,
+      "new": 0.847,
+      "factor_win_rate": 31.2,
+      "sample_size": 16,
+      "adjustment_pct": -15.3
+    },
+    {
+      "factor": "social",
+      "old": 1.0,
+      "new": 1.056,
+      "factor_win_rate": 50.0,
+      "sample_size": 6,
+      "adjustment_pct": 5.6
+    },
+    {
+      "factor": "volume",
+      "old": 1.0,
+      "new": 1.056,
+      "factor_win_rate": 50.0,
+      "sample_size": 16,
+      "adjustment_pct": 5.6
+    },
+    {
+      "factor": "biotech",
+      "old": 1.0,
+      "new": 1.2,
+      "factor_win_rate": 83.3,
+      "sample_size": 6,
+      "adjustment_pct": 20.0
+    }
+  ],
   "winners": [
     "HTCO",
     "CYCN",
